@@ -4,297 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Experience - Admin</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      background: #fafafa;
-      color: #333;
-    }
-
-    header {
-      border-bottom: 2px solid #333;
-      padding: 1.5rem 2rem;
-      background: #fff;
-    }
-
-    .header-content {
-      max-width: 900px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .logo {
-      font-size: 1.5rem;
-      font-weight: 700;
-      text-decoration: none;
-      color: #333;
-      border: 2px solid #333;
-      padding: 0.5rem 1rem;
-    }
-
-    nav {
-      display: flex;
-      gap: 2rem;
-    }
-
-    nav a {
-      text-decoration: none;
-      color: #333;
-      font-weight: 500;
-      padding: 0.5rem;
-      border-bottom: 2px solid transparent;
-    }
-
-    nav a:hover {
-      border-bottom-color: #333;
-    }
-
-    main {
-      flex: 1;
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 3rem 2rem;
-      width: 100%;
-    }
-
-    .page-header {
-      margin-bottom: 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .page-header h1 {
-      font-size: 2rem;
-    }
-
-    /* Login Form */
-    .login-section {
-      max-width: 400px;
-      margin: 4rem auto;
-      padding: 2rem;
-      border: 2px solid #ddd;
-      background: #fff;
-    }
-
-    .login-section h2 {
-      margin-bottom: 1.5rem;
-      text-align: center;
-    }
-
-    .form-group {
-      margin-bottom: 1rem;
-    }
-
-    .form-group label {
-      display: block;
-      margin-bottom: 0.5rem;
-      font-weight: 500;
-      font-size: 0.875rem;
-    }
-
-    .form-group input,
-    .form-group textarea {
-      width: 100%;
-      padding: 0.75rem;
-      border: 2px solid #ddd;
-      font-size: 1rem;
-      font-family: inherit;
-    }
-
-    .form-group input:focus,
-    .form-group textarea:focus {
-      outline: none;
-      border-color: #333;
-    }
-
-    .form-group textarea {
-      min-height: 200px;
-      resize: vertical;
-    }
-
-    .btn {
-      padding: 0.75rem 1.5rem;
-      border: 2px solid #333;
-      background: #333;
-      color: #fff;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-
-    .btn:hover {
-      background: #fff;
-      color: #333;
-    }
-
-    .btn-outline {
-      background: #fff;
-      color: #333;
-    }
-
-    .btn-outline:hover {
-      background: #333;
-      color: #fff;
-    }
-
-    .btn-danger {
-      border-color: #dc3545;
-      background: #dc3545;
-    }
-
-    .btn-danger:hover {
-      background: #fff;
-      color: #dc3545;
-    }
-
-    .btn-sm {
-      padding: 0.5rem 1rem;
-      font-size: 0.875rem;
-    }
-
-    .error {
-      color: #dc3545;
-      margin-top: 1rem;
-      text-align: center;
-    }
-
-    /* Admin Dashboard */
-    .admin-section {
-      display: none;
-    }
-
-    .admin-section.active {
-      display: block;
-    }
-
-    .articles-list {
-      margin-top: 2rem;
-    }
-
-    .article-item {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem;
-      border: 1px solid #ddd;
-      border-bottom: none;
-      background: #fff;
-    }
-
-    .article-item:last-child {
-      border-bottom: 1px solid #ddd;
-    }
-
-    .article-item .title {
-      font-weight: 500;
-    }
-
-    .article-item .meta {
-      font-size: 0.875rem;
-      color: #999;
-    }
-
-    .article-item .actions {
-      display: flex;
-      gap: 0.5rem;
-    }
-
-    /* Modal */
-    .modal {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.5);
-      align-items: center;
-      justify-content: center;
-      z-index: 1000;
-    }
-
-    .modal.active {
-      display: flex;
-    }
-
-    .modal-content {
-      background: #fff;
-      padding: 2rem;
-      width: 90%;
-      max-width: 600px;
-      max-height: 90vh;
-      overflow-y: auto;
-      border: 2px solid #333;
-    }
-
-    .modal-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 1.5rem;
-    }
-
-    .modal-header h2 {
-      font-size: 1.5rem;
-    }
-
-    .close-btn {
-      background: none;
-      border: none;
-      font-size: 1.5rem;
-      cursor: pointer;
-      padding: 0.25rem;
-    }
-
-    .form-actions {
-      display: flex;
-      gap: 1rem;
-      margin-top: 1.5rem;
-    }
-
-    .logout-btn {
-      font-size: 0.875rem;
-      color: #666;
-      text-decoration: none;
-      cursor: pointer;
-    }
-
-    .logout-btn:hover {
-      color: #333;
-    }
-
-    .empty-state {
-      text-align: center;
-      padding: 3rem;
-      color: #999;
-      border: 2px dashed #ddd;
-      margin-top: 2rem;
-    }
-
-    footer {
-      border-top: 2px solid #333;
-      padding: 2rem;
-      background: #fff;
-      text-align: center;
-    }
-
-    .footer-content p {
-      color: #666;
-      font-size: 0.875rem;
-    }
-  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
   <header>
@@ -305,17 +18,21 @@
         <a href="/archive.html">Archive</a>
         <a href="/about.html">About</a>
       </nav>
+      <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+        <svg class="sun" viewBox="0 0 24 24"><path d="M12 7a5 5 0 100 10 5 5 0 000-10zM12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.72 12.72l1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+        <svg class="moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+      </button>
     </div>
   </header>
 
   <main>
     <!-- Login Section -->
-    <section id="loginSection" class="login-section">
+    <section id="loginSection" class="login-section animate-fade">
       <h2>Admin Login</h2>
       <form id="loginForm">
         <div class="form-group">
           <label for="password">Mot de passe</label>
-          <input type="password" id="password" name="password" required>
+          <input type="password" id="password" name="password" required placeholder="Entrez le mot de passe">
         </div>
         <button type="submit" class="btn" style="width: 100%">Se connecter</button>
         <p id="loginError" class="error" style="display: none;"></p>
@@ -323,17 +40,17 @@
     </section>
 
     <!-- Admin Dashboard -->
-    <section id="adminSection" class="admin-section">
-      <div class="page-header">
-        <h1>Admin Dashboard</h1>
-        <div style="display: flex; align-items: center; gap: 1rem;">
-          <button class="btn" onclick="openModal()">Nouvel article</button>
+    <section id="adminSection" class="admin-section" style="display: none;">
+      <div class="admin-header animate-fade">
+        <h1>Dashboard</h1>
+        <div class="admin-actions">
+          <button class="btn" onclick="openModal()">+ Nouvel article</button>
           <span class="logout-btn" onclick="logout()">Deconnexion</span>
         </div>
       </div>
 
-      <div class="articles-list" id="articlesList">
-        <div class="empty-state">Chargement des articles...</div>
+      <div class="articles-table" id="articlesList">
+        <div class="loading" style="padding: 2rem;">Chargement des articles...</div>
       </div>
     </section>
   </main>
@@ -349,15 +66,33 @@
         <input type="hidden" id="articleId">
         <div class="form-group">
           <label for="title">Titre</label>
-          <input type="text" id="title" name="title" required>
+          <input type="text" id="title" name="title" required placeholder="Titre de l'article">
         </div>
         <div class="form-group">
           <label for="slug">Slug (URL)</label>
           <input type="text" id="slug" name="slug" required placeholder="mon-article">
+          <p class="form-hint">URL: /article/<span id="slugPreview">mon-article</span></p>
         </div>
         <div class="form-group">
-          <label for="content">Contenu</label>
-          <textarea id="content" name="content" required></textarea>
+          <label for="tags">Tags</label>
+          <input type="text" id="tags" name="tags" placeholder="design, tech, reflexions">
+          <p class="form-hint">Separez les tags par des virgules</p>
+        </div>
+        <div class="form-group">
+          <label for="content">Contenu (Markdown)</label>
+          <textarea id="content" name="content" required placeholder="# Mon article
+
+Ecrivez votre contenu en **Markdown**...
+
+## Section
+
+- Point 1
+- Point 2
+
+> Citation
+
+`code`"></textarea>
+          <p class="form-hint">Supporte le Markdown: # titres, **gras**, *italique*, [liens](url), `code`, etc.</p>
         </div>
         <div class="form-actions">
           <button type="submit" class="btn">Sauvegarder</button>
@@ -374,9 +109,28 @@
   </footer>
 
   <script>
-    let authToken = localStorage.getItem('adminToken');
+    // Theme management
+    function getTheme() {
+      return localStorage.getItem('theme') ||
+        (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    }
 
-    // Check if already logged in
+    function setTheme(theme) {
+      document.documentElement.setAttribute('data-theme', theme);
+      localStorage.setItem('theme', theme);
+    }
+
+    function toggleTheme() {
+      const current = getTheme();
+      setTheme(current === 'dark' ? 'light' : 'dark');
+    }
+
+    setTheme(getTheme());
+
+    // Admin functionality
+    let authToken = localStorage.getItem('adminToken');
+    let articlesCache = [];
+
     if (authToken) {
       showAdmin();
     }
@@ -413,6 +167,7 @@
       const id = document.getElementById('articleId').value;
       const title = document.getElementById('title').value;
       const slug = document.getElementById('slug').value;
+      const tags = document.getElementById('tags').value;
       const content = document.getElementById('content').value;
 
       const method = id ? 'PUT' : 'POST';
@@ -425,7 +180,7 @@
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${authToken}`
           },
-          body: JSON.stringify({ title, slug, content })
+          body: JSON.stringify({ title, slug, tags, content })
         });
 
         if (res.ok) {
@@ -444,18 +199,25 @@
     document.getElementById('title').addEventListener('input', (e) => {
       const slugField = document.getElementById('slug');
       if (!document.getElementById('articleId').value) {
-        slugField.value = e.target.value
+        const slug = e.target.value
           .toLowerCase()
           .normalize('NFD')
           .replace(/[\u0300-\u036f]/g, '')
           .replace(/[^a-z0-9]+/g, '-')
           .replace(/(^-|-$)/g, '');
+        slugField.value = slug;
+        document.getElementById('slugPreview').textContent = slug || 'mon-article';
       }
+    });
+
+    // Update slug preview
+    document.getElementById('slug').addEventListener('input', (e) => {
+      document.getElementById('slugPreview').textContent = e.target.value || 'mon-article';
     });
 
     function showAdmin() {
       document.getElementById('loginSection').style.display = 'none';
-      document.getElementById('adminSection').classList.add('active');
+      document.getElementById('adminSection').style.display = 'block';
       loadArticles();
     }
 
@@ -463,7 +225,7 @@
       localStorage.removeItem('adminToken');
       authToken = null;
       document.getElementById('loginSection').style.display = 'block';
-      document.getElementById('adminSection').classList.remove('active');
+      document.getElementById('adminSection').style.display = 'none';
       document.getElementById('password').value = '';
       document.getElementById('loginError').style.display = 'none';
     }
@@ -471,22 +233,23 @@
     async function loadArticles() {
       try {
         const res = await fetch('/api/articles');
-        const articles = await res.json();
+        articlesCache = await res.json();
 
         const container = document.getElementById('articlesList');
 
-        if (articles.length === 0) {
+        if (articlesCache.length === 0) {
           container.innerHTML = '<div class="empty-state">Aucun article. Creez votre premier article!</div>';
           return;
         }
 
-        container.innerHTML = articles.map(article => `
-          <div class="article-item">
-            <div>
+        container.innerHTML = articlesCache.map((article, i) => `
+          <div class="article-row animate-slide" style="animation-delay: ${i * 0.05}s">
+            <div class="info">
               <div class="title">${escapeHtml(article.title)}</div>
-              <div class="meta">/${article.slug} - ${formatDate(article.created_at)}</div>
+              <div class="meta">/${article.slug} &bull; ${formatDate(article.created_at)}${article.tags ? ` &bull; ${article.tags}` : ''}</div>
             </div>
             <div class="actions">
+              <a href="/article/${article.slug}" target="_blank" class="btn btn-outline btn-sm">Voir</a>
               <button class="btn btn-outline btn-sm" onclick="editArticle(${article.id})">Editer</button>
               <button class="btn btn-danger btn-sm" onclick="deleteArticle(${article.id})">Supprimer</button>
             </div>
@@ -502,26 +265,24 @@
       document.getElementById('articleId').value = article ? article.id : '';
       document.getElementById('title').value = article ? article.title : '';
       document.getElementById('slug').value = article ? article.slug : '';
+      document.getElementById('tags').value = article ? (article.tags || '') : '';
       document.getElementById('content').value = article ? article.content : '';
+      document.getElementById('slugPreview').textContent = article ? article.slug : 'mon-article';
       document.getElementById('articleModal').classList.add('active');
+      document.getElementById('title').focus();
     }
 
     function closeModal() {
       document.getElementById('articleModal').classList.remove('active');
       document.getElementById('articleForm').reset();
       document.getElementById('articleId').value = '';
+      document.getElementById('slugPreview').textContent = 'mon-article';
     }
 
-    async function editArticle(id) {
-      try {
-        const res = await fetch('/api/articles');
-        const articles = await res.json();
-        const article = articles.find(a => a.id === id);
-        if (article) {
-          openModal(article);
-        }
-      } catch (err) {
-        alert('Erreur de chargement');
+    function editArticle(id) {
+      const article = articlesCache.find(a => a.id === id);
+      if (article) {
+        openModal(article);
       }
     }
 

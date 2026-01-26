@@ -4,167 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Experience - Article</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      background: #fafafa;
-      color: #333;
-    }
-
-    header {
-      border-bottom: 2px solid #333;
-      padding: 1.5rem 2rem;
-      background: #fff;
-    }
-
-    .header-content {
-      max-width: 900px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .logo {
-      font-size: 1.5rem;
-      font-weight: 700;
-      text-decoration: none;
-      color: #333;
-      border: 2px solid #333;
-      padding: 0.5rem 1rem;
-    }
-
-    nav {
-      display: flex;
-      gap: 2rem;
-    }
-
-    nav a {
-      text-decoration: none;
-      color: #333;
-      font-weight: 500;
-      padding: 0.5rem;
-      border-bottom: 2px solid transparent;
-      transition: border-color 0.2s;
-    }
-
-    nav a:hover {
-      border-bottom-color: #333;
-    }
-
-    main {
-      flex: 1;
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 3rem 2rem;
-      width: 100%;
-    }
-
-    .article-header {
-      margin-bottom: 2rem;
-      padding-bottom: 2rem;
-      border-bottom: 1px solid #ddd;
-    }
-
-    .article-header h1 {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-      line-height: 1.2;
-    }
-
-    .article-meta {
-      color: #666;
-      font-size: 0.875rem;
-    }
-
-    .article-content {
-      background: #fff;
-      padding: 2rem;
-      border: 2px solid #ddd;
-      line-height: 1.8;
-      font-size: 1.1rem;
-    }
-
-    .article-content p {
-      margin-bottom: 1.5rem;
-    }
-
-    .article-content p:last-child {
-      margin-bottom: 0;
-    }
-
-    .back-link {
-      display: inline-block;
-      margin-top: 2rem;
-      color: #666;
-      text-decoration: none;
-      font-size: 0.875rem;
-    }
-
-    .back-link:hover {
-      color: #333;
-    }
-
-    .loading {
-      text-align: center;
-      padding: 3rem;
-      color: #666;
-    }
-
-    .error-state {
-      text-align: center;
-      padding: 3rem;
-      color: #999;
-      border: 2px dashed #ddd;
-    }
-
-    .error-state h2 {
-      margin-bottom: 1rem;
-    }
-
-    footer {
-      border-top: 2px solid #333;
-      padding: 2rem;
-      background: #fff;
-      text-align: center;
-    }
-
-    .footer-content {
-      max-width: 900px;
-      margin: 0 auto;
-    }
-
-    .footer-content p {
-      color: #666;
-      font-size: 0.875rem;
-    }
-
-    .footer-links {
-      margin-top: 1rem;
-      display: flex;
-      justify-content: center;
-      gap: 1.5rem;
-    }
-
-    .footer-links a {
-      color: #999;
-      text-decoration: none;
-      font-size: 0.875rem;
-    }
-
-    .footer-links a:hover {
-      color: #333;
-    }
-  </style>
+  <meta name="description" content="">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
 <body>
   <header>
@@ -175,6 +20,10 @@
         <a href="/archive.html">Archive</a>
         <a href="/about.html">About</a>
       </nav>
+      <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+        <svg class="sun" viewBox="0 0 24 24"><path d="M12 7a5 5 0 100 10 5 5 0 000-10zM12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.72 12.72l1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+        <svg class="moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+      </button>
     </div>
   </header>
 
@@ -184,16 +33,41 @@
 
   <footer>
     <div class="footer-content">
-      <p>Experience Blog - Wireframe</p>
+      <p>Experience Blog</p>
       <div class="footer-links">
         <a href="/">Home</a>
         <a href="/archive.html">Archive</a>
         <a href="/about.html">About</a>
+        <a href="/rss.xml">RSS</a>
       </div>
     </div>
   </footer>
 
   <script>
+    // Theme management
+    function getTheme() {
+      return localStorage.getItem('theme') ||
+        (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    }
+
+    function setTheme(theme) {
+      document.documentElement.setAttribute('data-theme', theme);
+      localStorage.setItem('theme', theme);
+    }
+
+    function toggleTheme() {
+      const current = getTheme();
+      setTheme(current === 'dark' ? 'light' : 'dark');
+    }
+
+    setTheme(getTheme());
+
+    // Configure marked for security
+    marked.setOptions({
+      breaks: true,
+      gfm: true
+    });
+
     async function loadArticle() {
       const main = document.getElementById('mainContent');
       const slug = window.location.pathname.split('/').pop();
@@ -208,29 +82,31 @@
 
         const article = await res.json();
 
+        // Update page meta
         document.title = `Experience - ${article.title}`;
+        document.querySelector('meta[name="description"]').content =
+          article.content.substring(0, 160).replace(/[#*_`]/g, '') + '...';
 
-        // Convert newlines to paragraphs
-        const contentHtml = article.content
-          .split('\n\n')
-          .filter(p => p.trim())
-          .map(p => `<p>${escapeHtml(p).replace(/\n/g, '<br>')}</p>`)
-          .join('');
+        // Render markdown content
+        const contentHtml = marked.parse(article.content);
 
         main.innerHTML = `
-          <article>
+          <article class="animate-fade">
             <div class="article-header">
               <h1>${escapeHtml(article.title)}</h1>
               <div class="article-meta">
-                Publie le ${formatDate(article.created_at)}
+                <span>Publie le ${formatDate(article.created_at)}</span>
                 ${article.updated_at && article.updated_at !== article.created_at ?
-                  ` - Mis a jour le ${formatDate(article.updated_at)}` : ''}
+                  `<span>Mis a jour le ${formatDate(article.updated_at)}</span>` : ''}
+                ${article.tags ? `<span class="tag">${escapeHtml(article.tags)}</span>` : ''}
               </div>
             </div>
             <div class="article-content">
               ${contentHtml}
             </div>
-            <a href="/archive.html" class="back-link">&larr; Retour aux archives</a>
+            <a href="/archive.html" class="back-link">
+              <span>&larr;</span> Retour aux archives
+            </a>
           </article>
         `;
 
@@ -242,10 +118,12 @@
     function showError() {
       const main = document.getElementById('mainContent');
       main.innerHTML = `
-        <div class="error-state">
+        <div class="empty-state animate-fade">
           <h2>Article non trouve</h2>
-          <p>Cet article n'existe pas ou a ete supprime.</p>
-          <a href="/archive.html" class="back-link">&larr; Retour aux archives</a>
+          <p style="margin-top: 1rem;">Cet article n'existe pas ou a ete supprime.</p>
+          <a href="/archive.html" class="back-link" style="margin-top: 2rem;">
+            <span>&larr;</span> Retour aux archives
+          </a>
         </div>
       `;
     }
