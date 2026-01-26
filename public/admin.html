@@ -4,81 +4,90 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Experience - Admin</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/style.css">
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   <style>
-    /* Editor Styles */
-    .editor-container {
-      display: flex;
-      flex-direction: column;
-      border: 2px solid var(--border-color);
-      border-radius: var(--radius-md);
+    .editor-wrap {
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
       overflow: hidden;
-      background: var(--bg-primary);
+      background: var(--bg);
     }
 
     .editor-toolbar {
       display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 8px 12px;
+      background: var(--bg-subtle);
+      border-bottom: 1px solid var(--border);
       flex-wrap: wrap;
-      gap: 0.25rem;
-      padding: 0.75rem;
-      background: var(--bg-tertiary);
-      border-bottom: 1px solid var(--border-color);
-    }
-
-    .toolbar-group {
-      display: flex;
-      gap: 0.25rem;
-      padding-right: 0.75rem;
-      margin-right: 0.5rem;
-      border-right: 1px solid var(--border-color);
-    }
-
-    .toolbar-group:last-child {
-      border-right: none;
-      margin-right: 0;
-      padding-right: 0;
     }
 
     .toolbar-btn {
-      width: 36px;
-      height: 36px;
+      width: 32px;
+      height: 32px;
       display: flex;
       align-items: center;
       justify-content: center;
-      background: var(--bg-secondary);
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-sm);
+      background: transparent;
+      border: none;
+      border-radius: 6px;
       cursor: pointer;
-      font-size: 0.9rem;
+      color: var(--text-secondary);
+      font-size: 14px;
       font-weight: 600;
-      color: var(--text-primary);
-      transition: all var(--transition-fast);
+      transition: all 0.15s;
     }
 
     .toolbar-btn:hover {
-      background: var(--accent);
-      color: var(--bg-primary);
-      border-color: var(--accent);
+      background: var(--bg-muted);
+      color: var(--text);
     }
 
     .toolbar-btn svg {
-      width: 18px;
-      height: 18px;
-      fill: currentColor;
+      width: 16px;
+      height: 16px;
+      stroke: currentColor;
+      stroke-width: 2;
+      fill: none;
     }
 
-    .toolbar-btn.active {
-      background: var(--accent);
-      color: var(--bg-primary);
+    .toolbar-divider {
+      width: 1px;
+      height: 20px;
+      background: var(--border);
+      margin: 0 8px;
     }
 
-    .editor-body {
+    .editor-tabs {
       display: flex;
-      min-height: 400px;
+      margin-left: auto;
+      background: var(--bg-muted);
+      border-radius: 6px;
+      padding: 2px;
+    }
+
+    .editor-tab {
+      padding: 6px 12px;
+      font-size: 13px;
+      border: none;
+      background: transparent;
+      color: var(--text-muted);
+      cursor: pointer;
+      border-radius: 4px;
+      transition: all 0.15s;
+    }
+
+    .editor-tab.active {
+      background: var(--bg);
+      color: var(--text);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .editor-main {
+      display: flex;
+      min-height: 350px;
     }
 
     .editor-pane {
@@ -87,27 +96,17 @@
       flex-direction: column;
     }
 
-    .editor-pane-header {
-      padding: 0.5rem 1rem;
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      color: var(--text-muted);
-      background: var(--bg-tertiary);
-      border-bottom: 1px solid var(--border-color);
-    }
-
     .editor-textarea {
       flex: 1;
       width: 100%;
-      padding: 1rem;
+      padding: 16px;
       border: none;
       resize: none;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.9rem;
-      line-height: 1.7;
-      background: var(--bg-primary);
-      color: var(--text-primary);
+      font-family: 'SF Mono', Monaco, monospace;
+      font-size: 14px;
+      line-height: 1.6;
+      background: var(--bg);
+      color: var(--text);
     }
 
     .editor-textarea:focus {
@@ -120,92 +119,59 @@
 
     .editor-divider {
       width: 1px;
-      background: var(--border-color);
+      background: var(--border);
     }
 
     .preview-pane {
       flex: 1;
+      padding: 16px;
       overflow-y: auto;
-      background: var(--bg-secondary);
+      background: var(--bg-subtle);
+    }
+
+    .preview-pane.hidden,
+    .editor-pane.hidden,
+    .editor-divider.hidden {
+      display: none;
     }
 
     .preview-content {
-      padding: 1rem;
-      line-height: 1.8;
-    }
-
-    .preview-content h1,
-    .preview-content h2,
-    .preview-content h3 {
-      margin: 1.5rem 0 0.75rem;
-      color: var(--text-primary);
-    }
-
-    .preview-content h1:first-child,
-    .preview-content h2:first-child,
-    .preview-content h3:first-child {
-      margin-top: 0;
-    }
-
-    .preview-content p {
-      margin-bottom: 1rem;
+      font-size: 15px;
+      line-height: 1.7;
       color: var(--text-secondary);
     }
 
-    .preview-content ul,
-    .preview-content ol {
-      margin: 1rem 0;
-      padding-left: 1.5rem;
-      color: var(--text-secondary);
+    .preview-content h1, .preview-content h2, .preview-content h3 {
+      color: var(--text);
+      margin: 24px 0 12px;
     }
-
-    .preview-content li {
-      margin-bottom: 0.5rem;
-    }
-
+    .preview-content h1:first-child, .preview-content h2:first-child { margin-top: 0; }
+    .preview-content h1 { font-size: 24px; }
+    .preview-content h2 { font-size: 20px; }
+    .preview-content h3 { font-size: 17px; }
+    .preview-content p { margin-bottom: 16px; }
+    .preview-content ul, .preview-content ol { margin: 16px 0; padding-left: 24px; }
+    .preview-content li { margin-bottom: 6px; }
     .preview-content code {
-      font-family: 'JetBrains Mono', monospace;
-      background: var(--bg-tertiary);
-      padding: 0.2rem 0.4rem;
-      border-radius: 3px;
-      font-size: 0.85em;
+      font-family: 'SF Mono', Monaco, monospace;
+      background: var(--bg-muted);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.9em;
     }
-
     .preview-content pre {
-      background: var(--bg-tertiary);
-      padding: 1rem;
-      border-radius: var(--radius-sm);
+      background: var(--bg-muted);
+      padding: 16px;
+      border-radius: 8px;
       overflow-x: auto;
-      margin: 1rem 0;
+      margin: 16px 0;
     }
-
-    .preview-content pre code {
-      background: none;
-      padding: 0;
-    }
-
+    .preview-content pre code { background: none; padding: 0; }
     .preview-content blockquote {
       border-left: 3px solid var(--accent);
-      padding-left: 1rem;
-      margin: 1rem 0;
+      padding-left: 16px;
+      margin: 16px 0;
       color: var(--text-muted);
-      font-style: italic;
-    }
-
-    .preview-content a {
-      color: var(--accent);
-      text-decoration: underline;
-    }
-
-    .preview-content img {
-      max-width: 100%;
-      border-radius: var(--radius-sm);
-    }
-
-    .preview-content hr {
-      border: none;
-      border-top: 1px solid var(--border-color);
-      margin: 2rem 0;
     }
 
     .preview-empty {
@@ -213,133 +179,91 @@
       font-style: italic;
     }
 
-    /* View Toggle */
-    .view-toggle {
-      display: flex;
-      background: var(--bg-secondary);
-      border-radius: var(--radius-sm);
-      padding: 2px;
-    }
-
-    .view-toggle-btn {
-      padding: 0.4rem 0.75rem;
-      font-size: 0.8rem;
-      border: none;
-      background: transparent;
-      color: var(--text-muted);
-      cursor: pointer;
-      border-radius: calc(var(--radius-sm) - 2px);
-      transition: all var(--transition-fast);
-    }
-
-    .view-toggle-btn.active {
-      background: var(--accent);
-      color: var(--bg-primary);
-    }
-
-    .editor-body.write-only .preview-pane,
-    .editor-body.write-only .editor-divider {
-      display: none;
-    }
-
-    .editor-body.preview-only .editor-pane {
-      display: none;
-    }
-
-    .editor-body.preview-only .editor-divider {
-      display: none;
-    }
-
-    /* Slash Command Menu */
+    /* Slash Menu */
     .slash-menu {
-      position: absolute;
-      background: var(--bg-secondary);
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-md);
+      position: fixed;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
       box-shadow: var(--shadow-lg);
-      padding: 0.5rem;
-      min-width: 200px;
-      z-index: 100;
+      padding: 6px;
+      min-width: 220px;
+      z-index: 1001;
       display: none;
     }
 
-    .slash-menu.active {
+    .slash-menu.visible {
       display: block;
     }
 
-    .slash-menu-item {
+    .slash-item {
       display: flex;
       align-items: center;
-      gap: 0.75rem;
-      padding: 0.6rem 0.75rem;
-      border-radius: var(--radius-sm);
+      gap: 12px;
+      padding: 10px 12px;
+      border-radius: 6px;
       cursor: pointer;
-      transition: background var(--transition-fast);
+      transition: background 0.1s;
     }
 
-    .slash-menu-item:hover,
-    .slash-menu-item.selected {
-      background: var(--bg-tertiary);
+    .slash-item:hover,
+    .slash-item.selected {
+      background: var(--bg-subtle);
     }
 
-    .slash-menu-item .icon {
-      width: 24px;
-      height: 24px;
+    .slash-item-icon {
+      width: 28px;
+      height: 28px;
       display: flex;
       align-items: center;
       justify-content: center;
-      background: var(--bg-tertiary);
-      border-radius: var(--radius-sm);
-      font-size: 0.8rem;
+      background: var(--bg-muted);
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-secondary);
     }
 
-    .slash-menu-item .label {
-      font-size: 0.9rem;
+    .slash-item-text {
+      flex: 1;
+    }
+
+    .slash-item-title {
+      font-size: 14px;
       font-weight: 500;
+      color: var(--text);
     }
 
-    .slash-menu-item .shortcut {
-      margin-left: auto;
-      font-size: 0.75rem;
+    .slash-item-desc {
+      font-size: 12px;
       color: var(--text-muted);
-      font-family: 'JetBrains Mono', monospace;
     }
 
-    /* Keyboard shortcuts hint */
-    .shortcuts-hint {
-      padding: 0.5rem 1rem;
-      font-size: 0.75rem;
-      color: var(--text-muted);
-      background: var(--bg-tertiary);
-      border-top: 1px solid var(--border-color);
+    .form-row {
       display: flex;
-      gap: 1.5rem;
-      flex-wrap: wrap;
+      gap: 16px;
     }
 
-    .shortcuts-hint kbd {
-      background: var(--bg-secondary);
-      padding: 0.15rem 0.4rem;
-      border-radius: 3px;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.7rem;
-      border: 1px solid var(--border-color);
+    .form-row .form-group {
+      flex: 1;
     }
 
-    @media (max-width: 768px) {
-      .editor-body {
-        flex-direction: column;
-      }
+    .editor-hint {
+      padding: 8px 16px;
+      font-size: 12px;
+      color: var(--text-muted);
+      background: var(--bg-subtle);
+      border-top: 1px solid var(--border);
+    }
 
-      .editor-divider {
-        width: 100%;
-        height: 1px;
-      }
-
-      .editor-body.split .editor-pane,
-      .editor-body.split .preview-pane {
-        min-height: 250px;
-      }
+    .editor-hint kbd {
+      display: inline-block;
+      padding: 2px 6px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      font-family: inherit;
+      font-size: 11px;
     }
   </style>
 </head>
@@ -353,699 +277,500 @@
         <a href="/about.html">About</a>
       </nav>
       <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
-        <svg class="sun" viewBox="0 0 24 24"><path d="M12 7a5 5 0 100 10 5 5 0 000-10zM12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.72 12.72l1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
-        <svg class="moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+        <svg class="sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+        <svg class="moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
       </button>
     </div>
   </header>
 
   <main>
-    <!-- Login Section -->
     <section id="loginSection" class="login-section animate-fade">
-      <h2>Admin Login</h2>
+      <h2>Connexion</h2>
       <form id="loginForm">
         <div class="form-group">
           <label for="password">Mot de passe</label>
-          <input type="password" id="password" name="password" required placeholder="Entrez le mot de passe">
+          <input type="password" id="password" required placeholder="Entrez le mot de passe">
         </div>
         <button type="submit" class="btn" style="width: 100%">Se connecter</button>
         <p id="loginError" class="error" style="display: none;"></p>
       </form>
     </section>
 
-    <!-- Admin Dashboard -->
-    <section id="adminSection" class="admin-section" style="display: none;">
-      <div class="admin-header animate-fade">
-        <h1>Dashboard</h1>
+    <section id="adminSection" style="display: none;">
+      <div class="admin-header">
+        <h1>Articles</h1>
         <div class="admin-actions">
           <button class="btn" onclick="openModal()">+ Nouvel article</button>
-          <span class="logout-btn" onclick="logout()">Deconnexion</span>
+          <span class="logout-btn" onclick="logout()">Déconnexion</span>
         </div>
       </div>
-
       <div class="articles-table" id="articlesList">
-        <div class="loading" style="padding: 2rem;">Chargement des articles...</div>
+        <div class="loading">Chargement...</div>
       </div>
     </section>
   </main>
 
-  <!-- Article Modal -->
   <div class="modal" id="articleModal">
-    <div class="modal-content" style="max-width: 1000px;">
+    <div class="modal-content" style="max-width: 900px;">
       <div class="modal-header">
         <h2 id="modalTitle">Nouvel article</h2>
         <button class="close-btn" onclick="closeModal()">&times;</button>
       </div>
-      <form id="articleForm">
-        <input type="hidden" id="articleId">
-        <div class="form-group">
-          <label for="title">Titre</label>
-          <input type="text" id="title" name="title" required placeholder="Titre de l'article">
-        </div>
-        <div style="display: flex; gap: 1rem;">
-          <div class="form-group" style="flex: 1;">
-            <label for="slug">Slug (URL)</label>
-            <input type="text" id="slug" name="slug" required placeholder="mon-article">
-          </div>
-          <div class="form-group" style="flex: 1;">
-            <label for="tags">Tags</label>
-            <input type="text" id="tags" name="tags" placeholder="design, tech">
-          </div>
-        </div>
+      <div class="modal-body">
+        <form id="articleForm">
+          <input type="hidden" id="articleId">
 
-        <div class="form-group">
-          <label>Contenu</label>
-          <div class="editor-container">
-            <div class="editor-toolbar">
-              <div class="toolbar-group">
-                <button type="button" class="toolbar-btn" onclick="insertFormat('heading1')" title="Titre 1 (Ctrl+1)">H1</button>
-                <button type="button" class="toolbar-btn" onclick="insertFormat('heading2')" title="Titre 2 (Ctrl+2)">H2</button>
-                <button type="button" class="toolbar-btn" onclick="insertFormat('heading3')" title="Titre 3 (Ctrl+3)">H3</button>
-              </div>
-              <div class="toolbar-group">
-                <button type="button" class="toolbar-btn" onclick="insertFormat('bold')" title="Gras (Ctrl+B)"><strong>B</strong></button>
-                <button type="button" class="toolbar-btn" onclick="insertFormat('italic')" title="Italique (Ctrl+I)"><em>I</em></button>
-                <button type="button" class="toolbar-btn" onclick="insertFormat('strikethrough')" title="Barre"><s>S</s></button>
-              </div>
-              <div class="toolbar-group">
-                <button type="button" class="toolbar-btn" onclick="insertFormat('link')" title="Lien (Ctrl+K)">
-                  <svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+          <div class="form-group">
+            <label for="title">Titre</label>
+            <input type="text" id="title" required placeholder="Titre de l'article">
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="slug">URL</label>
+              <input type="text" id="slug" required placeholder="mon-article">
+            </div>
+            <div class="form-group">
+              <label for="tags">Tags</label>
+              <input type="text" id="tags" placeholder="design, tech">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Contenu</label>
+            <div class="editor-wrap">
+              <div class="editor-toolbar">
+                <button type="button" class="toolbar-btn" onclick="format('h1')" title="Titre 1">H1</button>
+                <button type="button" class="toolbar-btn" onclick="format('h2')" title="Titre 2">H2</button>
+                <button type="button" class="toolbar-btn" onclick="format('h3')" title="Titre 3">H3</button>
+                <div class="toolbar-divider"></div>
+                <button type="button" class="toolbar-btn" onclick="format('bold')" title="Gras (Ctrl+B)"><strong>B</strong></button>
+                <button type="button" class="toolbar-btn" onclick="format('italic')" title="Italique (Ctrl+I)"><em>I</em></button>
+                <button type="button" class="toolbar-btn" onclick="format('link')" title="Lien (Ctrl+K)">
+                  <svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
                 </button>
-                <button type="button" class="toolbar-btn" onclick="insertFormat('image')" title="Image">
-                  <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+                <div class="toolbar-divider"></div>
+                <button type="button" class="toolbar-btn" onclick="format('ul')" title="Liste">
+                  <svg viewBox="0 0 24 24"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><circle cx="4" cy="6" r="1" fill="currentColor"/><circle cx="4" cy="12" r="1" fill="currentColor"/><circle cx="4" cy="18" r="1" fill="currentColor"/></svg>
                 </button>
-              </div>
-              <div class="toolbar-group">
-                <button type="button" class="toolbar-btn" onclick="insertFormat('ul')" title="Liste a puces">
-                  <svg viewBox="0 0 24 24"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><circle cx="4" cy="6" r="1.5"/><circle cx="4" cy="12" r="1.5"/><circle cx="4" cy="18" r="1.5"/></svg>
+                <button type="button" class="toolbar-btn" onclick="format('quote')" title="Citation">
+                  <svg viewBox="0 0 24 24"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V21M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3"/></svg>
                 </button>
-                <button type="button" class="toolbar-btn" onclick="insertFormat('ol')" title="Liste numerotee">
-                  <svg viewBox="0 0 24 24"><line x1="10" y1="6" x2="21" y2="6"/><line x1="10" y1="12" x2="21" y2="12"/><line x1="10" y1="18" x2="21" y2="18"/><text x="4" y="7" font-size="6">1</text><text x="4" y="13" font-size="6">2</text><text x="4" y="19" font-size="6">3</text></svg>
-                </button>
-                <button type="button" class="toolbar-btn" onclick="insertFormat('checklist')" title="Checklist">
-                  <svg viewBox="0 0 24 24"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
-                </button>
-              </div>
-              <div class="toolbar-group">
-                <button type="button" class="toolbar-btn" onclick="insertFormat('quote')" title="Citation">
-                  <svg viewBox="0 0 24 24"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V21"/><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3"/></svg>
-                </button>
-                <button type="button" class="toolbar-btn" onclick="insertFormat('code')" title="Code inline">
+                <button type="button" class="toolbar-btn" onclick="format('code')" title="Code">
                   <svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
                 </button>
-                <button type="button" class="toolbar-btn" onclick="insertFormat('codeblock')" title="Bloc de code">
-                  <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="m8 10 4 4-4 4"/><line x1="14" y1="18" x2="18" y2="18"/></svg>
-                </button>
-              </div>
-              <div class="toolbar-group">
-                <button type="button" class="toolbar-btn" onclick="insertFormat('hr')" title="Separateur">—</button>
-              </div>
-              <div class="view-toggle">
-                <button type="button" class="view-toggle-btn" onclick="setView('write')" data-view="write">Ecrire</button>
-                <button type="button" class="view-toggle-btn active" onclick="setView('split')" data-view="split">Split</button>
-                <button type="button" class="view-toggle-btn" onclick="setView('preview')" data-view="preview">Preview</button>
-              </div>
-            </div>
-            <div class="editor-body split" id="editorBody">
-              <div class="editor-pane">
-                <div class="editor-pane-header">Markdown</div>
-                <textarea id="content" name="content" class="editor-textarea" required placeholder="Ecrivez votre article...
-
-Commencez a taper ou utilisez la barre d'outils.
-
-Raccourcis:
-- Ctrl+B pour gras
-- Ctrl+I pour italique
-- Ctrl+K pour lien
-- Tapez / pour les commandes"></textarea>
-              </div>
-              <div class="editor-divider"></div>
-              <div class="editor-pane preview-pane">
-                <div class="editor-pane-header">Preview</div>
-                <div class="preview-content" id="previewContent">
-                  <p class="preview-empty">L'apercu apparaitra ici...</p>
+                <div class="editor-tabs">
+                  <button type="button" class="editor-tab active" data-view="split">Split</button>
+                  <button type="button" class="editor-tab" data-view="write">Écrire</button>
+                  <button type="button" class="editor-tab" data-view="preview">Aperçu</button>
                 </div>
               </div>
-            </div>
-            <div class="shortcuts-hint">
-              <span><kbd>Ctrl</kbd>+<kbd>B</kbd> Gras</span>
-              <span><kbd>Ctrl</kbd>+<kbd>I</kbd> Italique</span>
-              <span><kbd>Ctrl</kbd>+<kbd>K</kbd> Lien</span>
-              <span><kbd>/</kbd> Commandes</span>
+              <div class="editor-main">
+                <div class="editor-pane" id="editorPane">
+                  <textarea id="content" class="editor-textarea" required placeholder="Écrivez votre article en Markdown...
+
+Tapez / pour voir les commandes disponibles."></textarea>
+                </div>
+                <div class="editor-divider" id="editorDivider"></div>
+                <div class="preview-pane" id="previewPane">
+                  <div class="preview-content" id="previewContent">
+                    <p class="preview-empty">L'aperçu apparaîtra ici...</p>
+                  </div>
+                </div>
+              </div>
+              <div class="editor-hint">
+                <kbd>Ctrl+B</kbd> Gras · <kbd>Ctrl+I</kbd> Italique · <kbd>Ctrl+K</kbd> Lien · <kbd>/</kbd> Commandes
+              </div>
             </div>
           </div>
-        </div>
 
-        <div class="form-actions">
-          <button type="submit" class="btn">Publier</button>
-          <button type="button" class="btn btn-outline" onclick="closeModal()">Annuler</button>
-        </div>
-      </form>
+          <div class="form-actions">
+            <button type="submit" class="btn">Publier</button>
+            <button type="button" class="btn btn-outline" onclick="closeModal()">Annuler</button>
+          </div>
+        </form>
+      </div>
     </div>
   </div>
 
-  <!-- Slash Command Menu -->
   <div class="slash-menu" id="slashMenu">
-    <div class="slash-menu-item" data-command="heading1">
-      <span class="icon">H1</span>
-      <span class="label">Titre 1</span>
-      <span class="shortcut"># </span>
+    <div class="slash-item" data-cmd="h1">
+      <div class="slash-item-icon">H1</div>
+      <div class="slash-item-text">
+        <div class="slash-item-title">Titre 1</div>
+        <div class="slash-item-desc">Grand titre de section</div>
+      </div>
     </div>
-    <div class="slash-menu-item" data-command="heading2">
-      <span class="icon">H2</span>
-      <span class="label">Titre 2</span>
-      <span class="shortcut">## </span>
+    <div class="slash-item" data-cmd="h2">
+      <div class="slash-item-icon">H2</div>
+      <div class="slash-item-text">
+        <div class="slash-item-title">Titre 2</div>
+        <div class="slash-item-desc">Titre de sous-section</div>
+      </div>
     </div>
-    <div class="slash-menu-item" data-command="heading3">
-      <span class="icon">H3</span>
-      <span class="label">Titre 3</span>
-      <span class="shortcut">### </span>
+    <div class="slash-item" data-cmd="h3">
+      <div class="slash-item-icon">H3</div>
+      <div class="slash-item-text">
+        <div class="slash-item-title">Titre 3</div>
+        <div class="slash-item-desc">Petit titre</div>
+      </div>
     </div>
-    <div class="slash-menu-item" data-command="ul">
-      <span class="icon">•</span>
-      <span class="label">Liste</span>
-      <span class="shortcut">- </span>
+    <div class="slash-item" data-cmd="ul">
+      <div class="slash-item-icon">•</div>
+      <div class="slash-item-text">
+        <div class="slash-item-title">Liste à puces</div>
+        <div class="slash-item-desc">Liste non ordonnée</div>
+      </div>
     </div>
-    <div class="slash-menu-item" data-command="ol">
-      <span class="icon">1.</span>
-      <span class="label">Liste numerotee</span>
-      <span class="shortcut">1. </span>
+    <div class="slash-item" data-cmd="ol">
+      <div class="slash-item-icon">1.</div>
+      <div class="slash-item-text">
+        <div class="slash-item-title">Liste numérotée</div>
+        <div class="slash-item-desc">Liste ordonnée</div>
+      </div>
     </div>
-    <div class="slash-menu-item" data-command="checklist">
-      <span class="icon">☑</span>
-      <span class="label">Checklist</span>
-      <span class="shortcut">- [ ] </span>
+    <div class="slash-item" data-cmd="quote">
+      <div class="slash-item-icon">"</div>
+      <div class="slash-item-text">
+        <div class="slash-item-title">Citation</div>
+        <div class="slash-item-desc">Bloc de citation</div>
+      </div>
     </div>
-    <div class="slash-menu-item" data-command="quote">
-      <span class="icon">"</span>
-      <span class="label">Citation</span>
-      <span class="shortcut">> </span>
+    <div class="slash-item" data-cmd="code">
+      <div class="slash-item-icon">{}</div>
+      <div class="slash-item-text">
+        <div class="slash-item-title">Code</div>
+        <div class="slash-item-desc">Bloc de code</div>
+      </div>
     </div>
-    <div class="slash-menu-item" data-command="codeblock">
-      <span class="icon">{}</span>
-      <span class="label">Bloc de code</span>
-      <span class="shortcut">```</span>
-    </div>
-    <div class="slash-menu-item" data-command="hr">
-      <span class="icon">—</span>
-      <span class="label">Separateur</span>
-      <span class="shortcut">---</span>
+    <div class="slash-item" data-cmd="hr">
+      <div class="slash-item-icon">—</div>
+      <div class="slash-item-text">
+        <div class="slash-item-title">Séparateur</div>
+        <div class="slash-item-desc">Ligne horizontale</div>
+      </div>
     </div>
   </div>
 
   <footer>
     <div class="footer-content">
-      <p>Experience Blog - Admin</p>
+      <p>Experience Blog</p>
     </div>
   </footer>
 
   <script>
-    // Theme management
-    function getTheme() {
-      return localStorage.getItem('theme') ||
-        (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-    }
-
-    function setTheme(theme) {
-      document.documentElement.setAttribute('data-theme', theme);
-      localStorage.setItem('theme', theme);
-    }
-
-    function toggleTheme() {
-      const current = getTheme();
-      setTheme(current === 'dark' ? 'light' : 'dark');
-    }
-
+    // Theme
+    const getTheme = () => localStorage.getItem('theme') || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    const setTheme = t => { document.documentElement.dataset.theme = t; localStorage.setItem('theme', t); };
+    const toggleTheme = () => setTheme(getTheme() === 'dark' ? 'light' : 'dark');
     setTheme(getTheme());
 
-    // Configure marked
+    // Marked config
     marked.setOptions({ breaks: true, gfm: true });
 
-    // Admin functionality
+    // State
     let authToken = localStorage.getItem('adminToken');
-    let articlesCache = [];
-    let slashMenuVisible = false;
-    let slashMenuIndex = 0;
+    let articles = [];
+    let slashVisible = false;
+    let slashIndex = 0;
 
-    if (authToken) {
-      showAdmin();
-    }
+    const $ = s => document.querySelector(s);
+    const $$ = s => document.querySelectorAll(s);
 
-    // Editor functionality
-    const contentTextarea = document.getElementById('content');
-    const previewContent = document.getElementById('previewContent');
-    const slashMenu = document.getElementById('slashMenu');
-    const slashMenuItems = slashMenu.querySelectorAll('.slash-menu-item');
+    const textarea = $('#content');
+    const preview = $('#previewContent');
+    const slashMenu = $('#slashMenu');
+    const slashItems = $$('.slash-item');
 
-    // Live preview
-    contentTextarea.addEventListener('input', () => {
-      updatePreview();
-      handleSlashCommand();
-    });
+    // Auth check
+    if (authToken) showAdmin();
 
-    contentTextarea.addEventListener('keydown', (e) => {
-      // Keyboard shortcuts
-      if (e.ctrlKey || e.metaKey) {
-        switch(e.key.toLowerCase()) {
-          case 'b':
-            e.preventDefault();
-            insertFormat('bold');
-            break;
-          case 'i':
-            e.preventDefault();
-            insertFormat('italic');
-            break;
-          case 'k':
-            e.preventDefault();
-            insertFormat('link');
-            break;
-          case '1':
-            e.preventDefault();
-            insertFormat('heading1');
-            break;
-          case '2':
-            e.preventDefault();
-            insertFormat('heading2');
-            break;
-          case '3':
-            e.preventDefault();
-            insertFormat('heading3');
-            break;
+    // Login
+    $('#loginForm').onsubmit = async e => {
+      e.preventDefault();
+      const pwd = $('#password').value;
+      try {
+        const r = await fetch('/api/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ password: pwd })
+        });
+        if (r.ok) {
+          authToken = pwd;
+          localStorage.setItem('adminToken', pwd);
+          showAdmin();
+        } else {
+          $('#loginError').textContent = 'Mot de passe incorrect';
+          $('#loginError').style.display = 'block';
         }
+      } catch (e) {
+        $('#loginError').textContent = 'Erreur de connexion';
+        $('#loginError').style.display = 'block';
+      }
+    };
+
+    // Article form
+    $('#articleForm').onsubmit = async e => {
+      e.preventDefault();
+      const id = $('#articleId').value;
+      const data = {
+        title: $('#title').value,
+        slug: $('#slug').value,
+        tags: $('#tags').value,
+        content: $('#content').value
+      };
+      try {
+        const r = await fetch(id ? `/api/articles/${id}` : '/api/articles', {
+          method: id ? 'PUT' : 'POST',
+          headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${authToken}` },
+          body: JSON.stringify(data)
+        });
+        if (r.ok) { closeModal(); loadArticles(); }
+        else alert((await r.json()).error || 'Erreur');
+      } catch (e) { alert('Erreur de connexion'); }
+    };
+
+    // Auto slug
+    $('#title').oninput = e => {
+      if (!$('#articleId').value) {
+        $('#slug').value = e.target.value.toLowerCase()
+          .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+          .replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+      }
+    };
+
+    // Editor
+    textarea.oninput = () => {
+      updatePreview();
+      checkSlash();
+    };
+
+    textarea.onkeydown = e => {
+      // Shortcuts
+      if (e.ctrlKey || e.metaKey) {
+        if (e.key === 'b') { e.preventDefault(); format('bold'); }
+        if (e.key === 'i') { e.preventDefault(); format('italic'); }
+        if (e.key === 'k') { e.preventDefault(); format('link'); }
       }
 
-      // Slash menu navigation
-      if (slashMenuVisible) {
+      // Slash menu nav
+      if (slashVisible) {
         if (e.key === 'ArrowDown') {
           e.preventDefault();
-          slashMenuIndex = (slashMenuIndex + 1) % slashMenuItems.length;
-          updateSlashMenuSelection();
+          slashIndex = (slashIndex + 1) % slashItems.length;
+          updateSlashSelection();
         } else if (e.key === 'ArrowUp') {
           e.preventDefault();
-          slashMenuIndex = (slashMenuIndex - 1 + slashMenuItems.length) % slashMenuItems.length;
-          updateSlashMenuSelection();
-        } else if (e.key === 'Enter') {
+          slashIndex = (slashIndex - 1 + slashItems.length) % slashItems.length;
+          updateSlashSelection();
+        } else if (e.key === 'Enter' || e.key === 'Tab') {
           e.preventDefault();
-          executeSlashCommand(slashMenuItems[slashMenuIndex].dataset.command);
+          execSlash(slashItems[slashIndex].dataset.cmd);
         } else if (e.key === 'Escape') {
-          hideSlashMenu();
+          hideSlash();
         }
       }
-
-      // Tab for indentation
-      if (e.key === 'Tab') {
-        e.preventDefault();
-        insertAtCursor('  ');
-      }
-    });
+    };
 
     function updatePreview() {
-      const content = contentTextarea.value;
-      if (content.trim()) {
-        previewContent.innerHTML = marked.parse(content);
-      } else {
-        previewContent.innerHTML = '<p class="preview-empty">L\'apercu apparaitra ici...</p>';
+      const v = textarea.value;
+      preview.innerHTML = v.trim() ? marked.parse(v) : '<p class="preview-empty">L\'aperçu apparaîtra ici...</p>';
+    }
+
+    function checkSlash() {
+      const pos = textarea.selectionStart;
+      const before = textarea.value.substring(0, pos);
+      const line = before.split('\n').pop();
+
+      if (line === '/') {
+        showSlash();
+      } else if (slashVisible && !line.startsWith('/')) {
+        hideSlash();
       }
     }
 
-    function handleSlashCommand() {
-      const cursorPos = contentTextarea.selectionStart;
-      const textBefore = contentTextarea.value.substring(0, cursorPos);
-      const lastLine = textBefore.split('\n').pop();
+    function showSlash() {
+      const rect = textarea.getBoundingClientRect();
+      const lines = textarea.value.substring(0, textarea.selectionStart).split('\n');
+      const lineNum = lines.length;
+      const top = rect.top + (lineNum * 22) + 40;
+      const left = rect.left + 20;
 
-      if (lastLine === '/') {
-        showSlashMenu();
-      } else if (slashMenuVisible && !lastLine.startsWith('/')) {
-        hideSlashMenu();
-      }
+      slashMenu.style.top = Math.min(top, window.innerHeight - 350) + 'px';
+      slashMenu.style.left = Math.min(left, window.innerWidth - 240) + 'px';
+      slashMenu.classList.add('visible');
+      slashVisible = true;
+      slashIndex = 0;
+      updateSlashSelection();
     }
 
-    function showSlashMenu() {
-      const rect = contentTextarea.getBoundingClientRect();
-      const cursorPos = getCursorCoordinates();
-
-      slashMenu.style.top = `${rect.top + cursorPos.top + 20}px`;
-      slashMenu.style.left = `${rect.left + cursorPos.left}px`;
-      slashMenu.classList.add('active');
-      slashMenuVisible = true;
-      slashMenuIndex = 0;
-      updateSlashMenuSelection();
+    function hideSlash() {
+      slashMenu.classList.remove('visible');
+      slashVisible = false;
     }
 
-    function hideSlashMenu() {
-      slashMenu.classList.remove('active');
-      slashMenuVisible = false;
+    function updateSlashSelection() {
+      slashItems.forEach((item, i) => item.classList.toggle('selected', i === slashIndex));
     }
 
-    function updateSlashMenuSelection() {
-      slashMenuItems.forEach((item, i) => {
-        item.classList.toggle('selected', i === slashMenuIndex);
-      });
-    }
-
-    function getCursorCoordinates() {
-      const textarea = contentTextarea;
-      const text = textarea.value.substring(0, textarea.selectionStart);
-      const lines = text.split('\n');
-      const lineHeight = 24;
-      const charWidth = 9;
-
-      return {
-        top: lines.length * lineHeight,
-        left: lines[lines.length - 1].length * charWidth
-      };
-    }
-
-    slashMenuItems.forEach(item => {
-      item.addEventListener('click', () => {
-        executeSlashCommand(item.dataset.command);
-      });
+    slashItems.forEach(item => {
+      item.onclick = () => execSlash(item.dataset.cmd);
     });
 
-    function executeSlashCommand(command) {
-      // Remove the "/" from the text
-      const cursorPos = contentTextarea.selectionStart;
-      const textBefore = contentTextarea.value.substring(0, cursorPos);
-      const textAfter = contentTextarea.value.substring(cursorPos);
-      const lastSlashPos = textBefore.lastIndexOf('/');
+    function execSlash(cmd) {
+      // Remove the /
+      const pos = textarea.selectionStart;
+      const before = textarea.value.substring(0, pos);
+      const after = textarea.value.substring(pos);
+      const slashPos = before.lastIndexOf('/');
 
-      contentTextarea.value = textBefore.substring(0, lastSlashPos) + textAfter;
-      contentTextarea.selectionStart = contentTextarea.selectionEnd = lastSlashPos;
+      textarea.value = before.substring(0, slashPos) + after;
+      textarea.selectionStart = textarea.selectionEnd = slashPos;
 
-      hideSlashMenu();
-      insertFormat(command);
+      hideSlash();
+      format(cmd);
+      textarea.focus();
     }
 
-    function insertFormat(type) {
-      const textarea = contentTextarea;
+    function format(type) {
       const start = textarea.selectionStart;
       const end = textarea.selectionEnd;
       const text = textarea.value;
-      const selectedText = text.substring(start, end);
+      const sel = text.substring(start, end);
 
-      let before = '', after = '', newCursorPos = start;
-      let replaceSelection = true;
+      let insert = '';
+      let cursorOffset = 0;
 
       switch(type) {
-        case 'heading1':
-          before = '# ';
-          after = '';
-          newCursorPos = start + 2;
-          break;
-        case 'heading2':
-          before = '## ';
-          after = '';
-          newCursorPos = start + 3;
-          break;
-        case 'heading3':
-          before = '### ';
-          after = '';
-          newCursorPos = start + 4;
-          break;
-        case 'bold':
-          before = '**';
-          after = '**';
-          newCursorPos = selectedText ? end + 4 : start + 2;
-          break;
-        case 'italic':
-          before = '*';
-          after = '*';
-          newCursorPos = selectedText ? end + 2 : start + 1;
-          break;
-        case 'strikethrough':
-          before = '~~';
-          after = '~~';
-          newCursorPos = selectedText ? end + 4 : start + 2;
-          break;
-        case 'link':
-          if (selectedText) {
-            before = '[';
-            after = '](url)';
-            newCursorPos = end + 3;
-          } else {
-            before = '[texte](';
-            after = ')';
-            newCursorPos = start + 8;
-          }
-          break;
-        case 'image':
-          before = '![alt](';
-          after = ')';
-          newCursorPos = start + 7;
-          break;
-        case 'ul':
-          before = '- ';
-          newCursorPos = start + 2;
-          break;
-        case 'ol':
-          before = '1. ';
-          newCursorPos = start + 3;
-          break;
-        case 'checklist':
-          before = '- [ ] ';
-          newCursorPos = start + 6;
-          break;
-        case 'quote':
-          before = '> ';
-          newCursorPos = start + 2;
-          break;
-        case 'code':
-          before = '`';
-          after = '`';
-          newCursorPos = selectedText ? end + 2 : start + 1;
-          break;
-        case 'codeblock':
-          before = '```\n';
-          after = '\n```';
-          newCursorPos = start + 4;
-          break;
-        case 'hr':
-          before = '\n---\n';
-          newCursorPos = start + 5;
-          break;
+        case 'h1': insert = '# ' + sel; cursorOffset = 2; break;
+        case 'h2': insert = '## ' + sel; cursorOffset = 3; break;
+        case 'h3': insert = '### ' + sel; cursorOffset = 4; break;
+        case 'bold': insert = '**' + sel + '**'; cursorOffset = sel ? sel.length + 4 : 2; break;
+        case 'italic': insert = '*' + sel + '*'; cursorOffset = sel ? sel.length + 2 : 1; break;
+        case 'link': insert = sel ? '[' + sel + '](url)' : '[texte](url)'; cursorOffset = sel ? sel.length + 3 : 7; break;
+        case 'ul': insert = '- ' + sel; cursorOffset = 2; break;
+        case 'ol': insert = '1. ' + sel; cursorOffset = 3; break;
+        case 'quote': insert = '> ' + sel; cursorOffset = 2; break;
+        case 'code': insert = '```\n' + sel + '\n```'; cursorOffset = 4; break;
+        case 'hr': insert = '\n---\n'; cursorOffset = 5; break;
       }
 
-      const newText = text.substring(0, start) + before + selectedText + (after || '') + text.substring(end);
-      textarea.value = newText;
-      textarea.selectionStart = textarea.selectionEnd = selectedText ? end + before.length + (after?.length || 0) : newCursorPos;
+      textarea.value = text.substring(0, start) + insert + text.substring(end);
+      textarea.selectionStart = textarea.selectionEnd = start + cursorOffset;
       textarea.focus();
       updatePreview();
     }
 
-    function insertAtCursor(text) {
-      const textarea = contentTextarea;
-      const start = textarea.selectionStart;
-      const end = textarea.selectionEnd;
-      textarea.value = textarea.value.substring(0, start) + text + textarea.value.substring(end);
-      textarea.selectionStart = textarea.selectionEnd = start + text.length;
-      updatePreview();
-    }
+    // View toggle
+    $$('.editor-tab').forEach(tab => {
+      tab.onclick = () => {
+        $$('.editor-tab').forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        const view = tab.dataset.view;
 
-    function setView(view) {
-      const body = document.getElementById('editorBody');
-      body.className = 'editor-body ' + (view === 'split' ? 'split' : view + '-only');
-
-      document.querySelectorAll('.view-toggle-btn').forEach(btn => {
-        btn.classList.toggle('active', btn.dataset.view === view);
-      });
-    }
-
-    // Hide slash menu when clicking outside
-    document.addEventListener('click', (e) => {
-      if (!slashMenu.contains(e.target) && e.target !== contentTextarea) {
-        hideSlashMenu();
-      }
+        $('#editorPane').classList.toggle('hidden', view === 'preview');
+        $('#editorDivider').classList.toggle('hidden', view !== 'split');
+        $('#previewPane').classList.toggle('hidden', view === 'write');
+      };
     });
 
-    // Login form
-    document.getElementById('loginForm').addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const password = document.getElementById('password').value;
+    // Hide slash menu on click outside
+    document.onclick = e => {
+      if (!slashMenu.contains(e.target) && e.target !== textarea) hideSlash();
+    };
 
-      try {
-        const res = await fetch('/api/login', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ password })
-        });
-
-        if (res.ok) {
-          authToken = password;
-          localStorage.setItem('adminToken', password);
-          showAdmin();
-        } else {
-          document.getElementById('loginError').textContent = 'Mot de passe incorrect';
-          document.getElementById('loginError').style.display = 'block';
-        }
-      } catch (err) {
-        document.getElementById('loginError').textContent = 'Erreur de connexion';
-        document.getElementById('loginError').style.display = 'block';
-      }
-    });
-
-    // Article form
-    document.getElementById('articleForm').addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const id = document.getElementById('articleId').value;
-      const title = document.getElementById('title').value;
-      const slug = document.getElementById('slug').value;
-      const tags = document.getElementById('tags').value;
-      const content = document.getElementById('content').value;
-
-      const method = id ? 'PUT' : 'POST';
-      const url = id ? `/api/articles/${id}` : '/api/articles';
-
-      try {
-        const res = await fetch(url, {
-          method,
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${authToken}`
-          },
-          body: JSON.stringify({ title, slug, tags, content })
-        });
-
-        if (res.ok) {
-          closeModal();
-          loadArticles();
-        } else {
-          const data = await res.json();
-          alert(data.error || 'Erreur lors de la sauvegarde');
-        }
-      } catch (err) {
-        alert('Erreur de connexion');
-      }
-    });
-
-    // Auto-generate slug from title
-    document.getElementById('title').addEventListener('input', (e) => {
-      if (!document.getElementById('articleId').value) {
-        document.getElementById('slug').value = e.target.value
-          .toLowerCase()
-          .normalize('NFD')
-          .replace(/[\u0300-\u036f]/g, '')
-          .replace(/[^a-z0-9]+/g, '-')
-          .replace(/(^-|-$)/g, '');
-      }
-    });
-
+    // Admin functions
     function showAdmin() {
-      document.getElementById('loginSection').style.display = 'none';
-      document.getElementById('adminSection').style.display = 'block';
+      $('#loginSection').style.display = 'none';
+      $('#adminSection').style.display = 'block';
       loadArticles();
     }
 
     function logout() {
       localStorage.removeItem('adminToken');
       authToken = null;
-      document.getElementById('loginSection').style.display = 'block';
-      document.getElementById('adminSection').style.display = 'none';
-      document.getElementById('password').value = '';
-      document.getElementById('loginError').style.display = 'none';
+      $('#loginSection').style.display = 'block';
+      $('#adminSection').style.display = 'none';
+      $('#password').value = '';
     }
 
     async function loadArticles() {
       try {
-        const res = await fetch('/api/articles');
-        articlesCache = await res.json();
+        const r = await fetch('/api/articles');
+        articles = await r.json();
+        const el = $('#articlesList');
 
-        const container = document.getElementById('articlesList');
-
-        if (articlesCache.length === 0) {
-          container.innerHTML = '<div class="empty-state">Aucun article. Creez votre premier article!</div>';
+        if (!articles.length) {
+          el.innerHTML = '<div class="empty-state">Aucun article. Créez votre premier article !</div>';
           return;
         }
 
-        container.innerHTML = articlesCache.map((article, i) => `
-          <div class="article-row animate-slide" style="animation-delay: ${i * 0.05}s">
+        el.innerHTML = articles.map(a => `
+          <div class="article-row">
             <div class="info">
-              <div class="title">${escapeHtml(article.title)}</div>
-              <div class="meta">/${article.slug} &bull; ${formatDate(article.created_at)}${article.tags ? ` &bull; ${article.tags}` : ''}</div>
+              <div class="title">${esc(a.title)}</div>
+              <div class="meta">/${a.slug} · ${fmtDate(a.created_at)}${a.tags ? ' · ' + a.tags : ''}</div>
             </div>
             <div class="actions">
-              <a href="/article/${article.slug}" target="_blank" class="btn btn-outline btn-sm">Voir</a>
-              <button class="btn btn-outline btn-sm" onclick="editArticle(${article.id})">Editer</button>
-              <button class="btn btn-danger btn-sm" onclick="deleteArticle(${article.id})">Supprimer</button>
+              <a href="/article/${a.slug}" target="_blank" class="btn btn-outline btn-sm">Voir</a>
+              <button class="btn btn-outline btn-sm" onclick="editArticle(${a.id})">Éditer</button>
+              <button class="btn btn-danger btn-sm" onclick="deleteArticle(${a.id})">Supprimer</button>
             </div>
           </div>
         `).join('');
-      } catch (err) {
-        document.getElementById('articlesList').innerHTML = '<div class="empty-state">Erreur de chargement</div>';
+      } catch (e) {
+        $('#articlesList').innerHTML = '<div class="empty-state">Erreur de chargement</div>';
       }
     }
 
     function openModal(article = null) {
-      document.getElementById('modalTitle').textContent = article ? 'Editer l\'article' : 'Nouvel article';
-      document.getElementById('articleId').value = article ? article.id : '';
-      document.getElementById('title').value = article ? article.title : '';
-      document.getElementById('slug').value = article ? article.slug : '';
-      document.getElementById('tags').value = article ? (article.tags || '') : '';
-      document.getElementById('content').value = article ? article.content : '';
-      document.getElementById('articleModal').classList.add('active');
-      document.getElementById('title').focus();
+      $('#modalTitle').textContent = article ? 'Modifier l\'article' : 'Nouvel article';
+      $('#articleId').value = article?.id || '';
+      $('#title').value = article?.title || '';
+      $('#slug').value = article?.slug || '';
+      $('#tags').value = article?.tags || '';
+      $('#content').value = article?.content || '';
+      $('#articleModal').classList.add('active');
+      $('#title').focus();
       updatePreview();
     }
 
     function closeModal() {
-      document.getElementById('articleModal').classList.remove('active');
-      document.getElementById('articleForm').reset();
-      document.getElementById('articleId').value = '';
-      previewContent.innerHTML = '<p class="preview-empty">L\'apercu apparaitra ici...</p>';
+      $('#articleModal').classList.remove('active');
+      $('#articleForm').reset();
+      preview.innerHTML = '<p class="preview-empty">L\'aperçu apparaîtra ici...</p>';
     }
 
     function editArticle(id) {
-      const article = articlesCache.find(a => a.id === id);
-      if (article) {
-        openModal(article);
-      }
+      const a = articles.find(x => x.id === id);
+      if (a) openModal(a);
     }
 
     async function deleteArticle(id) {
       if (!confirm('Supprimer cet article ?')) return;
-
       try {
-        const res = await fetch(`/api/articles/${id}`, {
+        const r = await fetch(`/api/articles/${id}`, {
           method: 'DELETE',
-          headers: { 'Authorization': `Bearer ${authToken}` }
+          headers: { Authorization: `Bearer ${authToken}` }
         });
-
-        if (res.ok) {
-          loadArticles();
-        } else {
-          alert('Erreur lors de la suppression');
-        }
-      } catch (err) {
-        alert('Erreur de connexion');
-      }
+        if (r.ok) loadArticles();
+        else alert('Erreur');
+      } catch (e) { alert('Erreur'); }
     }
 
-    function escapeHtml(text) {
-      const div = document.createElement('div');
-      div.textContent = text;
-      return div.innerHTML;
+    function esc(s) {
+      const d = document.createElement('div');
+      d.textContent = s;
+      return d.innerHTML;
     }
 
-    function formatDate(dateStr) {
-      if (!dateStr) return '';
-      const date = new Date(dateStr);
-      return date.toLocaleDateString('fr-FR', { day: 'numeric', month: 'short', year: 'numeric' });
+    function fmtDate(s) {
+      return new Date(s).toLocaleDateString('fr-FR', { day: 'numeric', month: 'short', year: 'numeric' });
     }
 
-    // Close modal on escape
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') {
-        if (slashMenuVisible) {
-          hideSlashMenu();
-        } else {
-          closeModal();
-        }
-      }
-    });
-
-    // Close modal on backdrop click
-    document.getElementById('articleModal').addEventListener('click', (e) => {
-      if (e.target === e.currentTarget) closeModal();
-    });
+    // Close modal
+    document.onkeydown = e => { if (e.key === 'Escape') { hideSlash(); closeModal(); } };
+    $('#articleModal').onclick = e => { if (e.target === e.currentTarget) closeModal(); };
   </script>
 </body>
 </html>
