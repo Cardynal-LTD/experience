@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Experience - Home</title>
+  <title>Experience - Article</title>
   <style>
     * {
       margin: 0;
@@ -57,8 +57,7 @@
       transition: border-color 0.2s;
     }
 
-    nav a:hover,
-    nav a.active {
+    nav a:hover {
       border-bottom-color: #333;
     }
 
@@ -70,96 +69,66 @@
       width: 100%;
     }
 
-    .hero {
-      border: 2px dashed #999;
-      padding: 4rem 2rem;
-      text-align: center;
-      margin-bottom: 3rem;
-      background: #fff;
-    }
-
-    .hero h1 {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-      color: #333;
-    }
-
-    .hero p {
-      font-size: 1.1rem;
-      color: #666;
-      max-width: 500px;
-      margin: 0 auto;
-    }
-
-    .section-title {
-      font-size: 0.875rem;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      color: #999;
-      margin-bottom: 1.5rem;
-      padding-bottom: 0.5rem;
+    .article-header {
+      margin-bottom: 2rem;
+      padding-bottom: 2rem;
       border-bottom: 1px solid #ddd;
     }
 
-    .article-list {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
+    .article-header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      line-height: 1.2;
     }
 
-    .article-card {
-      border: 2px solid #ddd;
-      padding: 1.5rem;
-      background: #fff;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      transition: border-color 0.2s;
-      text-decoration: none;
-      color: inherit;
-    }
-
-    .article-card:hover {
-      border-color: #333;
-    }
-
-    .article-card h3 {
-      font-size: 1.1rem;
-      margin-bottom: 0.25rem;
-    }
-
-    .article-card .meta {
+    .article-meta {
+      color: #666;
       font-size: 0.875rem;
-      color: #999;
     }
 
-    .article-card .arrow {
-      font-size: 1.5rem;
-      color: #ccc;
+    .article-content {
+      background: #fff;
+      padding: 2rem;
+      border: 2px solid #ddd;
+      line-height: 1.8;
+      font-size: 1.1rem;
     }
 
-    .article-card:hover .arrow {
+    .article-content p {
+      margin-bottom: 1.5rem;
+    }
+
+    .article-content p:last-child {
+      margin-bottom: 0;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-top: 2rem;
+      color: #666;
+      text-decoration: none;
+      font-size: 0.875rem;
+    }
+
+    .back-link:hover {
       color: #333;
     }
 
-    .empty-state {
+    .loading {
       text-align: center;
-      padding: 2rem;
+      padding: 3rem;
+      color: #666;
+    }
+
+    .error-state {
+      text-align: center;
+      padding: 3rem;
       color: #999;
       border: 2px dashed #ddd;
     }
 
-    .view-all {
-      display: block;
-      text-align: center;
-      margin-top: 1.5rem;
-      color: #666;
-      text-decoration: none;
-      font-size: 0.875rem;
-    }
-
-    .view-all:hover {
-      color: #333;
+    .error-state h2 {
+      margin-bottom: 1rem;
     }
 
     footer {
@@ -202,26 +171,15 @@
     <div class="header-content">
       <a href="/" class="logo">Experience</a>
       <nav>
-        <a href="/" class="active">Home</a>
+        <a href="/">Home</a>
         <a href="/archive.html">Archive</a>
         <a href="/about.html">About</a>
       </nav>
     </div>
   </header>
 
-  <main>
-    <section class="hero">
-      <h1>Experience</h1>
-      <p>Un blog minimaliste pour partager des idees, des reflexions et des experiences.</p>
-    </section>
-
-    <section>
-      <h2 class="section-title">Articles Recents</h2>
-      <div class="article-list" id="articlesList">
-        <div class="empty-state">Chargement...</div>
-      </div>
-      <a href="/archive.html" class="view-all">Voir tous les articles &rarr;</a>
-    </section>
+  <main id="mainContent">
+    <div class="loading">Chargement de l'article...</div>
   </main>
 
   <footer>
@@ -236,34 +194,60 @@
   </footer>
 
   <script>
-    async function loadArticles() {
-      const container = document.getElementById('articlesList');
+    async function loadArticle() {
+      const main = document.getElementById('mainContent');
+      const slug = window.location.pathname.split('/').pop();
 
       try {
-        const res = await fetch('/api/articles');
-        const articles = await res.json();
+        const res = await fetch(`/api/articles/${slug}`);
 
-        if (articles.length === 0) {
-          container.innerHTML = '<div class="empty-state">Aucun article pour le moment.</div>';
+        if (!res.ok) {
+          showError();
           return;
         }
 
-        // Show only 3 most recent
-        const recentArticles = articles.slice(0, 3);
+        const article = await res.json();
 
-        container.innerHTML = recentArticles.map(article => `
-          <a href="/article/${article.slug}" class="article-card">
-            <div>
-              <h3>${escapeHtml(article.title)}</h3>
-              <span class="meta">${formatDate(article.created_at)}</span>
+        document.title = `Experience - ${article.title}`;
+
+        // Convert newlines to paragraphs
+        const contentHtml = article.content
+          .split('\n\n')
+          .filter(p => p.trim())
+          .map(p => `<p>${escapeHtml(p).replace(/\n/g, '<br>')}</p>`)
+          .join('');
+
+        main.innerHTML = `
+          <article>
+            <div class="article-header">
+              <h1>${escapeHtml(article.title)}</h1>
+              <div class="article-meta">
+                Publie le ${formatDate(article.created_at)}
+                ${article.updated_at && article.updated_at !== article.created_at ?
+                  ` - Mis a jour le ${formatDate(article.updated_at)}` : ''}
+              </div>
             </div>
-            <span class="arrow">&rarr;</span>
-          </a>
-        `).join('');
+            <div class="article-content">
+              ${contentHtml}
+            </div>
+            <a href="/archive.html" class="back-link">&larr; Retour aux archives</a>
+          </article>
+        `;
 
       } catch (err) {
-        container.innerHTML = '<div class="empty-state">Erreur de chargement.</div>';
+        showError();
       }
+    }
+
+    function showError() {
+      const main = document.getElementById('mainContent');
+      main.innerHTML = `
+        <div class="error-state">
+          <h2>Article non trouve</h2>
+          <p>Cet article n'existe pas ou a ete supprime.</p>
+          <a href="/archive.html" class="back-link">&larr; Retour aux archives</a>
+        </div>
+      `;
     }
 
     function escapeHtml(text) {
@@ -276,12 +260,12 @@
       const date = new Date(dateStr);
       return date.toLocaleDateString('fr-FR', {
         day: 'numeric',
-        month: 'short',
+        month: 'long',
         year: 'numeric'
       });
     }
 
-    loadArticles();
+    loadArticle();
   </script>
 </body>
 </html>

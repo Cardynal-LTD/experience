@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Experience - About</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background: #fafafa;
+      color: #333;
+    }
+
+    /* Header */
+    header {
+      border-bottom: 2px solid #333;
+      padding: 1.5rem 2rem;
+      background: #fff;
+    }
+
+    .header-content {
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      text-decoration: none;
+      color: #333;
+      border: 2px solid #333;
+      padding: 0.5rem 1rem;
+    }
+
+    nav {
+      display: flex;
+      gap: 2rem;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+      padding: 0.5rem;
+      border-bottom: 2px solid transparent;
+      transition: border-color 0.2s;
+    }
+
+    nav a:hover,
+    nav a.active {
+      border-bottom-color: #333;
+    }
+
+    /* Main */
+    main {
+      flex: 1;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 3rem 2rem;
+      width: 100%;
+    }
+
+    /* Page Header */
+    .page-header {
+      margin-bottom: 3rem;
+    }
+
+    .page-header h1 {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .page-header p {
+      color: #666;
+    }
+
+    /* Profile Section */
+    .profile-section {
+      display: flex;
+      gap: 2rem;
+      margin-bottom: 3rem;
+      padding: 2rem;
+      border: 2px solid #ddd;
+      background: #fff;
+    }
+
+    .profile-image {
+      width: 150px;
+      height: 150px;
+      border: 2px dashed #ccc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #999;
+      font-size: 0.875rem;
+      flex-shrink: 0;
+    }
+
+    .profile-info h2 {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .profile-info .role {
+      color: #666;
+      margin-bottom: 1rem;
+    }
+
+    .profile-info p {
+      line-height: 1.6;
+      color: #555;
+    }
+
+    /* Content Sections */
+    .content-section {
+      margin-bottom: 2rem;
+    }
+
+    .section-title {
+      font-size: 0.875rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: #999;
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .content-section p {
+      line-height: 1.8;
+      color: #555;
+      margin-bottom: 1rem;
+    }
+
+    /* Contact Box */
+    .contact-box {
+      border: 2px dashed #ccc;
+      padding: 2rem;
+      background: #fff;
+      margin-top: 2rem;
+    }
+
+    .contact-box h3 {
+      margin-bottom: 1rem;
+    }
+
+    .contact-list {
+      list-style: none;
+    }
+
+    .contact-list li {
+      padding: 0.5rem 0;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .contact-list .label {
+      width: 80px;
+      color: #999;
+      font-size: 0.875rem;
+    }
+
+    .contact-list .value {
+      color: #333;
+    }
+
+    /* Skills */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+      gap: 0.5rem;
+    }
+
+    .skill-item {
+      border: 1px solid #ddd;
+      padding: 0.5rem 1rem;
+      text-align: center;
+      font-size: 0.875rem;
+      background: #fff;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 2px solid #333;
+      padding: 2rem;
+      background: #fff;
+      text-align: center;
+    }
+
+    .footer-content {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .footer-content p {
+      color: #666;
+      font-size: 0.875rem;
+    }
+
+    .footer-links {
+      margin-top: 1rem;
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+    }
+
+    .footer-links a {
+      color: #999;
+      text-decoration: none;
+      font-size: 0.875rem;
+    }
+
+    .footer-links a:hover {
+      color: #333;
+    }
+
+    @media (max-width: 600px) {
+      .profile-section {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <a href="/" class="logo">Experience</a>
+      <nav>
+        <a href="/">Home</a>
+        <a href="/archive.html">Archive</a>
+        <a href="/about.html" class="active">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>About</h1>
+      <p>En savoir plus sur ce blog et son auteur</p>
+    </div>
+
+    <section class="profile-section">
+      <div class="profile-image">[ photo ]</div>
+      <div class="profile-info">
+        <h2>Nom de l'Auteur</h2>
+        <p class="role">Designer & Developpeur</p>
+        <p>Passionné par le design minimaliste et les technologies web. Ce blog est un espace pour partager mes reflexions et experiences.</p>
+      </div>
+    </section>
+
+    <section class="content-section">
+      <h2 class="section-title">A propos du blog</h2>
+      <p>Experience est un blog personnel dedie au partage d'idees, de reflexions et de decouvertes. L'objectif est de creer un espace simple et epure ou le contenu prime sur la forme.</p>
+      <p>Les sujets abordes couvrent le design, la technologie, le developpement personnel et tout ce qui peut enrichir notre quotidien.</p>
+    </section>
+
+    <section class="content-section">
+      <h2 class="section-title">Competences</h2>
+      <div class="skills-grid">
+        <div class="skill-item">HTML/CSS</div>
+        <div class="skill-item">JavaScript</div>
+        <div class="skill-item">Node.js</div>
+        <div class="skill-item">Design UI</div>
+        <div class="skill-item">Figma</div>
+        <div class="skill-item">Git</div>
+      </div>
+    </section>
+
+    <div class="contact-box">
+      <h3>Contact</h3>
+      <ul class="contact-list">
+        <li>
+          <span class="label">Email</span>
+          <span class="value">hello@example.com</span>
+        </li>
+        <li>
+          <span class="label">Twitter</span>
+          <span class="value">@username</span>
+        </li>
+        <li>
+          <span class="label">GitHub</span>
+          <span class="value">github.com/username</span>
+        </li>
+      </ul>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-content">
+      <p>Experience Blog - Wireframe</p>
+      <div class="footer-links">
+        <a href="/">Home</a>
+        <a href="/archive.html">Archive</a>
+        <a href="/about.html">About</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
