@@ -253,8 +253,54 @@
           <span data-i18n="features.escalation.badge">Smart Escalation</span>
         </div>
         <h3 class="feature-card__title" data-i18n="features.escalation.title">Humans when it matters</h3>
-        <div class="feature-card__visual feature-card__visual--small">
-          <div class="feature-visual-placeholder">Escalation Flow</div>
+        <div class="feature-card__visual feature-card__visual--tree">
+          <!-- Escalation Tree Widget -->
+          <div id="tree-widget">
+            <div class="tw-node" id="tw-n1">
+              <span class="tw-step">1</span>
+              <div class="tw-icon" id="tw-i1"></div>
+              <div class="tw-content">
+                <h4 id="tw-t1"></h4>
+                <p id="tw-d1"></p>
+              </div>
+              <div class="tw-status"></div>
+            </div>
+            <div class="tw-line" id="tw-l1"></div>
+            <div class="tw-node" id="tw-n2">
+              <span class="tw-step">2</span>
+              <div class="tw-icon" id="tw-i2"></div>
+              <div class="tw-content">
+                <h4 id="tw-t2"></h4>
+                <p id="tw-d2"></p>
+              </div>
+              <div class="tw-status"></div>
+            </div>
+            <div class="tw-line" id="tw-l2"></div>
+            <div class="tw-branch-container">
+              <div class="tw-branch-lines">
+                <div class="tw-arm tw-arm-left" id="tw-arm-left"></div>
+                <div class="tw-arm tw-arm-right" id="tw-arm-right"></div>
+              </div>
+              <div class="tw-node" id="tw-n3-left">
+                <div class="tw-tag-blocked">BLOCKED</div>
+                <div class="tw-icon" id="tw-i3l"></div>
+                <div class="tw-content">
+                  <h4 id="tw-t3l"></h4>
+                  <p id="tw-d3l"></p>
+                </div>
+                <div class="tw-status"></div>
+              </div>
+              <div class="tw-node" id="tw-n3-right">
+                <div class="tw-tag">PRIORITY</div>
+                <div class="tw-icon" id="tw-i3r"></div>
+                <div class="tw-content">
+                  <h4 id="tw-t3r"></h4>
+                  <p id="tw-d3r"></p>
+                </div>
+                <div class="tw-status"></div>
+              </div>
+            </div>
+          </div>
         </div>
         <p class="feature-card__description" data-i18n="features.escalation.description">
           AI handles the routine. When things get complex, conversations seamlessly transfer to your team — with full context, so customers never repeat themselves.
@@ -1132,6 +1178,111 @@
         centerOnNode(0);
         setTimeout(animateStep, 800);
       }, 400);
+    })();
+
+    // ============================================
+    // TREE WIDGET (Escalation)
+    // ============================================
+    (function initTreeWidget() {
+      const treeData = {
+        step1: {
+          title: "Incoming chat",
+          desc: "\"My order is late!\"",
+          icon: `<svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8.625 12a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H8.25m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H12m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 0 1-2.555-.337A5.972 5.972 0 0 1 5.41 20.97a5.969 5.969 0 0 1-.474-.065 4.48 4.48 0 0 0 .978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25Z"/></svg>`
+        },
+        step2: {
+          title: "AI analysis",
+          desc: "Processing...",
+          descTrigger: "High frustration",
+          icon: `<svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09Z"/></svg>`
+        },
+        branchLeft: {
+          title: "Auto-reply",
+          desc: "Template ready",
+          descBlocked: "Blocked",
+          icon: `<svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z"/></svg>`
+        },
+        branchRight: {
+          title: "Human agent",
+          desc: "Routing to Maya",
+          icon: `<svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"/></svg>`
+        }
+      };
+
+      const $ = id => document.getElementById(id);
+      const els = {
+        n1: $('tw-n1'), n2: $('tw-n2'),
+        n3Left: $('tw-n3-left'), n3Right: $('tw-n3-right'),
+        l1: $('tw-l1'), l2: $('tw-l2'),
+        armLeft: $('tw-arm-left'), armRight: $('tw-arm-right'),
+        d2: $('tw-d2'), d3l: $('tw-d3l')
+      };
+
+      if (!els.n1) return;
+
+      const setContent = (suffix, data) => {
+        const icon = $(`tw-i${suffix}`);
+        const title = $(`tw-t${suffix}`);
+        const desc = $(`tw-d${suffix}`);
+        if (icon) icon.innerHTML = data.icon;
+        if (title) title.textContent = data.title;
+        if (desc) desc.textContent = data.desc;
+      };
+
+      setContent('1', treeData.step1);
+      setContent('2', treeData.step2);
+      setContent('3l', treeData.branchLeft);
+      setContent('3r', treeData.branchRight);
+
+      const timings = {
+        step1: 200, line1: 1000, step2Blue: 1600, step2Orange: 2600,
+        line2: 3200, armLeft: 3600, step3Left: 3900, step3LeftReject: 5000,
+        armRight: 5300, step3Right: 5600, loopStart: 8000
+      };
+
+      let timeoutIds = [];
+      const schedule = (fn, delay) => { const id = setTimeout(fn, delay); timeoutIds.push(id); };
+      const clearAll = () => { timeoutIds.forEach(clearTimeout); timeoutIds = []; };
+
+      const resetAnimation = () => {
+        [els.n1, els.n2, els.n3Left, els.n3Right].forEach(n => {
+          if (n) n.classList.remove('active-blue', 'active-orange', 'active-red', 'rejected', 'shake');
+        });
+        [els.l1, els.l2].forEach(l => { if (l) l.classList.remove('active', 'active-orange'); });
+        [els.armLeft, els.armRight].forEach(a => { if (a) a.classList.remove('active'); });
+        if (els.d2) { els.d2.textContent = treeData.step2.desc; els.d2.style.color = ''; }
+        if (els.d3l) els.d3l.textContent = treeData.branchLeft.desc;
+      };
+
+      const playAnimation = () => {
+        clearAll();
+        resetAnimation();
+
+        schedule(() => els.n1.classList.add('active-blue'), timings.step1);
+        schedule(() => els.l1.classList.add('active'), timings.line1);
+        schedule(() => els.n2.classList.add('active-blue'), timings.step2Blue);
+        schedule(() => {
+          els.n2.classList.remove('active-blue');
+          els.n2.classList.add('active-orange');
+          els.d2.textContent = treeData.step2.descTrigger;
+          els.d2.style.color = 'var(--tw-orange)';
+        }, timings.step2Orange);
+        schedule(() => els.l2.classList.add('active', 'active-orange'), timings.line2);
+        schedule(() => els.armLeft.classList.add('active'), timings.armLeft);
+        schedule(() => {
+          els.n3Left.classList.add('active-red', 'shake');
+        }, timings.step3Left);
+        schedule(() => {
+          els.n3Left.classList.remove('active-red', 'shake');
+          els.n3Left.classList.add('rejected');
+          els.d3l.textContent = treeData.branchLeft.descBlocked;
+        }, timings.step3LeftReject);
+        schedule(() => els.armRight.classList.add('active'), timings.armRight);
+        schedule(() => els.n3Right.classList.add('active-orange'), timings.step3Right);
+        schedule(playAnimation, timings.loopStart);
+      };
+
+      schedule(playAnimation, 600);
     })();
 
     // Load blog articles

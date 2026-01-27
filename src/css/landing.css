@@ -2126,3 +2126,378 @@
   0%, 100% { opacity: 0.3; transform: scale(1); }
   50% { opacity: 0; transform: scale(1.4); }
 }
+
+/* ============================================
+   TREE WIDGET (Escalation)
+   ============================================ */
+
+.feature-card__visual--tree {
+  aspect-ratio: auto;
+  background: transparent;
+  padding: 0;
+  overflow: visible;
+  min-height: 380px;
+}
+
+#tree-widget {
+  --tw-blue: #3b82f6;
+  --tw-blue-glow: rgba(59, 130, 246, 0.4);
+  --tw-orange: #f97316;
+  --tw-orange-glow: rgba(249, 115, 22, 0.4);
+  --tw-red: #ef4444;
+  --tw-red-glow: rgba(239, 68, 68, 0.3);
+  --tw-bg: rgba(15, 23, 42, 0.8);
+  --tw-border: rgba(148, 163, 184, 0.15);
+  --tw-text: #f1f5f9;
+  --tw-muted: #94a3b8;
+  --tw-dim: #64748b;
+
+  font-family: 'Poppins', system-ui, sans-serif;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 16px 0;
+}
+
+.tw-node {
+  background: var(--tw-bg);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--tw-border);
+  border-radius: 12px;
+  padding: 12px 16px;
+  width: 100%;
+  max-width: 220px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  position: relative;
+  opacity: 0.35;
+  transform: scale(0.96);
+  transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.tw-node::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: 13px;
+  padding: 1px;
+  background: linear-gradient(135deg, transparent 0%, transparent 100%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.tw-step {
+  position: absolute;
+  left: -24px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  background: rgba(148, 163, 184, 0.1);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 9px;
+  font-weight: 600;
+  color: var(--tw-dim);
+  transition: all 0.4s ease;
+}
+
+.tw-icon {
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
+  background: rgba(148, 163, 184, 0.08);
+  border: 1px solid rgba(148, 163, 184, 0.1);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--tw-dim);
+  transition: all 0.4s ease;
+}
+
+.tw-icon svg {
+  width: 18px;
+  height: 18px;
+}
+
+.tw-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.tw-content h4 {
+  margin: 0 0 2px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--tw-text);
+}
+
+.tw-content p {
+  margin: 0;
+  font-size: 10px;
+  color: var(--tw-muted);
+  line-height: 1.3;
+  transition: all 0.3s ease;
+}
+
+.tw-status {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--tw-dim);
+  opacity: 0.3;
+  transition: all 0.4s ease;
+}
+
+.tw-line {
+  width: 2px;
+  height: 24px;
+  background: rgba(148, 163, 184, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.tw-line::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 0;
+  background: var(--tw-blue);
+  transition: height 0.5s ease;
+  box-shadow: 0 0 8px var(--tw-blue-glow);
+}
+
+.tw-branch-container {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+  position: relative;
+  padding-top: 20px;
+}
+
+.tw-branch-lines {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 20px);
+  height: 20px;
+  pointer-events: none;
+}
+
+.tw-arm {
+  position: absolute;
+  top: 0;
+  width: 50%;
+  height: 100%;
+  border-top: 2px solid rgba(148, 163, 184, 0.1);
+  transition: all 0.6s ease;
+}
+
+.tw-arm-left {
+  left: 0;
+  border-left: 2px solid rgba(148, 163, 184, 0.1);
+  border-top-left-radius: 10px;
+  opacity: 0;
+  clip-path: inset(0 0 0 100%);
+}
+
+.tw-arm-left.active {
+  opacity: 1;
+  clip-path: inset(0 0 0 0);
+  border-color: var(--tw-red);
+  box-shadow: -2px -2px 10px var(--tw-red-glow);
+}
+
+.tw-arm-right {
+  right: 0;
+  border-right: 2px solid rgba(148, 163, 184, 0.1);
+  border-top-right-radius: 10px;
+  clip-path: inset(0 100% 0 0);
+}
+
+.tw-arm-right.active {
+  border-color: var(--tw-orange);
+  box-shadow: 2px -2px 10px var(--tw-orange-glow);
+  clip-path: inset(0 0 0 0);
+}
+
+/* Active States */
+.tw-node.active-blue {
+  opacity: 1;
+  transform: scale(1);
+  border-color: rgba(59, 130, 246, 0.3);
+  box-shadow: 0 6px 24px rgba(59, 130, 246, 0.15);
+}
+
+.tw-node.active-blue::before {
+  background: linear-gradient(135deg, var(--tw-blue) 0%, transparent 50%);
+  opacity: 0.5;
+}
+
+.tw-node.active-blue .tw-icon {
+  background: linear-gradient(135deg, var(--tw-blue) 0%, #2563eb 100%);
+  border-color: transparent;
+  color: white;
+  box-shadow: 0 4px 10px var(--tw-blue-glow);
+}
+
+.tw-node.active-blue .tw-status {
+  background: var(--tw-blue);
+  opacity: 1;
+  box-shadow: 0 0 10px var(--tw-blue-glow);
+}
+
+.tw-node.active-blue .tw-step {
+  background: var(--tw-blue);
+  border-color: var(--tw-blue);
+  color: white;
+}
+
+.tw-node.active-orange {
+  opacity: 1;
+  transform: scale(1);
+  border-color: rgba(249, 115, 22, 0.4);
+  box-shadow: 0 6px 24px rgba(249, 115, 22, 0.2);
+}
+
+.tw-node.active-orange::before {
+  background: linear-gradient(135deg, var(--tw-orange) 0%, transparent 50%);
+  opacity: 0.6;
+}
+
+.tw-node.active-orange .tw-icon {
+  background: linear-gradient(135deg, var(--tw-orange) 0%, #ea580c 100%);
+  border-color: transparent;
+  color: white;
+  box-shadow: 0 4px 12px var(--tw-orange-glow);
+}
+
+.tw-node.active-orange .tw-status {
+  background: var(--tw-orange);
+  opacity: 1;
+  box-shadow: 0 0 10px var(--tw-orange-glow);
+}
+
+.tw-node.active-orange .tw-step {
+  background: var(--tw-orange);
+  border-color: var(--tw-orange);
+  color: white;
+}
+
+.tw-node.active-red {
+  opacity: 1;
+  transform: scale(1);
+  border-color: rgba(239, 68, 68, 0.3);
+  box-shadow: 0 6px 24px rgba(239, 68, 68, 0.12);
+}
+
+.tw-node.active-red::before {
+  background: linear-gradient(135deg, var(--tw-red) 0%, transparent 50%);
+  opacity: 0.4;
+}
+
+.tw-node.active-red .tw-icon {
+  background: linear-gradient(135deg, var(--tw-red) 0%, #dc2626 100%);
+  border-color: transparent;
+  color: white;
+}
+
+.tw-node.active-red .tw-status {
+  background: var(--tw-red);
+  opacity: 1;
+}
+
+.tw-node.rejected {
+  opacity: 0.4;
+  transform: scale(0.98);
+}
+
+.tw-node.rejected .tw-content h4 {
+  text-decoration: line-through;
+  text-decoration-color: var(--tw-red);
+}
+
+.tw-node.rejected .tw-icon {
+  background: linear-gradient(135deg, var(--tw-red) 0%, #dc2626 100%);
+  border-color: transparent;
+  color: white;
+  opacity: 0.6;
+}
+
+.tw-line.active::after {
+  height: 100%;
+}
+
+.tw-line.active-orange::after {
+  background: linear-gradient(180deg, var(--tw-blue) 0%, var(--tw-orange) 100%);
+  box-shadow: 0 0 10px var(--tw-orange-glow);
+}
+
+/* Tags */
+.tw-tag {
+  position: absolute;
+  top: -8px;
+  right: 10px;
+  background: linear-gradient(135deg, var(--tw-orange) 0%, #ea580c 100%);
+  color: white;
+  font-size: 7px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 2px 6px;
+  border-radius: 10px;
+  opacity: 0;
+  transform: translateY(4px) scale(0.9);
+  transition: all 0.4s ease;
+}
+
+.tw-node.active-orange .tw-tag {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.tw-tag-blocked {
+  position: absolute;
+  top: -8px;
+  right: 10px;
+  background: linear-gradient(135deg, var(--tw-red) 0%, #dc2626 100%);
+  color: white;
+  font-size: 7px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 2px 6px;
+  border-radius: 10px;
+  opacity: 0;
+  transform: translateY(4px) scale(0.9);
+  transition: all 0.4s ease;
+}
+
+.tw-node.active-red .tw-tag-blocked {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+@keyframes tw-shake {
+  0%, 100% { transform: translateX(0) scale(1); }
+  20%, 60% { transform: translateX(-2px) scale(1); }
+  40%, 80% { transform: translateX(2px) scale(1); }
+}
+
+.tw-node.shake {
+  animation: tw-shake 0.4s ease;
+}
