@@ -26,8 +26,8 @@ const SITE_TITLE = 'Experience Blog'
 const SITE_DESCRIPTION = 'Un blog minimaliste pour partager des idees, des reflexions et des experiences.'
 
 // Supported languages
-const SUPPORTED_LANGS = ['fr', 'en', 'he']
-const DEFAULT_LANG = 'fr'
+const SUPPORTED_LANGS = ['en', 'fr', 'he']
+const DEFAULT_LANG = 'en'
 const RTL_LANGS = ['he']
 
 // Language-specific content
@@ -377,11 +377,27 @@ Disallow: /admin
 app.get('/sitemap.xml', async (req, res) => {
   res.setHeader('Content-Type', 'application/xml; charset=utf-8')
 
-  const staticPages = [
-    { loc: '', priority: '1.0', changefreq: 'daily' },
-    { loc: '/archive.html', priority: '0.8', changefreq: 'daily' },
-    { loc: '/about.html', priority: '0.6', changefreq: 'monthly' }
+  // Static pages with all language variants
+  const staticPagesBase = [
+    { path: '', priority: '1.0', changefreq: 'daily' },
+    { path: '/archive.html', priority: '0.8', changefreq: 'daily' },
+    { path: '/about.html', priority: '0.6', changefreq: 'monthly' }
   ]
+
+  // Generate URLs for each language
+  const staticPages = []
+  staticPagesBase.forEach(page => {
+    SUPPORTED_LANGS.forEach(lang => {
+      const langPrefix = lang === DEFAULT_LANG ? '' : `/${lang}`
+      staticPages.push({
+        loc: `${langPrefix}${page.path}`,
+        priority: page.priority,
+        changefreq: page.changefreq,
+        lang: lang,
+        basePath: page.path
+      })
+    })
+  })
 
   let articles = []
   if (supabase) {
@@ -405,13 +421,22 @@ app.get('/sitemap.xml', async (req, res) => {
     }
   })
 
-  const urls = staticPages.map(page => `
+  const urls = staticPages.map(page => {
+    // Generate hreflang tags for all language variants of this page
+    const hreflangTags = SUPPORTED_LANGS.map(lang => {
+      const prefix = lang === DEFAULT_LANG ? '' : `/${lang}`
+      return `    <xhtml:link rel="alternate" hreflang="${lang}" href="${SITE_URL}${prefix}${page.basePath}"/>`
+    }).join('\n')
+
+    return `
   <url>
     <loc>${SITE_URL}${page.loc}</loc>
     <lastmod>${today}</lastmod>
     <changefreq>${page.changefreq}</changefreq>
     <priority>${page.priority}</priority>
-  </url>`).join('')
+${hreflangTags}
+  </url>`
+  }).join('')
 
   const articleUrls = articles.map(article => {
     const langPrefix = article.lang === DEFAULT_LANG ? '' : `/${article.lang}`

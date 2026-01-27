@@ -1335,6 +1335,16 @@
 }
 
 /* RTL Support for Hebrew */
+[dir="rtl"] {
+  font-family: 'Open Sans', system-ui, -apple-system, sans-serif;
+}
+
+[dir="rtl"] h1,
+[dir="rtl"] h2,
+[dir="rtl"] h3 {
+  font-family: 'Open Sans', system-ui, -apple-system, sans-serif;
+}
+
 [dir="rtl"] .hero-section__content,
 [dir="rtl"] .feature-row,
 [dir="rtl"] .faq-section__content {

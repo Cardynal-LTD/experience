@@ -27,7 +27,7 @@
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Open+Sans:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="./css/main.css">
   <link rel="stylesheet" href="./css/landing.css">
@@ -513,16 +513,16 @@
           <h3 class="pricing-card__title" data-i18n="pricing.plan">Starter</h3>
           <p class="pricing-card__description" data-i18n="pricing.description">For solopreneurs & early-stage companies who want to improve their customer service.</p>
           <div class="pricing-card__price">
-            <span class="pricing-card__amount">99$</span>
+            <span class="pricing-card__amount" data-i18n="pricing.amount">$99</span>
             <span class="pricing-card__period" data-i18n="pricing.period">/ month</span>
           </div>
           <div class="pricing-card__addons">
             <div class="pricing-addon">
-              <span class="pricing-addon__price">+25$</span>
+              <span class="pricing-addon__price" data-i18n="pricing.seatPrice">+$25</span>
               <span class="pricing-addon__label" data-i18n="pricing.addon1">per seat/month</span>
             </div>
             <div class="pricing-addon">
-              <span class="pricing-addon__price">+0.90$</span>
+              <span class="pricing-addon__price" data-i18n="pricing.resolutionPrice">+$0.90</span>
               <span class="pricing-addon__label" data-i18n="pricing.addon2">per resolution</span>
             </div>
           </div>
@@ -731,14 +731,34 @@
   </div>
 
   <script>
-    // Global function for language switching
+    // Global function for language switching with URL change
     function setLang(lang) {
       localStorage.setItem('cardynal_lang', lang);
-      location.reload();
+      // Redirect to language-specific URL
+      var path = window.location.pathname;
+      // Remove existing lang prefix
+      path = path.replace(/^\/(en|fr|he)(\/|$)/, '/');
+      // Add new lang prefix (except for English which is default)
+      if (lang === 'en') {
+        window.location.href = path || '/';
+      } else {
+        window.location.href = '/' + lang + (path === '/' ? '' : path);
+      }
     }
-    // Set select value on page load
+    // Detect language from URL and set on page load
     document.addEventListener('DOMContentLoaded', function() {
-      var lang = localStorage.getItem('cardynal_lang') || 'en';
+      var path = window.location.pathname;
+      var urlLang = null;
+      if (path.startsWith('/fr')) urlLang = 'fr';
+      else if (path.startsWith('/he')) urlLang = 'he';
+
+      var storedLang = localStorage.getItem('cardynal_lang');
+      var lang = urlLang || storedLang || 'en';
+
+      if (urlLang && urlLang !== storedLang) {
+        localStorage.setItem('cardynal_lang', urlLang);
+      }
+
       var select = document.getElementById('langSelect');
       if (select) select.value = lang;
     });
@@ -797,8 +817,11 @@
         'pricing.subtitle': 'Pay for resolutions, not conversations. Escalations to humans are always free.',
         'pricing.plan': 'Starter',
         'pricing.description': 'For solopreneurs & early-stage companies who want to improve their customer service.',
+        'pricing.amount': '$99',
         'pricing.period': '/ month',
+        'pricing.seatPrice': '+$25',
         'pricing.addon1': 'per seat/month',
+        'pricing.resolutionPrice': '+$0.90',
         'pricing.addon2': 'per resolution',
         'pricing.cta': 'Get started',
         'pricing.features': 'Key features included',
@@ -901,8 +924,11 @@
         'pricing.subtitle': 'Payez pour les resolutions, pas les conversations. Les escalades vers les humains sont toujours gratuites.',
         'pricing.plan': 'Starter',
         'pricing.description': 'Pour les solopreneurs et startups qui veulent ameliorer leur service client.',
+        'pricing.amount': '89\u20AC',
         'pricing.period': '/ mois',
+        'pricing.seatPrice': '+20\u20AC',
         'pricing.addon1': 'par utilisateur/mois',
+        'pricing.resolutionPrice': '+0.80\u20AC',
         'pricing.addon2': 'par resolution',
         'pricing.cta': 'Commencer',
         'pricing.features': 'Fonctionnalites incluses',
@@ -952,7 +978,7 @@
         'roi.currentCost': 'Cout Mensuel Actuel',
         'roi.withCardynal': 'Avec Cardynal',
         'roi.hoursRecovered': 'Heures Recuperees/Mois',
-        'roi.disclaimer': '*Base sur 99 EUR/mois + 0,90 EUR par resolution. Les resultats peuvent varier.',
+        'roi.disclaimer': '*Base sur 89\u20AC/mois + 0,80\u20AC par resolution. Les resultats peuvent varier.',
         'roi.cta': 'Commencer Maintenant'
       },
       he: {
@@ -1005,8 +1031,11 @@
         'pricing.subtitle': 'שלמו על פתרונות, לא על שיחות. אסקלציות לאנשים תמיד חינם.',
         'pricing.plan': 'Starter',
         'pricing.description': 'לסולופרנרים וסטארטאפים שרוצים לשפר את שירות הלקוחות שלהם.',
+        'pricing.amount': '\u20AA299',
         'pricing.period': '/ חודש',
+        'pricing.seatPrice': '+\u20AA75',
         'pricing.addon1': 'למשתמש/חודש',
+        'pricing.resolutionPrice': '+\u20AA2.99',
         'pricing.addon2': 'לפתרון',
         'pricing.cta': 'התחילו',
         'pricing.features': 'תכונות כלולות',
@@ -1056,13 +1085,17 @@
         'roi.currentCost': 'עלות חודשית נוכחית',
         'roi.withCardynal': 'עם Cardynal',
         'roi.hoursRecovered': 'שעות שהושבו/חודש',
-        'roi.disclaimer': '*מבוסס על 99 ILS/חודש + 0.90 ILS לפתרון. התוצאות עשויות להשתנות.',
+        'roi.disclaimer': '*מבוסס על 299\u20AA/חודש + 2.99\u20AA לפתרון. התוצאות עשויות להשתנות.',
         'roi.cta': 'התחילו עכשיו'
       }
     };
 
-    // Current language
-    let currentLang = localStorage.getItem('cardynal_lang') || 'en';
+    // Current language - detect from URL first, then localStorage
+    const urlPath = window.location.pathname;
+    let urlLang = null;
+    if (urlPath.startsWith('/fr')) urlLang = 'fr';
+    else if (urlPath.startsWith('/he')) urlLang = 'he';
+    let currentLang = urlLang || localStorage.getItem('cardynal_lang') || 'en';
 
     // Translate function
     function t(key) {
@@ -1931,19 +1964,19 @@
       const closeBtn = document.getElementById('closeRoiModal');
       const backdrop = modal?.querySelector('.roi-modal__backdrop');
 
-      // Currency config per language
-      const currencyConfig = {
-        en: { symbol: '$', rate: 1 },
-        fr: { symbol: '\u20AC', rate: 0.92 },
-        he: { symbol: '\u20AA', rate: 3.7 }
+      // Pricing config per language (base price, resolution price, symbol)
+      const pricingConfig = {
+        en: { symbol: '$', baseCost: 99, resolutionCost: 0.90 },
+        fr: { symbol: '\u20AC', baseCost: 89, resolutionCost: 0.80 },
+        he: { symbol: '\u20AA', baseCost: 299, resolutionCost: 2.99 }
       };
 
-      const getCurrency = () => currencyConfig[currentLang] || currencyConfig.en;
+      const getPricing = () => pricingConfig[currentLang] || pricingConfig.en;
 
       const formatCurrency = (amount) => {
-        const { symbol, rate } = getCurrency();
-        const converted = Math.round(amount * rate);
-        return currentLang === 'he' ? `${converted.toLocaleString()} ${symbol}` : `${symbol}${converted.toLocaleString()}`;
+        const { symbol } = getPricing();
+        const rounded = Math.round(amount);
+        return currentLang === 'he' ? `${rounded.toLocaleString()} ${symbol}` : `${symbol}${rounded.toLocaleString()}`;
       };
 
       const openModal = () => {
@@ -1980,14 +2013,14 @@
 
         // With Cardynal:
         // - AI resolves X% of conversations
-        // - Base: $99/mo + $0.90 per resolution
+        // - Base cost + resolution cost per language
+        const { baseCost, resolutionCost } = getPricing();
         const aiResolutions = Math.round(conversations * (resolutionRate / 100));
         const humanConversations = conversations - aiResolutions;
         const humanHours = (humanConversations * handleTime) / 60;
         const humanCost = humanHours * agentCost;
-        const cardynalBaseCost = 99;
-        const cardynalResolutionCost = aiResolutions * 0.90;
-        const withCardynal = humanCost + cardynalBaseCost + cardynalResolutionCost;
+        const cardynalResolutionCost = aiResolutions * resolutionCost;
+        const withCardynal = humanCost + baseCost + cardynalResolutionCost;
 
         // Savings
         const monthlySavings = Math.max(0, currentCost - withCardynal);
@@ -2001,7 +2034,7 @@
 
         // Update currency symbol in label
         document.querySelectorAll('.roi-currency').forEach(el => {
-          el.textContent = getCurrency().symbol;
+          el.textContent = getPricing().symbol;
         });
       };
 
