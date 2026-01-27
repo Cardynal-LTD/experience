@@ -536,6 +536,7 @@
             </div>
           </div>
           <a href="https://cal.com/cardynal.io/30min" class="btn btn--primary btn--lg btn--full" data-i18n="pricing.cta">Get started</a>
+          <button type="button" class="btn btn--secondary btn--lg btn--full pricing-roi-btn" id="openRoiCalculator" data-i18n="pricing.roiBtn">Calculate your ROI</button>
         </div>
         <div class="pricing-card__features">
           <h4 data-i18n="pricing.included">What's a resolution?</h4>
@@ -680,6 +681,66 @@
     </div>
   </footer>
 
+  <!-- ROI Calculator Modal -->
+  <div class="roi-modal" id="roiModal">
+    <div class="roi-modal__backdrop"></div>
+    <div class="roi-modal__content">
+      <button type="button" class="roi-modal__close" id="closeRoiModal">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+      <div class="roi-calculator">
+        <div class="roi-calculator__header">
+          <h2 data-i18n="roi.title">Calculate Your ROI</h2>
+          <p data-i18n="roi.subtitle">See how much you can save with Cardynal AI support</p>
+        </div>
+        <div class="roi-calculator__body">
+          <div class="roi-calculator__inputs">
+            <div class="roi-input-group">
+              <label data-i18n="roi.monthlyConversations">Monthly support conversations</label>
+              <input type="number" id="roiConversations" value="1000" min="100" step="100">
+            </div>
+            <div class="roi-input-group">
+              <label data-i18n="roi.avgHandleTime">Average handle time (minutes)</label>
+              <input type="number" id="roiHandleTime" value="8" min="1" step="1">
+            </div>
+            <div class="roi-input-group">
+              <label data-i18n="roi.agentHourlyCost">Agent hourly cost (<span class="roi-currency">$</span>)</label>
+              <input type="number" id="roiAgentCost" value="25" min="10" step="5">
+            </div>
+            <div class="roi-input-group">
+              <label data-i18n="roi.aiResolutionRate">AI resolution rate (%)</label>
+              <input type="number" id="roiResolutionRate" value="70" min="30" max="95" step="5">
+            </div>
+          </div>
+          <div class="roi-calculator__results">
+            <div class="roi-result-card roi-result-card--highlight">
+              <span class="roi-result-card__label" data-i18n="roi.monthlySavings">Monthly Savings</span>
+              <span class="roi-result-card__value" id="roiMonthlySavings">$0</span>
+            </div>
+            <div class="roi-result-card">
+              <span class="roi-result-card__label" data-i18n="roi.currentCost">Current Monthly Cost</span>
+              <span class="roi-result-card__value" id="roiCurrentCost">$0</span>
+            </div>
+            <div class="roi-result-card">
+              <span class="roi-result-card__label" data-i18n="roi.withCardynal">With Cardynal</span>
+              <span class="roi-result-card__value" id="roiWithCardynal">$0</span>
+            </div>
+            <div class="roi-result-card">
+              <span class="roi-result-card__label" data-i18n="roi.hoursRecovered">Hours Recovered/Month</span>
+              <span class="roi-result-card__value" id="roiHoursRecovered">0h</span>
+            </div>
+          </div>
+        </div>
+        <div class="roi-calculator__footer">
+          <p data-i18n="roi.disclaimer">*Based on $99/mo base + $0.90 per resolution. Actual results may vary.</p>
+          <a href="https://cal.com/cardynal.io/30min" class="btn btn--primary btn--lg" data-i18n="roi.cta">Get Started Now</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script type="module">
     // Translations
     const TRANSLATIONS = {
@@ -772,7 +833,20 @@
         'footer.contact': 'Contact',
         'footer.privacy': 'Privacy',
         'footer.terms': 'Terms',
-        'footer.getInTouch': 'Get In Touch'
+        'footer.getInTouch': 'Get In Touch',
+        'pricing.roiBtn': 'Calculate your ROI',
+        'roi.title': 'Calculate Your ROI',
+        'roi.subtitle': 'See how much you can save with Cardynal AI support',
+        'roi.monthlyConversations': 'Monthly support conversations',
+        'roi.avgHandleTime': 'Average handle time (minutes)',
+        'roi.agentHourlyCost': 'Agent hourly cost',
+        'roi.aiResolutionRate': 'AI resolution rate (%)',
+        'roi.monthlySavings': 'Monthly Savings',
+        'roi.currentCost': 'Current Monthly Cost',
+        'roi.withCardynal': 'With Cardynal',
+        'roi.hoursRecovered': 'Hours Recovered/Month',
+        'roi.disclaimer': '*Based on $99/mo base + $0.90 per resolution. Actual results may vary.',
+        'roi.cta': 'Get Started Now'
       },
       fr: {
         'nav.home': 'Accueil',
@@ -863,7 +937,20 @@
         'footer.contact': 'Contact',
         'footer.privacy': 'Confidentialite',
         'footer.terms': 'Conditions',
-        'footer.getInTouch': 'Nous contacter'
+        'footer.getInTouch': 'Nous contacter',
+        'pricing.roiBtn': 'Calculez votre ROI',
+        'roi.title': 'Calculez Votre ROI',
+        'roi.subtitle': 'Decouvrez combien vous pouvez economiser avec Cardynal',
+        'roi.monthlyConversations': 'Conversations mensuelles',
+        'roi.avgHandleTime': 'Temps moyen de traitement (min)',
+        'roi.agentHourlyCost': 'Cout horaire agent',
+        'roi.aiResolutionRate': 'Taux de resolution IA (%)',
+        'roi.monthlySavings': 'Economies Mensuelles',
+        'roi.currentCost': 'Cout Mensuel Actuel',
+        'roi.withCardynal': 'Avec Cardynal',
+        'roi.hoursRecovered': 'Heures Recuperees/Mois',
+        'roi.disclaimer': '*Base sur 99 EUR/mois + 0,90 EUR par resolution. Les resultats peuvent varier.',
+        'roi.cta': 'Commencer Maintenant'
       },
       he: {
         'nav.home': 'דף הבית',
@@ -954,7 +1041,20 @@
         'footer.contact': 'צור קשר',
         'footer.privacy': 'פרטיות',
         'footer.terms': 'תנאים',
-        'footer.getInTouch': 'צרו קשר'
+        'footer.getInTouch': 'צרו קשר',
+        'pricing.roiBtn': 'חשבו את ה-ROI שלכם',
+        'roi.title': 'חשבו את ה-ROI שלכם',
+        'roi.subtitle': 'גלו כמה תוכלו לחסוך עם תמיכת AI של Cardynal',
+        'roi.monthlyConversations': 'שיחות תמיכה חודשיות',
+        'roi.avgHandleTime': 'זמן טיפול ממוצע (דקות)',
+        'roi.agentHourlyCost': 'עלות שעתית של נציג',
+        'roi.aiResolutionRate': 'שיעור פתרון AI (%)',
+        'roi.monthlySavings': 'חיסכון חודשי',
+        'roi.currentCost': 'עלות חודשית נוכחית',
+        'roi.withCardynal': 'עם Cardynal',
+        'roi.hoursRecovered': 'שעות שהושבו/חודש',
+        'roi.disclaimer': '*מבוסס על 99 ILS/חודש + 0.90 ILS לפתרון. התוצאות עשויות להשתנות.',
+        'roi.cta': 'התחילו עכשיו'
       }
     };
 
@@ -1840,6 +1940,104 @@
         blogGrid.innerHTML = '';
       }
     }
+
+    // ============================================
+    // ROI CALCULATOR MODAL
+    // ============================================
+    (function() {
+      const modal = document.getElementById('roiModal');
+      const openBtn = document.getElementById('openRoiCalculator');
+      const closeBtn = document.getElementById('closeRoiModal');
+      const backdrop = modal?.querySelector('.roi-modal__backdrop');
+
+      // Currency config per language
+      const currencyConfig = {
+        en: { symbol: '$', rate: 1 },
+        fr: { symbol: '\u20AC', rate: 0.92 },
+        he: { symbol: '\u20AA', rate: 3.7 }
+      };
+
+      const getCurrency = () => currencyConfig[currentLang] || currencyConfig.en;
+
+      const formatCurrency = (amount) => {
+        const { symbol, rate } = getCurrency();
+        const converted = Math.round(amount * rate);
+        return currentLang === 'he' ? `${converted.toLocaleString()} ${symbol}` : `${symbol}${converted.toLocaleString()}`;
+      };
+
+      const openModal = () => {
+        modal?.classList.add('is-open');
+        document.body.style.overflow = 'hidden';
+        calculateROI();
+      };
+
+      const closeModal = () => {
+        modal?.classList.remove('is-open');
+        document.body.style.overflow = '';
+      };
+
+      openBtn?.addEventListener('click', openModal);
+      closeBtn?.addEventListener('click', closeModal);
+      backdrop?.addEventListener('click', closeModal);
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal?.classList.contains('is-open')) {
+          closeModal();
+        }
+      });
+
+      // ROI Calculation
+      const calculateROI = () => {
+        const conversations = parseInt(document.getElementById('roiConversations')?.value) || 1000;
+        const handleTime = parseInt(document.getElementById('roiHandleTime')?.value) || 8;
+        const agentCost = parseInt(document.getElementById('roiAgentCost')?.value) || 25;
+        const resolutionRate = parseInt(document.getElementById('roiResolutionRate')?.value) || 70;
+
+        // Current cost: (conversations * handleTime / 60) * agentCost
+        const totalHoursNow = (conversations * handleTime) / 60;
+        const currentCost = totalHoursNow * agentCost;
+
+        // With Cardynal:
+        // - AI resolves X% of conversations
+        // - Base: $99/mo + $0.90 per resolution
+        const aiResolutions = Math.round(conversations * (resolutionRate / 100));
+        const humanConversations = conversations - aiResolutions;
+        const humanHours = (humanConversations * handleTime) / 60;
+        const humanCost = humanHours * agentCost;
+        const cardynalBaseCost = 99;
+        const cardynalResolutionCost = aiResolutions * 0.90;
+        const withCardynal = humanCost + cardynalBaseCost + cardynalResolutionCost;
+
+        // Savings
+        const monthlySavings = Math.max(0, currentCost - withCardynal);
+        const hoursRecovered = totalHoursNow - humanHours;
+
+        // Update UI
+        document.getElementById('roiCurrentCost').textContent = formatCurrency(currentCost);
+        document.getElementById('roiWithCardynal').textContent = formatCurrency(withCardynal);
+        document.getElementById('roiMonthlySavings').textContent = formatCurrency(monthlySavings);
+        document.getElementById('roiHoursRecovered').textContent = `${Math.round(hoursRecovered)}h`;
+
+        // Update currency symbol in label
+        document.querySelectorAll('.roi-currency').forEach(el => {
+          el.textContent = getCurrency().symbol;
+        });
+      };
+
+      // Add input listeners
+      ['roiConversations', 'roiHandleTime', 'roiAgentCost', 'roiResolutionRate'].forEach(id => {
+        document.getElementById(id)?.addEventListener('input', calculateROI);
+      });
+
+      // Recalculate when language changes
+      const originalTranslate = window.translatePage || translatePage;
+      window.translatePage = function() {
+        originalTranslate();
+        if (modal?.classList.contains('is-open')) {
+          calculateROI();
+        }
+      };
+    })();
 
     // Initialize
     translatePage();
