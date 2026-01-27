@@ -1341,9 +1341,7 @@
   font-family: var(--cfd-font);
   width: 100%;
   max-width: 420px;
-  min-height: 200px;
-  max-height: 520px;
-  height: 100%;
+  height: 480px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -1363,6 +1361,7 @@
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
 }
 
 .light-mode .cfd-wrapper {
@@ -1418,7 +1417,6 @@
   overflow: hidden;
   position: relative;
   justify-content: flex-end;
-  min-height: 350px;
 }
 
 /* Message Bubbles */
@@ -1681,11 +1679,10 @@
   }
 }
 
-/* Responsive */
+/* Responsive - Chat Flow Demo */
 @media (max-width: 480px) {
   .cfd-container {
-    min-height: 350px;
-    max-height: 450px;
+    height: 400px;
   }
 
   .cfd-wrapper {
@@ -1703,9 +1700,5 @@
 
   .cfd-message__label {
     font-size: 10px;
-  }
-
-  .cfd-messages {
-    min-height: 280px;
   }
 }
