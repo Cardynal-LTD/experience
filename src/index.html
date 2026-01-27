@@ -48,14 +48,14 @@
       </nav>
       <div class="landing-header__actions">
         <div class="lang-selector">
-          <button type="button" class="lang-selector__btn" id="langBtn">
+          <button type="button" class="lang-selector__btn" id="langBtn" onclick="document.getElementById('langDropdown').classList.toggle('is-open')">
             <span id="currentLang">EN</span>
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
           </button>
           <div class="lang-selector__dropdown" id="langDropdown">
-            <button type="button" class="lang-selector__option" data-lang="en">English</button>
-            <button type="button" class="lang-selector__option" data-lang="fr">Francais</button>
-            <button type="button" class="lang-selector__option" data-lang="he">עברית</button>
+            <button type="button" class="lang-selector__option" data-lang="en" onclick="setLang('en')">English</button>
+            <button type="button" class="lang-selector__option" data-lang="fr" onclick="setLang('fr')">Francais</button>
+            <button type="button" class="lang-selector__option" data-lang="he" onclick="setLang('he')">עברית</button>
           </div>
         </div>
         <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
@@ -735,6 +735,14 @@
       </div>
     </div>
   </div>
+
+  <script>
+    // Global function for language switching (needed for onclick handlers)
+    function setLang(lang) {
+      localStorage.setItem('cardynal_lang', lang);
+      location.reload();
+    }
+  </script>
 
   <script type="module">
     // Translations

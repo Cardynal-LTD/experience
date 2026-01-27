@@ -3514,20 +3514,24 @@
   .feature-card__visual--tree,
   .feature-card__visual--rag,
   .feature-card__visual--omni {
-    min-height: 320px;
-    overflow: visible;
+    min-height: 350px;
+    overflow-x: auto;
+    overflow-y: visible;
+    padding: 1rem;
   }
 
-  /* Playbook widget mobile */
+  /* Playbook widget mobile - no scaling */
   #playbook-widget {
-    transform: scale(0.85);
-    transform-origin: center center;
+    transform: none;
+    width: 100%;
+    min-width: 320px;
   }
 
-  /* Tree widget mobile */
+  /* Tree widget mobile - no scaling */
   #tree-widget {
-    transform: scale(0.9);
-    transform-origin: center top;
+    transform: none;
+    width: 100%;
+    min-width: 340px;
   }
 
   .tw-node {
@@ -3674,21 +3678,21 @@
 
   /* Scale down complex widgets */
   #playbook-widget {
-    transform: scale(0.75);
+    transform: none;
   }
 
   #tree-widget {
-    transform: scale(0.8);
+    transform: none;
   }
 
   .feature-card__visual--tree {
-    min-height: 300px;
+    min-height: 350px;
   }
 
   #omni-widget {
-    --hub-size: 260px;
+    --hub-size: 280px;
     --logo-size: 50px;
-    --channel-size: 36px;
+    --channel-size: 40px;
   }
 
   .omni-channel[data-index="0"] { transform: translate(-50%, -50%) translate(0px, -95px); }
