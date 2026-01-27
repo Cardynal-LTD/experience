@@ -81,14 +81,16 @@
         const contentHtml = marked.parse(article.content)
 
         main.innerHTML = `
-          <article class="page animate-fadeIn">
-            ${article.cover_image ? `
-              <div class="article-cover">
-                <img src="${article.cover_image}" alt="" class="article-cover__image">
-              </div>
-            ` : ''}
+          <article class="page page--article animate-fadeIn">
+            <div class="article-hero ${article.cover_image ? 'has-cover' : ''}">
+              ${article.cover_image ? `
+                <div class="article-hero__cover">
+                  <img src="${article.cover_image}" alt="" class="article-hero__image">
+                </div>
+              ` : ''}
+              <div class="article-hero__emoji">${article.emoji || '📄'}</div>
+            </div>
             <div class="article-header">
-              ${article.emoji ? `<div class="article-header__emoji">${article.emoji}</div>` : ''}
               <h1 class="article-header__title">${escapeHtml(article.title)}</h1>
               <div class="article-header__meta">
                 <span>Publie le ${formatDate(article.created_at)}</span>
