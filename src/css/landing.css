@@ -630,19 +630,24 @@
 }
 
 .feature-card--light {
+  background: var(--landing-surface);
+  border: 1px solid var(--landing-border);
+}
+
+.light-mode .feature-card--light {
   background: #ffffff;
   color: #1e293b;
 }
 
-.feature-card--light .feature-card__title {
+.light-mode .feature-card--light .feature-card__title {
   color: #1e293b;
 }
 
-.feature-card--light .feature-card__description {
+.light-mode .feature-card--light .feature-card__description {
   color: #64748b;
 }
 
-.feature-card--light .feature-badge {
+.light-mode .feature-card--light .feature-badge {
   background: rgba(249, 115, 22, 0.1);
   border-color: rgba(249, 115, 22, 0.2);
   color: #ea580c;
@@ -692,7 +697,17 @@
 }
 
 .feature-card--light .feature-card__visual {
+  background: transparent;
+}
+
+.light-mode .feature-card--light .feature-card__visual {
   background: #f1f5f9;
+}
+
+/* Override: no background for widget visuals */
+.feature-card__visual--playbook,
+.feature-card__visual--tree {
+  background: transparent !important;
 }
 
 .feature-card__visual--small {
@@ -1828,6 +1843,15 @@
   -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
 }
 
+/* Light mode overrides for playbook widget */
+.light-mode #playbook-widget {
+  --pbw-bg: rgba(255, 255, 255, 0.8);
+  --pbw-border: rgba(148, 163, 184, 0.2);
+  --pbw-text: #1e293b;
+  --pbw-muted: #64748b;
+  --pbw-dim: #94a3b8;
+}
+
 .pbw-progress-container {
   width: 180px;
   height: 3px;
@@ -1867,8 +1891,7 @@
 .pbw-node {
   width: 200px;
   padding: 24px 20px;
-  background: var(--pbw-bg);
-  backdrop-filter: blur(20px);
+  background: transparent;
   border: 1px solid var(--pbw-border);
   border-radius: 20px;
   display: flex;
@@ -2160,9 +2183,17 @@
   padding: 16px 0;
 }
 
+/* Light mode overrides for tree widget */
+.light-mode #tree-widget {
+  --tw-bg: rgba(255, 255, 255, 0.8);
+  --tw-border: rgba(148, 163, 184, 0.2);
+  --tw-text: #1e293b;
+  --tw-muted: #64748b;
+  --tw-dim: #94a3b8;
+}
+
 .tw-node {
-  background: var(--tw-bg);
-  backdrop-filter: blur(20px);
+  background: transparent;
   border: 1px solid var(--tw-border);
   border-radius: 12px;
   padding: 12px 16px;
