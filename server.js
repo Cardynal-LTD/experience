@@ -1,6 +1,7 @@
 import express from 'express'
 import ViteExpress from 'vite-express'
 import { createClient } from '@supabase/supabase-js'
+import jwt from 'jsonwebtoken'
 
 const app = express()
 const PORT = process.env.PORT || 3000
@@ -10,8 +11,10 @@ const supabaseUrl = process.env.SUPABASE_URL
 const supabaseKey = process.env.SUPABASE_ANON_KEY
 const supabase = supabaseUrl && supabaseKey ? createClient(supabaseUrl, supabaseKey) : null
 
-// Admin password
+// Auth config
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'admin123'
+const JWT_SECRET = process.env.JWT_SECRET || 'experience-blog-secret-key-change-in-production'
+const JWT_EXPIRY = '24h'
 
 // Site config for RSS
 const SITE_URL = process.env.SITE_URL || 'http://localhost:3000'
@@ -24,22 +27,36 @@ app.use(express.json())
 // Auth middleware
 const checkAuth = (req, res, next) => {
   const authHeader = req.headers.authorization
-  if (!authHeader || authHeader !== `Bearer ${ADMIN_PASSWORD}`) {
+  if (!authHeader || !authHeader.startsWith('Bearer ')) {
     return res.status(401).json({ error: 'Non autorise' })
   }
-  next()
+
+  const token = authHeader.split(' ')[1]
+  try {
+    const decoded = jwt.verify(token, JWT_SECRET)
+    req.user = decoded
+    next()
+  } catch (err) {
+    return res.status(401).json({ error: 'Token invalide ou expire' })
+  }
 }
 
 // API Routes
 
-// Login verification
+// Login - returns JWT token
 app.post('/api/login', (req, res) => {
   const { password } = req.body
   if (password === ADMIN_PASSWORD) {
-    res.json({ success: true })
+    const token = jwt.sign({ role: 'admin' }, JWT_SECRET, { expiresIn: JWT_EXPIRY })
+    res.json({ success: true, token })
   } else {
     res.status(401).json({ error: 'Mot de passe incorrect' })
   }
+})
+
+// Verify token validity
+app.get('/api/verify', checkAuth, (req, res) => {
+  res.json({ valid: true, user: req.user })
 })
 
 // Get all articles

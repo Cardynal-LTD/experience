@@ -71,6 +71,9 @@
 
   <script type="module">
     import './js/theme.js'
+    import { initAuth } from './js/auth.js'
+
+    initAuth()
 
     async function loadArticles() {
       const container = document.getElementById('articlesList')

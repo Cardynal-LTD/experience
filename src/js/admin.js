@@ -6,7 +6,7 @@ import {
 } from './editor.js'
 
 // State
-let authToken = localStorage.getItem('adminToken')
+let authToken = localStorage.getItem('authToken')
 let articles = []
 let editor = null
 let currentEmoji = '📄'
@@ -99,8 +99,23 @@ function init() {
     }
   })
 
-  // Show admin if already logged in
-  if (authToken) showAdmin()
+  // Show admin if already logged in (verify token first)
+  if (authToken) verifyAndShowAdmin()
+}
+
+async function verifyAndShowAdmin() {
+  try {
+    const r = await fetch('/api/verify', {
+      headers: { Authorization: `Bearer ${authToken}` }
+    })
+    if (r.ok) {
+      showAdmin()
+    } else {
+      logout()
+    }
+  } catch (err) {
+    logout()
+  }
 }
 
 function openCoverModal() {
@@ -159,8 +174,9 @@ async function handleLogin(e) {
     })
 
     if (r.ok) {
-      authToken = pwd
-      localStorage.setItem('adminToken', pwd)
+      const data = await r.json()
+      authToken = data.token
+      localStorage.setItem('authToken', authToken)
       showAdmin()
     } else {
       $('#loginError').textContent = 'Mot de passe incorrect'
@@ -217,7 +233,7 @@ function showAdmin() {
 }
 
 function logout() {
-  localStorage.removeItem('adminToken')
+  localStorage.removeItem('authToken')
   authToken = null
   $('#loginSection').style.display = 'block'
   $('#adminSection').style.display = 'none'
