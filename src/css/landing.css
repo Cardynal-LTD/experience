@@ -462,11 +462,13 @@
   margin: 0 auto;
 }
 
-.section-title {
+.landing-page .section-title {
   font-size: clamp(1.75rem, 3.5vw, 2.5rem);
   line-height: 1.25;
   margin-bottom: 1.5rem;
   color: var(--landing-text);
+  text-transform: none;
+  letter-spacing: normal;
 }
 
 .section-subtitle {
