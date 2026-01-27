@@ -122,7 +122,9 @@
           <div class="articles-grid">
             ${articles.map((article, i) => `
               <a href="/article/${article.slug}" class="article-card animate-slideUp" style="animation-delay: ${i * 0.05}s">
-                ${article.cover_image ? `<img src="${article.cover_image}" alt="" class="article-card__cover">` : ''}
+                <div class="article-card__cover-wrapper">
+                  ${article.cover_image ? `<img src="${article.cover_image}" alt="" class="article-card__cover">` : ''}
+                </div>
                 <div class="article-card__body">
                   <div class="article-card__emoji">${article.emoji || '📄'}</div>
                   <h3 class="article-card__title">${escapeHtml(article.title)}</h3>
