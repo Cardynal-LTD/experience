@@ -275,3 +275,112 @@ blockquote {
 .text-right {
   text-align: right;
 }
+
+/* ═══════════════════════════════════════════════════════════
+   SKIP LINK (Accessibility)
+   ═══════════════════════════════════════════════════════════ */
+
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--bg-default);
+  color: var(--fg-default);
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  z-index: var(--z-max);
+  transition: top var(--duration-fast) var(--ease-default);
+}
+
+.skip-link:focus {
+  top: var(--space-4);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   RTL SUPPORT (Hebrew, Arabic)
+   ═══════════════════════════════════════════════════════════ */
+
+[dir="rtl"] {
+  direction: rtl;
+  text-align: right;
+}
+
+/* Flip horizontal elements */
+[dir="rtl"] ul,
+[dir="rtl"] ol {
+  padding-left: 0;
+  padding-right: var(--space-6);
+}
+
+[dir="rtl"] blockquote {
+  border-left: none;
+  border-right: 3px solid var(--border-strong);
+  padding-left: 0;
+  padding-right: var(--space-4);
+}
+
+[dir="rtl"] th,
+[dir="rtl"] td {
+  text-align: right;
+}
+
+/* Header RTL */
+[dir="rtl"] .header__content {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .header__nav {
+  flex-direction: row-reverse;
+}
+
+/* Card list items RTL */
+[dir="rtl"] .card-list-item {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .card-list-item__actions {
+  margin-left: 0;
+  margin-right: var(--space-4);
+}
+
+/* Footer RTL */
+[dir="rtl"] .footer__content {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .footer__links {
+  flex-direction: row-reverse;
+}
+
+/* Button icons RTL */
+[dir="rtl"] .btn svg:first-child {
+  margin-right: 0;
+  margin-left: var(--space-2);
+}
+
+[dir="rtl"] .btn svg:last-child {
+  margin-left: 0;
+  margin-right: var(--space-2);
+}
+
+/* Editor RTL */
+[dir="rtl"] .doc__editor {
+  text-align: right;
+}
+
+[dir="rtl"] .doc__meta-label {
+  text-align: right;
+}
+
+/* Article hero RTL */
+[dir="rtl"] .article-hero.has-cover .article-hero__emoji {
+  margin-left: 0;
+  margin-right: var(--space-2);
+}
+
+/* View toggle RTL */
+[dir="rtl"] .view-toggle {
+  flex-direction: row-reverse;
+}

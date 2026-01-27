@@ -21,6 +21,36 @@ const SITE_URL = process.env.SITE_URL || 'http://localhost:3000'
 const SITE_TITLE = 'Experience Blog'
 const SITE_DESCRIPTION = 'Un blog minimaliste pour partager des idees, des reflexions et des experiences.'
 
+// Supported languages
+const SUPPORTED_LANGS = ['fr', 'en', 'he']
+const DEFAULT_LANG = 'fr'
+const RTL_LANGS = ['he']
+
+// Language-specific content
+const LANG_CONFIG = {
+  fr: {
+    name: 'Francais',
+    locale: 'fr_FR',
+    dir: 'ltr',
+    title: 'Experience Blog',
+    description: 'Un blog minimaliste pour partager des idees, des reflexions et des experiences.'
+  },
+  en: {
+    name: 'English',
+    locale: 'en_US',
+    dir: 'ltr',
+    title: 'Experience Blog',
+    description: 'A minimalist blog to share ideas, thoughts and experiences.'
+  },
+  he: {
+    name: 'עברית',
+    locale: 'he_IL',
+    dir: 'rtl',
+    title: 'Experience Blog',
+    description: 'בלוג מינימליסטי לשיתוף רעיונות, מחשבות וחוויות.'
+  }
+}
+
 // Middleware
 app.use(express.json({ limit: '10mb' }))
 
@@ -122,22 +152,68 @@ app.get('/api/images/:id', async (req, res) => {
   res.send(buffer)
 })
 
-// Get all articles
+// Get all articles (with optional lang filter)
 app.get('/api/articles', async (req, res) => {
   if (!supabase) {
     return res.json([])
   }
 
-  const { data, error } = await supabase
+  const lang = req.query.lang
+  let query = supabase
     .from('articles')
     .select('*')
     .order('created_at', { ascending: false })
+
+  if (lang && SUPPORTED_LANGS.includes(lang)) {
+    query = query.eq('lang', lang)
+  }
+
+  const { data, error } = await query
 
   if (error) {
     return res.status(500).json({ error: error.message })
   }
 
   res.json(data)
+})
+
+// Get translations of an article
+app.get('/api/articles/:slug/translations', async (req, res) => {
+  if (!supabase) {
+    return res.json([])
+  }
+
+  // First get the article to find its translation_group
+  const { data: article } = await supabase
+    .from('articles')
+    .select('translation_group')
+    .eq('slug', req.params.slug)
+    .single()
+
+  if (!article || !article.translation_group) {
+    return res.json([])
+  }
+
+  // Get all articles in the same translation group
+  const { data, error } = await supabase
+    .from('articles')
+    .select('id, slug, lang, title')
+    .eq('translation_group', article.translation_group)
+
+  if (error) {
+    return res.json([])
+  }
+
+  res.json(data)
+})
+
+// Get language config
+app.get('/api/languages', (req, res) => {
+  res.json({
+    supported: SUPPORTED_LANGS,
+    default: DEFAULT_LANG,
+    config: LANG_CONFIG
+  })
 })
 
 // Get single article by slug
@@ -247,7 +323,7 @@ Disallow: /admin
 `)
 })
 
-// Sitemap XML
+// Sitemap XML with hreflang
 app.get('/sitemap.xml', async (req, res) => {
   res.setHeader('Content-Type', 'application/xml; charset=utf-8')
 
@@ -261,12 +337,23 @@ app.get('/sitemap.xml', async (req, res) => {
   if (supabase) {
     const { data } = await supabase
       .from('articles')
-      .select('slug, updated_at, created_at')
+      .select('slug, lang, translation_group, updated_at, created_at')
       .order('created_at', { ascending: false })
     articles = data || []
   }
 
   const today = new Date().toISOString().split('T')[0]
+
+  // Group articles by translation_group
+  const translationGroups = {}
+  articles.forEach(article => {
+    if (article.translation_group) {
+      if (!translationGroups[article.translation_group]) {
+        translationGroups[article.translation_group] = []
+      }
+      translationGroups[article.translation_group].push(article)
+    }
+  })
 
   const urls = staticPages.map(page => `
   <url>
@@ -276,16 +363,28 @@ app.get('/sitemap.xml', async (req, res) => {
     <priority>${page.priority}</priority>
   </url>`).join('')
 
-  const articleUrls = articles.map(article => `
+  const articleUrls = articles.map(article => {
+    const langPrefix = article.lang === DEFAULT_LANG ? '' : `/${article.lang}`
+    const translations = translationGroups[article.translation_group] || [article]
+
+    const hreflangTags = translations.map(t => {
+      const tPrefix = t.lang === DEFAULT_LANG ? '' : `/${t.lang}`
+      return `    <xhtml:link rel="alternate" hreflang="${t.lang}" href="${SITE_URL}${tPrefix}/article/${t.slug}"/>`
+    }).join('\n')
+
+    return `
   <url>
-    <loc>${SITE_URL}/article/${article.slug}</loc>
+    <loc>${SITE_URL}${langPrefix}/article/${article.slug}</loc>
     <lastmod>${(article.updated_at || article.created_at).split('T')[0]}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
-  </url>`).join('')
+${hreflangTags}
+  </url>`
+  }).join('')
 
   res.send(`<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
 ${urls}
 ${articleUrls}
 </urlset>`)
@@ -350,6 +449,59 @@ app.get('/article/:slug', (req, res, next) => {
   // In dev, ViteExpress handles it
   if (process.env.NODE_ENV === 'production') {
     res.sendFile('article.html', { root: './dist' })
+  } else {
+    next()
+  }
+})
+
+// Language-prefixed routes (en, he)
+app.get('/:lang', (req, res, next) => {
+  const lang = req.params.lang
+  if (SUPPORTED_LANGS.includes(lang) && lang !== DEFAULT_LANG) {
+    if (process.env.NODE_ENV === 'production') {
+      res.sendFile('index.html', { root: './dist' })
+    } else {
+      next()
+    }
+  } else {
+    next()
+  }
+})
+
+app.get('/:lang/article/:slug', (req, res, next) => {
+  const lang = req.params.lang
+  if (SUPPORTED_LANGS.includes(lang) && lang !== DEFAULT_LANG) {
+    if (process.env.NODE_ENV === 'production') {
+      res.sendFile('article.html', { root: './dist' })
+    } else {
+      next()
+    }
+  } else {
+    next()
+  }
+})
+
+app.get('/:lang/archive.html', (req, res, next) => {
+  const lang = req.params.lang
+  if (SUPPORTED_LANGS.includes(lang) && lang !== DEFAULT_LANG) {
+    if (process.env.NODE_ENV === 'production') {
+      res.sendFile('archive.html', { root: './dist' })
+    } else {
+      next()
+    }
+  } else {
+    next()
+  }
+})
+
+app.get('/:lang/about.html', (req, res, next) => {
+  const lang = req.params.lang
+  if (SUPPORTED_LANGS.includes(lang) && lang !== DEFAULT_LANG) {
+    if (process.env.NODE_ENV === 'production') {
+      res.sendFile('about.html', { root: './dist' })
+    } else {
+      next()
+    }
   } else {
     next()
   }

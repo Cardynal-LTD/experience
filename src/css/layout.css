@@ -254,6 +254,104 @@
   margin-left: var(--space-2);
 }
 
+.header__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+/* ─── Language Selector ───────────────────────────────────── */
+
+.lang-selector {
+  position: relative;
+}
+
+.lang-selector__btn {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: var(--space-1-5) var(--space-2);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  color: var(--fg-muted);
+  background: none;
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--duration-fast) var(--ease-default);
+}
+
+.lang-selector__btn:hover {
+  color: var(--fg-default);
+  border-color: var(--border-strong);
+}
+
+.lang-selector__btn svg {
+  width: 12px;
+  height: 12px;
+  transition: transform var(--duration-fast) var(--ease-default);
+}
+
+.lang-selector.is-open .lang-selector__btn svg {
+  transform: rotate(180deg);
+}
+
+.lang-selector__dropdown {
+  position: absolute;
+  top: calc(100% + var(--space-1));
+  right: 0;
+  min-width: 120px;
+  padding: var(--space-1);
+  background: var(--bg-default);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px);
+  transition: all var(--duration-fast) var(--ease-default);
+  z-index: var(--z-dropdown);
+}
+
+.lang-selector.is-open .lang-selector__dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.lang-selector__option {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  width: 100%;
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--text-sm);
+  color: var(--fg-muted);
+  text-decoration: none;
+  background: none;
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all var(--duration-fast) var(--ease-default);
+}
+
+.lang-selector__option:hover {
+  background: var(--bg-hover);
+  color: var(--fg-default);
+  text-decoration: none;
+}
+
+.lang-selector__option.is-active {
+  color: var(--fg-default);
+  font-weight: var(--weight-medium);
+}
+
+/* RTL for language selector */
+[dir="rtl"] .lang-selector__dropdown {
+  right: auto;
+  left: 0;
+}
+
 /* ─── Footer ───────────────────────────────────────────── */
 
 .footer {
