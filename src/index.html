@@ -216,102 +216,102 @@
 
   <!-- Features Section -->
   <section class="features-section" id="features">
-    <div class="features-section__content">
-      <div class="feature-row">
-        <div class="feature-row__content">
-          <div class="feature-badge">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/>
-            </svg>
-            <span data-i18n="features.routing.badge">Playbooks</span>
-          </div>
-          <h3 class="feature-row__title" data-i18n="features.routing.title">Scenario-Based Intelligence</h3>
-          <p class="feature-row__description" data-i18n="features.routing.description">
-            Our AI doesn't just match keywords — it understands context. Each conversation triggers the right playbook, pulling from your knowledge base to deliver accurate, on-brand responses.
-          </p>
+    <!-- Feature 1: Playbooks - Light card -->
+    <div class="feature-card feature-card--light">
+      <div class="feature-card__content">
+        <div class="feature-badge">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/>
+          </svg>
+          <span data-i18n="features.routing.badge">Playbooks</span>
         </div>
-        <div class="feature-row__visual">
-          <div style="padding: 2rem; color: var(--landing-text-muted); font-size: 0.875rem;">Chat Interface Preview</div>
+        <h3 class="feature-card__title" data-i18n="features.routing.title">Scenario-based intelligence</h3>
+        <p class="feature-card__description" data-i18n="features.routing.description">
+          Our AI doesn't just match keywords — it understands context. Each conversation triggers the right playbook, pulling from your knowledge base to deliver accurate, on-brand responses.
+        </p>
+      </div>
+      <div class="feature-card__visual">
+        <div class="feature-visual-placeholder">Playbook Flow</div>
+      </div>
+    </div>
+
+    <!-- Features 2 & 3: Two columns -->
+    <div class="feature-grid-two">
+      <div class="feature-card feature-card--dark">
+        <div class="feature-badge">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/>
+          </svg>
+          <span data-i18n="features.escalation.badge">Smart Escalation</span>
         </div>
+        <h3 class="feature-card__title" data-i18n="features.escalation.title">Humans when it matters</h3>
+        <div class="feature-card__visual feature-card__visual--small">
+          <div class="feature-visual-placeholder">Escalation Flow</div>
+        </div>
+        <p class="feature-card__description" data-i18n="features.escalation.description">
+          AI handles the routine. When things get complex, conversations seamlessly transfer to your team — with full context, so customers never repeat themselves.
+        </p>
       </div>
 
-      <div class="feature-row feature-row--reverse">
-        <div class="feature-row__content">
-          <div class="feature-badge">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/>
-            </svg>
-            <span data-i18n="features.escalation.badge">Smart Escalation</span>
-          </div>
-          <h3 class="feature-row__title" data-i18n="features.escalation.title">Humans When It Matters</h3>
-          <p class="feature-row__description" data-i18n="features.escalation.description">
-            AI handles the routine. When things get complex, conversations seamlessly transfer to your team — with full context, so customers never repeat themselves.
-          </p>
+      <div class="feature-card feature-card--dark">
+        <div class="feature-badge">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          </svg>
+          <span data-i18n="features.knowledge.badge">Knowledge Base</span>
         </div>
-        <div class="feature-row__visual">
-          <div style="padding: 2rem; color: var(--landing-text-muted); font-size: 0.875rem;">Escalation Flow Preview</div>
+        <h3 class="feature-card__title" data-i18n="features.knowledge.title">Your documentation, instantly searchable</h3>
+        <p class="feature-card__description" data-i18n="features.knowledge.description">
+          Upload your docs, FAQs, and policies. Cardynal indexes everything and retrieves the right answer in milliseconds — no training required.
+        </p>
+        <div class="feature-card__visual feature-card__visual--small">
+          <div class="feature-visual-placeholder">Knowledge Base</div>
         </div>
       </div>
+    </div>
 
-      <div class="feature-row">
-        <div class="feature-row__content">
-          <div class="feature-badge">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
-            </svg>
-            <span data-i18n="features.knowledge.badge">Knowledge Base</span>
-          </div>
-          <h3 class="feature-row__title" data-i18n="features.knowledge.title">Your Documentation, Instantly Searchable</h3>
-          <p class="feature-row__description" data-i18n="features.knowledge.description">
-            Upload your docs, FAQs, and policies. Cardynal indexes everything and retrieves the right answer in milliseconds — no training required.
-          </p>
-        </div>
-        <div class="feature-row__visual">
-          <div style="padding: 2rem; color: var(--landing-text-muted); font-size: 0.875rem;">Knowledge Base Preview</div>
-        </div>
+    <!-- Feature 4: Omnichannel - Visual left, text right -->
+    <div class="feature-card feature-card--dark feature-card--reverse">
+      <div class="feature-card__visual">
+        <div class="feature-visual-placeholder">Omnichannel Inbox</div>
       </div>
-
-      <div class="feature-row feature-row--reverse">
-        <div class="feature-row__content">
-          <div class="feature-badge">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-            </svg>
-            <span data-i18n="features.omni.badge">Multi-Channel Inbox</span>
-          </div>
-          <h3 class="feature-row__title" data-i18n="features.omni.title">One Brain, Every Channel</h3>
-          <p class="feature-row__description" data-i18n="features.omni.description">
-            Bring every customer conversation into one collaborative inbox — no matter the channel. Your team can access, manage, and respond quickly.
-          </p>
-          <ul class="feature-list">
-            <li>WhatsApp</li>
-            <li>Web chat</li>
-            <li>Instagram</li>
-            <li>Facebook</li>
-            <li>Telegram</li>
-          </ul>
+      <div class="feature-card__content">
+        <div class="feature-badge">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+          </svg>
+          <span data-i18n="features.omni.badge">Multi-Channel Inbox</span>
         </div>
-        <div class="feature-row__visual">
-          <div style="padding: 2rem; color: var(--landing-text-muted); font-size: 0.875rem;">Omnichannel Preview</div>
-        </div>
+        <h3 class="feature-card__title" data-i18n="features.omni.title">One brain, every channel</h3>
+        <p class="feature-card__description" data-i18n="features.omni.description">
+          Bring every customer conversation into one collaborative inbox — no matter the channel. Your team can access, manage, and respond quickly.
+        </p>
+        <ul class="feature-list">
+          <li>WhatsApp</li>
+          <li>Web chat</li>
+          <li>Instagram</li>
+          <li>Facebook</li>
+          <li>Telegram</li>
+        </ul>
       </div>
+    </div>
 
-      <div class="feature-row">
-        <div class="feature-row__content">
-          <div class="feature-badge">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>
-            </svg>
-            <span data-i18n="features.api.badge">Integrations</span>
-          </div>
-          <h3 class="feature-row__title" data-i18n="features.api.title">Cardynal.io agents learn your business. Just like real employees.</h3>
-          <p class="feature-row__description" data-i18n="features.api.description">
-            Let your AI pull live data from your CRM, ERP, or any REST API. Check order status, verify accounts, fetch inventory — without leaving the conversation.
-          </p>
+    <!-- Feature 5: Integrations -->
+    <div class="feature-card feature-card--dark">
+      <div class="feature-card__content">
+        <div class="feature-badge">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>
+          </svg>
+          <span data-i18n="features.api.badge">Integrations</span>
         </div>
-        <div class="feature-row__visual">
-          <div style="padding: 2rem; color: var(--landing-text-muted); font-size: 0.875rem;">API Integration Preview</div>
-        </div>
+        <h3 class="feature-card__title" data-i18n="features.api.title">Cardynal.io agents learn your business. Just like real employees.</h3>
+        <p class="feature-card__description" data-i18n="features.api.description">
+          Let your AI pull live data from your CRM, ERP, or any REST API. Check order status, verify accounts, fetch inventory — without leaving the conversation.
+        </p>
+      </div>
+      <div class="feature-card__visual">
+        <div class="feature-visual-placeholder">API Integrations</div>
       </div>
     </div>
   </section>
