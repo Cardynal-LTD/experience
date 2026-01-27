@@ -839,25 +839,25 @@
 
   /* RTL mobile - align right */
   [dir="rtl"] .feature-card {
-    align-items: flex-end;
-    text-align: right;
+    align-items: flex-end !important;
+    text-align: right !important;
   }
 
   [dir="rtl"] .feature-card__content {
-    align-items: flex-end;
+    align-items: flex-end !important;
   }
 
   [dir="rtl"] .feature-card .feature-badge {
-    align-self: flex-end;
+    align-self: flex-end !important;
   }
 
   [dir="rtl"] .feature-card__title,
   [dir="rtl"] .feature-card__description {
-    text-align: right;
+    text-align: right !important;
   }
 
   [dir="rtl"] .feature-list {
-    justify-content: flex-end;
+    justify-content: flex-end !important;
   }
 }
 
@@ -1456,21 +1456,21 @@
 
 /* Feature cards RTL alignment */
 [dir="rtl"] .feature-card__content {
-  align-items: flex-end;
-  text-align: right;
+  align-items: flex-end !important;
+  text-align: right !important;
 }
 
 [dir="rtl"] .feature-card .feature-badge {
-  align-self: flex-end;
+  align-self: flex-end !important;
 }
 
 [dir="rtl"] .feature-card__title,
 [dir="rtl"] .feature-card__description {
-  text-align: right;
+  text-align: right !important;
 }
 
 [dir="rtl"] .feature-list {
-  justify-content: flex-end;
+  justify-content: flex-end !important;
 }
 
 /* Widgets - Keep LTR in RTL mode (visual flow stays left-to-right) */
