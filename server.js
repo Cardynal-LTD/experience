@@ -133,12 +133,10 @@ app.post('/api/upload', checkAuth, async (req, res) => {
       return res.status(500).json({ error: 'Erreur upload: ' + error.message })
     }
 
-    // Get public URL
-    const { data: urlData } = supabaseAdmin.storage
-      .from('images')
-      .getPublicUrl(data.path)
+    // Build public URL manually (avoid internal Railway URL)
+    const publicUrl = `${supabaseUrl}/storage/v1/object/public/images/${data.path}`
 
-    res.json({ url: urlData.publicUrl })
+    res.json({ url: publicUrl })
 
   } catch (err) {
     console.error('Upload error:', err)
