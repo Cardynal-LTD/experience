@@ -125,6 +125,14 @@
         <!-- Meta -->
         <div class="doc__meta">
           <div class="doc__meta-row">
+            <span class="doc__meta-label">Langue</span>
+            <select id="lang" class="doc__meta-select">
+              <option value="fr">Francais</option>
+              <option value="en">English</option>
+              <option value="he">עברית (Hebrew)</option>
+            </select>
+          </div>
+          <div class="doc__meta-row">
             <span class="doc__meta-label">URL</span>
             <input type="text" id="slug" class="doc__meta-input" required placeholder="mon-article">
           </div>
@@ -132,6 +140,25 @@
             <span class="doc__meta-label">Tags</span>
             <input type="text" id="tags" class="doc__meta-input" placeholder="design, tech">
           </div>
+          <div class="doc__meta-row">
+            <span class="doc__meta-label">Traduction de</span>
+            <select id="translationOf" class="doc__meta-select">
+              <option value="">-- Aucune (nouvel article) --</option>
+            </select>
+          </div>
+          <details class="doc__meta-seo">
+            <summary class="doc__meta-seo-toggle">SEO (optionnel)</summary>
+            <div class="doc__meta-seo-content">
+              <div class="doc__meta-row">
+                <span class="doc__meta-label">Meta titre</span>
+                <input type="text" id="metaTitle" class="doc__meta-input" placeholder="Titre pour Google (max 70 car.)" maxlength="70">
+              </div>
+              <div class="doc__meta-row">
+                <span class="doc__meta-label">Meta desc.</span>
+                <textarea id="metaDescription" class="doc__meta-textarea" placeholder="Description pour Google (max 160 car.)" maxlength="160"></textarea>
+              </div>
+            </div>
+          </details>
         </div>
 
         <!-- Editor -->

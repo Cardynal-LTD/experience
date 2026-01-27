@@ -3,10 +3,20 @@
   "short_name": "Experience",
   "description": "Un blog minimaliste pour partager des idees, des reflexions et des experiences.",
   "start_url": "/",
+  "scope": "/",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#000000",
+  "lang": "fr",
+  "dir": "auto",
+  "categories": ["blog", "news", "lifestyle"],
   "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
     {
       "src": "/icon-192.png",
       "sizes": "192x192",

@@ -2,6 +2,7 @@ import express from 'express'
 import ViteExpress from 'vite-express'
 import { createClient } from '@supabase/supabase-js'
 import jwt from 'jsonwebtoken'
+import crypto from 'crypto'
 
 const app = express()
 const PORT = process.env.PORT || 3000
@@ -241,7 +242,7 @@ app.post('/api/articles', checkAuth, async (req, res) => {
     return res.status(500).json({ error: 'Supabase non configure' })
   }
 
-  const { title, content, slug, tags, emoji, cover_image } = req.body
+  const { title, content, slug, tags, emoji, cover_image, lang, meta_title, meta_description, translation_group, translationOf } = req.body
 
   if (!title || !content || !slug) {
     return res.status(400).json({ error: 'Titre, contenu et slug requis' })
@@ -250,6 +251,35 @@ app.post('/api/articles', checkAuth, async (req, res) => {
   const articleData = { title, content, slug, tags }
   if (emoji) articleData.emoji = emoji
   if (cover_image) articleData.cover_image = cover_image
+  if (lang) articleData.lang = lang
+  if (meta_title) articleData.meta_title = meta_title
+  if (meta_description) articleData.meta_description = meta_description
+
+  // Handle translation linking
+  if (translation_group) {
+    articleData.translation_group = translation_group
+  } else if (translationOf) {
+    // Link to existing article - get or create translation_group
+    const { data: linkedArticle } = await supabase
+      .from('articles')
+      .select('id, translation_group')
+      .eq('id', translationOf)
+      .single()
+
+    if (linkedArticle) {
+      if (linkedArticle.translation_group) {
+        articleData.translation_group = linkedArticle.translation_group
+      } else {
+        // Create new translation_group and update the original article
+        const newGroup = crypto.randomUUID()
+        await supabase
+          .from('articles')
+          .update({ translation_group: newGroup })
+          .eq('id', linkedArticle.id)
+        articleData.translation_group = newGroup
+      }
+    }
+  }
 
   const { data, error } = await supabase
     .from('articles')
@@ -270,11 +300,15 @@ app.put('/api/articles/:id', checkAuth, async (req, res) => {
     return res.status(500).json({ error: 'Supabase non configure' })
   }
 
-  const { title, content, slug, tags, emoji, cover_image } = req.body
+  const { title, content, slug, tags, emoji, cover_image, lang, meta_title, meta_description, translation_group } = req.body
 
   const updateData = { title, content, slug, tags, updated_at: new Date().toISOString() }
   if (emoji !== undefined) updateData.emoji = emoji
   if (cover_image !== undefined) updateData.cover_image = cover_image
+  if (lang !== undefined) updateData.lang = lang
+  if (meta_title !== undefined) updateData.meta_title = meta_title
+  if (meta_description !== undefined) updateData.meta_description = meta_description
+  if (translation_group !== undefined) updateData.translation_group = translation_group
 
   const { data, error } = await supabase
     .from('articles')

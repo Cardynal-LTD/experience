@@ -11,6 +11,8 @@ let articles = []
 let editor = null
 let currentEmoji = '📄'
 let currentCover = ''
+let currentLang = 'fr'
+let currentTranslationGroup = null
 
 // Common emojis for document icons
 const docEmojis = [
@@ -57,6 +59,13 @@ function init() {
         .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
         .replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')
     }
+  })
+
+  // Update translation dropdown when language changes
+  $('#lang').addEventListener('change', () => {
+    const currentArticleId = $('#articleId').value
+    const currentArticle = currentArticleId ? articles.find(a => a.id === parseInt(currentArticleId)) : null
+    populateTranslationDropdown(currentArticle)
   })
 
   // Document icon click - open emoji picker
@@ -269,6 +278,7 @@ async function handleArticleSubmit(e) {
 
   const id = $('#articleId').value
   const content = editor ? htmlToMarkdown(editor.getHTML()) : ''
+  const translationOf = $('#translationOf').value
 
   const data = {
     title: $('#title').value,
@@ -276,7 +286,16 @@ async function handleArticleSubmit(e) {
     tags: $('#tags').value,
     content,
     emoji: currentEmoji,
-    cover_image: currentCover || null
+    cover_image: currentCover || null,
+    lang: $('#lang').value,
+    meta_title: $('#metaTitle').value || null,
+    meta_description: $('#metaDescription').value || null,
+    translation_group: currentTranslationGroup
+  }
+
+  // For new articles, send translationOf to backend for proper handling
+  if (!id && translationOf) {
+    data.translationOf = parseInt(translationOf)
   }
 
   try {
@@ -326,22 +345,40 @@ async function loadArticles() {
       return
     }
 
-    el.innerHTML = articles.map(a => `
-      <div class="card-list-item">
-        <div class="card-list-item__content">
-          <div class="card-list-item__title">
-            <span class="card-list-item__emoji">${a.emoji || '📄'}</span>
-            ${escapeHtml(a.title)}
+    // Group articles by translation_group to show translation indicators
+    const translationGroups = {}
+    articles.forEach(a => {
+      if (a.translation_group) {
+        if (!translationGroups[a.translation_group]) {
+          translationGroups[a.translation_group] = []
+        }
+        translationGroups[a.translation_group].push(a)
+      }
+    })
+
+    el.innerHTML = articles.map(a => {
+      const translations = a.translation_group ? translationGroups[a.translation_group].filter(t => t.id !== a.id) : []
+      const translationBadges = translations.map(t => t.lang.toUpperCase()).join(', ')
+
+      return `
+        <div class="card-list-item">
+          <div class="card-list-item__content">
+            <div class="card-list-item__title">
+              <span class="card-list-item__emoji">${a.emoji || '📄'}</span>
+              ${escapeHtml(a.title)}
+              <span class="card-list-item__lang">${(a.lang || 'fr').toUpperCase()}</span>
+              ${translations.length ? `<span class="card-list-item__translations" title="Traductions: ${translationBadges}">🔗 ${translationBadges}</span>` : ''}
+            </div>
+            <div class="card-list-item__meta">/${a.slug} · ${formatDate(a.created_at)}${a.tags ? ' · ' + a.tags : ''}</div>
           </div>
-          <div class="card-list-item__meta">/${a.slug} · ${formatDate(a.created_at)}${a.tags ? ' · ' + a.tags : ''}</div>
+          <div class="card-list-item__actions">
+            <a href="${a.lang && a.lang !== 'fr' ? '/' + a.lang : ''}/article/${a.slug}" target="_blank" class="btn btn--ghost btn--sm">Voir</a>
+            <button class="btn btn--ghost btn--sm" data-edit="${a.id}">Editer</button>
+            <button class="btn btn--danger btn--sm" data-delete="${a.id}">Supprimer</button>
+          </div>
         </div>
-        <div class="card-list-item__actions">
-          <a href="/article/${a.slug}" target="_blank" class="btn btn--ghost btn--sm">Voir</a>
-          <button class="btn btn--ghost btn--sm" data-edit="${a.id}">Editer</button>
-          <button class="btn btn--danger btn--sm" data-delete="${a.id}">Supprimer</button>
-        </div>
-      </div>
-    `).join('')
+      `
+    }).join('')
 
     // Attach event listeners
     el.querySelectorAll('[data-edit]').forEach(btn => {
@@ -360,6 +397,8 @@ function openModal(article = null) {
   // Reset state
   currentEmoji = article?.emoji || '📄'
   currentCover = article?.cover_image || ''
+  currentLang = article?.lang || 'fr'
+  currentTranslationGroup = article?.translation_group || null
 
   // Update displays
   updateEmojiDisplay()
@@ -370,6 +409,12 @@ function openModal(article = null) {
   $('#title').value = article?.title || ''
   $('#slug').value = article?.slug || ''
   $('#tags').value = article?.tags || ''
+  $('#lang').value = article?.lang || 'fr'
+  $('#metaTitle').value = article?.meta_title || ''
+  $('#metaDescription').value = article?.meta_description || ''
+
+  // Populate translation dropdown
+  populateTranslationDropdown(article)
 
   // Initialize or reset editor
   if (editor) {
@@ -392,6 +437,27 @@ function openModal(article = null) {
 
   // Focus title after a small delay
   setTimeout(() => $('#title').focus(), 100)
+}
+
+function populateTranslationDropdown(currentArticle) {
+  const select = $('#translationOf')
+  const currentLang = $('#lang').value
+
+  // Filter articles that could be translations (different language, not same article)
+  const otherLangArticles = articles.filter(a => {
+    if (currentArticle && a.id === currentArticle.id) return false
+    if (currentArticle && a.translation_group === currentArticle.translation_group && currentArticle.translation_group) return false
+    return a.lang !== currentLang
+  })
+
+  select.innerHTML = `
+    <option value="">-- Aucune (nouvel article) --</option>
+    ${otherLangArticles.map(a => `
+      <option value="${a.id}" ${currentArticle?.translation_group && a.translation_group === currentArticle.translation_group ? 'selected' : ''}>
+        [${a.lang.toUpperCase()}] ${a.title}
+      </option>
+    `).join('')}
+  `
 }
 
 function closeModal() {
