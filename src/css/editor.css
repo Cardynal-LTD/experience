@@ -1,0 +1,747 @@
+/* ============================================
+   Notion-like Document Editor
+   ============================================ */
+
+/* ============================================
+   Document Container (replaces modal-content)
+   ============================================ */
+
+.notion-doc {
+  max-width: 900px;
+  width: 100%;
+  max-height: 95vh;
+  overflow-y: auto;
+  background: var(--bg);
+  border-radius: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ============================================
+   Cover Image
+   ============================================ */
+
+.doc-cover {
+  position: relative;
+  width: 100%;
+  height: 0;
+  background: var(--bg-subtle);
+  overflow: hidden;
+  transition: height 0.2s ease;
+}
+
+.doc-cover.has-cover {
+  height: 200px;
+}
+
+.doc-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: none;
+}
+
+.doc-cover.has-cover img {
+  display: block;
+}
+
+.cover-placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+
+.doc-cover:hover .cover-placeholder {
+  opacity: 1;
+  background: var(--bg-muted);
+}
+
+.doc-cover.has-cover .cover-placeholder {
+  display: none;
+}
+
+.cover-placeholder span {
+  font-size: 13px;
+  color: var(--text-muted);
+  padding: 6px 12px;
+  background: var(--bg);
+  border-radius: 4px;
+  border: 1px solid var(--border);
+}
+
+.cover-actions {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  display: none;
+  gap: 8px;
+}
+
+.doc-cover.has-cover:hover .cover-actions {
+  display: flex;
+}
+
+.cover-btn {
+  font-size: 12px;
+  padding: 4px 10px;
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.cover-btn:hover {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+/* ============================================
+   Document Header (Icon + Title)
+   ============================================ */
+
+.doc-header {
+  padding: 48px 72px 0;
+  position: relative;
+}
+
+.doc-cover.has-cover + .doc-header {
+  padding-top: 24px;
+}
+
+.doc-icon {
+  position: absolute;
+  top: -40px;
+  left: 72px;
+  width: 78px;
+  height: 78px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 60px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background 0.15s;
+  background: var(--bg);
+}
+
+.doc-cover:not(.has-cover) + .doc-header .doc-icon {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 60px;
+  height: 60px;
+  font-size: 48px;
+  margin-bottom: 8px;
+}
+
+.doc-icon:hover {
+  background: var(--bg-subtle);
+}
+
+.icon-placeholder {
+  opacity: 0.6;
+}
+
+.doc-icon:hover .icon-placeholder {
+  opacity: 1;
+}
+
+.doc-title {
+  width: 100%;
+  font-size: 40px;
+  font-weight: 700;
+  border: none;
+  background: transparent;
+  color: var(--text);
+  padding: 0;
+  margin: 0;
+  outline: none;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.doc-title::placeholder {
+  color: var(--text-muted);
+  opacity: 0.5;
+}
+
+/* ============================================
+   Document Meta (URL, Tags)
+   ============================================ */
+
+.doc-meta {
+  padding: 16px 72px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 8px;
+}
+
+.meta-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+}
+
+.meta-label {
+  width: 60px;
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+
+.meta-input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  color: var(--text);
+  font-size: 14px;
+  padding: 4px 0;
+  outline: none;
+}
+
+.meta-input::placeholder {
+  color: var(--text-muted);
+  opacity: 0.5;
+}
+
+/* ============================================
+   Document Editor
+   ============================================ */
+
+.doc-editor {
+  flex: 1;
+  padding: 8px 72px 48px;
+  min-height: 300px;
+  outline: none;
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--text);
+}
+
+.doc-editor:focus {
+  outline: none;
+}
+
+/* ============================================
+   Document Actions
+   ============================================ */
+
+.doc-actions {
+  position: sticky;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 72px;
+  background: var(--bg);
+  border-top: 1px solid var(--border);
+}
+
+.close-doc {
+  margin-left: auto;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  color: var(--text-muted);
+  transition: all 0.15s;
+}
+
+.close-doc:hover {
+  background: var(--bg-subtle);
+  color: var(--text);
+}
+
+/* ============================================
+   Emoji Modal
+   ============================================ */
+
+.emoji-modal,
+.cover-modal {
+  position: fixed;
+  z-index: 2000;
+  display: none;
+}
+
+.emoji-modal.visible,
+.cover-modal.visible {
+  display: block;
+}
+
+.emoji-modal-content {
+  width: 320px;
+  max-height: 360px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+}
+
+.emoji-search {
+  padding: 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+.emoji-search input {
+  width: 100%;
+  border: none;
+  background: var(--bg-subtle);
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  color: var(--text);
+  outline: none;
+}
+
+.emoji-list {
+  padding: 8px;
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 2px;
+  max-height: 280px;
+  overflow-y: auto;
+}
+
+.emoji-item {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: background 0.1s;
+}
+
+.emoji-item:hover {
+  background: var(--bg-subtle);
+}
+
+/* Cover URL Modal */
+.cover-modal-content {
+  display: flex;
+  gap: 8px;
+  padding: 8px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+.cover-modal-content input {
+  flex: 1;
+  min-width: 280px;
+  border: none;
+  background: var(--bg-subtle);
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  color: var(--text);
+  outline: none;
+}
+
+/* ============================================
+   Placeholder - Notion style
+   ============================================ */
+
+.doc-editor p.is-editor-empty:first-child::before {
+  content: attr(data-placeholder);
+  float: left;
+  color: var(--text-muted);
+  pointer-events: none;
+  height: 0;
+  opacity: 0.5;
+}
+
+.doc-editor .is-empty::before {
+  content: attr(data-placeholder);
+  float: left;
+  color: var(--text-muted);
+  pointer-events: none;
+  height: 0;
+  opacity: 0.5;
+}
+
+/* ============================================
+   Typography - Notion style
+   ============================================ */
+
+.doc-editor h1 {
+  font-size: 1.875em;
+  font-weight: 700;
+  margin: 1.2em 0 0.4em;
+  color: var(--text);
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+}
+
+.doc-editor h2 {
+  font-size: 1.5em;
+  font-weight: 600;
+  margin: 1.1em 0 0.35em;
+  color: var(--text);
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+}
+
+.doc-editor h3 {
+  font-size: 1.25em;
+  font-weight: 600;
+  margin: 1em 0 0.3em;
+  color: var(--text);
+  line-height: 1.35;
+}
+
+.doc-editor h1:first-child,
+.doc-editor h2:first-child,
+.doc-editor h3:first-child {
+  margin-top: 0;
+}
+
+.doc-editor p {
+  margin-bottom: 0.4em;
+}
+
+.doc-editor p:last-child {
+  margin-bottom: 0;
+}
+
+/* Links */
+.doc-editor a,
+.doc-editor .editor-link {
+  color: var(--text);
+  text-decoration: underline;
+  text-decoration-color: var(--text-muted);
+  text-underline-offset: 2px;
+  cursor: pointer;
+}
+
+.doc-editor a:hover {
+  text-decoration-color: var(--text);
+}
+
+/* Lists */
+.doc-editor ul,
+.doc-editor ol {
+  margin: 0.4em 0;
+  padding-left: 1.5em;
+}
+
+.doc-editor li {
+  margin-bottom: 0.2em;
+}
+
+.doc-editor li p {
+  margin-bottom: 0;
+}
+
+/* Blockquote */
+.doc-editor blockquote {
+  border-left: 3px solid var(--text);
+  padding-left: 1em;
+  margin: 0.8em 0;
+  color: var(--text);
+}
+
+/* Code */
+.doc-editor code {
+  font-family: 'JetBrains Mono', 'SF Mono', monospace;
+  font-size: 0.9em;
+  background: var(--bg-muted);
+  color: #eb5757;
+  padding: 0.15em 0.35em;
+  border-radius: 3px;
+}
+
+.doc-editor pre {
+  background: var(--bg-subtle);
+  border-radius: 4px;
+  padding: 1em;
+  overflow-x: auto;
+  margin: 0.8em 0;
+  font-size: 0.9em;
+  line-height: 1.5;
+}
+
+.doc-editor pre code {
+  background: none;
+  color: var(--text);
+  padding: 0;
+}
+
+/* HR */
+.doc-editor hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 1.5em 0;
+}
+
+/* Images */
+.doc-editor .editor-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 4px;
+  margin: 0.8em 0;
+  cursor: pointer;
+  display: block;
+}
+
+.doc-editor .editor-image.ProseMirror-selectednode {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* ============================================
+   Bubble Menu - Compact Notion style
+   ============================================ */
+
+.bubble-menu {
+  display: flex;
+  align-items: center;
+  gap: 1px;
+  padding: 4px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="dark"] .bubble-menu {
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
+}
+
+.bubble-menu button {
+  width: 26px;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  color: var(--text-secondary);
+  transition: all 0.1s;
+}
+
+.bubble-menu button:hover {
+  background: var(--bg-subtle);
+  color: var(--text);
+}
+
+.bubble-menu button svg {
+  width: 14px;
+  height: 14px;
+}
+
+.bubble-divider {
+  width: 1px;
+  height: 18px;
+  background: var(--border);
+  margin: 0 3px;
+}
+
+/* ============================================
+   Floating Menu - Notion + button
+   ============================================ */
+
+.floating-menu {
+  display: flex;
+  align-items: center;
+}
+
+.floating-plus {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  color: var(--text-muted);
+  opacity: 0.4;
+  transition: all 0.15s;
+}
+
+.floating-plus:hover {
+  opacity: 1;
+  background: var(--bg-subtle);
+}
+
+/* ============================================
+   Slash Menu - COMPACT Notion style
+   ============================================ */
+
+.slash-menu {
+  position: fixed;
+  z-index: 1000;
+  width: 260px;
+  max-height: 320px;
+  overflow-y: auto;
+  padding: 4px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  display: none;
+}
+
+[data-theme="dark"] .slash-menu {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+}
+
+.slash-menu.visible {
+  display: block;
+  animation: fadeIn 0.1s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(2px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.slash-menu::-webkit-scrollbar {
+  width: 4px;
+}
+
+.slash-menu::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 2px;
+}
+
+/* Category - compact */
+.slash-category {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 8px 8px 4px;
+  margin-top: 2px;
+}
+
+.slash-category:first-child {
+  margin-top: 0;
+  padding-top: 4px;
+}
+
+/* Items - compact */
+.slash-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.08s;
+}
+
+.slash-item:hover,
+.slash-item.selected {
+  background: var(--bg-subtle);
+}
+
+.slash-icon {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-muted);
+  border-radius: 4px;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+.slash-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.slash-title {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text);
+  line-height: 1.2;
+}
+
+.slash-desc {
+  font-size: 11px;
+  color: var(--text-muted);
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ============================================
+   Selection
+   ============================================ */
+
+.doc-editor ::selection {
+  background: rgba(45, 170, 219, 0.25);
+}
+
+/* ============================================
+   Responsive
+   ============================================ */
+
+@media (max-width: 768px) {
+  .notion-doc {
+    max-height: 100vh;
+    border-radius: 0;
+  }
+
+  .doc-header {
+    padding: 32px 24px 0;
+  }
+
+  .doc-cover.has-cover + .doc-header .doc-icon {
+    left: 24px;
+  }
+
+  .doc-cover:not(.has-cover) + .doc-header .doc-icon {
+    width: 48px;
+    height: 48px;
+    font-size: 36px;
+  }
+
+  .doc-title {
+    font-size: 28px;
+  }
+
+  .doc-meta {
+    padding: 12px 24px;
+  }
+
+  .doc-editor {
+    padding: 8px 24px 32px;
+  }
+
+  .doc-actions {
+    padding: 12px 24px;
+  }
+
+  .slash-menu {
+    width: 220px;
+    max-height: 280px;
+  }
+}

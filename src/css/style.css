@@ -691,6 +691,14 @@ main {
 .article-row .info .title {
   font-weight: 500;
   margin-bottom: 2px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.article-emoji {
+  font-size: 18px;
+  flex-shrink: 0;
 }
 
 .article-row .info .meta {
