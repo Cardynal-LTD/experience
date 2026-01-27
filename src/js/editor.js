@@ -32,32 +32,37 @@ turndown.addRule('fencedCodeBlock', {
 // Emoji list for quick access
 const commonEmojis = ['😀', '🎉', '🚀', '💡', '⭐', '❤️', '✅', '⚠️', '🔥', '👍', '📝', '🎯']
 
-// Slash commands configuration - Notion style
+// SVG Icons
+const icons = {
+  text: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7V4h16v3M9 20h6M12 4v16"/></svg>',
+  h1: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12h8M4 18V6M12 18V6M17 12l3-2v8"/></svg>',
+  h2: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12h8M4 18V6M12 18V6M21 18h-4c0-4 4-3 4-6 0-1.5-2-2.5-4-1"/></svg>',
+  h3: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12h8M4 18V6M12 18V6M17.5 10.5c1.7-1 3.5 0 3.5 1.5a2 2 0 0 1-2 2m-1.5 4c1.7 1 3.5 0 3.5-1.5a2 2 0 0 0-2-2h-1"/></svg>',
+  list: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>',
+  listOrdered: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="10" y1="6" x2="21" y2="6"/><line x1="10" y1="12" x2="21" y2="12"/><line x1="10" y1="18" x2="21" y2="18"/><path d="M4 6h1v4M4 10h2M6 18H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg>',
+  check: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="6" height="6" rx="1"/><path d="M3 17l2 2 4-4"/><line x1="13" y1="6" x2="21" y2="6"/><line x1="13" y1="12" x2="21" y2="12"/><line x1="13" y1="18" x2="21" y2="18"/></svg>',
+  image: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>',
+  quote: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V21"/><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v4"/></svg>',
+  code: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>',
+  minus: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/></svg>',
+}
+
+// Slash commands configuration
 const slashCommands = [
-  // Text
-  { title: 'Texte', description: 'Paragraphe simple', icon: '📝', category: 'Basique', command: ({ editor }) => editor.chain().focus().setParagraph().run() },
-  { title: 'Titre 1', description: 'Grand titre de section', icon: '𝐇₁', category: 'Basique', command: ({ editor }) => editor.chain().focus().toggleHeading({ level: 1 }).run() },
-  { title: 'Titre 2', description: 'Titre moyen', icon: '𝐇₂', category: 'Basique', command: ({ editor }) => editor.chain().focus().toggleHeading({ level: 2 }).run() },
-  { title: 'Titre 3', description: 'Petit titre', icon: '𝐇₃', category: 'Basique', command: ({ editor }) => editor.chain().focus().toggleHeading({ level: 3 }).run() },
-
-  // Lists
-  { title: 'Liste a puces', description: 'Liste simple', icon: '•', category: 'Listes', command: ({ editor }) => editor.chain().focus().toggleBulletList().run() },
-  { title: 'Liste numerotee', description: 'Liste ordonnee', icon: '1.', category: 'Listes', command: ({ editor }) => editor.chain().focus().toggleOrderedList().run() },
-  { title: 'To-do list', description: 'Liste de taches', icon: '☑️', category: 'Listes', command: ({ editor }) => editor.chain().focus().toggleBulletList().run() },
-
-  // Media
-  { title: 'Image', description: 'Inserer une image', icon: '🖼️', category: 'Media', command: ({ editor }) => {
+  { title: 'Texte', icon: icons.text, command: ({ editor }) => editor.chain().focus().setParagraph().run() },
+  { title: 'Titre 1', icon: icons.h1, command: ({ editor }) => editor.chain().focus().toggleHeading({ level: 1 }).run() },
+  { title: 'Titre 2', icon: icons.h2, command: ({ editor }) => editor.chain().focus().toggleHeading({ level: 2 }).run() },
+  { title: 'Titre 3', icon: icons.h3, command: ({ editor }) => editor.chain().focus().toggleHeading({ level: 3 }).run() },
+  { title: 'Liste', icon: icons.list, command: ({ editor }) => editor.chain().focus().toggleBulletList().run() },
+  { title: 'Liste num.', icon: icons.listOrdered, command: ({ editor }) => editor.chain().focus().toggleOrderedList().run() },
+  { title: 'To-do', icon: icons.check, command: ({ editor }) => editor.chain().focus().toggleBulletList().run() },
+  { title: 'Image', icon: icons.image, command: ({ editor }) => {
     const url = prompt('URL de l\'image:')
     if (url) editor.chain().focus().setImage({ src: url }).run()
   }},
-
-  // Blocks
-  { title: 'Citation', description: 'Bloc de citation', icon: '❝', category: 'Blocs', command: ({ editor }) => editor.chain().focus().toggleBlockquote().run() },
-  { title: 'Code', description: 'Bloc de code', icon: '💻', category: 'Blocs', command: ({ editor }) => editor.chain().focus().toggleCodeBlock().run() },
-  { title: 'Separateur', description: 'Ligne horizontale', icon: '—', category: 'Blocs', command: ({ editor }) => editor.chain().focus().setHorizontalRule().run() },
-
-  // Callouts
-  { title: 'Callout', description: 'Bloc d\'information', icon: '💡', category: 'Blocs', command: ({ editor }) => editor.chain().focus().toggleBlockquote().run() },
+  { title: 'Citation', icon: icons.quote, command: ({ editor }) => editor.chain().focus().toggleBlockquote().run() },
+  { title: 'Code', icon: icons.code, command: ({ editor }) => editor.chain().focus().toggleCodeBlock().run() },
+  { title: 'Separateur', icon: icons.minus, command: ({ editor }) => editor.chain().focus().setHorizontalRule().run() },
 ]
 
 // Slash commands extension
@@ -239,9 +244,7 @@ export function createEditor(element, options = {}) {
           char: '/',
           items: ({ query }) => {
             filteredCommands = slashCommands.filter(item =>
-              item.title.toLowerCase().includes(query.toLowerCase()) ||
-              item.description.toLowerCase().includes(query.toLowerCase()) ||
-              item.category.toLowerCase().includes(query.toLowerCase())
+              item.title.toLowerCase().includes(query.toLowerCase())
             )
             return filteredCommands
           },
@@ -397,18 +400,17 @@ export function createEditor(element, options = {}) {
 }
 
 function renderSlashMenu(menu, commands, activeIndex) {
-  let html = '<div class="slash-menu__grid">'
+  let html = ''
 
   commands.forEach((cmd, i) => {
     html += `
-      <div class="slash-menu__item ${i === activeIndex ? 'is-selected' : ''}" data-index="${i}" title="${cmd.description}">
+      <div class="slash-menu__item ${i === activeIndex ? 'is-selected' : ''}" data-index="${i}">
         <span class="slash-menu__item-icon">${cmd.icon}</span>
         <span class="slash-menu__item-label">${cmd.title}</span>
       </div>
     `
   })
 
-  html += '</div>'
   menu.innerHTML = html
 }
 

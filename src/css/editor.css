@@ -452,9 +452,8 @@
 .slash-menu {
   position: fixed;
   z-index: var(--z-popover);
-  width: auto;
-  max-width: 320px;
-  padding: var(--space-2);
+  min-width: 180px;
+  padding: var(--space-1);
   background: var(--bg-default);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-popover);
@@ -466,23 +465,15 @@
   animation: scaleIn var(--duration-fast) var(--ease-out);
 }
 
-.slash-menu__grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-1);
-}
-
 .slash-menu__item {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: var(--space-1);
-  padding: var(--space-2) var(--space-1);
+  gap: var(--space-3);
+  height: 40px;
+  padding: 0 var(--space-3);
   border-radius: var(--radius-md);
   cursor: pointer;
   transition: background var(--duration-fast) var(--ease-default);
-  text-align: center;
-  min-width: 72px;
 }
 
 .slash-menu__item:hover,
@@ -491,17 +482,24 @@
 }
 
 .slash-menu__item-icon {
-  font-size: 20px;
-  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  color: var(--fg-muted);
+  flex-shrink: 0;
+}
+
+.slash-menu__item-icon svg {
+  width: 18px;
+  height: 18px;
 }
 
 .slash-menu__item-label {
-  font-size: var(--text-xs);
-  color: var(--fg-muted);
+  font-size: var(--text-sm);
+  color: var(--fg-default);
   white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: 100%;
 }
 
 /* ─── Emoji Picker Modal ───────────────────────────────── */
