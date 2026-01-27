@@ -205,6 +205,17 @@ function generateRSS(articles) {
 </rss>`
 }
 
+// Serve article page for /article/:slug routes (must be before ViteExpress)
+app.get('/article/:slug', (req, res, next) => {
+  // In production, serve the built article.html
+  // In dev, ViteExpress handles it
+  if (process.env.NODE_ENV === 'production') {
+    res.sendFile('article.html', { root: './dist' })
+  } else {
+    next()
+  }
+})
+
 // Start server with ViteExpress
 ViteExpress.listen(app, PORT, () => {
   console.log(`Server running on port ${PORT}`)
