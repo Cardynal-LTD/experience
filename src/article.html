@@ -52,9 +52,9 @@
     <div class="header__content">
       <a href="/" class="header__logo">Experience</a>
       <nav class="header__nav">
-        <a href="/" class="header__nav-link">Home</a>
-        <a href="/archive.html" class="header__nav-link">Archive</a>
-        <a href="/about.html" class="header__nav-link">About</a>
+        <a href="/" class="header__nav-link" data-i18n="nav.home">Accueil</a>
+        <a href="/archive.html" class="header__nav-link" data-i18n="nav.archive">Archive</a>
+        <a href="/about.html" class="header__nav-link" data-i18n="nav.about">A propos</a>
       </nav>
       <div class="header__actions">
         <button class="btn btn--ghost btn--icon" onclick="toggleTheme()" aria-label="Toggle theme">
@@ -82,10 +82,10 @@
     <div class="footer__content">
       <p class="footer__text">Experience Blog</p>
       <div class="footer__links">
-        <a href="/" class="footer__link">Home</a>
-        <a href="/archive.html" class="footer__link">Archive</a>
-        <a href="/about.html" class="footer__link">About</a>
-        <a href="/rss.xml" class="footer__link">RSS</a>
+        <a href="/" class="footer__link" data-i18n="nav.home">Accueil</a>
+        <a href="/archive.html" class="footer__link" data-i18n="nav.archive">Archive</a>
+        <a href="/about.html" class="footer__link" data-i18n="nav.about">A propos</a>
+        <a href="/rss.xml" class="footer__link" data-i18n="nav.rss">RSS</a>
       </div>
     </div>
   </footer>
@@ -93,7 +93,7 @@
   <script type="module">
     import './js/theme.js'
     import { initAuth } from './js/auth.js'
-    import { initLangSelector, getCurrentLang, addHreflangTags, getLangPrefix, updateNavLinks } from './js/i18n.js'
+    import { initLangSelector, getCurrentLang, addHreflangTags, getLangPrefix, updateNavLinks, t } from './js/i18n.js'
     import { marked } from 'marked'
 
     initAuth()
@@ -202,7 +202,7 @@
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <path d="M19 12H5M12 19l-7-7 7-7"/>
                 </svg>
-                Retour aux archives
+                ${t('article.backToArchive')}
               </a>
             </div>
           </article>
@@ -220,13 +220,13 @@
         <div class="page animate-fadeIn">
           <div class="empty-state">
             <div class="empty-state__icon">🔍</div>
-            <div class="empty-state__title">Article non trouve</div>
-            <div class="empty-state__description">Cet article n'existe pas ou a ete supprime.</div>
+            <div class="empty-state__title">${t('article.notFound')}</div>
+            <div class="empty-state__description">${t('article.notFoundDesc')}</div>
             <a href="/archive.html" class="btn btn--primary" style="margin-top: var(--space-4);">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M19 12H5M12 19l-7-7 7-7"/>
               </svg>
-              Retour aux archives
+              ${t('article.backToArchive')}
             </a>
           </div>
         </div>

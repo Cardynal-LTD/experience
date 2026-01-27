@@ -61,9 +61,9 @@
     <div class="header__content">
       <a href="/" class="header__logo">Experience</a>
       <nav class="header__nav">
-        <a href="/" class="header__nav-link">Home</a>
-        <a href="/archive.html" class="header__nav-link header__nav-link--active">Archive</a>
-        <a href="/about.html" class="header__nav-link">About</a>
+        <a href="/" class="header__nav-link" data-i18n="nav.home">Accueil</a>
+        <a href="/archive.html" class="header__nav-link header__nav-link--active" data-i18n="nav.archive">Archive</a>
+        <a href="/about.html" class="header__nav-link" data-i18n="nav.about">A propos</a>
       </nav>
       <div class="header__actions">
         <button class="btn btn--ghost btn--icon" onclick="toggleTheme()" aria-label="Toggle theme">
@@ -83,8 +83,8 @@
     <section class="page animate-fadeIn">
       <div class="page-header" style="display: flex; justify-content: space-between; align-items: flex-start;">
         <div>
-          <h1 class="page-header__title">Archive</h1>
-          <p class="page-header__subtitle">Tous les articles classes par date</p>
+          <h1 class="page-header__title" data-i18n="archive.title">Archive</h1>
+          <p class="page-header__subtitle" data-i18n="archive.description">Tous les articles</p>
         </div>
         <div class="view-toggle">
           <button class="view-toggle__btn is-active" data-view="list" aria-label="Vue liste">
@@ -114,10 +114,10 @@
     <div class="footer__content">
       <p class="footer__text">Experience Blog</p>
       <div class="footer__links">
-        <a href="/" class="footer__link">Home</a>
-        <a href="/archive.html" class="footer__link">Archive</a>
-        <a href="/about.html" class="footer__link">About</a>
-        <a href="/rss.xml" class="footer__link">RSS</a>
+        <a href="/" class="footer__link" data-i18n="nav.home">Accueil</a>
+        <a href="/archive.html" class="footer__link" data-i18n="nav.archive">Archive</a>
+        <a href="/about.html" class="footer__link" data-i18n="nav.about">A propos</a>
+        <a href="/rss.xml" class="footer__link" data-i18n="nav.rss">RSS</a>
       </div>
     </div>
   </footer>
@@ -125,7 +125,7 @@
   <script type="module">
     import './js/theme.js'
     import { initAuth } from './js/auth.js'
-    import { initLangSelector, getCurrentLang, addHreflangTags, updateNavLinks } from './js/i18n.js'
+    import { initLangSelector, getCurrentLang, addHreflangTags, updateNavLinks, t } from './js/i18n.js'
 
     initAuth()
     initLangSelector()
@@ -146,8 +146,8 @@
           container.innerHTML = `
             <div class="empty-state">
               <div class="empty-state__icon">📝</div>
-              <div class="empty-state__title">Aucun article</div>
-              <div class="empty-state__description">Aucun article pour le moment.</div>
+              <div class="empty-state__title">${t('empty.noArticles')}</div>
+              <div class="empty-state__description">${t('empty.noArticlesDesc')}</div>
             </div>
           `
           return
@@ -159,8 +159,8 @@
         container.innerHTML = `
           <div class="empty-state">
             <div class="empty-state__icon">⚠️</div>
-            <div class="empty-state__title">Erreur</div>
-            <div class="empty-state__description">Erreur lors du chargement des articles.</div>
+            <div class="empty-state__title">${t('empty.error')}</div>
+            <div class="empty-state__description">${t('empty.errorDesc')}</div>
           </div>
         `
       }

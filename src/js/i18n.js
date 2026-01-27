@@ -16,6 +16,137 @@ const LANG_FULL_NAMES = {
   he: 'עברית'
 }
 
+// Translations dictionary
+const TRANSLATIONS = {
+  fr: {
+    // Navigation
+    'nav.home': 'Accueil',
+    'nav.archive': 'Archive',
+    'nav.about': 'A propos',
+    'nav.rss': 'RSS',
+
+    // Home page
+    'home.title': 'Experience',
+    'home.recentArticles': 'Articles recents',
+    'home.viewAll': 'Voir tous les articles',
+
+    // Archive page
+    'archive.title': 'Archive',
+    'archive.description': 'Tous les articles',
+
+    // About page
+    'about.title': 'A propos',
+    'about.subtitle': 'En savoir plus sur ce blog et son auteur',
+
+    // Article page
+    'article.backToArchive': 'Retour aux archives',
+    'article.notFound': 'Article non trouve',
+    'article.notFoundDesc': 'Cet article n\'existe pas ou a ete supprime.',
+
+    // Empty states
+    'empty.noArticles': 'Aucun article',
+    'empty.noArticlesDesc': 'Aucun article pour le moment.',
+    'empty.error': 'Erreur',
+    'empty.errorDesc': 'Erreur de chargement.',
+
+    // Misc
+    'lang.change': 'Changer de langue'
+  },
+  en: {
+    // Navigation
+    'nav.home': 'Home',
+    'nav.archive': 'Archive',
+    'nav.about': 'About',
+    'nav.rss': 'RSS',
+
+    // Home page
+    'home.title': 'Experience',
+    'home.recentArticles': 'Recent articles',
+    'home.viewAll': 'View all articles',
+
+    // Archive page
+    'archive.title': 'Archive',
+    'archive.description': 'All articles',
+
+    // About page
+    'about.title': 'About',
+    'about.subtitle': 'Learn more about this blog and its author',
+
+    // Article page
+    'article.backToArchive': 'Back to archive',
+    'article.notFound': 'Article not found',
+    'article.notFoundDesc': 'This article does not exist or has been deleted.',
+
+    // Empty states
+    'empty.noArticles': 'No articles',
+    'empty.noArticlesDesc': 'No articles yet.',
+    'empty.error': 'Error',
+    'empty.errorDesc': 'Loading error.',
+
+    // Misc
+    'lang.change': 'Change language'
+  },
+  he: {
+    // Navigation
+    'nav.home': 'בית',
+    'nav.archive': 'ארכיון',
+    'nav.about': 'אודות',
+    'nav.rss': 'RSS',
+
+    // Home page
+    'home.title': 'Experience',
+    'home.recentArticles': 'מאמרים אחרונים',
+    'home.viewAll': 'לכל המאמרים',
+
+    // Archive page
+    'archive.title': 'ארכיון',
+    'archive.description': 'כל המאמרים',
+
+    // About page
+    'about.title': 'אודות',
+    'about.subtitle': 'למידע נוסף על הבלוג והכותב',
+
+    // Article page
+    'article.backToArchive': 'חזרה לארכיון',
+    'article.notFound': 'המאמר לא נמצא',
+    'article.notFoundDesc': 'המאמר הזה לא קיים או נמחק.',
+
+    // Empty states
+    'empty.noArticles': 'אין מאמרים',
+    'empty.noArticlesDesc': 'אין מאמרים כרגע.',
+    'empty.error': 'שגיאה',
+    'empty.errorDesc': 'שגיאת טעינה.',
+
+    // Misc
+    'lang.change': 'החלף שפה'
+  }
+}
+
+// Get translation for a key
+export function t(key) {
+  const lang = getCurrentLang()
+  return TRANSLATIONS[lang]?.[key] || TRANSLATIONS[DEFAULT_LANG]?.[key] || key
+}
+
+// Translate all elements with data-i18n attribute
+export function translatePage() {
+  const lang = getCurrentLang()
+
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n')
+    const translation = t(key)
+    if (translation) {
+      el.textContent = translation
+    }
+  })
+
+  // Update document title if needed
+  const titleEl = document.querySelector('title[data-i18n]')
+  if (titleEl) {
+    titleEl.textContent = t(titleEl.getAttribute('data-i18n'))
+  }
+}
+
 // Detect current language from URL
 export function getCurrentLang() {
   const path = window.location.pathname
@@ -73,6 +204,7 @@ export function updateNavLinks() {
 export function initLangSelector() {
   const currentLang = getCurrentLang()
   setDocumentDirection(currentLang)
+  translatePage()
   updateNavLinks()
 
   // Find or create lang selector container
@@ -83,7 +215,7 @@ export function initLangSelector() {
   const selector = document.createElement('div')
   selector.className = 'lang-selector'
   selector.innerHTML = `
-    <button class="lang-selector__btn" aria-label="Changer de langue">
+    <button class="lang-selector__btn" aria-label="${t('lang.change')}">
       <span>${LANG_NAMES[currentLang]}</span>
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
         <polyline points="6 9 12 15 18 9"></polyline>
@@ -162,4 +294,4 @@ export function addHreflangTags(translations) {
   }
 }
 
-export { SUPPORTED_LANGS, DEFAULT_LANG, RTL_LANGS, LANG_NAMES, LANG_FULL_NAMES }
+export { SUPPORTED_LANGS, DEFAULT_LANG, RTL_LANGS, LANG_NAMES, LANG_FULL_NAMES, TRANSLATIONS }
