@@ -97,6 +97,7 @@
 
         container.innerHTML = recentArticles.map((article, i) => `
           <a href="/article/${article.slug}" class="card-list-item animate-slideUp" style="animation-delay: ${i * 0.05}s">
+            ${article.cover_image ? `<img src="${article.cover_image}" alt="" class="card-list-item__cover">` : ''}
             <div class="card-list-item__content">
               <div class="card-list-item__title">
                 <span class="card-list-item__emoji">${article.emoji || '📄'}</span>
@@ -106,7 +107,7 @@
                 ${formatDate(article.created_at)}${article.tags ? ' · ' + article.tags : ''}
               </div>
             </div>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="opacity: 0.5;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="opacity: 0.5; flex-shrink: 0;">
               <path d="M9 18l6-6-6-6"/>
             </svg>
           </a>

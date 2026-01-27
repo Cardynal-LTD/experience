@@ -70,8 +70,13 @@ function init() {
     modal.classList.add('is-visible')
   })
 
-  // Cover actions
-  $('#coverPlaceholder').addEventListener('click', openCoverModal)
+  // Banner/Cover actions
+  $('#bannerPlaceholder').addEventListener('click', openCoverModal)
+  $('#docBanner').addEventListener('click', (e) => {
+    if (e.target === e.currentTarget || e.target.closest('.doc__banner-placeholder')) {
+      openCoverModal()
+    }
+  })
   $('#changeCoverBtn').addEventListener('click', openCoverModal)
   $('#removeCoverBtn').addEventListener('click', () => {
     currentCover = ''
@@ -94,7 +99,7 @@ function init() {
     if (!e.target.closest('#emojiModal') && !e.target.closest('#docIcon')) {
       $('#emojiModal').classList.remove('is-visible')
     }
-    if (!e.target.closest('#coverModal') && !e.target.closest('.cover-btn') && !e.target.closest('#coverPlaceholder')) {
+    if (!e.target.closest('#coverModal') && !e.target.closest('.doc__banner-btn') && !e.target.closest('#docBanner')) {
       $('#coverModal').classList.remove('is-visible')
     }
   })
@@ -120,8 +125,8 @@ async function verifyAndShowAdmin() {
 
 function openCoverModal() {
   const modal = $('#coverModal')
-  const cover = $('#docCover')
-  const rect = cover.getBoundingClientRect()
+  const banner = $('#docBanner')
+  const rect = banner.getBoundingClientRect()
   modal.style.left = `${Math.max(10, rect.left + rect.width / 2 - 170)}px`
   modal.style.top = `${rect.bottom + 8}px`
   modal.classList.add('is-visible')
@@ -149,15 +154,15 @@ function updateEmojiDisplay() {
 }
 
 function updateCoverDisplay() {
-  const cover = $('#docCover')
+  const banner = $('#docBanner')
   const img = $('#coverImage')
 
   if (currentCover) {
     img.src = currentCover
-    cover.classList.add('has-cover')
+    banner.classList.add('has-image')
   } else {
     img.src = ''
-    cover.classList.remove('has-cover')
+    banner.classList.remove('has-image')
   }
 }
 

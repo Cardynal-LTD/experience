@@ -76,15 +76,30 @@
       <form id="articleForm">
         <input type="hidden" id="articleId">
 
-        <!-- Cover Image -->
-        <div class="doc__cover" id="docCover">
-          <img src="" alt="" class="doc__cover-image" id="coverImage">
-          <div class="doc__cover-actions">
-            <button type="button" class="doc__cover-btn" id="changeCoverBtn">Changer</button>
-            <button type="button" class="doc__cover-btn" id="removeCoverBtn">Supprimer</button>
+        <!-- Header Actions -->
+        <div class="doc__toolbar">
+          <button type="submit" class="btn btn--primary btn--sm">Publier</button>
+          <button type="button" class="btn btn--sm" id="cancelBtn">Annuler</button>
+          <div class="doc__toolbar-spacer"></div>
+          <button type="button" class="btn btn--ghost btn--icon" id="closeModalBtn" aria-label="Fermer">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Cover Image Banner -->
+        <div class="doc__banner" id="docBanner">
+          <img src="" alt="" class="doc__banner-image" id="coverImage">
+          <div class="doc__banner-placeholder" id="bannerPlaceholder">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/>
+            </svg>
+            <span>Ajouter une image de couverture</span>
           </div>
-          <div class="doc__cover-placeholder" id="coverPlaceholder">
-            <span class="doc__cover-placeholder-text">Ajouter une couverture</span>
+          <div class="doc__banner-actions" id="bannerActions">
+            <button type="button" class="doc__banner-btn" id="changeCoverBtn">Changer</button>
+            <button type="button" class="doc__banner-btn" id="removeCoverBtn">Supprimer</button>
           </div>
         </div>
 
@@ -110,18 +125,6 @@
 
         <!-- Editor -->
         <div id="editor" class="doc__editor"></div>
-
-        <!-- Actions -->
-        <div class="doc__actions">
-          <button type="submit" class="btn btn--primary">Publier</button>
-          <button type="button" class="btn" id="cancelBtn">Annuler</button>
-          <div class="doc__actions-spacer"></div>
-          <button type="button" class="btn btn--ghost btn--icon" id="closeModalBtn" aria-label="Fermer">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
-            </svg>
-          </button>
-        </div>
       </form>
     </div>
   </div>
