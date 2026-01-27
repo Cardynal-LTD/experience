@@ -648,11 +648,12 @@
 .feature-card__content {
   display: flex;
   flex-direction: column;
+  gap: 0.75rem;
 }
 
 .feature-card__title {
   font-size: clamp(1.5rem, 3vw, 2rem);
-  margin-bottom: 1rem;
+  margin: 0;
   color: var(--landing-text);
   line-height: 1.2;
 }
@@ -661,6 +662,7 @@
   color: var(--landing-text-muted);
   line-height: 1.7;
   font-size: 0.9375rem;
+  margin: 0;
 }
 
 /* Feature Card Visual */
@@ -728,7 +730,7 @@
   color: var(--landing-primary);
   font-size: 14px;
   font-weight: 600;
-  margin-bottom: 1rem;
+  margin: 0;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   width: fit-content;
@@ -743,7 +745,7 @@
 .feature-list {
   list-style: none;
   padding: 0;
-  margin: 1rem 0 0;
+  margin: 0;
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
@@ -797,7 +799,7 @@
     align-items: flex-start;
     order: 1;
     width: 100%;
-    gap: 15px;
+    gap: 12px;
   }
 
   .feature-card__visual {
@@ -805,18 +807,13 @@
     width: 100%;
     display: flex;
     justify-content: center;
-    margin-top: 15px;
-  }
-
-  .feature-card .feature-badge {
-    margin-bottom: 0;
+    margin-top: 12px;
   }
 
   .feature-card__title {
     text-align: left;
     width: 100%;
     font-size: 30px !important;
-    margin-bottom: 0;
   }
 
   .feature-card__description {
