@@ -390,8 +390,77 @@
 
     <!-- Feature 4: Omnichannel - Visual left, text right -->
     <div class="feature-card feature-card--dark feature-card--reverse">
-      <div class="feature-card__visual">
-        <div class="feature-visual-placeholder">Omnichannel Inbox</div>
+      <div class="feature-card__visual feature-card__visual--omni">
+        <div id="omni-widget">
+          <div class="omni-hub">
+            <div class="omni-orbit"></div>
+            <svg class="omni-lines-svg" viewBox="0 0 320 320">
+              <line class="omni-line" id="omni-line-0" x1="160" y1="40" x2="160" y2="128" style="--line-color: var(--c-whatsapp); --line-glow: rgba(37, 211, 102, 0.5)"/>
+              <line class="omni-line" id="omni-line-1" x1="255" y1="88" x2="192" y2="138" style="--line-color: var(--c-instagram); --line-glow: rgba(228, 64, 95, 0.5)"/>
+              <line class="omni-line" id="omni-line-2" x1="275" y1="186" x2="195" y2="172" style="--line-color: var(--c-messenger); --line-glow: rgba(0, 132, 255, 0.5)"/>
+              <line class="omni-line" id="omni-line-3" x1="232" y1="258" x2="185" y2="195" style="--line-color: var(--c-telegram); --line-glow: rgba(0, 136, 204, 0.5)"/>
+              <line class="omni-line" id="omni-line-4" x1="88" y1="258" x2="135" y2="195" style="--line-color: var(--c-gmail); --line-glow: rgba(234, 67, 53, 0.5)"/>
+              <line class="omni-line" id="omni-line-5" x1="45" y1="186" x2="125" y2="172" style="--line-color: var(--c-web); --line-glow: rgba(59, 130, 246, 0.5)"/>
+              <line class="omni-line" id="omni-line-6" x1="65" y1="88" x2="128" y2="138" style="--line-color: var(--c-api); --line-glow: rgba(139, 92, 246, 0.5)"/>
+              <circle class="omni-packet" id="omni-packet-0" r="4" style="fill: var(--c-whatsapp)"/>
+              <circle class="omni-packet" id="omni-packet-1" r="4" style="fill: var(--c-instagram)"/>
+              <circle class="omni-packet" id="omni-packet-2" r="4" style="fill: var(--c-messenger)"/>
+              <circle class="omni-packet" id="omni-packet-3" r="4" style="fill: var(--c-telegram)"/>
+              <circle class="omni-packet" id="omni-packet-4" r="4" style="fill: var(--c-gmail)"/>
+              <circle class="omni-packet" id="omni-packet-5" r="4" style="fill: var(--c-web)"/>
+              <circle class="omni-packet" id="omni-packet-6" r="4" style="fill: var(--c-api)"/>
+            </svg>
+            <div class="omni-core">
+              <div class="omni-logo" id="omni-logo">
+                <div class="omni-pulse"></div>
+                <div class="omni-pulse"></div>
+                <div class="omni-pulse"></div>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+              </div>
+            </div>
+            <div class="omni-channel" data-index="0" id="omni-ch-0" style="--channel-color: var(--c-whatsapp)">
+              <div class="omni-channel-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></div>
+              <span class="omni-channel-label">WhatsApp</span>
+            </div>
+            <div class="omni-channel" data-index="1" id="omni-ch-1" style="--channel-color: var(--c-instagram)">
+              <div class="omni-channel-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.85s-.012 3.584-.069 4.85c-.148 3.228-1.667 4.771-4.919 4.919-1.266.058-1.644.069-4.85.069s-3.584-.012-4.85-.069c-3.228-.148-4.771-1.667-4.919-4.919-.058-1.265-.069-1.644-.069-4.85s.012-3.584.069-4.85c.148-3.228 1.667-4.771 4.919-4.919 1.266-.058 1.645-.069 4.85-.069m0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.073-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></div>
+              <span class="omni-channel-label">Instagram</span>
+            </div>
+            <div class="omni-channel" data-index="2" id="omni-ch-2" style="--channel-color: var(--c-messenger)">
+              <div class="omni-channel-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 4.974 0 11.111c0 3.497 1.744 6.616 4.469 8.658v4.231l4.261-2.342c1.067.295 2.189.454 3.345.454 6.627 0 12-4.975 12-11.111C24 4.974 18.627 0 12 0zm1.191 14.963l-3.055-3.26-5.963 3.26 6.559-6.963 3.13 3.259 5.889-3.259-6.56 6.963z"/></svg></div>
+              <span class="omni-channel-label">Messenger</span>
+            </div>
+            <div class="omni-channel" data-index="3" id="omni-ch-3" style="--channel-color: var(--c-telegram)">
+              <div class="omni-channel-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 11.944 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg></div>
+              <span class="omni-channel-label">Telegram</span>
+            </div>
+            <div class="omni-channel" data-index="4" id="omni-ch-4" style="--channel-color: var(--c-gmail)">
+              <div class="omni-channel-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z"/></svg></div>
+              <span class="omni-channel-label">Email</span>
+            </div>
+            <div class="omni-channel" data-index="5" id="omni-ch-5" style="--channel-color: var(--c-web)">
+              <div class="omni-channel-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+              <span class="omni-channel-label">Web</span>
+            </div>
+            <div class="omni-channel" data-index="6" id="omni-ch-6" style="--channel-color: var(--c-api)">
+              <div class="omni-channel-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
+              <span class="omni-channel-label">API</span>
+            </div>
+          </div>
+          <div class="omni-output">
+            <div class="omni-output-line" id="omni-output-line"></div>
+            <div class="omni-inbox" id="omni-inbox">
+              <div class="omni-inbox-badge" id="omni-inbox-badge">+1</div>
+              <div class="omni-inbox-icon">
+                <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 13.5h3.86a2.25 2.25 0 0 1 2.012 1.244l.256.512a2.25 2.25 0 0 0 2.013 1.244h3.218a2.25 2.25 0 0 0 2.013-1.244l.256-.512a2.25 2.25 0 0 1 2.013-1.244h3.859m-19.5.338V18a2.25 2.25 0 0 0 2.25 2.25h15A2.25 2.25 0 0 0 21.75 18v-4.162c0-.224-.034-.447-.1-.661L19.24 5.338a2.25 2.25 0 0 0-2.15-1.588H6.911a2.25 2.25 0 0 0-2.15 1.588L2.35 13.177a2.25 2.25 0 0 0-.1.661Z"/></svg>
+              </div>
+              <div class="omni-inbox-content">
+                <h4>Unified Inbox</h4>
+                <p>All conversations in one place</p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="feature-card__content">
         <div class="feature-badge">
@@ -1459,6 +1528,143 @@
       };
 
       schedule(playAnimation, 800);
+    })();
+
+    // Omnichannel Widget Animation
+    (function() {
+      const $ = id => document.getElementById(id);
+      const logo = $('omni-logo');
+      const outputLine = $('omni-output-line');
+      const inbox = $('omni-inbox');
+      const inboxBadge = $('omni-inbox-badge');
+
+      if (!logo) return;
+
+      const channels = [
+        { id: 'omni-ch-0', lineId: 'omni-line-0', packetId: 'omni-packet-0', x1: 160, y1: 40, x2: 160, y2: 128 },
+        { id: 'omni-ch-1', lineId: 'omni-line-1', packetId: 'omni-packet-1', x1: 255, y1: 88, x2: 192, y2: 138 },
+        { id: 'omni-ch-2', lineId: 'omni-line-2', packetId: 'omni-packet-2', x1: 275, y1: 186, x2: 195, y2: 172 },
+        { id: 'omni-ch-3', lineId: 'omni-line-3', packetId: 'omni-packet-3', x1: 232, y1: 258, x2: 185, y2: 195 },
+        { id: 'omni-ch-4', lineId: 'omni-line-4', packetId: 'omni-packet-4', x1: 88, y1: 258, x2: 135, y2: 195 },
+        { id: 'omni-ch-5', lineId: 'omni-line-5', packetId: 'omni-packet-5', x1: 45, y1: 186, x2: 125, y2: 172 },
+        { id: 'omni-ch-6', lineId: 'omni-line-6', packetId: 'omni-packet-6', x1: 65, y1: 88, x2: 128, y2: 138 }
+      ];
+
+      const CONFIG = {
+        channelDuration: 650,
+        processingDuration: 350,
+        outputDuration: 300,
+        pauseBetween: 120,
+        loopDelay: 1500
+      };
+
+      let messageCount = 0;
+      let timeoutIds = [];
+
+      const schedule = (fn, delay) => {
+        const id = setTimeout(fn, delay);
+        timeoutIds.push(id);
+        return id;
+      };
+
+      const clearAll = () => {
+        timeoutIds.forEach(clearTimeout);
+        timeoutIds = [];
+      };
+
+      const resetAll = () => {
+        channels.forEach(ch => {
+          const el = $(ch.id);
+          const line = $(ch.lineId);
+          const packet = $(ch.packetId);
+          if (el) el.classList.remove('active');
+          if (line) line.classList.remove('active');
+          if (packet) packet.classList.remove('active');
+        });
+        logo.classList.remove('processing', 'success');
+        outputLine.classList.remove('active');
+        inbox.classList.remove('active');
+        messageCount = 0;
+        inboxBadge.textContent = '+1';
+      };
+
+      const animatePacket = (channel, onComplete) => {
+        const packet = $(channel.packetId);
+        if (!packet) { onComplete && onComplete(); return; }
+        const duration = 300;
+        const start = performance.now();
+
+        packet.classList.add('active');
+        packet.setAttribute('cx', channel.x1);
+        packet.setAttribute('cy', channel.y1);
+
+        const animate = (now) => {
+          const elapsed = now - start;
+          const progress = Math.min(elapsed / duration, 1);
+          const eased = 1 - Math.pow(1 - progress, 3);
+          const x = channel.x1 + (channel.x2 - channel.x1) * eased;
+          const y = channel.y1 + (channel.y2 - channel.y1) * eased;
+          packet.setAttribute('cx', x);
+          packet.setAttribute('cy', y);
+          if (progress < 1) {
+            requestAnimationFrame(animate);
+          } else {
+            packet.classList.remove('active');
+            onComplete && onComplete();
+          }
+        };
+        requestAnimationFrame(animate);
+      };
+
+      const animateChannel = (channelIndex, callback) => {
+        const channel = channels[channelIndex];
+        const channelEl = $(channel.id);
+        const lineEl = $(channel.lineId);
+
+        if (channelEl) channelEl.classList.add('active');
+        if (lineEl) lineEl.classList.add('active');
+
+        schedule(() => animatePacket(channel, () => logo.classList.add('processing')), 80);
+
+        schedule(() => {
+          logo.classList.remove('processing');
+          logo.classList.add('success');
+          outputLine.classList.add('active');
+        }, CONFIG.channelDuration + CONFIG.processingDuration);
+
+        schedule(() => {
+          inbox.classList.add('active');
+          messageCount++;
+          inboxBadge.textContent = `+${messageCount}`;
+        }, CONFIG.channelDuration + CONFIG.processingDuration + CONFIG.outputDuration);
+
+        schedule(() => {
+          if (channelEl) channelEl.classList.remove('active');
+          if (lineEl) lineEl.classList.remove('active');
+          logo.classList.remove('success');
+          outputLine.classList.remove('active');
+          callback && callback();
+        }, CONFIG.channelDuration + CONFIG.processingDuration + CONFIG.outputDuration + CONFIG.pauseBetween);
+      };
+
+      let currentChannel = 0;
+
+      const runSequence = () => {
+        if (currentChannel < channels.length) {
+          animateChannel(currentChannel, () => {
+            currentChannel++;
+            runSequence();
+          });
+        } else {
+          schedule(() => {
+            resetAll();
+            currentChannel = 0;
+            runSequence();
+          }, CONFIG.loopDelay);
+        }
+      };
+
+      schedule(() => runSequence(), 1000);
     })();
 
     // Load blog articles

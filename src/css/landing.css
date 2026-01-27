@@ -3030,3 +3030,437 @@
   bottom: auto;
   animation: rag-scanDown 0.9s ease-out forwards;
 }
+
+/* ============================================
+   OMNICHANNEL WIDGET
+   ============================================ */
+
+.feature-card__visual--omni {
+  aspect-ratio: auto;
+  background: transparent !important;
+  padding: 0;
+  overflow: visible;
+  min-height: 460px;
+}
+
+#omni-widget {
+  --omni-blue: #3b82f6;
+  --omni-blue-glow: rgba(59, 130, 246, 0.5);
+  --omni-green: #10b981;
+  --omni-green-glow: rgba(16, 185, 129, 0.5);
+  --omni-purple: #8b5cf6;
+  --omni-purple-glow: rgba(139, 92, 246, 0.4);
+  --c-whatsapp: #25D366;
+  --c-instagram: #E4405F;
+  --c-messenger: #0084FF;
+  --c-telegram: #0088cc;
+  --c-gmail: #EA4335;
+  --c-web: #3b82f6;
+  --c-api: #8b5cf6;
+  --omni-bg: rgba(15, 23, 42, 0.85);
+  --omni-border: rgba(148, 163, 184, 0.12);
+  --omni-text: #f1f5f9;
+  --omni-muted: #94a3b8;
+  --omni-dim: #64748b;
+  --hub-size: 320px;
+  --logo-size: 64px;
+  --channel-size: 42px;
+
+  font-family: 'Poppins', system-ui, sans-serif;
+  width: 100%;
+  max-width: 420px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.light-mode #omni-widget {
+  --omni-bg: rgba(255, 255, 255, 0.8);
+  --omni-border: rgba(148, 163, 184, 0.2);
+  --omni-text: #1e293b;
+  --omni-muted: #64748b;
+  --omni-dim: #94a3b8;
+}
+
+/* Circular Hub */
+.omni-hub {
+  position: relative;
+  width: var(--hub-size);
+  height: var(--hub-size);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.omni-orbit {
+  position: absolute;
+  width: 240px;
+  height: 240px;
+  border: 1px dashed rgba(148, 163, 184, 0.1);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+/* SVG Lines */
+.omni-lines-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.omni-line {
+  stroke: rgba(148, 163, 184, 0.15);
+  stroke-width: 2;
+  fill: none;
+  stroke-linecap: round;
+  transition: all 0.4s ease;
+}
+
+.omni-line.active {
+  stroke: var(--line-color, var(--omni-blue));
+  filter: drop-shadow(0 0 6px var(--line-glow, var(--omni-blue-glow)));
+}
+
+.omni-packet {
+  fill: var(--omni-blue);
+  filter: drop-shadow(0 0 6px var(--omni-blue-glow));
+  opacity: 0;
+}
+
+.omni-packet.active {
+  opacity: 1;
+}
+
+/* Central Logo */
+.omni-core {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+}
+
+.omni-logo {
+  width: var(--logo-size);
+  height: var(--logo-size);
+  background: linear-gradient(145deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.9));
+  backdrop-filter: blur(20px);
+  border: 2px solid var(--omni-blue);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  box-shadow: 0 0 30px var(--omni-blue-glow), inset 0 0 15px rgba(59, 130, 246, 0.1);
+  transition: all 0.5s ease;
+}
+
+.light-mode .omni-logo {
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.95), rgba(241, 245, 249, 0.9));
+}
+
+.omni-logo svg {
+  width: 28px;
+  height: 28px;
+  color: var(--omni-blue);
+  position: relative;
+  z-index: 2;
+}
+
+.omni-pulse {
+  position: absolute;
+  inset: -2px;
+  border-radius: 50%;
+  border: 2px solid var(--omni-blue);
+  opacity: 0;
+  animation: omni-pulse-ring 2.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+.omni-pulse:nth-child(2) {
+  animation-delay: 0.8s;
+}
+
+.omni-pulse:nth-child(3) {
+  animation-delay: 1.6s;
+}
+
+.omni-logo.processing {
+  border-color: var(--omni-purple);
+  box-shadow: 0 0 50px var(--omni-purple-glow), inset 0 0 25px rgba(139, 92, 246, 0.2);
+}
+
+.omni-logo.processing .omni-pulse {
+  border-color: var(--omni-purple);
+}
+
+.omni-logo.success {
+  border-color: var(--omni-green);
+  box-shadow: 0 0 50px var(--omni-green-glow), inset 0 0 25px rgba(16, 185, 129, 0.2);
+}
+
+.omni-logo.success .omni-pulse {
+  border-color: var(--omni-green);
+}
+
+/* Channel Nodes */
+.omni-channel {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  z-index: 5;
+  top: 50%;
+  left: 50%;
+  opacity: 0;
+  animation: omni-fadeIn 0.5s ease forwards;
+}
+
+.omni-channel-icon {
+  width: var(--channel-size);
+  height: var(--channel-size);
+  background: transparent;
+  border: 1px solid var(--omni-border);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--omni-dim);
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  position: relative;
+}
+
+.omni-channel-icon svg {
+  width: 18px;
+  height: 18px;
+  position: relative;
+  z-index: 1;
+  transition: all 0.3s ease;
+}
+
+.omni-channel-icon::after {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: 13px;
+  border: 2px solid var(--channel-color);
+  opacity: 0;
+  transform: scale(1.1);
+  transition: all 0.4s ease;
+}
+
+.omni-channel-label {
+  font-size: 8px;
+  font-weight: 600;
+  color: var(--omni-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.omni-channel.active .omni-channel-icon {
+  border-color: var(--channel-color);
+  background: color-mix(in srgb, var(--channel-color) 15%, transparent);
+  box-shadow: 0 6px 20px color-mix(in srgb, var(--channel-color) 40%, transparent);
+  transform: scale(1.1);
+}
+
+.omni-channel.active .omni-channel-icon::after {
+  opacity: 0.8;
+  transform: scale(1);
+  animation: omni-ring-pulse 1.2s ease-in-out infinite;
+}
+
+.omni-channel.active .omni-channel-icon svg {
+  color: var(--channel-color);
+}
+
+.omni-channel.active .omni-channel-label {
+  color: var(--channel-color);
+}
+
+/* Channel Positions (7 items) */
+.omni-channel[data-index="0"] {
+  transform: translate(-50%, -50%) translate(0px, -120px);
+  animation-delay: 0.1s;
+}
+
+.omni-channel[data-index="1"] {
+  transform: translate(-50%, -50%) translate(95px, -72px);
+  animation-delay: 0.15s;
+}
+
+.omni-channel[data-index="2"] {
+  transform: translate(-50%, -50%) translate(115px, 26px);
+  animation-delay: 0.2s;
+}
+
+.omni-channel[data-index="3"] {
+  transform: translate(-50%, -50%) translate(72px, 98px);
+  animation-delay: 0.25s;
+}
+
+.omni-channel[data-index="4"] {
+  transform: translate(-50%, -50%) translate(-72px, 98px);
+  animation-delay: 0.3s;
+}
+
+.omni-channel[data-index="5"] {
+  transform: translate(-50%, -50%) translate(-115px, 26px);
+  animation-delay: 0.35s;
+}
+
+.omni-channel[data-index="6"] {
+  transform: translate(-50%, -50%) translate(-95px, -72px);
+  animation-delay: 0.4s;
+}
+
+/* Output */
+.omni-output {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 8px;
+  width: 100%;
+}
+
+.omni-output-line {
+  width: 2px;
+  height: 24px;
+  background: rgba(148, 163, 184, 0.1);
+  border-radius: 2px;
+  position: relative;
+  overflow: hidden;
+}
+
+.omni-output-line::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 0;
+  background: linear-gradient(180deg, var(--omni-blue) 0%, var(--omni-green) 100%);
+  border-radius: 2px;
+  transition: height 0.4s ease;
+  box-shadow: 0 0 8px var(--omni-green-glow);
+}
+
+.omni-output-line.active::after {
+  height: 100%;
+}
+
+.omni-inbox {
+  margin-top: 8px;
+  background: transparent;
+  border: 1px solid var(--omni-border);
+  border-radius: 10px;
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  position: relative;
+}
+
+.omni-inbox-icon {
+  width: 32px;
+  height: 32px;
+  background: rgba(148, 163, 184, 0.08);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.4s ease;
+}
+
+.omni-inbox-icon svg {
+  width: 16px;
+  height: 16px;
+  color: var(--omni-dim);
+  transition: color 0.3s ease;
+}
+
+.omni-inbox-content h4 {
+  margin: 0 0 1px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--omni-text);
+}
+
+.omni-inbox-content p {
+  margin: 0;
+  font-size: 9px;
+  color: var(--omni-muted);
+}
+
+.omni-inbox-badge {
+  position: absolute;
+  top: -7px;
+  right: 12px;
+  background: linear-gradient(135deg, var(--omni-green) 0%, #059669 100%);
+  color: white;
+  font-size: 8px;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 6px;
+  opacity: 0;
+  transform: translateY(4px) scale(0.8);
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: 0 3px 8px var(--omni-green-glow);
+}
+
+.omni-inbox.active {
+  border-color: var(--omni-green);
+  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.15);
+}
+
+.omni-inbox.active .omni-inbox-icon {
+  background: linear-gradient(135deg, var(--omni-green) 0%, #059669 100%);
+}
+
+.omni-inbox.active .omni-inbox-icon svg {
+  color: white;
+}
+
+.omni-inbox.active .omni-inbox-badge {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* Animations */
+@keyframes omni-fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes omni-pulse-ring {
+  0% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  100% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
+
+@keyframes omni-ring-pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.08);
+    opacity: 0.4;
+  }
+}
