@@ -384,6 +384,7 @@
   border-color: var(--border-strong);
   box-shadow: var(--shadow-lg);
   transform: translateY(-2px);
+  text-decoration: none;
 }
 
 .article-card__cover {

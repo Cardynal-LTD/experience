@@ -109,7 +109,12 @@
   justify-content: space-between;
   padding: var(--space-4);
   border-bottom: 1px solid var(--border-default);
+  text-decoration: none;
   transition: background var(--duration-fast) var(--ease-default);
+}
+
+.card-list-item:hover {
+  text-decoration: none;
 }
 
 .card-list-item:last-child {
@@ -132,6 +137,7 @@
   font-weight: var(--weight-medium);
   color: var(--fg-default);
   margin-bottom: var(--space-1);
+  text-decoration: none;
 }
 
 .card-list-item__emoji {

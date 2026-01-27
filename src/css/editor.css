@@ -199,13 +199,37 @@
   flex: 1;
   padding: var(--space-2) var(--space-16) var(--space-12);
   min-height: 300px;
-  outline: none;
   font-size: var(--text-base);
   line-height: var(--leading-relaxed);
   color: var(--fg-default);
+  cursor: text;
 }
 
-.doc__editor:focus {
+.doc__editor .tiptap-editor {
+  min-height: 100%;
+  outline: none;
+}
+
+.doc__editor .tiptap-editor:focus {
+  outline: none;
+}
+
+.doc__editor .ProseMirror {
+  min-height: 250px;
+  outline: none;
+}
+
+.doc__editor .ProseMirror:focus {
+  outline: none;
+}
+
+.doc__editor .ProseMirror-focused {
+  outline: none;
+}
+
+.doc__editor:focus-visible,
+.doc__editor .tiptap-editor:focus-visible,
+.doc__editor .ProseMirror:focus-visible {
   outline: none;
 }
 
