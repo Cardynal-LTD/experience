@@ -1053,7 +1053,7 @@
   justify-content: space-between;
   padding: 1rem 1.25rem;
   font-weight: 500;
-  font-size: 0.875rem;
+  font-size: 1rem;
   cursor: pointer;
   list-style: none;
 }
@@ -1075,9 +1075,13 @@
 
 .faq-item__answer {
   padding: 0 1.25rem 1rem;
-  color: var(--landing-text-muted);
+  color: #94a3b8;
   font-size: 0.8125rem;
   line-height: 1.7;
+}
+
+.landing-page.light-mode .faq-item__answer {
+  color: #64748b;
 }
 
 .faq-item__answer p {
