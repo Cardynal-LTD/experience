@@ -2,19 +2,7 @@ import './theme.js'
 import {
   createEditor,
   markdownToHtml,
-  htmlToMarkdown,
-  toggleBold,
-  toggleItalic,
-  toggleStrike,
-  toggleCode,
-  toggleHeading,
-  toggleBulletList,
-  toggleOrderedList,
-  toggleBlockquote,
-  toggleCodeBlock,
-  setHorizontalRule,
-  setLink,
-  isActive
+  htmlToMarkdown
 } from './editor.js'
 
 // State
@@ -37,75 +25,89 @@ const docEmojis = [
 
 // DOM helpers
 const $ = s => document.querySelector(s)
-const $$ = s => document.querySelectorAll(s)
 
-// Initialize
-if (authToken) showAdmin()
+// Initialize when DOM is ready
+document.addEventListener('DOMContentLoaded', init)
 
-// Event listeners
-$('#loginForm').onsubmit = handleLogin
-$('#articleForm').onsubmit = handleArticleSubmit
-$('#newArticleBtn').onclick = () => openModal()
-$('#logoutBtn').onclick = logout
-$('#closeModalBtn').onclick = closeModal
-$('#cancelBtn').onclick = closeModal
-$('#articleModal').onclick = e => { if (e.target === e.currentTarget) closeModal() }
-document.onkeydown = e => { if (e.key === 'Escape') closeModal() }
+function init() {
+  // Login form
+  $('#loginForm').addEventListener('submit', handleLogin)
 
-// Auto slug generation
-$('#title').oninput = e => {
-  if (!$('#articleId').value) {
-    $('#slug').value = e.target.value.toLowerCase()
-      .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
-      .replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')
-  }
-}
+  // Admin section
+  $('#newArticleBtn').addEventListener('click', () => openModal())
+  $('#logoutBtn').addEventListener('click', logout)
 
-// Document icon click - open emoji picker
-$('#docIcon').onclick = (e) => {
-  e.stopPropagation()
-  const modal = $('#emojiModal')
-  const rect = e.currentTarget.getBoundingClientRect()
-  modal.style.left = `${rect.left}px`
-  modal.style.top = `${rect.bottom + 8}px`
-  renderEmojiPicker()
-  modal.classList.add('visible')
-}
+  // Modal
+  $('#articleForm').addEventListener('submit', handleArticleSubmit)
+  $('#closeModalBtn').addEventListener('click', closeModal)
+  $('#cancelBtn').addEventListener('click', closeModal)
+  $('#articleModal').addEventListener('click', e => {
+    if (e.target === e.currentTarget) closeModal()
+  })
 
-// Cover placeholder click
-$('#coverPlaceholder').onclick = () => openCoverModal()
-$('#changeCoverBtn').onclick = () => openCoverModal()
-$('#removeCoverBtn').onclick = () => {
-  currentCover = ''
-  updateCoverDisplay()
-}
+  // Escape key
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeModal()
+  })
 
-// Cover URL modal
-$('#coverUrlBtn').onclick = () => {
-  const url = $('#coverUrl').value.trim()
-  if (url) {
-    currentCover = url
+  // Auto slug generation
+  $('#title').addEventListener('input', e => {
+    if (!$('#articleId').value) {
+      $('#slug').value = e.target.value.toLowerCase()
+        .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+        .replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')
+    }
+  })
+
+  // Document icon click - open emoji picker
+  $('#docIcon').addEventListener('click', (e) => {
+    e.stopPropagation()
+    const modal = $('#emojiModal')
+    const rect = e.currentTarget.getBoundingClientRect()
+    modal.style.left = `${rect.left}px`
+    modal.style.top = `${rect.bottom + 8}px`
+    renderEmojiPicker()
+    modal.classList.add('visible')
+  })
+
+  // Cover actions
+  $('#coverPlaceholder').addEventListener('click', openCoverModal)
+  $('#changeCoverBtn').addEventListener('click', openCoverModal)
+  $('#removeCoverBtn').addEventListener('click', () => {
+    currentCover = ''
     updateCoverDisplay()
-    $('#coverModal').classList.remove('visible')
-    $('#coverUrl').value = ''
-  }
-}
+  })
 
-// Close modals on outside click
-document.addEventListener('click', (e) => {
-  if (!e.target.closest('#emojiModal') && !e.target.closest('#docIcon')) {
-    $('#emojiModal').classList.remove('visible')
-  }
-  if (!e.target.closest('#coverModal') && !e.target.closest('.cover-btn') && !e.target.closest('#coverPlaceholder')) {
-    $('#coverModal').classList.remove('visible')
-  }
-})
+  // Cover URL modal
+  $('#coverUrlBtn').addEventListener('click', () => {
+    const url = $('#coverUrl').value.trim()
+    if (url) {
+      currentCover = url
+      updateCoverDisplay()
+      $('#coverModal').classList.remove('visible')
+      $('#coverUrl').value = ''
+    }
+  })
+
+  // Close modals on outside click
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('#emojiModal') && !e.target.closest('#docIcon')) {
+      $('#emojiModal').classList.remove('visible')
+    }
+    if (!e.target.closest('#coverModal') && !e.target.closest('.cover-btn') && !e.target.closest('#coverPlaceholder')) {
+      $('#coverModal').classList.remove('visible')
+    }
+  })
+
+  // Show admin if already logged in
+  if (authToken) showAdmin()
+}
 
 function openCoverModal() {
   const modal = $('#coverModal')
   const cover = $('#docCover')
   const rect = cover.getBoundingClientRect()
-  modal.style.left = `${rect.left + rect.width / 2 - 170}px`
+  modal.style.left = `${Math.max(10, rect.left + rect.width / 2 - 170)}px`
   modal.style.top = `${rect.bottom + 8}px`
   modal.classList.add('visible')
   $('#coverUrl').focus()
@@ -183,7 +185,7 @@ async function handleArticleSubmit(e) {
     tags: $('#tags').value,
     content,
     emoji: currentEmoji,
-    cover_image: currentCover
+    cover_image: currentCover || null
   }
 
   try {
@@ -280,6 +282,7 @@ function openModal(article = null) {
 
   // Initialize or reset editor
   if (editor) {
+    if (editor.menuCleanup) editor.menuCleanup()
     editor.destroy()
   }
 
