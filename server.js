@@ -7,10 +7,13 @@ import crypto from 'crypto'
 const app = express()
 const PORT = process.env.PORT || 3000
 
-// Supabase client
+// Supabase clients
 const supabaseUrl = process.env.SUPABASE_URL
 const supabaseKey = process.env.SUPABASE_ANON_KEY
+const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY
 const supabase = supabaseUrl && supabaseKey ? createClient(supabaseUrl, supabaseKey) : null
+// Client avec service_role pour Storage (bypass RLS)
+const supabaseAdmin = supabaseUrl && supabaseServiceKey ? createClient(supabaseUrl, supabaseServiceKey) : null
 
 // Auth config
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'admin123'
@@ -90,37 +93,52 @@ app.get('/api/verify', checkAuth, (req, res) => {
   res.json({ valid: true, user: req.user })
 })
 
-// Upload image to Supabase images table (protected)
+// Upload image to Supabase Storage (protected)
 app.post('/api/upload', checkAuth, async (req, res) => {
-  if (!supabase) {
-    return res.status(500).json({ error: 'Supabase non configure' })
+  if (!supabaseAdmin) {
+    return res.status(500).json({ error: 'Supabase Storage non configure (SUPABASE_SERVICE_ROLE_KEY manquante)' })
   }
 
-  const { image } = req.body
+  const { image, filename } = req.body
 
   if (!image) {
     return res.status(400).json({ error: 'Image requise' })
   }
 
   try {
-    // Extract content type from base64
-    const matches = image.match(/^data:(.+);base64,/)
-    const contentType = matches ? matches[1] : 'image/jpeg'
+    // Extract content type and base64 data
+    const matches = image.match(/^data:(.+);base64,(.+)$/)
+    if (!matches) {
+      return res.status(400).json({ error: 'Format image invalide' })
+    }
+    const contentType = matches[1]
+    const base64Data = matches[2]
+    const buffer = Buffer.from(base64Data, 'base64')
 
-    // Store in database
-    const { data, error } = await supabase
+    // Generate unique filename
+    const ext = contentType.split('/')[1] || 'jpg'
+    const uniqueFilename = filename || `${Date.now()}-${crypto.randomUUID()}.${ext}`
+
+    // Upload to Supabase Storage
+    const { data, error } = await supabaseAdmin.storage
       .from('images')
-      .insert([{ data: image, content_type: contentType }])
-      .select('id')
-      .single()
+      .upload(uniqueFilename, buffer, {
+        contentType,
+        cacheControl: '31536000',
+        upsert: false
+      })
 
     if (error) {
-      console.error('Upload error:', error)
+      console.error('Storage upload error:', error)
       return res.status(500).json({ error: 'Erreur upload: ' + error.message })
     }
 
-    // Return URL to our image endpoint
-    res.json({ url: `/api/images/${data.id}` })
+    // Get public URL
+    const { data: urlData } = supabaseAdmin.storage
+      .from('images')
+      .getPublicUrl(data.path)
+
+    res.json({ url: urlData.publicUrl })
 
   } catch (err) {
     console.error('Upload error:', err)
@@ -541,10 +559,42 @@ app.get('/:lang/about.html', (req, res, next) => {
   }
 })
 
+// Initialize Storage bucket
+async function initStorage() {
+  if (!supabaseAdmin) {
+    console.log('Warning: SUPABASE_SERVICE_ROLE_KEY not set. Image upload will not work.')
+    return
+  }
+
+  try {
+    // Check if bucket exists
+    const { data: buckets } = await supabaseAdmin.storage.listBuckets()
+    const imagesBucket = buckets?.find(b => b.name === 'images')
+
+    if (!imagesBucket) {
+      // Create the bucket
+      const { error } = await supabaseAdmin.storage.createBucket('images', {
+        public: true,
+        fileSizeLimit: 5 * 1024 * 1024, // 5MB
+        allowedMimeTypes: ['image/jpeg', 'image/png', 'image/webp', 'image/gif']
+      })
+
+      if (error) {
+        console.error('Failed to create images bucket:', error.message)
+      } else {
+        console.log('Created images bucket in Supabase Storage')
+      }
+    }
+  } catch (err) {
+    console.error('Storage init error:', err.message)
+  }
+}
+
 // Start server with ViteExpress
-ViteExpress.listen(app, PORT, () => {
+ViteExpress.listen(app, PORT, async () => {
   console.log(`Server running on port ${PORT}`)
   if (!supabase) {
     console.log('Warning: Supabase not configured. Set SUPABASE_URL and SUPABASE_ANON_KEY environment variables.')
   }
+  await initStorage()
 })
