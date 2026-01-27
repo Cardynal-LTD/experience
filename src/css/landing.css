@@ -3472,3 +3472,276 @@
     opacity: 0.4;
   }
 }
+
+/* ============================================
+   GLOBAL MOBILE RESPONSIVE FIXES
+   ============================================ */
+
+@media (max-width: 768px) {
+  /* Hero section */
+  .hero-section__visual {
+    min-width: unset;
+    width: 100%;
+  }
+
+  /* Feature cards */
+  .feature-card {
+    padding: 1.5rem;
+    gap: 1.5rem;
+  }
+
+  .feature-card__title {
+    font-size: 1.25rem;
+  }
+
+  .feature-card__description {
+    font-size: 0.875rem;
+  }
+
+  .feature-card__visual--playbook,
+  .feature-card__visual--tree,
+  .feature-card__visual--rag,
+  .feature-card__visual--omni {
+    min-height: 280px;
+  }
+
+  /* Playbook widget mobile */
+  #playbook-widget {
+    transform: scale(0.7);
+    transform-origin: center center;
+    height: 240px;
+  }
+
+  /* Tree widget mobile */
+  #tree-widget {
+    transform: scale(0.75);
+    transform-origin: center top;
+  }
+
+  .tw-node {
+    max-width: 180px;
+    padding: 10px 12px;
+  }
+
+  .tw-branch-container {
+    gap: 8px;
+  }
+
+  .tw-branch-container > .tw-node {
+    width: 150px;
+    max-width: 150px;
+  }
+
+  .tw-branch-lines {
+    width: 170px;
+  }
+
+  /* RAG widget mobile */
+  #rag-widget {
+    max-width: 100%;
+    padding: 16px 8px;
+  }
+
+  .rag-docs {
+    gap: 8px;
+  }
+
+  .rag-doc {
+    width: 80px;
+    padding: 10px 8px;
+  }
+
+  .rag-doc-icon {
+    width: 30px;
+    height: 30px;
+  }
+
+  .rag-doc-name {
+    font-size: 8px;
+  }
+
+  .rag-chat {
+    padding: 12px;
+  }
+
+  .rag-msg {
+    font-size: 11px;
+    padding: 8px 10px;
+  }
+
+  /* Omni widget mobile */
+  #omni-widget {
+    --hub-size: 260px;
+    --logo-size: 50px;
+    --channel-size: 34px;
+  }
+
+  .omni-channel-label {
+    display: none;
+  }
+
+  .omni-channel[data-index="0"] { transform: translate(-50%, -50%) translate(0px, -95px); }
+  .omni-channel[data-index="1"] { transform: translate(-50%, -50%) translate(75px, -58px); }
+  .omni-channel[data-index="2"] { transform: translate(-50%, -50%) translate(92px, 20px); }
+  .omni-channel[data-index="3"] { transform: translate(-50%, -50%) translate(58px, 78px); }
+  .omni-channel[data-index="4"] { transform: translate(-50%, -50%) translate(-58px, 78px); }
+  .omni-channel[data-index="5"] { transform: translate(-50%, -50%) translate(-92px, 20px); }
+  .omni-channel[data-index="6"] { transform: translate(-50%, -50%) translate(-75px, -58px); }
+
+  .omni-channel-icon svg {
+    width: 14px;
+    height: 14px;
+  }
+
+  .omni-logo-img {
+    width: 28px;
+    height: 28px;
+  }
+
+  .omni-inbox {
+    padding: 8px 12px;
+  }
+
+  .omni-inbox-content h4 {
+    font-size: 10px;
+  }
+
+  .omni-inbox-content p {
+    font-size: 8px;
+  }
+
+  /* Sections padding */
+  .problem-section,
+  .audience-section,
+  .laptop-section,
+  .features-section,
+  .pricing-section,
+  .faq-section,
+  .blog-section {
+    padding: 3rem 1rem;
+  }
+
+  .section-title {
+    font-size: 1.5rem;
+  }
+
+  .section-subtitle {
+    font-size: 0.875rem;
+  }
+
+  /* Feature list */
+  .feature-list {
+    gap: 0.375rem;
+  }
+
+  .feature-list li {
+    font-size: 0.6875rem;
+    padding: 0.25rem 0.625rem;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Hero adjustments */
+  .hero-section {
+    padding: 5rem 1rem 2rem;
+  }
+
+  .hero-section__title {
+    font-size: 1.5rem;
+  }
+
+  .hero-section__description {
+    font-size: 0.8125rem;
+  }
+
+  .hero-section__features {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  /* Scale down complex widgets */
+  #playbook-widget {
+    transform: scale(0.55);
+    height: 200px;
+  }
+
+  #tree-widget {
+    transform: scale(0.6);
+  }
+
+  .feature-card__visual--tree {
+    min-height: 240px;
+  }
+
+  #omni-widget {
+    --hub-size: 220px;
+    --logo-size: 44px;
+    --channel-size: 28px;
+  }
+
+  .omni-channel[data-index="0"] { transform: translate(-50%, -50%) translate(0px, -80px); }
+  .omni-channel[data-index="1"] { transform: translate(-50%, -50%) translate(62px, -48px); }
+  .omni-channel[data-index="2"] { transform: translate(-50%, -50%) translate(76px, 16px); }
+  .omni-channel[data-index="3"] { transform: translate(-50%, -50%) translate(48px, 65px); }
+  .omni-channel[data-index="4"] { transform: translate(-50%, -50%) translate(-48px, 65px); }
+  .omni-channel[data-index="5"] { transform: translate(-50%, -50%) translate(-76px, 16px); }
+  .omni-channel[data-index="6"] { transform: translate(-50%, -50%) translate(-62px, -48px); }
+
+  .omni-channel-icon svg {
+    width: 12px;
+    height: 12px;
+  }
+
+  .omni-logo-img {
+    width: 24px;
+    height: 24px;
+  }
+
+  .feature-card__visual--omni {
+    min-height: 320px;
+  }
+
+  /* Feature cards stack */
+  .feature-grid-two {
+    gap: 1rem;
+  }
+
+  .feature-card {
+    padding: 1rem;
+  }
+
+  /* Pricing */
+  .pricing-card__amount {
+    font-size: 2rem;
+  }
+
+  /* Footer */
+  .landing-footer__links {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .landing-footer__content {
+    padding: 0 1rem;
+  }
+
+  /* Chat flow demo */
+  .cfd-container {
+    width: 100%;
+    max-width: 300px;
+    height: 360px;
+  }
+}
+
+/* RTL adjustments for mobile */
+@media (max-width: 768px) {
+  [dir="rtl"] .hero-section__features {
+    align-items: center;
+  }
+
+  [dir="rtl"] .faq-section__header .section-title,
+  [dir="rtl"] .faq-section__header .section-subtitle {
+    text-align: center;
+  }
+}
