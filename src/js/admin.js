@@ -83,6 +83,72 @@ function init() {
     updateCoverDisplay()
   })
 
+  // Cover modal tabs
+  document.querySelectorAll('.cover-modal__tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      const tabName = tab.dataset.tab
+      // Update active tab
+      document.querySelectorAll('.cover-modal__tab').forEach(t => t.classList.remove('is-active'))
+      tab.classList.add('is-active')
+      // Update active panel
+      document.querySelectorAll('.cover-modal__panel').forEach(p => p.classList.remove('is-active'))
+      document.querySelector(`.cover-modal__panel[data-panel="${tabName}"]`).classList.add('is-active')
+    })
+  })
+
+  // Cover file upload
+  $('#coverFile').addEventListener('change', async (e) => {
+    const file = e.target.files[0]
+    if (!file) return
+
+    // Check file size (max 5MB)
+    if (file.size > 5 * 1024 * 1024) {
+      alert('Image trop lourde (max 5 Mo)')
+      return
+    }
+
+    // Show loading state
+    const uploadLabel = $('.cover-modal__upload span')
+    const originalText = uploadLabel.textContent
+    uploadLabel.textContent = 'Upload en cours...'
+
+    const reader = new FileReader()
+    reader.onload = async (event) => {
+      const base64 = event.target.result
+
+      try {
+        // Upload to Supabase Storage
+        const res = await fetch('/api/upload', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${authToken}`
+          },
+          body: JSON.stringify({
+            image: base64,
+            filename: `cover-${Date.now()}-${file.name.replace(/[^a-zA-Z0-9.]/g, '')}`
+          })
+        })
+
+        if (res.ok) {
+          const data = await res.json()
+          currentCover = data.url
+          updateCoverDisplay()
+          $('#coverModal').classList.remove('is-visible')
+        } else {
+          const err = await res.json()
+          alert(err.error || 'Erreur upload')
+        }
+      } catch (err) {
+        alert('Erreur de connexion')
+      }
+
+      uploadLabel.textContent = originalText
+    }
+    reader.readAsDataURL(file)
+    e.target.value = '' // Reset input
+  })
+
   // Cover URL modal
   $('#coverUrlBtn').addEventListener('click', () => {
     const url = $('#coverUrl').value.trim()
@@ -130,7 +196,11 @@ function openCoverModal() {
   modal.style.left = `${Math.max(10, rect.left + rect.width / 2 - 170)}px`
   modal.style.top = `${rect.bottom + 8}px`
   modal.classList.add('is-visible')
-  $('#coverUrl').focus()
+  // Reset to upload tab
+  document.querySelectorAll('.cover-modal__tab').forEach(t => t.classList.remove('is-active'))
+  document.querySelectorAll('.cover-modal__panel').forEach(p => p.classList.remove('is-active'))
+  $('.cover-modal__tab[data-tab="upload"]').classList.add('is-active')
+  $('.cover-modal__panel[data-panel="upload"]').classList.add('is-active')
 }
 
 function renderEmojiPicker() {

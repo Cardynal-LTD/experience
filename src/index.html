@@ -39,10 +39,28 @@
       </div>
 
       <div style="margin-top: var(--space-12);">
-        <h2 class="section-title">Articles Recents</h2>
-        <div class="card" id="articlesList">
-          <div class="empty-state">
-            <div class="empty-state__title">Chargement...</div>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-4);">
+          <h2 class="section-title" style="margin-bottom: 0;">Articles Recents</h2>
+          <div class="view-toggle">
+            <button class="view-toggle__btn is-active" data-view="list" aria-label="Vue liste">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/>
+                <line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/>
+              </svg>
+            </button>
+            <button class="view-toggle__btn" data-view="grid" aria-label="Vue grille">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/>
+                <rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+        <div id="articlesList">
+          <div class="card">
+            <div class="empty-state">
+              <div class="empty-state__title">Chargement...</div>
+            </div>
           </div>
         </div>
         <div style="text-align: center; margin-top: var(--space-6);">
@@ -75,54 +93,105 @@
 
     initAuth()
 
+    let articles = []
+    let viewMode = localStorage.getItem('viewMode') || 'list'
+
     async function loadArticles() {
       const container = document.getElementById('articlesList')
 
       try {
         const res = await fetch('/api/articles')
-        const articles = await res.json()
+        articles = await res.json()
 
         if (articles.length === 0) {
           container.innerHTML = `
-            <div class="empty-state">
-              <div class="empty-state__icon">📝</div>
-              <div class="empty-state__title">Aucun article</div>
-              <div class="empty-state__description">Aucun article pour le moment.</div>
+            <div class="card">
+              <div class="empty-state">
+                <div class="empty-state__icon">📝</div>
+                <div class="empty-state__title">Aucun article</div>
+                <div class="empty-state__description">Aucun article pour le moment.</div>
+              </div>
             </div>
           `
           return
         }
 
-        const recentArticles = articles.slice(0, 5)
-
-        container.innerHTML = recentArticles.map((article, i) => `
-          <a href="/article/${article.slug}" class="card-list-item animate-slideUp" style="animation-delay: ${i * 0.05}s">
-            ${article.cover_image ? `<img src="${article.cover_image}" alt="" class="card-list-item__cover">` : ''}
-            <div class="card-list-item__content">
-              <div class="card-list-item__title">
-                <span class="card-list-item__emoji">${article.emoji || '📄'}</span>
-                ${escapeHtml(article.title)}
-              </div>
-              <div class="card-list-item__meta">
-                ${formatDate(article.created_at)}${article.tags ? ' · ' + article.tags : ''}
-              </div>
-            </div>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="opacity: 0.5; flex-shrink: 0;">
-              <path d="M9 18l6-6-6-6"/>
-            </svg>
-          </a>
-        `).join('')
+        renderArticles()
 
       } catch (err) {
         container.innerHTML = `
-          <div class="empty-state">
-            <div class="empty-state__icon">⚠️</div>
-            <div class="empty-state__title">Erreur</div>
-            <div class="empty-state__description">Erreur de chargement.</div>
+          <div class="card">
+            <div class="empty-state">
+              <div class="empty-state__icon">⚠️</div>
+              <div class="empty-state__title">Erreur</div>
+              <div class="empty-state__description">Erreur de chargement.</div>
+            </div>
           </div>
         `
       }
     }
+
+    function renderArticles() {
+      const container = document.getElementById('articlesList')
+      const recentArticles = articles.slice(0, 5)
+
+      if (viewMode === 'grid') {
+        container.innerHTML = `
+          <div class="articles-grid">
+            ${recentArticles.map((article, i) => `
+              <a href="/article/${article.slug}" class="article-card animate-slideUp" style="animation-delay: ${i * 0.05}s">
+                ${article.cover_image ? `<img src="${article.cover_image}" alt="" class="article-card__cover">` : ''}
+                <div class="article-card__body">
+                  <div class="article-card__emoji">${article.emoji || '📄'}</div>
+                  <h3 class="article-card__title">${escapeHtml(article.title)}</h3>
+                  <div class="article-card__meta">${formatDate(article.created_at)}</div>
+                </div>
+              </a>
+            `).join('')}
+          </div>
+        `
+      } else {
+        container.innerHTML = `
+          <div class="card">
+            ${recentArticles.map((article, i) => `
+              <a href="/article/${article.slug}" class="card-list-item animate-slideUp" style="animation-delay: ${i * 0.05}s">
+                ${article.cover_image
+                  ? `<img src="${article.cover_image}" alt="" class="card-list-item__cover">`
+                  : `<span class="card-list-item__emoji">${article.emoji || '📄'}</span>`
+                }
+                <div class="card-list-item__content">
+                  <div class="card-list-item__title">${escapeHtml(article.title)}</div>
+                  <div class="card-list-item__meta">
+                    ${formatDate(article.created_at)}${article.tags ? ' · ' + article.tags : ''}
+                  </div>
+                </div>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="opacity: 0.5; flex-shrink: 0;">
+                  <path d="M9 18l6-6-6-6"/>
+                </svg>
+              </a>
+            `).join('')}
+          </div>
+        `
+      }
+    }
+
+    function setView(mode) {
+      viewMode = mode
+      localStorage.setItem('viewMode', mode)
+      document.querySelectorAll('.view-toggle__btn').forEach(btn => {
+        btn.classList.toggle('is-active', btn.dataset.view === mode)
+      })
+      if (articles.length > 0) renderArticles()
+    }
+
+    // View toggle buttons
+    document.querySelectorAll('.view-toggle__btn').forEach(btn => {
+      btn.addEventListener('click', () => setView(btn.dataset.view))
+    })
+
+    // Set initial active state
+    document.querySelector(`.view-toggle__btn[data-view="${viewMode}"]`)?.classList.add('is-active')
+    document.querySelector(`.view-toggle__btn:not([data-view="${viewMode})`)?.classList.remove('is-active')
 
     function escapeHtml(text) {
       const div = document.createElement('div')

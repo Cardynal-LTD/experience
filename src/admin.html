@@ -139,11 +139,26 @@
     </div>
   </div>
 
-  <!-- Cover URL Modal -->
+  <!-- Cover Upload Modal -->
   <div class="cover-modal" id="coverModal">
     <div class="cover-modal__content">
-      <input type="text" class="cover-modal__input" placeholder="URL de l'image..." id="coverUrl">
-      <button type="button" class="btn btn--primary btn--sm" id="coverUrlBtn">Ajouter</button>
+      <div class="cover-modal__tabs">
+        <button type="button" class="cover-modal__tab is-active" data-tab="upload">Upload</button>
+        <button type="button" class="cover-modal__tab" data-tab="url">URL</button>
+      </div>
+      <div class="cover-modal__panel is-active" data-panel="upload">
+        <label class="cover-modal__upload">
+          <input type="file" accept="image/*" id="coverFile" hidden>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/>
+          </svg>
+          <span>Choisir une image</span>
+        </label>
+      </div>
+      <div class="cover-modal__panel" data-panel="url">
+        <input type="text" class="cover-modal__input" placeholder="https://..." id="coverUrl">
+        <button type="button" class="btn btn--primary btn--sm" id="coverUrlBtn">Ajouter</button>
+      </div>
     </div>
   </div>
 

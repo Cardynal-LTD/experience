@@ -22,7 +22,7 @@ const SITE_TITLE = 'Experience Blog'
 const SITE_DESCRIPTION = 'Un blog minimaliste pour partager des idees, des reflexions et des experiences.'
 
 // Middleware
-app.use(express.json())
+app.use(express.json({ limit: '10mb' }))
 
 // Auth middleware
 const checkAuth = (req, res, next) => {
@@ -57,6 +57,69 @@ app.post('/api/login', (req, res) => {
 // Verify token validity
 app.get('/api/verify', checkAuth, (req, res) => {
   res.json({ valid: true, user: req.user })
+})
+
+// Upload image to Supabase images table (protected)
+app.post('/api/upload', checkAuth, async (req, res) => {
+  if (!supabase) {
+    return res.status(500).json({ error: 'Supabase non configure' })
+  }
+
+  const { image } = req.body
+
+  if (!image) {
+    return res.status(400).json({ error: 'Image requise' })
+  }
+
+  try {
+    // Extract content type from base64
+    const matches = image.match(/^data:(.+);base64,/)
+    const contentType = matches ? matches[1] : 'image/jpeg'
+
+    // Store in database
+    const { data, error } = await supabase
+      .from('images')
+      .insert([{ data: image, content_type: contentType }])
+      .select('id')
+      .single()
+
+    if (error) {
+      console.error('Upload error:', error)
+      return res.status(500).json({ error: 'Erreur upload: ' + error.message })
+    }
+
+    // Return URL to our image endpoint
+    res.json({ url: `/api/images/${data.id}` })
+
+  } catch (err) {
+    console.error('Upload error:', err)
+    res.status(500).json({ error: 'Erreur serveur' })
+  }
+})
+
+// Serve image from database
+app.get('/api/images/:id', async (req, res) => {
+  if (!supabase) {
+    return res.status(404).send('Not found')
+  }
+
+  const { data, error } = await supabase
+    .from('images')
+    .select('data, content_type')
+    .eq('id', req.params.id)
+    .single()
+
+  if (error || !data) {
+    return res.status(404).send('Image non trouvee')
+  }
+
+  // Extract base64 data and convert to buffer
+  const base64Data = data.data.replace(/^data:.+;base64,/, '')
+  const buffer = Buffer.from(base64Data, 'base64')
+
+  res.setHeader('Content-Type', data.content_type)
+  res.setHeader('Cache-Control', 'public, max-age=31536000') // Cache 1 year
+  res.send(buffer)
 })
 
 // Get all articles

@@ -150,12 +150,12 @@
             <div class="card">
               ${articlesByYear[year].map(article => `
                 <a href="/article/${article.slug}" class="card-list-item">
-                  ${article.cover_image ? `<img src="${article.cover_image}" alt="" class="card-list-item__cover">` : ''}
+                  ${article.cover_image
+                    ? `<img src="${article.cover_image}" alt="" class="card-list-item__cover">`
+                    : `<span class="card-list-item__emoji">${article.emoji || '📄'}</span>`
+                  }
                   <div class="card-list-item__content">
-                    <div class="card-list-item__title">
-                      <span class="card-list-item__emoji">${article.emoji || '📄'}</span>
-                      ${escapeHtml(article.title)}
-                    </div>
+                    <div class="card-list-item__title">${escapeHtml(article.title)}</div>
                     <div class="card-list-item__meta">${formatDate(article.created_at)}</div>
                   </div>
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="opacity: 0.5; flex-shrink: 0;">
