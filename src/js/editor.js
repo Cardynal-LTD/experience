@@ -397,32 +397,18 @@ export function createEditor(element, options = {}) {
 }
 
 function renderSlashMenu(menu, commands, activeIndex) {
-  // Group by category
-  const grouped = {}
+  let html = '<div class="slash-menu__grid">'
+
   commands.forEach((cmd, i) => {
-    if (!grouped[cmd.category]) grouped[cmd.category] = []
-    grouped[cmd.category].push({ ...cmd, originalIndex: i })
+    html += `
+      <div class="slash-menu__item ${i === activeIndex ? 'is-selected' : ''}" data-index="${i}" title="${cmd.description}">
+        <span class="slash-menu__item-icon">${cmd.icon}</span>
+        <span class="slash-menu__item-label">${cmd.title}</span>
+      </div>
+    `
   })
 
-  let html = ''
-  let globalIndex = 0
-
-  for (const [category, items] of Object.entries(grouped)) {
-    html += `<div class="slash-menu__category">${category}</div>`
-    items.forEach(cmd => {
-      html += `
-        <div class="slash-menu__item ${globalIndex === activeIndex ? 'is-selected' : ''}" data-index="${cmd.originalIndex}">
-          <div class="slash-menu__item-icon">${cmd.icon}</div>
-          <div class="slash-menu__item-text">
-            <div class="slash-menu__item-title">${cmd.title}</div>
-            <div class="slash-menu__item-desc">${cmd.description}</div>
-          </div>
-        </div>
-      `
-      globalIndex++
-    })
-  }
-
+  html += '</div>'
   menu.innerHTML = html
 }
 
