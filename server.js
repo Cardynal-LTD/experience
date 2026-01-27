@@ -232,6 +232,65 @@ app.delete('/api/articles/:id', checkAuth, async (req, res) => {
   res.json({ success: true })
 })
 
+// Robots.txt
+app.get('/robots.txt', (req, res) => {
+  res.setHeader('Content-Type', 'text/plain')
+  res.send(`User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: ${SITE_URL}/sitemap.xml
+
+# Block admin
+Disallow: /admin.html
+Disallow: /admin
+`)
+})
+
+// Sitemap XML
+app.get('/sitemap.xml', async (req, res) => {
+  res.setHeader('Content-Type', 'application/xml; charset=utf-8')
+
+  const staticPages = [
+    { loc: '', priority: '1.0', changefreq: 'daily' },
+    { loc: '/archive.html', priority: '0.8', changefreq: 'daily' },
+    { loc: '/about.html', priority: '0.6', changefreq: 'monthly' }
+  ]
+
+  let articles = []
+  if (supabase) {
+    const { data } = await supabase
+      .from('articles')
+      .select('slug, updated_at, created_at')
+      .order('created_at', { ascending: false })
+    articles = data || []
+  }
+
+  const today = new Date().toISOString().split('T')[0]
+
+  const urls = staticPages.map(page => `
+  <url>
+    <loc>${SITE_URL}${page.loc}</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>${page.changefreq}</changefreq>
+    <priority>${page.priority}</priority>
+  </url>`).join('')
+
+  const articleUrls = articles.map(article => `
+  <url>
+    <loc>${SITE_URL}/article/${article.slug}</loc>
+    <lastmod>${(article.updated_at || article.created_at).split('T')[0]}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>`).join('')
+
+  res.send(`<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${urls}
+${articleUrls}
+</urlset>`)
+})
+
 // RSS Feed
 app.get('/rss.xml', async (req, res) => {
   res.setHeader('Content-Type', 'application/rss+xml; charset=utf-8')

@@ -5,10 +5,47 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Experience - Article</title>
   <meta name="description" content="">
+  <meta name="author" content="Experience">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <link rel="canonical" href="">
+
+  <!-- Open Graph (dynamically updated) -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Experience">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:title" content="">
+  <meta property="og:description" content="">
+  <meta property="og:url" content="">
+  <meta property="og:image" content="">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="article:published_time" content="">
+  <meta property="article:modified_time" content="">
+
+  <!-- Twitter Cards (dynamically updated) -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="">
+  <meta name="twitter:description" content="">
+  <meta name="twitter:image" content="">
+
+  <!-- Theme -->
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0a0a0a" media="(prefers-color-scheme: dark)">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/manifest.json">
+
+  <!-- Preconnect -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./css/main.css">
+
+  <!-- JSON-LD (dynamically injected) -->
+  <script type="application/ld+json" id="articleSchema"></script>
 </head>
 <body>
   <header class="header">
@@ -74,9 +111,52 @@
 
         const article = await res.json()
 
-        document.title = `Experience - ${article.title}`
-        document.querySelector('meta[name="description"]').content =
-          article.content.substring(0, 160).replace(/[#*_`]/g, '') + '...'
+        const siteUrl = window.location.origin
+        const articleUrl = `${siteUrl}/article/${article.slug}`
+        const description = article.content.substring(0, 160).replace(/[#*_`\n]/g, ' ').trim() + '...'
+        const coverImage = article.cover_image || `${siteUrl}/og-image.jpg`
+
+        // Update document title
+        document.title = `${article.title} - Experience`
+
+        // Update meta tags
+        document.querySelector('meta[name="description"]').content = description
+        document.querySelector('link[rel="canonical"]').href = articleUrl
+
+        // Open Graph
+        document.querySelector('meta[property="og:title"]').content = article.title
+        document.querySelector('meta[property="og:description"]').content = description
+        document.querySelector('meta[property="og:url"]').content = articleUrl
+        document.querySelector('meta[property="og:image"]').content = coverImage
+        document.querySelector('meta[property="article:published_time"]').content = article.created_at
+        document.querySelector('meta[property="article:modified_time"]').content = article.updated_at || article.created_at
+
+        // Twitter Cards
+        document.querySelector('meta[name="twitter:title"]').content = article.title
+        document.querySelector('meta[name="twitter:description"]').content = description
+        document.querySelector('meta[name="twitter:image"]').content = coverImage
+
+        // JSON-LD Article Schema
+        document.getElementById('articleSchema').textContent = JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Article",
+          "headline": article.title,
+          "description": description,
+          "image": coverImage,
+          "datePublished": article.created_at,
+          "dateModified": article.updated_at || article.created_at,
+          "mainEntityOfPage": articleUrl,
+          "inLanguage": "fr",
+          "author": {
+            "@type": "Person",
+            "name": "Experience"
+          },
+          "publisher": {
+            "@type": "Organization",
+            "name": "Experience",
+            "url": siteUrl
+          }
+        })
 
         const contentHtml = marked.parse(article.content)
 
@@ -85,7 +165,7 @@
             <div class="article-hero ${article.cover_image ? 'has-cover' : ''}">
               ${article.cover_image ? `
                 <div class="article-hero__cover">
-                  <img src="${article.cover_image}" alt="" class="article-hero__image">
+                  <img src="${article.cover_image}" alt="${escapeHtml(article.title)}" class="article-hero__image" loading="eager" decoding="async">
                 </div>
               ` : ''}
               <div class="article-hero__emoji">${article.emoji || '📄'}</div>
