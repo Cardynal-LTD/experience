@@ -1,0 +1,224 @@
+/* ═══════════════════════════════════════════════════════════
+   BUTTON COMPONENT
+   ═══════════════════════════════════════════════════════════ */
+
+.btn {
+  /* Local variables for easy state management */
+  --btn-bg: transparent;
+  --btn-color: var(--fg-default);
+  --btn-border: var(--border-default);
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  line-height: 1;
+  text-decoration: none;
+  white-space: nowrap;
+
+  padding: var(--space-2) var(--space-3);
+  min-height: 32px;
+
+  background: var(--btn-bg);
+  color: var(--btn-color);
+  border: 1px solid var(--btn-border);
+  border-radius: var(--radius-md);
+
+  cursor: pointer;
+  user-select: none;
+
+  transition:
+    background var(--duration-fast) var(--ease-default),
+    color var(--duration-fast) var(--ease-default),
+    border-color var(--duration-fast) var(--ease-default),
+    box-shadow var(--duration-fast) var(--ease-default),
+    transform var(--duration-fast) var(--ease-default);
+}
+
+.btn:hover {
+  --btn-bg: var(--bg-hover);
+  text-decoration: none;
+}
+
+.btn:active {
+  --btn-bg: var(--bg-active);
+  transform: scale(0.98);
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* ─── Variants ─────────────────────────────────────────── */
+
+.btn--primary {
+  --btn-bg: var(--accent-default);
+  --btn-color: var(--fg-on-accent);
+  --btn-border: var(--accent-default);
+}
+
+.btn--primary:hover {
+  --btn-bg: var(--accent-hover);
+  --btn-border: var(--accent-hover);
+}
+
+.btn--secondary {
+  --btn-bg: var(--bg-muted);
+  --btn-border: var(--border-default);
+}
+
+.btn--secondary:hover {
+  --btn-bg: var(--bg-active);
+}
+
+.btn--ghost {
+  --btn-border: transparent;
+}
+
+.btn--ghost:hover {
+  --btn-bg: var(--bg-hover);
+}
+
+.btn--danger {
+  --btn-color: var(--error);
+  --btn-border: var(--error);
+}
+
+.btn--danger:hover {
+  --btn-bg: var(--error-subtle);
+}
+
+.btn--danger-solid {
+  --btn-bg: var(--error);
+  --btn-color: var(--fg-on-accent);
+  --btn-border: var(--error);
+}
+
+.btn--danger-solid:hover {
+  --btn-bg: rgb(190, 60, 55);
+  --btn-border: rgb(190, 60, 55);
+}
+
+/* ─── Sizes ────────────────────────────────────────────── */
+
+.btn--xs {
+  font-size: var(--text-xs);
+  padding: var(--space-1) var(--space-2);
+  min-height: 24px;
+}
+
+.btn--sm {
+  font-size: var(--text-xs);
+  padding: var(--space-1-5) var(--space-2);
+  min-height: 28px;
+}
+
+.btn--lg {
+  font-size: var(--text-base);
+  padding: var(--space-3) var(--space-4);
+  min-height: 40px;
+}
+
+.btn--xl {
+  font-size: var(--text-lg);
+  padding: var(--space-4) var(--space-6);
+  min-height: 48px;
+}
+
+/* ─── Icon Button ──────────────────────────────────────── */
+
+.btn--icon {
+  padding: var(--space-2);
+  min-width: 32px;
+}
+
+.btn--icon.btn--xs {
+  padding: var(--space-1);
+  min-width: 24px;
+}
+
+.btn--icon.btn--sm {
+  padding: var(--space-1-5);
+  min-width: 28px;
+}
+
+.btn--icon.btn--lg {
+  padding: var(--space-3);
+  min-width: 40px;
+}
+
+/* ─── Full Width ───────────────────────────────────────── */
+
+.btn--block {
+  width: 100%;
+}
+
+/* ─── Loading State ────────────────────────────────────── */
+
+.btn--loading {
+  position: relative;
+  color: transparent !important;
+  pointer-events: none;
+}
+
+.btn--loading::after {
+  content: "";
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  border-radius: var(--radius-full);
+  animation: spin 0.6s linear infinite;
+}
+
+.btn--primary.btn--loading::after {
+  border-color: var(--fg-on-accent);
+  border-right-color: transparent;
+}
+
+/* ─── Button Group ─────────────────────────────────────── */
+
+.btn-group {
+  display: inline-flex;
+}
+
+.btn-group .btn {
+  border-radius: 0;
+}
+
+.btn-group .btn:first-child {
+  border-radius: var(--radius-md) 0 0 var(--radius-md);
+}
+
+.btn-group .btn:last-child {
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+}
+
+.btn-group .btn:not(:last-child) {
+  border-right: none;
+}
+
+/* ─── Icon inside button ───────────────────────────────── */
+
+.btn__icon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.btn--sm .btn__icon {
+  width: 14px;
+  height: 14px;
+}
+
+.btn--lg .btn__icon {
+  width: 18px;
+  height: 18px;
+}

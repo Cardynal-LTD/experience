@@ -7,87 +7,108 @@
   <meta name="description" content="A propos du blog Experience et de son auteur">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./css/main.css">
 </head>
 <body>
-  <header>
-    <div class="header-content">
-      <a href="/" class="logo">Experience</a>
-      <nav>
-        <a href="/">Home</a>
-        <a href="/archive.html">Archive</a>
-        <a href="/about.html" class="active">About</a>
+  <header class="header">
+    <div class="header__content">
+      <a href="/" class="header__logo">Experience</a>
+      <nav class="header__nav">
+        <a href="/" class="header__nav-link">Home</a>
+        <a href="/archive.html" class="header__nav-link">Archive</a>
+        <a href="/about.html" class="header__nav-link header__nav-link--active">About</a>
       </nav>
-      <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
-        <svg class="sun" viewBox="0 0 24 24"><path d="M12 7a5 5 0 100 10 5 5 0 000-10zM12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.72 12.72l1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
-        <svg class="moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+      <button class="btn btn--ghost btn--icon" onclick="toggleTheme()" aria-label="Toggle theme">
+        <svg class="sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="5"/>
+          <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+        </svg>
+        <svg class="moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
       </button>
     </div>
   </header>
 
-  <main>
-    <div class="page-header animate-fade">
-      <h1>About</h1>
-      <p>En savoir plus sur ce blog et son auteur</p>
-    </div>
+  <main class="main main--full">
+    <section class="page animate-fadeIn">
+      <div class="page-header">
+        <h1 class="page-header__title">About</h1>
+        <p class="page-header__subtitle">En savoir plus sur ce blog et son auteur</p>
+      </div>
 
-    <section class="profile-section animate-slide">
-      <div class="profile-image">[ photo ]</div>
-      <div class="profile-info">
-        <h2>Nom de l'Auteur</h2>
-        <p class="role">Designer & Developpeur</p>
-        <p>Passionne par le design minimaliste et les technologies web. Ce blog est un espace pour partager mes reflexions et experiences.</p>
+      <div class="profile animate-slideUp">
+        <div class="profile__avatar">
+          <span class="profile__avatar-placeholder">👤</span>
+        </div>
+        <div class="profile__info">
+          <h2 class="profile__name">Nom de l'Auteur</h2>
+          <p class="profile__role">Designer & Developpeur</p>
+          <p class="profile__bio">Passionne par le design minimaliste et les technologies web. Ce blog est un espace pour partager mes reflexions et experiences.</p>
+        </div>
+      </div>
+
+      <div class="card animate-slideUp" style="animation-delay: 0.1s; margin-top: var(--space-8);">
+        <div class="card__header">
+          <h2 class="card__title">A propos du blog</h2>
+        </div>
+        <div class="card__body prose">
+          <p>Experience est un blog personnel dedie au partage d'idees, de reflexions et de decouvertes. L'objectif est de creer un espace simple et epure ou le contenu prime sur la forme.</p>
+          <p>Les sujets abordes couvrent le design, la technologie, le developpement personnel et tout ce qui peut enrichir notre quotidien.</p>
+        </div>
+      </div>
+
+      <div class="card animate-slideUp" style="animation-delay: 0.2s; margin-top: var(--space-6);">
+        <div class="card__header">
+          <h2 class="card__title">Competences</h2>
+        </div>
+        <div class="card__body">
+          <div class="skills">
+            <span class="skill-tag">HTML/CSS</span>
+            <span class="skill-tag">JavaScript</span>
+            <span class="skill-tag">Node.js</span>
+            <span class="skill-tag">Design UI</span>
+            <span class="skill-tag">Figma</span>
+            <span class="skill-tag">Git</span>
+            <span class="skill-tag">React</span>
+            <span class="skill-tag">TypeScript</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card animate-slideUp" style="animation-delay: 0.3s; margin-top: var(--space-6);">
+        <div class="card__header">
+          <h2 class="card__title">Contact</h2>
+        </div>
+        <div class="card__body">
+          <div class="contact-list">
+            <div class="contact-item">
+              <span class="contact-item__label">Email</span>
+              <span class="contact-item__value">hello@example.com</span>
+            </div>
+            <div class="contact-item">
+              <span class="contact-item__label">Twitter</span>
+              <span class="contact-item__value">@username</span>
+            </div>
+            <div class="contact-item">
+              <span class="contact-item__label">GitHub</span>
+              <span class="contact-item__value">github.com/username</span>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
-
-    <section class="content-section animate-slide" style="animation-delay: 0.1s">
-      <h2 class="section-title">A propos du blog</h2>
-      <p>Experience est un blog personnel dedie au partage d'idees, de reflexions et de decouvertes. L'objectif est de creer un espace simple et epure ou le contenu prime sur la forme.</p>
-      <p>Les sujets abordes couvrent le design, la technologie, le developpement personnel et tout ce qui peut enrichir notre quotidien.</p>
-    </section>
-
-    <section class="content-section animate-slide" style="animation-delay: 0.2s">
-      <h2 class="section-title">Competences</h2>
-      <div class="skills-grid">
-        <div class="skill-item">HTML/CSS</div>
-        <div class="skill-item">JavaScript</div>
-        <div class="skill-item">Node.js</div>
-        <div class="skill-item">Design UI</div>
-        <div class="skill-item">Figma</div>
-        <div class="skill-item">Git</div>
-        <div class="skill-item">React</div>
-        <div class="skill-item">TypeScript</div>
-      </div>
-    </section>
-
-    <div class="contact-box animate-slide" style="animation-delay: 0.3s">
-      <h3>Contact</h3>
-      <ul class="contact-list">
-        <li>
-          <span class="label">Email</span>
-          <span class="value">hello@example.com</span>
-        </li>
-        <li>
-          <span class="label">Twitter</span>
-          <span class="value">@username</span>
-        </li>
-        <li>
-          <span class="label">GitHub</span>
-          <span class="value">github.com/username</span>
-        </li>
-      </ul>
-    </div>
   </main>
 
-  <footer>
-    <div class="footer-content">
-      <p>Experience Blog</p>
-      <div class="footer-links">
-        <a href="/">Home</a>
-        <a href="/archive.html">Archive</a>
-        <a href="/about.html">About</a>
-        <a href="/rss.xml">RSS</a>
+  <footer class="footer">
+    <div class="footer__content">
+      <p class="footer__text">Experience Blog</p>
+      <div class="footer__links">
+        <a href="/" class="footer__link">Home</a>
+        <a href="/archive.html" class="footer__link">Archive</a>
+        <a href="/about.html" class="footer__link">About</a>
+        <a href="/rss.xml" class="footer__link">RSS</a>
       </div>
     </div>
   </footer>

@@ -67,7 +67,7 @@ function init() {
     modal.style.left = `${rect.left}px`
     modal.style.top = `${rect.bottom + 8}px`
     renderEmojiPicker()
-    modal.classList.add('visible')
+    modal.classList.add('is-visible')
   })
 
   // Cover actions
@@ -84,7 +84,7 @@ function init() {
     if (url) {
       currentCover = url
       updateCoverDisplay()
-      $('#coverModal').classList.remove('visible')
+      $('#coverModal').classList.remove('is-visible')
       $('#coverUrl').value = ''
     }
   })
@@ -92,10 +92,10 @@ function init() {
   // Close modals on outside click
   document.addEventListener('click', (e) => {
     if (!e.target.closest('#emojiModal') && !e.target.closest('#docIcon')) {
-      $('#emojiModal').classList.remove('visible')
+      $('#emojiModal').classList.remove('is-visible')
     }
     if (!e.target.closest('#coverModal') && !e.target.closest('.cover-btn') && !e.target.closest('#coverPlaceholder')) {
-      $('#coverModal').classList.remove('visible')
+      $('#coverModal').classList.remove('is-visible')
     }
   })
 
@@ -109,7 +109,7 @@ function openCoverModal() {
   const rect = cover.getBoundingClientRect()
   modal.style.left = `${Math.max(10, rect.left + rect.width / 2 - 170)}px`
   modal.style.top = `${rect.bottom + 8}px`
-  modal.classList.add('visible')
+  modal.classList.add('is-visible')
   $('#coverUrl').focus()
 }
 
@@ -124,7 +124,7 @@ function renderEmojiPicker() {
     if (item) {
       currentEmoji = item.dataset.emoji
       updateEmojiDisplay()
-      $('#emojiModal').classList.remove('visible')
+      $('#emojiModal').classList.remove('is-visible')
     }
   }
 }
@@ -236,18 +236,18 @@ async function loadArticles() {
     }
 
     el.innerHTML = articles.map(a => `
-      <div class="article-row">
-        <div class="info">
-          <div class="title">
-            <span class="article-emoji">${a.emoji || '📄'}</span>
+      <div class="card-list-item">
+        <div class="card-list-item__content">
+          <div class="card-list-item__title">
+            <span class="card-list-item__emoji">${a.emoji || '📄'}</span>
             ${escapeHtml(a.title)}
           </div>
-          <div class="meta">/${a.slug} · ${formatDate(a.created_at)}${a.tags ? ' · ' + a.tags : ''}</div>
+          <div class="card-list-item__meta">/${a.slug} · ${formatDate(a.created_at)}${a.tags ? ' · ' + a.tags : ''}</div>
         </div>
-        <div class="actions">
-          <a href="/article/${a.slug}" target="_blank" class="btn btn-outline btn-sm">Voir</a>
-          <button class="btn btn-outline btn-sm" data-edit="${a.id}">Editer</button>
-          <button class="btn btn-danger btn-sm" data-delete="${a.id}">Supprimer</button>
+        <div class="card-list-item__actions">
+          <a href="/article/${a.slug}" target="_blank" class="btn btn--ghost btn--sm">Voir</a>
+          <button class="btn btn--ghost btn--sm" data-edit="${a.id}">Editer</button>
+          <button class="btn btn--danger btn--sm" data-delete="${a.id}">Supprimer</button>
         </div>
       </div>
     `).join('')
@@ -297,17 +297,17 @@ function openModal(article = null) {
     onUpdate: () => {}
   })
 
-  $('#articleModal').classList.add('active')
+  $('#articleModal').classList.add('is-open')
 
   // Focus title after a small delay
   setTimeout(() => $('#title').focus(), 100)
 }
 
 function closeModal() {
-  $('#articleModal').classList.remove('active')
+  $('#articleModal').classList.remove('is-open')
   $('#articleForm').reset()
-  $('#emojiModal').classList.remove('visible')
-  $('#coverModal').classList.remove('visible')
+  $('#emojiModal').classList.remove('is-visible')
+  $('#coverModal').classList.remove('is-visible')
   if (editor) {
     if (editor.menuCleanup) editor.menuCleanup()
     editor.destroy()

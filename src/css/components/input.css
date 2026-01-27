@@ -1,0 +1,275 @@
+/* ═══════════════════════════════════════════════════════════
+   INPUT COMPONENT
+   ═══════════════════════════════════════════════════════════ */
+
+.input {
+  --input-bg: var(--bg-default);
+  --input-border: var(--border-default);
+
+  display: block;
+  width: 100%;
+
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  line-height: var(--leading-normal);
+  color: var(--fg-default);
+
+  padding: var(--space-2) var(--space-3);
+  min-height: 36px;
+
+  background: var(--input-bg);
+  border: 1px solid var(--input-border);
+  border-radius: var(--radius-md);
+
+  transition:
+    border-color var(--duration-fast) var(--ease-default),
+    box-shadow var(--duration-fast) var(--ease-default);
+}
+
+.input::placeholder {
+  color: var(--fg-placeholder);
+}
+
+.input:hover {
+  --input-border: var(--border-strong);
+}
+
+.input:focus {
+  --input-border: var(--accent-default);
+  box-shadow: 0 0 0 3px var(--accent-muted);
+  outline: none;
+}
+
+.input:disabled {
+  background: var(--bg-muted);
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* ─── Sizes ────────────────────────────────────────────── */
+
+.input--sm {
+  font-size: var(--text-xs);
+  padding: var(--space-1-5) var(--space-2);
+  min-height: 30px;
+}
+
+.input--lg {
+  font-size: var(--text-base);
+  padding: var(--space-3) var(--space-4);
+  min-height: 44px;
+}
+
+/* ─── Error State ──────────────────────────────────────── */
+
+.input--error {
+  --input-border: var(--error);
+}
+
+.input--error:focus {
+  box-shadow: 0 0 0 3px var(--error-subtle);
+}
+
+/* ─── Success State ────────────────────────────────────── */
+
+.input--success {
+  --input-border: var(--success);
+}
+
+.input--success:focus {
+  box-shadow: 0 0 0 3px var(--success-subtle);
+}
+
+/* ─── Textarea ─────────────────────────────────────────── */
+
+.textarea {
+  min-height: 100px;
+  resize: vertical;
+  line-height: var(--leading-relaxed);
+}
+
+.textarea--no-resize {
+  resize: none;
+}
+
+/* ─── Select ───────────────────────────────────────────── */
+
+.select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2337352f' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right var(--space-3) center;
+  padding-right: var(--space-10);
+}
+
+[data-theme="dark"] .select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+}
+
+/* ─── Label ────────────────────────────────────────────── */
+
+.label {
+  display: block;
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  color: var(--fg-default);
+  margin-bottom: var(--space-1-5);
+}
+
+.label--required::after {
+  content: " *";
+  color: var(--error);
+}
+
+/* ─── Helper Text ──────────────────────────────────────── */
+
+.helper-text {
+  font-size: var(--text-xs);
+  color: var(--fg-muted);
+  margin-top: var(--space-1);
+}
+
+.helper-text--error {
+  color: var(--error);
+}
+
+.helper-text--success {
+  color: var(--success);
+}
+
+/* ─── Form Group ───────────────────────────────────────── */
+
+.form-group {
+  margin-bottom: var(--space-4);
+}
+
+.form-group:last-child {
+  margin-bottom: 0;
+}
+
+/* ─── Form Row ─────────────────────────────────────────── */
+
+.form-row {
+  display: flex;
+  gap: var(--space-4);
+}
+
+.form-row .form-group {
+  flex: 1;
+}
+
+/* ─── Input Group ──────────────────────────────────────── */
+
+.input-group {
+  display: flex;
+}
+
+.input-group .input {
+  border-radius: 0;
+}
+
+.input-group .input:first-child {
+  border-radius: var(--radius-md) 0 0 var(--radius-md);
+}
+
+.input-group .input:last-child {
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+}
+
+.input-group .input:not(:last-child) {
+  border-right: none;
+}
+
+.input-group__addon {
+  display: flex;
+  align-items: center;
+  padding: 0 var(--space-3);
+  background: var(--bg-muted);
+  border: 1px solid var(--border-default);
+  font-size: var(--text-sm);
+  color: var(--fg-muted);
+}
+
+.input-group__addon:first-child {
+  border-radius: var(--radius-md) 0 0 var(--radius-md);
+  border-right: none;
+}
+
+.input-group__addon:last-child {
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  border-left: none;
+}
+
+/* ─── Checkbox & Radio ─────────────────────────────────── */
+
+.checkbox,
+.radio {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  cursor: pointer;
+  font-size: var(--text-sm);
+}
+
+.checkbox__input,
+.radio__input {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--accent-default);
+  cursor: pointer;
+}
+
+.checkbox__label,
+.radio__label {
+  color: var(--fg-default);
+}
+
+/* ─── Switch / Toggle ──────────────────────────────────── */
+
+.switch {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  cursor: pointer;
+}
+
+.switch__input {
+  position: relative;
+  width: 36px;
+  height: 20px;
+  appearance: none;
+  background: var(--bg-muted);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition:
+    background var(--duration-fast) var(--ease-default),
+    border-color var(--duration-fast) var(--ease-default);
+}
+
+.switch__input::before {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 14px;
+  height: 14px;
+  background: var(--fg-on-accent);
+  border-radius: var(--radius-full);
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--duration-fast) var(--ease-default);
+}
+
+.switch__input:checked {
+  background: var(--accent-default);
+  border-color: var(--accent-default);
+}
+
+.switch__input:checked::before {
+  transform: translateX(16px);
+}
+
+.switch__label {
+  font-size: var(--text-sm);
+  color: var(--fg-default);
+}

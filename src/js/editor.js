@@ -99,40 +99,40 @@ function createBubbleMenuElement() {
   const menu = document.createElement('div')
   menu.className = 'bubble-menu'
   menu.innerHTML = `
-    <button type="button" data-action="bold" title="Gras">
+    <button type="button" class="bubble-menu__btn" data-action="bold" title="Gras">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
         <path d="M6 4h8a4 4 0 0 1 4 4 4 4 0 0 1-4 4H6z"/><path d="M6 12h9a4 4 0 0 1 4 4 4 4 0 0 1-4 4H6z"/>
       </svg>
     </button>
-    <button type="button" data-action="italic" title="Italique">
+    <button type="button" class="bubble-menu__btn" data-action="italic" title="Italique">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
         <line x1="19" y1="4" x2="10" y2="4"/><line x1="14" y1="20" x2="5" y2="20"/><line x1="15" y1="4" x2="9" y2="20"/>
       </svg>
     </button>
-    <button type="button" data-action="underline" title="Souligne">
+    <button type="button" class="bubble-menu__btn" data-action="underline" title="Souligne">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
         <path d="M6 4v6a6 6 0 0 0 6 6 6 6 0 0 0 6-6V4"/><line x1="4" y1="20" x2="20" y2="20"/>
       </svg>
     </button>
-    <button type="button" data-action="strike" title="Barre">
+    <button type="button" class="bubble-menu__btn" data-action="strike" title="Barre">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
         <path d="M17.3 4.9c-2.3-.6-4.4-1-6.2-.9-2.7 0-5.3.7-5.3 3.6 0 1.5 1.8 3.3 7.3 3.3"/><path d="M8.7 15c0 2.5 2.8 3.8 5.7 3.8 3.4 0 5.8-1.6 5.8-4.2"/><line x1="3" y1="12" x2="21" y2="12"/>
       </svg>
     </button>
-    <span class="bubble-divider"></span>
-    <button type="button" data-action="code" title="Code">
+    <span class="bubble-menu__divider"></span>
+    <button type="button" class="bubble-menu__btn" data-action="code" title="Code">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
         <polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>
       </svg>
     </button>
-    <button type="button" data-action="link" title="Lien">
+    <button type="button" class="bubble-menu__btn" data-action="link" title="Lien">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
         <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
         <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
       </svg>
     </button>
-    <span class="bubble-divider"></span>
-    <button type="button" data-action="highlight" title="Surligner" class="highlight-btn">
+    <span class="bubble-menu__divider"></span>
+    <button type="button" class="bubble-menu__btn" data-action="highlight" title="Surligner">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
         <rect x="3" y="14" width="18" height="6" rx="1"/>
       </svg>
@@ -147,7 +147,7 @@ function createFloatingMenuElement() {
   const menu = document.createElement('div')
   menu.className = 'floating-menu'
   menu.innerHTML = `
-    <button type="button" class="floating-plus" title="Ajouter un bloc">
+    <button type="button" class="floating-menu__btn" title="Ajouter un bloc">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
         <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
       </svg>
@@ -160,12 +160,13 @@ function createFloatingMenuElement() {
 // Create emoji picker
 function createEmojiPicker() {
   const picker = document.createElement('div')
-  picker.className = 'emoji-picker'
+  picker.className = 'emoji-modal'
   picker.id = 'emojiPicker'
   picker.innerHTML = `
-    <div class="emoji-header">Emoji</div>
-    <div class="emoji-grid">
-      ${commonEmojis.map(e => `<button type="button" class="emoji-btn" data-emoji="${e}">${e}</button>`).join('')}
+    <div class="emoji-modal__content">
+      <div class="emoji-modal__list">
+        ${commonEmojis.map(e => `<button type="button" class="emoji-modal__item" data-emoji="${e}">${e}</button>`).join('')}
+      </div>
     </div>
   `
   document.body.appendChild(picker)
@@ -254,7 +255,7 @@ export function createEditor(element, options = {}) {
                   slashMenuEl.style.top = `${rect.bottom + 8}px`
                   slashMenuEl.style.left = `${rect.left}px`
                 }
-                slashMenuEl.classList.add('visible')
+                slashMenuEl.classList.add('is-visible')
               },
               onUpdate: (props) => {
                 renderSlashMenu(slashMenuEl, filteredCommands, slashMenuIndex)
@@ -284,13 +285,13 @@ export function createEditor(element, options = {}) {
                   return true
                 }
                 if (props.event.key === 'Escape') {
-                  slashMenuEl.classList.remove('visible')
+                  slashMenuEl.classList.remove('is-visible')
                   return true
                 }
                 return false
               },
               onExit: () => {
-                slashMenuEl.classList.remove('visible')
+                slashMenuEl.classList.remove('is-visible')
               },
             }
           },
@@ -363,13 +364,13 @@ export function createEditor(element, options = {}) {
   })
 
   // Floating menu - click opens slash menu
-  floatingMenuEl.querySelector('.floating-plus').addEventListener('click', () => {
+  floatingMenuEl.querySelector('.floating-menu__btn').addEventListener('click', () => {
     editor.chain().focus().insertContent('/').run()
   })
 
   // Slash menu click handler
   slashMenuEl.addEventListener('click', (e) => {
-    const item = e.target.closest('.slash-item')
+    const item = e.target.closest('.slash-menu__item')
     if (item) {
       const index = parseInt(item.dataset.index)
       const cmd = filteredCommands[index]
@@ -379,7 +380,7 @@ export function createEditor(element, options = {}) {
           to: editor.state.selection.from,
         })
         cmd.command({ editor })
-        slashMenuEl.classList.remove('visible')
+        slashMenuEl.classList.remove('is-visible')
       }
     }
   })
@@ -407,14 +408,14 @@ function renderSlashMenu(menu, commands, activeIndex) {
   let globalIndex = 0
 
   for (const [category, items] of Object.entries(grouped)) {
-    html += `<div class="slash-category">${category}</div>`
+    html += `<div class="slash-menu__category">${category}</div>`
     items.forEach(cmd => {
       html += `
-        <div class="slash-item ${globalIndex === activeIndex ? 'selected' : ''}" data-index="${cmd.originalIndex}">
-          <div class="slash-icon">${cmd.icon}</div>
-          <div class="slash-text">
-            <div class="slash-title">${cmd.title}</div>
-            <div class="slash-desc">${cmd.description}</div>
+        <div class="slash-menu__item ${globalIndex === activeIndex ? 'is-selected' : ''}" data-index="${cmd.originalIndex}">
+          <div class="slash-menu__item-icon">${cmd.icon}</div>
+          <div class="slash-menu__item-text">
+            <div class="slash-menu__item-title">${cmd.title}</div>
+            <div class="slash-menu__item-desc">${cmd.description}</div>
           </div>
         </div>
       `

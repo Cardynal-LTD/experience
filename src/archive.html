@@ -7,44 +7,53 @@
   <meta name="description" content="Archives du blog Experience - Tous les articles">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./css/main.css">
 </head>
 <body>
-  <header>
-    <div class="header-content">
-      <a href="/" class="logo">Experience</a>
-      <nav>
-        <a href="/">Home</a>
-        <a href="/archive.html" class="active">Archive</a>
-        <a href="/about.html">About</a>
+  <header class="header">
+    <div class="header__content">
+      <a href="/" class="header__logo">Experience</a>
+      <nav class="header__nav">
+        <a href="/" class="header__nav-link">Home</a>
+        <a href="/archive.html" class="header__nav-link header__nav-link--active">Archive</a>
+        <a href="/about.html" class="header__nav-link">About</a>
       </nav>
-      <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
-        <svg class="sun" viewBox="0 0 24 24"><path d="M12 7a5 5 0 100 10 5 5 0 000-10zM12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.72 12.72l1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
-        <svg class="moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+      <button class="btn btn--ghost btn--icon" onclick="toggleTheme()" aria-label="Toggle theme">
+        <svg class="sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="5"/>
+          <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+        </svg>
+        <svg class="moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
       </button>
     </div>
   </header>
 
-  <main>
-    <div class="page-header animate-fade">
-      <h1>Archive</h1>
-      <p>Tous les articles classes par date</p>
-    </div>
+  <main class="main main--full">
+    <section class="page animate-fadeIn">
+      <div class="page-header">
+        <h1 class="page-header__title">Archive</h1>
+        <p class="page-header__subtitle">Tous les articles classes par date</p>
+      </div>
 
-    <div id="articlesContainer">
-      <div class="loading">Chargement des articles...</div>
-    </div>
+      <div id="articlesContainer">
+        <div class="empty-state animate-pulse">
+          <div class="empty-state__title">Chargement des articles...</div>
+        </div>
+      </div>
+    </section>
   </main>
 
-  <footer>
-    <div class="footer-content">
-      <p>Experience Blog</p>
-      <div class="footer-links">
-        <a href="/">Home</a>
-        <a href="/archive.html">Archive</a>
-        <a href="/about.html">About</a>
-        <a href="/rss.xml">RSS</a>
+  <footer class="footer">
+    <div class="footer__content">
+      <p class="footer__text">Experience Blog</p>
+      <div class="footer__links">
+        <a href="/" class="footer__link">Home</a>
+        <a href="/archive.html" class="footer__link">Archive</a>
+        <a href="/about.html" class="footer__link">About</a>
+        <a href="/rss.xml" class="footer__link">RSS</a>
       </div>
     </div>
   </footer>
@@ -60,7 +69,13 @@
         const articles = await res.json()
 
         if (articles.length === 0) {
-          container.innerHTML = '<div class="empty-state">Aucun article pour le moment.</div>'
+          container.innerHTML = `
+            <div class="empty-state">
+              <div class="empty-state__icon">📝</div>
+              <div class="empty-state__title">Aucun article</div>
+              <div class="empty-state__description">Aucun article pour le moment.</div>
+            </div>
+          `
           return
         }
 
@@ -76,13 +91,21 @@
         const years = Object.keys(articlesByYear).sort((a, b) => b - a)
 
         container.innerHTML = years.map((year, yi) => `
-          <section class="year-section animate-slide" style="animation-delay: ${yi * 0.1}s">
-            <h2 class="year-title">${year}</h2>
-            <div class="archive-list">
+          <section class="year-section animate-slideUp" style="animation-delay: ${yi * 0.1}s">
+            <h2 class="year-section__title">${year}</h2>
+            <div class="card">
               ${articlesByYear[year].map(article => `
-                <a href="/article/${article.slug}" class="archive-item">
-                  <span class="title">${escapeHtml(article.title)}</span>
-                  <span class="date">${formatDate(article.created_at)}</span>
+                <a href="/article/${article.slug}" class="card-list-item">
+                  <div class="card-list-item__content">
+                    <div class="card-list-item__title">
+                      <span class="card-list-item__emoji">${article.emoji || '📄'}</span>
+                      ${escapeHtml(article.title)}
+                    </div>
+                    <div class="card-list-item__meta">${formatDate(article.created_at)}</div>
+                  </div>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="opacity: 0.5;">
+                    <path d="M9 18l6-6-6-6"/>
+                  </svg>
                 </a>
               `).join('')}
             </div>
@@ -90,7 +113,13 @@
         `).join('')
 
       } catch (err) {
-        container.innerHTML = '<div class="empty-state">Erreur lors du chargement des articles.</div>'
+        container.innerHTML = `
+          <div class="empty-state">
+            <div class="empty-state__icon">⚠️</div>
+            <div class="empty-state__title">Erreur</div>
+            <div class="empty-state__description">Erreur lors du chargement des articles.</div>
+          </div>
+        `
       }
     }
 

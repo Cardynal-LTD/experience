@@ -7,6 +7,7 @@ export function getTheme() {
 export function setTheme(theme) {
   document.documentElement.setAttribute('data-theme', theme)
   localStorage.setItem('theme', theme)
+  updateThemeIcons(theme)
 }
 
 export function toggleTheme() {
@@ -14,8 +15,29 @@ export function toggleTheme() {
   setTheme(current === 'dark' ? 'light' : 'dark')
 }
 
+function updateThemeIcons(theme) {
+  const sunIcons = document.querySelectorAll('.sun')
+  const moonIcons = document.querySelectorAll('.moon')
+
+  sunIcons.forEach(icon => {
+    icon.style.display = theme === 'dark' ? 'none' : 'block'
+  })
+
+  moonIcons.forEach(icon => {
+    icon.style.display = theme === 'dark' ? 'block' : 'none'
+  })
+}
+
 // Initialize theme on load
-setTheme(getTheme())
+const initialTheme = getTheme()
+setTheme(initialTheme)
+
+// Update icons when DOM is ready
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', () => updateThemeIcons(initialTheme))
+} else {
+  updateThemeIcons(initialTheme)
+}
 
 // Expose to window for onclick handlers
 window.toggleTheme = toggleTheme
