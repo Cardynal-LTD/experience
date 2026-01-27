@@ -717,6 +717,15 @@
   padding: 2rem;
 }
 
+[dir="rtl"] .feature-grid-two .feature-card {
+  align-items: flex-start;
+}
+
+[dir="rtl"] .feature-grid-two .feature-list {
+  width: 100%;
+  justify-content: flex-end;
+}
+
 .feature-grid-two .feature-card__visual {
   width: 100%;
 }
@@ -753,6 +762,11 @@
   flex-wrap: wrap;
   gap: 0.5rem;
   justify-content: flex-start;
+  width: 100%;
+}
+
+[dir="rtl"] .feature-list {
+  justify-content: flex-end;
 }
 
 .feature-list li {
