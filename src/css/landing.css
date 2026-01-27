@@ -350,6 +350,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  min-width: 420px;
 }
 
 /* Hero Chat Preview */
@@ -1339,8 +1340,7 @@
 
 .cfd-container {
   font-family: var(--cfd-font);
-  width: 100%;
-  max-width: 420px;
+  width: 420px;
   height: 480px;
   margin: 0 auto;
   display: flex;
@@ -1348,6 +1348,7 @@
   background: transparent;
   position: relative;
   overflow: hidden;
+  flex-shrink: 0;
 }
 
 .cfd-wrapper {
@@ -1362,6 +1363,7 @@
   -webkit-backdrop-filter: blur(12px);
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
   overflow: hidden;
+  width: 100%;
 }
 
 .light-mode .cfd-wrapper {
@@ -1682,6 +1684,8 @@
 /* Responsive - Chat Flow Demo */
 @media (max-width: 480px) {
   .cfd-container {
+    width: 100%;
+    max-width: 350px;
     height: 400px;
   }
 
