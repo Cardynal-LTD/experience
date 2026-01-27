@@ -234,6 +234,20 @@ created_at       TIMESTAMPTZ DEFAULT NOW()
 
 ## HISTORIQUE DES SESSIONS
 
+### Session 2026-01-27 (Landing Page Widgets i18n)
+- **Contexte:** Traduction des widgets de la landing page
+- **Actions:**
+  - Ajout WIDGET_TRANSLATIONS pour FR/HE
+  - Fonction wt() pour traductions widgets
+  - Chat Flow Demo: conversations traduites, systeme en anglais
+  - Playbook Widget: descriptions traduites
+  - Tree Widget: messages client traduits
+  - RAG Widget: question/reponse traduits
+  - ROI Calculator: prix par devise (USD/EUR/ILS)
+  - Language selector natif (<select>)
+  - Routes /fr et /he avec sitemap hreflang
+- **Etat:** Production ready
+
 ### Session 2026-01-27 (SEO + Multilingue)
 - **Contexte:** Optimisation SEO complète + support multilingue
 - **Actions:**
@@ -269,9 +283,44 @@ created_at       TIMESTAMPTZ DEFAULT NOW()
 
 ---
 
+## LANDING PAGE CARDYNAL (index.html)
+
+La landing page est une page marketing standalone avec des widgets interactifs animes.
+
+### Widgets Interactifs
+- **Chat Flow Demo** - Simulation de conversations support (hero)
+- **Playbook Widget** - Animation du flux de traitement des intents
+- **Tree Widget** - Arbre de decision escalation AI → Human
+- **RAG Widget** - Demo retrieval-augmented generation
+- **Omni Widget** - Visualisation multi-canal (WhatsApp, Instagram, etc.)
+
+### Traductions des Widgets (WIDGET_TRANSLATIONS)
+Systeme de traduction specifique aux widgets:
+- **Systeme reste en anglais:** Intent labels, tool calls, status, noms de fichiers
+- **Conversations traduites:** Messages client, reponses AI, messages humain
+
+```javascript
+wt('chat.billing.c1')  // → Message client traduit
+wt('playbook.step1')   // → Description etape traduite
+wt('tree.step1')       // → Message conversation traduit
+wt('rag.userQuestion') // → Question utilisateur traduite
+```
+
+### ROI Calculator
+- Modal avec slider pour taux de resolution AI
+- Prix adaptes par langue (USD/EUR/ILS)
+- Calcul automatique des economies
+
+### Routes Multilingues Landing
+- `/` - English (defaut)
+- `/fr` - Francais
+- `/he` - Hebrew (RTL)
+
+---
+
 ## BUGS CONNUS
 
-_Aucun bug identifié_
+_Aucun bug identifie_
 
 ---
 

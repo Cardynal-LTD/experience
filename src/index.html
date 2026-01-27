@@ -27,7 +27,7 @@
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Open+Sans:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Anonymous+Pro:wght@400;700&family=Libre+Baskerville:wght@400;700&family=Open+Sans:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="./css/main.css">
   <link rel="stylesheet" href="./css/landing.css">
@@ -220,6 +220,11 @@
         <p class="feature-card__description" data-i18n="features.routing.description">
           Our AI doesn't just match keywords — it understands context. Each conversation triggers the right playbook, pulling from your knowledge base to deliver accurate, on-brand responses.
         </p>
+        <ul class="feature-list">
+          <li data-i18n="features.routing.list1">Intent-based triggers</li>
+          <li data-i18n="features.routing.list2">Multi-step flows</li>
+          <li data-i18n="features.routing.list3">External tool calls</li>
+        </ul>
       </div>
       <div class="feature-card__visual feature-card__visual--playbook">
         <!-- Playbook Flow Widget -->
@@ -296,6 +301,11 @@
         <p class="feature-card__description" data-i18n="features.escalation.description">
           AI handles the routine. When things get complex, conversations seamlessly transfer to your team — with full context, so customers never repeat themselves.
         </p>
+        <ul class="feature-list">
+          <li data-i18n="features.escalation.list1">Configurable triggers</li>
+          <li data-i18n="features.escalation.list2">Auto-generated notes</li>
+          <li data-i18n="features.escalation.list3">Seamless transition</li>
+        </ul>
       </div>
 
       <div class="feature-card feature-card--dark">
@@ -309,6 +319,11 @@
         <p class="feature-card__description" data-i18n="features.knowledge.description">
           Upload your docs, FAQs, and policies. Cardynal indexes everything and retrieves the right answer in milliseconds — no training required.
         </p>
+        <ul class="feature-list">
+          <li data-i18n="features.knowledge.list1">PDF, Word, CSV, URL ingestion</li>
+          <li data-i18n="features.knowledge.list2">RAG-powered retrieval</li>
+          <li data-i18n="features.knowledge.list3">Source citations</li>
+        </ul>
         <div class="feature-card__visual feature-card__visual--rag">
           <div id="rag-widget">
             <!-- Knowledge Base -->
@@ -465,11 +480,10 @@
           Bring every customer conversation into one collaborative inbox — no matter the channel. Your team can access, manage, and respond quickly.
         </p>
         <ul class="feature-list">
-          <li>WhatsApp</li>
-          <li>Web chat</li>
-          <li>Instagram</li>
-          <li>Facebook</li>
-          <li>Telegram</li>
+          <li data-i18n="features.omni.list1">Real-time sync</li>
+          <li data-i18n="features.omni.list2">Team collaboration</li>
+          <li data-i18n="features.omni.list3">Auto-assignment</li>
+          <li data-i18n="features.omni.list4">Full conversation history</li>
         </ul>
       </div>
     </div>
@@ -768,14 +782,14 @@
     const TRANSLATIONS = {
       en: {
         'nav.home': 'Home',
-        'nav.features': 'Features',
+        'nav.features': 'Product',
         'nav.pricing': 'Pricing',
         'nav.faq': 'FAQ',
-        'nav.contact': 'Contact Us',
+        'nav.contact': 'Contact us',
         'hero.title': 'Human + AI Customer Support - Fully managed, from day one',
         'hero.description': 'Cardynal deploys intelligent AI agents on your behalf. We handle the tech — you get a complete support automation platform with your own AI dashboard and help desk. No developers needed.',
-        'hero.cta': 'Book a call',
-        'hero.feature1': 'WhatsApp, Web chat, Social Media',
+        'hero.cta': 'Book a demo',
+        'hero.feature1': 'WhatsApp · Web chat · Social inbox',
         'hero.feature2': 'Operational in days not months',
         'hero.feature3': 'Fully managed setup',
         'problem.title': "You don't need another tool. You need support that works.",
@@ -783,41 +797,54 @@
         'stats.stat1': 'of requests handled autonomously with AI',
         'stats.stat2': 'average AI response time',
         'stats.stat3': 'missed conversations across channels',
-        'stats.stat4': 'from kickoff to live support',
+        'stats.stat4': 'Days, not weeks, from kickoff to live support',
         'audience.title': 'For who?',
-        'audience.card1.title': 'Service companies',
-        'audience.card1.desc': 'Never miss a lead. Never leave a question unanswered. Cardynal keeps your pipeline flowing 24/7.',
+        'audience.card1.title': 'Service Companies',
+        'audience.card1.desc': 'Never miss a lead. Never leave a question unanswered. Whether it\'s plumbing, real estate, or consulting — Cardynal responds to every inquiry 24/7, qualifies prospects, and routes hot leads to your team.',
         'audience.card2.title': 'SaaS & IoT',
-        'audience.card2.desc': 'Deflect L1 tickets. Let your team focus on real engineering problems while AI handles the rest.',
+        'audience.card2.desc': 'Deflect L1 tickets. Let your team focus on real problems. Cardynal answers how-to questions, guides users through troubleshooting, and searches your docs instantly.',
         'audience.card3.title': 'Retail & E-commerce',
-        'audience.card3.desc': 'From order tracking to product questions, Cardynal handles it all — so your team can focus on growth.',
+        'audience.card3.desc': 'From order tracking to product questions, Cardynal resolves issues instantly. Your AI handles "where\'s my order?", return requests, and product inquiries — with live data from your store.',
         'audience.card4.title': 'Consultants',
         'audience.card4.desc': 'Scale your expertise. Let AI handle initial inquiries while you focus on high-value consultations.',
         'audience.cta': 'Schedule a demo',
-        'laptop.title': 'AI agents that think before they respond',
+        'laptop.title': 'AI Agents That Think Before They Respond',
         'laptop.description': 'By combining AI with human expertise, Cardynal streamlines workflows, automates repetitive tasks, and creates truly magical customer experiences.',
         'features.routing.badge': 'Playbooks',
-        'features.routing.title': 'Scenario-based intelligence',
-        'features.routing.description': 'Our AI doesn\'t just match keywords — it understands context. Each conversation triggers the right playbook, pulling from your knowledge base to deliver accurate, on-brand responses.',
+        'features.routing.title': 'Scenario-Based Intelligence',
+        'features.routing.description': 'Define exactly how your AI handles each type of request. Product questions, refund policies, technical troubleshooting — each gets its own rulebook.',
+        'features.routing.list1': 'Intent-based triggers',
+        'features.routing.list2': 'Multi-step flows',
+        'features.routing.list3': 'External tool calls',
         'features.escalation.badge': 'Smart Escalation',
-        'features.escalation.title': 'Humans when it matters',
-        'features.escalation.description': 'AI handles the routine. When things get complex, conversations seamlessly transfer to your team — with full context, so customers never repeat themselves.',
+        'features.escalation.title': 'Humans When It Matters',
+        'features.escalation.description': 'Not everything should be automated. Cardynal detects frustration, complexity, and explicit requests — and routes to your team with a full context summary.',
+        'features.escalation.list1': 'Configurable triggers',
+        'features.escalation.list2': 'Auto-generated notes',
+        'features.escalation.list3': 'Seamless transition',
         'features.knowledge.badge': 'Knowledge Base',
-        'features.knowledge.title': 'Your documentation, instantly searchable',
-        'features.knowledge.description': 'Upload your docs, FAQs, and policies. Cardynal indexes everything and retrieves the right answer in milliseconds — no training required.',
+        'features.knowledge.title': 'Your Documentation, Instantly Searchable',
+        'features.knowledge.description': 'Upload your docs, FAQs, and policies. Cardynal converts them into a vector-powered knowledge base your AI actually uses.',
+        'features.knowledge.list1': 'PDF, Word, CSV, URL ingestion',
+        'features.knowledge.list2': 'RAG-powered retrieval',
+        'features.knowledge.list3': 'Source citations',
         'features.omni.badge': 'Multi-Channel Inbox',
-        'features.omni.title': 'One brain, every channel',
-        'features.omni.description': 'Bring every customer conversation into one collaborative inbox — no matter the channel. Your team can access, manage, and respond quickly.',
+        'features.omni.title': 'One Brain, Every Channel',
+        'features.omni.description': 'Bring every customer conversation into one collaborative inbox — no matter the channel. Your team can access, manage, and respond quickly, ensuring nothing slips through the cracks.',
+        'features.omni.list1': 'Real-time sync',
+        'features.omni.list2': 'Team collaboration',
+        'features.omni.list3': 'Auto-assignment',
+        'features.omni.list4': 'Full conversation history',
         'features.api.badge': 'Integrations',
         'features.api.title': 'Cardynal.io agents learn your business. Just like real employees.',
         'features.api.description': 'Let your AI pull live data from your CRM, ERP, or any REST API. Check order status, verify accounts, fetch inventory — without leaving the conversation.',
-        'pricing.badge': 'AI Pricing',
-        'pricing.title': 'Simple pricing. No surprises.',
+        'pricing.badge': 'Pricing',
+        'pricing.title': 'Simple Pricing. No Surprises.',
         'pricing.subtitle': 'Pay for resolutions, not conversations. Escalations to humans are always free.',
-        'pricing.plan': 'Starter',
+        'pricing.plan': 'Base',
         'pricing.description': 'For solopreneurs & early-stage companies who want to improve their customer service.',
         'pricing.amount': '$99',
-        'pricing.period': '/ month',
+        'pricing.period': 'Per month',
         'pricing.seatPrice': '+$25',
         'pricing.addon1': 'per seat/month',
         'pricing.resolutionPrice': '+$0.90',
@@ -830,12 +857,12 @@
         'pricing.f4': 'Unlimited AI conversations*',
         'pricing.f5': 'WhatsApp + Web chat',
         'faq.title': 'Questions?<br>Let\'s clear things up.',
-        'faq.subtitle': 'AI-powered solutions, business automation tools... a lot of big words can get confusing. We\'re here to make it clear.',
+        'faq.subtitle': 'Yes, we understand—AI-powered solutions, business automation tools, AI for marketing, AI for customer support… a lot of big words can get confusing. We\'re here to make it clear.',
         'faq.q1': 'What exactly is Cardynal?',
         'faq.a1': 'Cardynal is a fully managed AI support platform. We deploy intelligent AI agents that handle customer conversations across WhatsApp, web chat, and all your channels.',
         'faq.q2': 'How is Cardynal different from Intercom, Zendesk, and other solutions?',
         'faq.a2': 'Those are help desks with AI features bolted on. Cardynal is AI-first and fully managed — we deploy everything for you and optimize it continuously.',
-        'faq.q3': 'How does the WhatsApp Integration work?',
+        'faq.q3': 'How does the WhatsApp integration work?',
         'faq.a3': 'Just like WhatsApp Web. You scan a QR code with your phone, and your WhatsApp is connected. No Meta Business API approval needed.',
         'faq.q4': 'Do I need technical skills?',
         'faq.a4': 'No. We handle all the technical work. You use the dashboard to monitor conversations, review analytics, and make business decisions.',
@@ -845,11 +872,11 @@
         'faq.a6': 'We offer a proof-of-concept phase where you can test with real conversations before committing. No long-term contracts required.',
         'faq.q7': 'How long does setup take?',
         'faq.a7': '48 hours from kickoff to live. Most of that is us building your playbooks and loading your knowledge base.',
-        'faq.q8': 'How do I add Cardynal to my wordpress website?',
+        'faq.q8': 'How do I add Cardynal to my WordPress website?',
         'faq.a8': 'We provide a WordPress plugin that installs in one click. Activate it, paste your key, and the chat widget appears instantly.',
         'blog.title': 'Latest articles',
         'blog.viewAll': 'View all',
-        'footer.tagline': 'Human + AI Customer Support. Fully managed, from day one.',
+        'footer.tagline': 'Cardynal is an AI agency that helps companies integrate AI into their daily operations, combining human expertise with powerful AI technology.',
         'footer.product': 'Product',
         'footer.company': 'Company',
         'footer.legal': 'Legal',
@@ -860,6 +887,8 @@
         'footer.terms': 'Terms',
         'footer.getInTouch': 'Get In Touch',
         'pricing.roiBtn': 'Calculate your ROI',
+        'pricing.resolution': 'What\'s a resolution?',
+        'pricing.resolutionDesc': 'When your AI successfully handles a customer request — answers a question, solves a problem, provides information. Escalated conversations and test messages don\'t count. You only pay when the AI delivers value.',
         'roi.title': 'Calculate Your ROI',
         'roi.subtitle': 'See how much you can save with Cardynal AI support',
         'roi.monthlyConversations': 'Monthly support conversations',
@@ -906,15 +935,28 @@
         'features.routing.badge': 'Playbooks',
         'features.routing.title': 'Intelligence basee sur les scenarios',
         'features.routing.description': 'Notre IA ne fait pas que matcher des mots-cles — elle comprend le contexte. Chaque conversation declenche le bon playbook, puisant dans votre base de connaissances.',
+        'features.routing.list1': 'Declencheurs bases sur l\'intention',
+        'features.routing.list2': 'Flux multi-etapes',
+        'features.routing.list3': 'Appels d\'outils externes',
         'features.escalation.badge': 'Escalade Intelligente',
         'features.escalation.title': 'L\'humain quand ca compte',
         'features.escalation.description': 'L\'IA gere la routine. Quand les choses se compliquent, les conversations sont transferees a votre equipe — avec tout le contexte.',
+        'features.escalation.list1': 'Declencheurs configurables',
+        'features.escalation.list2': 'Notes auto-generees',
+        'features.escalation.list3': 'Transition fluide',
         'features.knowledge.badge': 'Base de Connaissances',
         'features.knowledge.title': 'Votre documentation, instantanement consultable',
         'features.knowledge.description': 'Uploadez vos docs, FAQs et politiques. Cardynal indexe tout et retrouve la bonne reponse en millisecondes.',
+        'features.knowledge.list1': 'Ingestion PDF, Word, CSV, URL',
+        'features.knowledge.list2': 'Recuperation RAG',
+        'features.knowledge.list3': 'Citations des sources',
         'features.omni.badge': 'Inbox Multi-Canal',
         'features.omni.title': 'Un cerveau, tous les canaux',
         'features.omni.description': 'Centralisez toutes les conversations clients dans une inbox collaborative — quel que soit le canal.',
+        'features.omni.list1': 'Synchronisation temps reel',
+        'features.omni.list2': 'Collaboration d\'equipe',
+        'features.omni.list3': 'Attribution automatique',
+        'features.omni.list4': 'Historique complet des conversations',
         'features.api.badge': 'Integrations',
         'features.api.title': 'Les agents Cardynal apprennent votre business. Comme de vrais employes.',
         'features.api.description': 'Laissez votre IA extraire des donnees en temps reel de votre CRM, ERP ou toute API REST.',
@@ -1013,15 +1055,28 @@
         'features.routing.badge': 'Playbooks',
         'features.routing.title': 'אינטליגנציה מבוססת תרחישים',
         'features.routing.description': 'ה-AI שלנו לא רק מתאים מילות מפתח — הוא מבין הקשר. כל שיחה מפעילה את ה-playbook הנכון.',
+        'features.routing.list1': 'טריגרים מבוססי כוונה',
+        'features.routing.list2': 'זרימות רב-שלביות',
+        'features.routing.list3': 'קריאות לכלים חיצוניים',
         'features.escalation.badge': 'אסקלציה חכמה',
         'features.escalation.title': 'אנשים כשזה חשוב',
         'features.escalation.description': 'AI מטפל בשגרה. כשהדברים מסתבכים, השיחות עוברות לצוות שלכם — עם כל ההקשר.',
+        'features.escalation.list1': 'טריגרים מותאמים אישית',
+        'features.escalation.list2': 'הערות אוטומטיות',
+        'features.escalation.list3': 'מעבר חלק',
         'features.knowledge.badge': 'בסיס ידע',
         'features.knowledge.title': 'התיעוד שלכם, חיפוש מיידי',
         'features.knowledge.description': 'העלו את המסמכים, השאלות הנפוצות והמדיניות שלכם. Cardynal מאנדקסת הכל ומאחזרת את התשובה הנכונה באלפיות שניות.',
+        'features.knowledge.list1': 'קליטת PDF, Word, CSV, URL',
+        'features.knowledge.list2': 'אחזור מבוסס RAG',
+        'features.knowledge.list3': 'ציטוט מקורות',
         'features.omni.badge': 'תיבת דואר רב-ערוצית',
         'features.omni.title': 'מוח אחד, כל הערוצים',
         'features.omni.description': 'רכזו את כל שיחות הלקוחות בתיבת דואר שיתופית אחת — לא משנה הערוץ.',
+        'features.omni.list1': 'סנכרון בזמן אמת',
+        'features.omni.list2': 'שיתוף פעולה צוותי',
+        'features.omni.list3': 'הקצאה אוטומטית',
+        'features.omni.list4': 'היסטוריית שיחות מלאה',
         'features.api.badge': 'אינטגרציות',
         'features.api.title': 'סוכני Cardynal לומדים את העסק שלכם. בדיוק כמו עובדים אמיתיים.',
         'features.api.description': 'תנו ל-AI שלכם למשוך נתונים בזמן אמת מה-CRM, ERP או כל API REST.',
@@ -1088,6 +1143,179 @@
         'roi.cta': 'התחילו עכשיו'
       }
     };
+
+    // Widget translations (conversations only - system stays in English)
+    const WIDGET_TRANSLATIONS = {
+      en: {
+        // Chat Flow Demo - conversations
+        chat: {
+          billing: {
+            c1: 'Why was I charged $49 twice this month?',
+            a1: 'Let me check your billing history right away.',
+            a2: "You're right — I found a duplicate charge. This was a system error on our end. I'm initiating a refund now.",
+            a3: "Refund processed! You'll see $49 back in your account within 2-3 days. I've also flagged this to prevent future duplicates.",
+            c2: 'Great, thanks for sorting it out quickly.',
+            a4: 'Of course! Sorry for the confusion. Anything else I can help with?'
+          },
+          order: {
+            c1: "Where is my order #4521? It's been 5 days.",
+            a1: 'Let me look that up for you right away.',
+            a2: "I see your order is delayed at a sorting facility. This is unusual — let me escalate to our logistics team.",
+            note: 'Customer frustrated (5 days wait). Order #4521 stuck at sorting. Needs priority resolution + compensation.',
+            h1: "Hi Noa! I'm taking over. Let me contact the carrier directly.",
+            h2: "Good news — I've flagged your package for priority handling. It'll arrive tomorrow by 6pm.",
+            c2: "That's great, thank you so much!",
+            h3: "You're welcome! I've also added a 15% discount to your next order as an apology for the delay."
+          },
+          tech: {
+            c1: 'The API is throwing a 500 error on POST requests.',
+            a1: 'Got it — let me check our system status.',
+            a2: 'Our systems are fully operational. The 500 might be due to an invalid payload. Can you share your request body?',
+            c2: 'Here it is: {"user": "test", "action": "create"}',
+            a3: 'Found it! Your payload is missing the required "api_key" field. Add it and you should be good.',
+            c3: 'That fixed it! Thanks a lot.',
+            a4: 'Perfect! Let me know if you need anything else.'
+          }
+        },
+        // Playbook Widget
+        playbook: {
+          step1: 'Customer requesting refund',
+          step2: 'Matching policy rules',
+          step3: 'Order #12847 confirmed',
+          step4: 'Response sent in 4.2s'
+        },
+        // Tree Widget
+        tree: {
+          step1: '"My order is late!"',
+          step2trigger: 'High frustration',
+          branchLeftBlocked: 'Blocked',
+          branchRight: 'Routing to Maya'
+        },
+        // RAG Widget
+        rag: {
+          userQuestion: 'What is the refund policy?',
+          answer: 'Refunds are processed within <strong>14 business days</strong> of receiving the returned item.'
+        }
+      },
+      fr: {
+        // Chat Flow Demo - conversations
+        chat: {
+          billing: {
+            c1: 'Pourquoi ai-je ete debite de 49€ deux fois ce mois-ci ?',
+            a1: 'Laissez-moi verifier votre historique de facturation immediatement.',
+            a2: "Vous avez raison — j'ai trouve un double debit. C'etait une erreur systeme de notre cote. Je lance le remboursement.",
+            a3: "Remboursement effectue ! Vous verrez 49€ sur votre compte dans 2-3 jours. J'ai aussi signale cela pour eviter les doublons.",
+            c2: 'Super, merci d\'avoir regle ca rapidement.',
+            a4: 'Bien sur ! Desole pour la confusion. Autre chose ?'
+          },
+          order: {
+            c1: 'Ou est ma commande #4521 ? Ca fait 5 jours.',
+            a1: 'Laissez-moi verifier ca pour vous immediatement.',
+            a2: 'Je vois que votre commande est bloquee au centre de tri. C\'est inhabituel — je transfere a notre equipe logistique.',
+            note: 'Client frustre (5 jours). Commande #4521 bloquee au tri. Priorite + compensation.',
+            h1: 'Bonjour Noa ! Je prends le relais. Je contacte le transporteur.',
+            h2: 'Bonne nouvelle — j\'ai marque votre colis en priorite. Il arrivera demain avant 18h.',
+            c2: 'Super, merci beaucoup !',
+            h3: 'Je vous en prie ! J\'ai aussi ajoute 15% de remise sur votre prochaine commande pour le retard.'
+          },
+          tech: {
+            c1: 'L\'API renvoie une erreur 500 sur les requetes POST.',
+            a1: 'Compris — laissez-moi verifier le statut du systeme.',
+            a2: 'Nos systemes fonctionnent normalement. L\'erreur 500 peut etre due a un payload invalide. Pouvez-vous partager le body ?',
+            c2: 'Voici : {"user": "test", "action": "create"}',
+            a3: 'Trouve ! Il manque le champ obligatoire "api_key". Ajoutez-le et ca devrait marcher.',
+            c3: 'Ca marche maintenant ! Merci beaucoup.',
+            a4: 'Parfait ! N\'hesitez pas si vous avez besoin d\'autre chose.'
+          }
+        },
+        // Playbook Widget
+        playbook: {
+          step1: 'Le client demande un remboursement',
+          step2: 'Verification des regles',
+          step3: 'Commande #12847 confirmee',
+          step4: 'Reponse envoyee en 4.2s'
+        },
+        // Tree Widget
+        tree: {
+          step1: '"Ma commande est en retard !"',
+          step2trigger: 'Frustration elevee',
+          branchLeftBlocked: 'Bloque',
+          branchRight: 'Transfert vers Maya'
+        },
+        // RAG Widget
+        rag: {
+          userQuestion: 'Quelle est la politique de remboursement ?',
+          answer: 'Les remboursements sont traites sous <strong>14 jours ouvrables</strong> apres reception de l\'article retourne.'
+        }
+      },
+      he: {
+        // Chat Flow Demo - conversations
+        chat: {
+          billing: {
+            c1: 'למה חוייבתי 49$ פעמיים החודש?',
+            a1: 'תן לי לבדוק את היסטוריית החיובים שלך מיד.',
+            a2: 'אתה צודק — מצאתי חיוב כפול. זו היתה שגיאת מערכת מצידנו. אני מתחיל בהחזר עכשיו.',
+            a3: 'ההחזר בוצע! תראה 49$ בחשבונך תוך 2-3 ימים. גם סימנתי את זה כדי למנוע כפילויות בעתיד.',
+            c2: 'מעולה, תודה שטיפלת בזה מהר.',
+            a4: 'כמובן! סליחה על הבלבול. משהו נוסף?'
+          },
+          order: {
+            c1: 'איפה ההזמנה שלי #4521? עברו 5 ימים.',
+            a1: 'תן לי לבדוק את זה עבורך מיד.',
+            a2: 'אני רואה שההזמנה שלך תקועה במרכז המיון. זה לא רגיל — אני מעביר לצוות הלוגיסטיקה.',
+            note: 'לקוח מתוסכל (5 ימים). הזמנה #4521 תקועה במיון. דרוש פתרון מהיר + פיצוי.',
+            h1: 'היי נועה! אני לוקחת את זה מכאן. אני פונה ישירות לשליח.',
+            h2: 'חדשות טובות — סימנתי את החבילה שלך לטיפול מועדף. היא תגיע מחר עד 18:00.',
+            c2: 'מעולה, תודה רבה!',
+            h3: 'בשמחה! הוספתי גם 15% הנחה להזמנה הבאה שלך כפיצוי על העיכוב.'
+          },
+          tech: {
+            c1: 'ה-API מחזיר שגיאה 500 בבקשות POST.',
+            a1: 'הבנתי — תן לי לבדוק את סטטוס המערכת.',
+            a2: 'המערכות שלנו עובדות כרגיל. השגיאה 500 עשויה להיות בגלל payload לא תקין. אפשר לשתף את גוף הבקשה?',
+            c2: 'הנה: {"user": "test", "action": "create"}',
+            a3: 'מצאתי! חסר השדה הנדרש "api_key". הוסף אותו וזה אמור לעבוד.',
+            c3: 'זה עובד עכשיו! תודה רבה.',
+            a4: 'מצוין! ספר לי אם צריך משהו נוסף.'
+          }
+        },
+        // Playbook Widget
+        playbook: {
+          step1: 'הלקוח מבקש החזר',
+          step2: 'בודק את כללי המדיניות',
+          step3: 'הזמנה #12847 אושרה',
+          step4: 'תגובה נשלחה ב-4.2 שניות'
+        },
+        // Tree Widget
+        tree: {
+          step1: '"ההזמנה שלי מאחרת!"',
+          step2trigger: 'תסכול גבוה',
+          branchLeftBlocked: 'חסום',
+          branchRight: 'מעביר למאיה'
+        },
+        // RAG Widget
+        rag: {
+          userQuestion: 'מה מדיניות ההחזרים?',
+          answer: 'החזרים מעובדים תוך <strong>14 ימי עסקים</strong> מקבלת הפריט המוחזר.'
+        }
+      }
+    };
+
+    // Helper to get widget translation
+    function wt(path) {
+      const parts = path.split('.');
+      let val = WIDGET_TRANSLATIONS[currentLang];
+      for (const part of parts) {
+        val = val?.[part];
+      }
+      if (val === undefined) {
+        val = WIDGET_TRANSLATIONS['en'];
+        for (const part of parts) {
+          val = val?.[part];
+        }
+      }
+      return val || path;
+    }
 
     // Current language - detect from URL first, then localStorage
     const urlPath = window.location.pathname;
@@ -1195,59 +1423,59 @@
         afterSystem: 400,
         betweenFlows: 2500
       },
-      maxVisibleMessages: 7,
+      maxVisibleMessages: 15,
       playMode: 'sequential',
       flows: [
         {
           name: 'Billing Inquiry',
           messages: [
-            { type: 'customer', text: 'Why was I charged $49 twice this month?' },
-            { type: 'ai', text: 'Let me check your billing history right away.' },
+            { type: 'customer', text: wt('chat.billing.c1') },
+            { type: 'ai', text: wt('chat.billing.a1') },
             { type: 'system', text: 'Intent: billing_dispute' },
             { type: 'tool', text: 'GET /billing/history?customer=sam_291', glow: true },
             { type: 'tool', text: 'Found: 2 charges of $49 on Jan 15' },
             { type: 'system', text: 'Analysis: Duplicate charge detected' },
-            { type: 'ai', text: "You're right — I found a duplicate charge. This was a system error on our end. I'm initiating a refund now." },
+            { type: 'ai', text: wt('chat.billing.a2') },
             { type: 'tool', text: 'POST /refunds/create', glow: true },
             { type: 'tool', text: 'Refund: $49.00' },
-            { type: 'ai', text: "Refund processed! You'll see $49 back in your account within 2-3 days. I've also flagged this to prevent future duplicates." },
-            { type: 'customer', text: 'Great, thanks for sorting it out quickly.' },
-            { type: 'ai', text: 'Of course! Sorry for the confusion. Anything else I can help with?' }
+            { type: 'ai', text: wt('chat.billing.a3') },
+            { type: 'customer', text: wt('chat.billing.c2') },
+            { type: 'ai', text: wt('chat.billing.a4') }
           ]
         },
         {
           name: 'Order Tracking with Escalation',
           messages: [
-            { type: 'customer', label: 'Noa', text: "Where is my order #4521? It's been 5 days." },
-            { type: 'ai', text: 'Let me look that up for you right away.' },
+            { type: 'customer', label: 'Noa', text: wt('chat.order.c1') },
+            { type: 'ai', text: wt('chat.order.a1') },
             { type: 'system', text: 'Intent: order_tracking' },
             { type: 'system', text: 'Customer sentiment: frustrated' },
             { type: 'tool', text: 'GET /orders/4521', glow: true },
             { type: 'tool', text: 'Status: Stuck at sorting facility' },
-            { type: 'ai', text: "I see your order is delayed at a sorting facility. This is unusual — let me escalate to our logistics team." },
+            { type: 'ai', text: wt('chat.order.a2') },
             { type: 'system', text: 'Escalating to human agent' },
-            { type: 'note', label: 'Handoff Note', text: 'Customer frustrated (5 days wait). Order #4521 stuck at sorting. Needs priority resolution + compensation.' },
-            { type: 'human', label: 'Maya — Support', text: "Hi Noa! I'm taking over. Let me contact the carrier directly." },
-            { type: 'human', text: "Good news — I've flagged your package for priority handling. It'll arrive tomorrow by 6pm." },
-            { type: 'customer', label: 'Noa', text: 'That\'s great, thank you so much!' },
-            { type: 'human', text: "You're welcome! I've also added a 15% discount to your next order as an apology for the delay." }
+            { type: 'note', label: 'Handoff Note', text: wt('chat.order.note') },
+            { type: 'human', label: 'Maya — Support', text: wt('chat.order.h1') },
+            { type: 'human', text: wt('chat.order.h2') },
+            { type: 'customer', label: 'Noa', text: wt('chat.order.c2') },
+            { type: 'human', text: wt('chat.order.h3') }
           ]
         },
         {
           name: 'Technical Support',
           messages: [
-            { type: 'customer', label: 'Alex', text: 'The API is throwing a 500 error on POST requests.' },
-            { type: 'ai', text: 'Got it — let me check our system status.' },
+            { type: 'customer', label: 'Alex', text: wt('chat.tech.c1') },
+            { type: 'ai', text: wt('chat.tech.a1') },
             { type: 'system', text: 'Intent detected: technical_issue' },
             { type: 'tool', text: 'GET /status/current', glow: true },
             { type: 'tool', text: 'All systems operational' },
-            { type: 'ai', text: 'Our systems are fully operational. The 500 might be due to an invalid payload. Can you share your request body?' },
-            { type: 'customer', label: 'Alex', text: 'Here it is: {"user": "test", "action": "create"}' },
+            { type: 'ai', text: wt('chat.tech.a2') },
+            { type: 'customer', label: 'Alex', text: wt('chat.tech.c2') },
             { type: 'tool', text: 'POST /validate/json', glow: true },
             { type: 'tool', text: 'Missing required field: api_key' },
-            { type: 'ai', text: 'Found it! Your payload is missing the required "api_key" field. Add it and you should be good.' },
-            { type: 'customer', label: 'Alex', text: 'That fixed it! Thanks a lot.' },
-            { type: 'ai', text: 'Perfect! Let me know if you need anything else.' }
+            { type: 'ai', text: wt('chat.tech.a3') },
+            { type: 'customer', label: 'Alex', text: wt('chat.tech.c3') },
+            { type: 'ai', text: wt('chat.tech.a4') }
           ]
         }
       ]
@@ -1289,7 +1517,13 @@
                     <path d="M13 3L4 14h7v7l9-11h-7V3z" fill="currentColor"/>
                   </svg>
                 </div>
-                <span class="cfd-header__title">Cardynal AI</span>
+                <div class="cfd-header__info">
+                  <span class="cfd-header__title">Cardynal AI</span>
+                  <div class="cfd-header__status">
+                    <span class="cfd-header__online-dot"></span>
+                    <span>Online</span>
+                  </div>
+                </div>
               </div>
               <div class="cfd-messages" id="cfd-messages"></div>
             </div>
@@ -1461,25 +1695,25 @@
         {
           icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path><path d="M8 9h8M8 13h6"></path></svg>`,
           title: "Intent detected",
-          desc: "Customer requesting refund",
+          desc: wt('playbook.step1'),
           status: "Analyzing"
         },
         {
           icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M3 12h18M5.6 5.6l12.8 12.8M18.4 5.6 5.6 18.4"/><circle cx="12" cy="12" r="3"/></svg>`,
           title: "AI playbook",
-          desc: "Matching policy rules",
+          desc: wt('playbook.step2'),
           status: "Processing"
         },
         {
           icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path><path d="M3 12c0 1.66 4 3 9 3s9-1.34 9-3"></path></svg>`,
           title: "Data verified",
-          desc: "Order #12847 confirmed",
+          desc: wt('playbook.step3'),
           status: "Validating"
         },
         {
           icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4 20-7z"></path></svg>`,
           title: "Resolved",
-          desc: "Response sent in 4.2s",
+          desc: wt('playbook.step4'),
           status: "Complete"
         }
       ];
@@ -1576,24 +1810,24 @@
       const treeData = {
         step1: {
           title: "Incoming chat",
-          desc: "\"My order is late!\"",
+          desc: wt('tree.step1'),
           icon: `<svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8.625 12a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H8.25m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H12m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 0 1-2.555-.337A5.972 5.972 0 0 1 5.41 20.97a5.969 5.969 0 0 1-.474-.065 4.48 4.48 0 0 0 .978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25Z"/></svg>`
         },
         step2: {
           title: "AI analysis",
           desc: "Processing...",
-          descTrigger: "High frustration",
+          descTrigger: wt('tree.step2trigger'),
           icon: `<svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09Z"/></svg>`
         },
         branchLeft: {
           title: "Auto-reply",
           desc: "Template ready",
-          descBlocked: "Blocked",
+          descBlocked: wt('tree.branchLeftBlocked'),
           icon: `<svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z"/></svg>`
         },
         branchRight: {
           title: "Human agent",
-          desc: "Routing to Maya",
+          desc: wt('tree.branchRight'),
           icon: `<svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"/></svg>`
         }
       };
@@ -1694,9 +1928,12 @@
 
       if (!els.chat) return;
 
+      // Set user message with translation
+      els.userMsg.textContent = wt('rag.userQuestion');
+
       const data = {
         thinking: "Scanning knowledge base...",
-        answer: "Refunds are processed within <strong>14 business days</strong> of receiving the returned item."
+        answer: wt('rag.answer')
       };
 
       const timings = {
