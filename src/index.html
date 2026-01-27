@@ -3,272 +3,565 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Experience - Blog</title>
-  <meta name="description" content="Un blog minimaliste pour partager des idees, des reflexions et des experiences.">
-  <meta name="author" content="Experience">
-  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
-  <link rel="canonical" href="https://experience.blog/">
+  <title>Cardynal - Human + AI Customer Support</title>
+  <meta name="description" content="Cardynal deploys intelligent AI agents on your behalf. We handle the tech — you get a complete support automation platform.">
+  <meta name="author" content="Cardynal">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://cardynal.io/">
 
   <!-- Open Graph -->
   <meta property="og:type" content="website">
-  <meta property="og:site_name" content="Experience">
-  <meta property="og:locale" content="fr_FR">
-  <meta property="og:title" content="Experience - Blog">
-  <meta property="og:description" content="Un blog minimaliste pour partager des idees, des reflexions et des experiences.">
-  <meta property="og:url" content="https://experience.blog/">
-  <meta property="og:image" content="https://experience.blog/og-image.jpg">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
+  <meta property="og:site_name" content="Cardynal">
+  <meta property="og:title" content="Cardynal - Human + AI Customer Support">
+  <meta property="og:description" content="Fully managed AI support platform. No developers needed.">
+  <meta property="og:url" content="https://cardynal.io/">
+  <meta property="og:image" content="https://cardynal.io/og-image.jpg">
 
   <!-- Twitter Cards -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Experience - Blog">
-  <meta name="twitter:description" content="Un blog minimaliste pour partager des idees, des reflexions et des experiences.">
-  <meta name="twitter:image" content="https://experience.blog/og-image.jpg">
+  <meta name="twitter:title" content="Cardynal - Human + AI Customer Support">
+  <meta name="twitter:description" content="Fully managed AI support platform. No developers needed.">
 
   <!-- Theme -->
-  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#0a0a0a" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#020917">
 
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-  <link rel="manifest" href="/manifest.json">
 
-  <!-- Preconnect -->
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./css/main.css">
-
-  <!-- JSON-LD Structured Data -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "name": "Experience",
-    "url": "https://experience.blog/",
-    "description": "Un blog minimaliste pour partager des idees, des reflexions et des experiences.",
-    "inLanguage": "fr",
-    "publisher": {
-      "@type": "Organization",
-      "name": "Experience",
-      "url": "https://experience.blog/"
-    }
-  }
-  </script>
+  <link rel="stylesheet" href="./css/landing.css">
 </head>
-<body>
-  <header class="header">
-    <div class="header__content">
-      <a href="/" class="header__logo">Experience</a>
-      <nav class="header__nav">
-        <a href="/" class="header__nav-link header__nav-link--active" data-i18n="nav.home">Accueil</a>
-        <a href="/archive.html" class="header__nav-link" data-i18n="nav.archive">Archive</a>
-        <a href="/about.html" class="header__nav-link" data-i18n="nav.about">A propos</a>
-      </nav>
-      <div class="header__actions">
-        <button class="btn btn--ghost btn--icon" onclick="toggleTheme()" aria-label="Toggle theme">
-        <svg class="sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <circle cx="12" cy="12" r="5"/>
-          <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+<body class="landing-page">
+  <!-- Header -->
+  <header class="landing-header">
+    <div class="landing-header__content">
+      <a href="/" class="landing-header__logo">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+          <rect width="32" height="32" rx="8" fill="currentColor"/>
+          <path d="M8 16C8 11.5817 11.5817 8 16 8V8C20.4183 8 24 11.5817 24 16V24H16C11.5817 24 8 20.4183 8 16V16Z" fill="#020917"/>
         </svg>
-        <svg class="moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none">
-          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        <span>Cardynal</span>
+      </a>
+      <nav class="landing-header__nav">
+        <a href="#features">Features</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#faq">FAQ</a>
+        <a href="/blog.html">Blog</a>
+      </nav>
+      <div class="landing-header__actions">
+        <a href="https://app.cardynal.io" class="btn btn--ghost">Login</a>
+        <a href="https://cal.com/cardynal.io/30min" class="btn btn--primary">Book a demo</a>
+      </div>
+      <button class="landing-header__menu-btn" aria-label="Menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
         </svg>
       </button>
-      </div>
     </div>
   </header>
 
-  <main class="main main--full">
-    <section class="page animate-fadeIn">
-      <div class="hero">
-        <h1 class="hero__title">Experience</h1>
-        <p class="hero__text">Un blog minimaliste pour partager des idees, des reflexions et des experiences.</p>
-      </div>
-
-      <div style="margin-top: var(--space-12);">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-4);">
-          <h2 class="section-title" style="margin-bottom: 0;" data-i18n="home.recentArticles">Articles recents</h2>
-          <div class="view-toggle">
-            <button class="view-toggle__btn is-active" data-view="list" aria-label="Vue liste">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/>
-                <line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/>
-              </svg>
-            </button>
-            <button class="view-toggle__btn" data-view="grid" aria-label="Vue grille">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/>
-                <rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/>
-              </svg>
-            </button>
-          </div>
-        </div>
-        <div id="articlesList">
-          <div class="card">
-            <div class="empty-state">
-              <div class="empty-state__title">Chargement...</div>
-            </div>
-          </div>
-        </div>
-        <div style="text-align: center; margin-top: var(--space-6);">
-          <a href="/archive.html" class="btn btn--secondary">
-            <span data-i18n="home.viewAll">Voir tous les articles</span>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+  <!-- Hero Section -->
+  <section class="hero-section" id="hero">
+    <div class="hero-section__bg">
+      <div class="hero-section__gradient"></div>
+    </div>
+    <div class="hero-section__content">
+      <div class="hero-section__text">
+        <h1 class="hero-section__title">
+          Human + AI Customer Support
+          <span class="hero-section__subtitle-inline">Fully managed, from day one</span>
+        </h1>
+        <p class="hero-section__description">
+          Cardynal deploys intelligent AI agents on your behalf. We handle the tech — you get a complete support automation platform with your own AI dashboard and help desk. No developers needed.
+        </p>
+        <div class="hero-section__cta">
+          <a href="https://cal.com/cardynal.io/30min" class="btn btn--primary btn--lg">
+            Book a demo
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M5 12h14M12 5l7 7-7 7"/>
             </svg>
           </a>
         </div>
+        <div class="hero-section__features">
+          <div class="hero-feature">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+            <span>No code required</span>
+          </div>
+          <div class="hero-feature">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+            <span>Live in 48 hours</span>
+          </div>
+          <div class="hero-feature">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+            <span>All channels included</span>
+          </div>
+        </div>
       </div>
-    </section>
-  </main>
+      <div class="hero-section__visual">
+        <div class="hero-chat-preview">
+          <div class="hero-chat-preview__header">
+            <div class="hero-chat-preview__avatar">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 2a10 10 0 0 1 10 10c0 5.52-4.48 10-10 10S2 17.52 2 12 6.48 2 12 2z"/>
+                <circle cx="12" cy="10" r="3"/><path d="M7 20.662V19a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v1.662"/>
+              </svg>
+            </div>
+            <div class="hero-chat-preview__info">
+              <span class="hero-chat-preview__name">Cardynal AI</span>
+              <span class="hero-chat-preview__status">Online</span>
+            </div>
+          </div>
+          <div class="hero-chat-preview__messages">
+            <div class="chat-message chat-message--user">
+              <p>Hi, I need help with my order #12345</p>
+            </div>
+            <div class="chat-message chat-message--bot">
+              <p>Hello! I found your order. It shipped yesterday and will arrive by Friday. Would you like the tracking link?</p>
+            </div>
+            <div class="chat-message chat-message--user">
+              <p>Yes please!</p>
+            </div>
+            <div class="chat-message chat-message--bot typing">
+              <span></span><span></span><span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  <footer class="footer">
-    <div class="footer__content">
-      <p class="footer__text">Experience Blog</p>
-      <div class="footer__links">
-        <a href="/" class="footer__link" data-i18n="nav.home">Accueil</a>
-        <a href="/archive.html" class="footer__link" data-i18n="nav.archive">Archive</a>
-        <a href="/about.html" class="footer__link" data-i18n="nav.about">A propos</a>
-        <a href="/rss.xml" class="footer__link" data-i18n="nav.rss">RSS</a>
+  <!-- Stats Section -->
+  <section class="stats-section">
+    <div class="stats-section__content">
+      <div class="stat-card">
+        <div class="stat-card__number">67%</div>
+        <div class="stat-card__label">of requests handled autonomously with AI</div>
       </div>
+      <div class="stat-card">
+        <div class="stat-card__number">&lt;5s</div>
+        <div class="stat-card__label">average AI response time</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card__number">0</div>
+        <div class="stat-card__label">missed conversations across channels</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card__number">48h</div>
+        <div class="stat-card__label">from kickoff to live support</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Problem Section -->
+  <section class="problem-section">
+    <div class="problem-section__content">
+      <h2 class="section-title">You don't need another tool.<br>You need support that works.</h2>
+      <p class="section-subtitle">
+        You've seen the demos. AI chatbots that promise the world — then require months of integration, API approvals, and a dev team to maintain. Meanwhile, your support queue keeps growing.
+      </p>
+      <p class="section-highlight">
+        What if you could have enterprise-grade AI support without the enterprise complexity?
+      </p>
+    </div>
+  </section>
+
+  <!-- For Who Section -->
+  <section class="audience-section">
+    <div class="audience-section__content">
+      <h2 class="section-title">For who?</h2>
+      <div class="audience-grid">
+        <div class="audience-card">
+          <div class="audience-card__icon">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/>
+            </svg>
+          </div>
+          <h3 class="audience-card__title">Retail & E-commerce</h3>
+          <p class="audience-card__description">From order tracking to product questions, Cardynal handles it all — so your team can focus on growth.</p>
+        </div>
+        <div class="audience-card">
+          <div class="audience-card__icon">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
+            </svg>
+          </div>
+          <h3 class="audience-card__title">Service Companies</h3>
+          <p class="audience-card__description">Never miss a lead. Never leave a question unanswered. Cardynal keeps your pipeline flowing 24/7.</p>
+        </div>
+        <div class="audience-card">
+          <div class="audience-card__icon">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>
+            </svg>
+          </div>
+          <h3 class="audience-card__title">SaaS & IoT</h3>
+          <p class="audience-card__description">Deflect L1 tickets. Let your team focus on real engineering problems while AI handles the rest.</p>
+        </div>
+      </div>
+      <div class="audience-section__cta">
+        <a href="https://cal.com/cardynal.io/30min" class="btn btn--secondary btn--lg">Schedule a demo</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="features-section" id="features">
+    <div class="features-section__content">
+      <div class="features-section__header">
+        <h2 class="section-title">AI Agents That Think Before They Respond</h2>
+        <p class="section-subtitle">
+          By combining AI with human expertise, Cardynal streamlines workflows, automates repetitive tasks, and creates truly magical customer experiences.
+        </p>
+      </div>
+
+      <div class="feature-row">
+        <div class="feature-row__content">
+          <div class="feature-badge">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/>
+            </svg>
+            <span>Smart Routing</span>
+          </div>
+          <h3 class="feature-row__title">Scenario-Based Intelligence</h3>
+          <p class="feature-row__description">
+            Our AI doesn't just match keywords — it understands context. Each conversation triggers the right playbook, pulling from your knowledge base to deliver accurate, on-brand responses.
+          </p>
+        </div>
+        <div class="feature-row__visual">
+          <div class="feature-visual feature-visual--scenarios"></div>
+        </div>
+      </div>
+
+      <div class="feature-row feature-row--reverse">
+        <div class="feature-row__content">
+          <div class="feature-badge">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+            </svg>
+            <span>Escalation</span>
+          </div>
+          <h3 class="feature-row__title">Humans When It Matters</h3>
+          <p class="feature-row__description">
+            AI handles the routine. When things get complex, conversations seamlessly transfer to your team — with full context, so customers never repeat themselves.
+          </p>
+        </div>
+        <div class="feature-row__visual">
+          <div class="feature-visual feature-visual--humans"></div>
+        </div>
+      </div>
+
+      <div class="feature-row">
+        <div class="feature-row__content">
+          <div class="feature-badge">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+            </svg>
+            <span>Knowledge Base</span>
+          </div>
+          <h3 class="feature-row__title">Your Documentation, Instantly Searchable</h3>
+          <p class="feature-row__description">
+            Upload your docs, FAQs, and policies. Cardynal indexes everything and retrieves the right answer in milliseconds — no training required.
+          </p>
+        </div>
+        <div class="feature-row__visual">
+          <div class="feature-visual feature-visual--docs"></div>
+        </div>
+      </div>
+
+      <div class="feature-row feature-row--reverse">
+        <div class="feature-row__content">
+          <div class="feature-badge">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+            </svg>
+            <span>Omnichannel</span>
+          </div>
+          <h3 class="feature-row__title">One Brain, Every Channel</h3>
+          <p class="feature-row__description">
+            Bring every customer conversation into one collaborative inbox — no matter the channel. Your team can access, manage, and respond quickly, ensuring nothing slips through the cracks.
+          </p>
+          <ul class="feature-list">
+            <li>WhatsApp (QR scan or API)</li>
+            <li>Web chat widget</li>
+            <li>Instagram & Facebook</li>
+            <li>Telegram, Discord, X</li>
+            <li>Email & SMS (coming soon)</li>
+          </ul>
+        </div>
+        <div class="feature-row__visual">
+          <div class="feature-visual feature-visual--channels"></div>
+        </div>
+      </div>
+
+      <div class="feature-row">
+        <div class="feature-row__content">
+          <div class="feature-badge">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>
+            </svg>
+            <span>API Integration</span>
+          </div>
+          <h3 class="feature-row__title">Cardynal agents learn your business. Just like real employees.</h3>
+          <p class="feature-row__description">
+            Let your AI pull live data from your CRM, ERP, or any REST API. Check order status, verify accounts, fetch inventory — without leaving the conversation.
+          </p>
+        </div>
+        <div class="feature-row__visual">
+          <div class="feature-visual feature-visual--api"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing Section -->
+  <section class="pricing-section" id="pricing">
+    <div class="pricing-section__content">
+      <div class="pricing-section__header">
+        <div class="feature-badge">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+          </svg>
+          <span>Pricing</span>
+        </div>
+        <h2 class="section-title">Simple Pricing. No Surprises.</h2>
+        <p class="section-subtitle">Pay for resolutions, not conversations. Escalations to humans are always free.</p>
+      </div>
+
+      <div class="pricing-card">
+        <div class="pricing-card__header">
+          <h3 class="pricing-card__title">Starter</h3>
+          <p class="pricing-card__description">For solopreneurs & early-stage companies who want to improve their customer service.</p>
+        </div>
+        <div class="pricing-card__price">
+          <span class="pricing-card__amount">99$</span>
+          <span class="pricing-card__period">/ month</span>
+        </div>
+        <div class="pricing-card__addons">
+          <div class="pricing-addon">
+            <span class="pricing-addon__price">+25$</span>
+            <span class="pricing-addon__label">per seat/month</span>
+          </div>
+          <div class="pricing-addon">
+            <span class="pricing-addon__price">+0.90$</span>
+            <span class="pricing-addon__label">per resolution</span>
+          </div>
+        </div>
+        <a href="https://cal.com/cardynal.io/30min" class="btn btn--primary btn--lg btn--full">Get started</a>
+        <div class="pricing-card__features">
+          <h4>Key features included</h4>
+          <ul>
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              AI dashboard (app.cardynal.io)
+            </li>
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              Help desk (chat.cardynal.io)
+            </li>
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              WhatsApp QR integration
+            </li>
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              Web chat widget
+            </li>
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              Knowledge base upload
+            </li>
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              Free human escalations
+            </li>
+          </ul>
+        </div>
+        <p class="pricing-card__note">
+          <strong>What's a resolution?</strong> When the AI successfully handles a conversation without human intervention. If a human takes over, you're not charged.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="faq-section" id="faq">
+    <div class="faq-section__content">
+      <div class="faq-section__header">
+        <h2 class="section-title">Questions?<br>Let's clear things up.</h2>
+        <p class="section-subtitle">
+          AI-powered solutions, business automation tools... a lot of big words can get confusing. We're here to make it clear.
+        </p>
+      </div>
+
+      <div class="faq-list">
+        <details class="faq-item">
+          <summary class="faq-item__question">What exactly is Cardynal?</summary>
+          <div class="faq-item__answer">
+            <p>Cardynal is a fully managed AI support platform. We deploy intelligent AI agents that handle customer conversations across WhatsApp, web chat, and all your channels. You get a complete solution — AI dashboard (app.cardynal.io) and help desk (chat.cardynal.io) — without building anything yourself.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-item__question">How is this different from Zendesk, Intercom, or Freshdesk?</summary>
+          <div class="faq-item__answer">
+            <p>Those are help desks with AI features bolted on. You still need to set them up, integrate them, and maintain them. Cardynal is AI-first and fully managed — we deploy everything for you and optimize it continuously. Plus, our WhatsApp integration takes 30 seconds, not 30 days.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-item__question">How does the WhatsApp QR integration work?</summary>
+          <div class="faq-item__answer">
+            <p>Just like WhatsApp Web. You scan a QR code with your phone, and your WhatsApp is connected. No Meta Business API approval, no new phone number, no waiting. Your existing WhatsApp account becomes AI-powered instantly. Both options support the same features and enterprise-grade security.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-item__question">Do I need technical skills to use Cardynal?</summary>
+          <div class="faq-item__answer">
+            <p>No. We handle all the technical work. You use the dashboard to monitor conversations, review analytics, and make business decisions. If you want to tweak playbooks yourself, the interface is intuitive — but we're always here to help.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-item__question">What channels do you support?</summary>
+          <div class="faq-item__answer">
+            <p>WhatsApp (via QR scan), WhatsApp API, web chat widget, Instagram, Facebook, X (Twitter), Telegram, Discord, LinkedIn, and API for custom integrations. Email and SMS are coming soon.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-item__question">What if I'm not satisfied?</summary>
+          <div class="faq-item__answer">
+            <p>We offer a proof-of-concept phase where you can test with real conversations before committing. If it's not working for you, you walk away — no long-term contracts required.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-item__question">How fast can I go live?</summary>
+          <div class="faq-item__answer">
+            <p>48 hours from kickoff to live. Most of that is us building your playbooks and loading your knowledge base. The technical deployment takes minutes.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-item__question">How do I add the chat widget to my website?</summary>
+          <div class="faq-item__answer">
+            <p>We provide a WordPress plugin that installs in one click. Activate it, and paste your key. The chat widget appears instantly on your site. Not on WordPress? We also offer a simple JavaScript snippet for any website.</p>
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta-section">
+    <div class="cta-section__content">
+      <h2 class="cta-section__title">Ready to transform your customer support?</h2>
+      <p class="cta-section__description">Join hundreds of businesses already using Cardynal to deliver exceptional customer experiences.</p>
+      <a href="https://cal.com/cardynal.io/30min" class="btn btn--primary btn--lg">
+        Book a demo
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="landing-footer">
+    <div class="landing-footer__content">
+      <div class="landing-footer__brand">
+        <a href="/" class="landing-footer__logo">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+            <rect width="32" height="32" rx="8" fill="currentColor"/>
+            <path d="M8 16C8 11.5817 11.5817 8 16 8V8C20.4183 8 24 11.5817 24 16V24H16C11.5817 24 8 20.4183 8 16V16Z" fill="#020917"/>
+          </svg>
+          <span>Cardynal</span>
+        </a>
+        <p>Human + AI Customer Support<br>Fully managed, from day one.</p>
+      </div>
+      <div class="landing-footer__links">
+        <div class="landing-footer__column">
+          <h4>Product</h4>
+          <a href="#features">Features</a>
+          <a href="#pricing">Pricing</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div class="landing-footer__column">
+          <h4>Company</h4>
+          <a href="/blog.html">Blog</a>
+          <a href="/about.html">About</a>
+          <a href="mailto:contact@cardynal.io">Contact</a>
+        </div>
+        <div class="landing-footer__column">
+          <h4>Legal</h4>
+          <a href="/privacy.html">Privacy</a>
+          <a href="/terms.html">Terms</a>
+        </div>
+      </div>
+    </div>
+    <div class="landing-footer__bottom">
+      <p>&copy; 2026 Cardynal. All rights reserved.</p>
     </div>
   </footer>
 
-  <script type="module">
-    import './js/theme.js'
-    import { initAuth } from './js/auth.js'
-    import { initLangSelector, getCurrentLang, addHreflangTags, updateNavLinks, t } from './js/i18n.js'
+  <script>
+    // Mobile menu toggle
+    const menuBtn = document.querySelector('.landing-header__menu-btn')
+    const nav = document.querySelector('.landing-header__nav')
 
-    initAuth()
-    initLangSelector()
-    addHreflangTags()
-
-    const currentLang = getCurrentLang()
-
-    let articles = []
-    let viewMode = localStorage.getItem('viewMode') || 'list'
-
-    async function loadArticles() {
-      const container = document.getElementById('articlesList')
-
-      try {
-        const res = await fetch(`/api/articles?lang=${currentLang}`)
-        articles = await res.json()
-
-        if (articles.length === 0) {
-          container.innerHTML = `
-            <div class="card">
-              <div class="empty-state">
-                <div class="empty-state__icon">📝</div>
-                <div class="empty-state__title">${t('empty.noArticles')}</div>
-                <div class="empty-state__description">${t('empty.noArticlesDesc')}</div>
-              </div>
-            </div>
-          `
-          return
-        }
-
-        renderArticles()
-
-      } catch (err) {
-        container.innerHTML = `
-          <div class="card">
-            <div class="empty-state">
-              <div class="empty-state__icon">⚠️</div>
-              <div class="empty-state__title">${t('empty.error')}</div>
-              <div class="empty-state__description">${t('empty.errorDesc')}</div>
-            </div>
-          </div>
-        `
-      }
-    }
-
-    function renderArticles() {
-      const container = document.getElementById('articlesList')
-      const recentArticles = articles.slice(0, 5)
-
-      if (viewMode === 'grid') {
-        container.innerHTML = `
-          <div class="articles-grid">
-            ${recentArticles.map((article, i) => `
-              <a href="/article/${article.slug}" class="article-card animate-slideUp" style="animation-delay: ${i * 0.05}s">
-                <div class="article-card__cover-wrapper">
-                  ${article.cover_image ? `<img src="${article.cover_image}" alt="${escapeHtml(article.title)}" class="article-card__cover" loading="lazy" decoding="async">` : ''}
-                </div>
-                <div class="article-card__body">
-                  <div class="article-card__emoji">${article.emoji || '📄'}</div>
-                  <h3 class="article-card__title">${escapeHtml(article.title)}</h3>
-                  <div class="article-card__meta">${formatDate(article.created_at)}</div>
-                </div>
-              </a>
-            `).join('')}
-          </div>
-        `
-      } else {
-        container.innerHTML = `
-          <div class="card">
-            ${recentArticles.map((article, i) => `
-              <a href="/article/${article.slug}" class="card-list-item animate-slideUp" style="animation-delay: ${i * 0.05}s">
-                ${article.cover_image
-                  ? `<img src="${article.cover_image}" alt="${escapeHtml(article.title)}" class="card-list-item__cover" loading="lazy" decoding="async">`
-                  : `<span class="card-list-item__emoji">${article.emoji || '📄'}</span>`
-                }
-                <div class="card-list-item__content">
-                  <div class="card-list-item__title">${escapeHtml(article.title)}</div>
-                  <div class="card-list-item__meta">
-                    ${formatDate(article.created_at)}${article.tags ? ' · ' + article.tags : ''}
-                  </div>
-                </div>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="opacity: 0.5; flex-shrink: 0;">
-                  <path d="M9 18l6-6-6-6"/>
-                </svg>
-              </a>
-            `).join('')}
-          </div>
-        `
-      }
-      updateNavLinks()
-    }
-
-    function setView(mode) {
-      viewMode = mode
-      localStorage.setItem('viewMode', mode)
-      document.querySelectorAll('.view-toggle__btn').forEach(btn => {
-        btn.classList.toggle('is-active', btn.dataset.view === mode)
+    if (menuBtn && nav) {
+      menuBtn.addEventListener('click', () => {
+        nav.classList.toggle('is-open')
+        menuBtn.classList.toggle('is-active')
       })
-      if (articles.length > 0) renderArticles()
     }
 
-    // View toggle buttons
-    document.querySelectorAll('.view-toggle__btn').forEach(btn => {
-      btn.addEventListener('click', () => setView(btn.dataset.view))
+    // FAQ accordion
+    document.querySelectorAll('.faq-item').forEach(item => {
+      item.addEventListener('toggle', () => {
+        if (item.open) {
+          document.querySelectorAll('.faq-item').forEach(other => {
+            if (other !== item) other.open = false
+          })
+        }
+      })
     })
 
-    // Set initial active state
-    document.querySelector(`.view-toggle__btn[data-view="${viewMode}"]`)?.classList.add('is-active')
-    document.querySelector(`.view-toggle__btn:not([data-view="${viewMode})`)?.classList.remove('is-active')
-
-    function escapeHtml(text) {
-      const div = document.createElement('div')
-      div.textContent = text
-      return div.innerHTML
-    }
-
-    function formatDate(dateStr) {
-      const date = new Date(dateStr)
-      return date.toLocaleDateString('fr-FR', {
-        day: 'numeric',
-        month: 'short',
-        year: 'numeric'
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault()
+        const target = document.querySelector(this.getAttribute('href'))
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' })
+          nav?.classList.remove('is-open')
+          menuBtn?.classList.remove('is-active')
+        }
       })
-    }
+    })
 
-    loadArticles()
+    // Header scroll effect
+    const header = document.querySelector('.landing-header')
+    let lastScroll = 0
+
+    window.addEventListener('scroll', () => {
+      const currentScroll = window.pageYOffset
+
+      if (currentScroll > 50) {
+        header.classList.add('is-scrolled')
+      } else {
+        header.classList.remove('is-scrolled')
+      }
+
+      lastScroll = currentScroll
+    })
   </script>
 </body>
 </html>

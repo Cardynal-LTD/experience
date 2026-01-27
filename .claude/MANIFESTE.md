@@ -9,10 +9,11 @@
 
 | Aspect | Valeur |
 |--------|--------|
-| **Type** | Blog personnel avec admin |
-| **Stack** | Vite + Express.js + Supabase + Tiptap |
+| **Type** | Blog personnel multilingue avec admin |
+| **Stack** | Vite + Express.js + Supabase (self-hosted) + Tiptap |
 | **Déploiement** | Railway |
 | **Branche principale** | main |
+| **Langues** | Français (défaut), English, עברית (Hebrew) |
 | **État** | Production ready |
 
 ---
@@ -30,11 +31,11 @@ experience/
 │   ├── css/
 │   │   ├── main.css          # Point d'entrée CSS (imports)
 │   │   ├── tokens.css        # Design tokens (couleurs, typo, spacing)
-│   │   ├── base.css          # Reset et styles de base
+│   │   ├── base.css          # Reset, styles de base, RTL support
 │   │   ├── animations.css    # Keyframes et utilitaires
-│   │   ├── layout.css        # Header, footer, sidebar, modal
+│   │   ├── layout.css        # Header, footer, sidebar, modal, lang selector
 │   │   ├── pages.css         # Styles spécifiques aux pages
-│   │   ├── editor.css        # Styles éditeur Tiptap
+│   │   ├── editor.css        # Styles éditeur Tiptap + form fields
 │   │   └── components/
 │   │       ├── button.css    # Boutons (variants, sizes)
 │   │       ├── input.css     # Inputs, textarea, select
@@ -43,15 +44,39 @@ experience/
 │   └── js/
 │       ├── theme.js          # Gestion du thème (light/dark)
 │       ├── auth.js           # Module auth partagé (JWT)
+│       ├── i18n.js           # Module multilingue (lang detection, hreflang)
 │       ├── editor.js         # Module Tiptap + slash commands
-│       └── admin.js          # Logique admin
-├── server.js                 # Serveur Express + API REST + JWT
+│       └── admin.js          # Logique admin + traductions
+├── public/
+│   ├── manifest.json         # PWA manifest
+│   ├── favicon.svg           # Favicon SVG
+│   ├── icon-192.png          # App icon (à créer)
+│   └── icon-512.png          # App icon (à créer)
+├── server.js                 # Serveur Express + API REST + JWT + SEO
 ├── vite.config.js            # Configuration Vite (multi-page)
 ├── package.json              # Dépendances (type: module)
 ├── dist/                     # Build de production (gitignore)
 └── .claude/
     ├── MANIFESTE.md          # Ce fichier
-    └── CLAUDE.md             # Instructions pour Claude
+    ├── CLAUDE.md             # Instructions pour Claude
+    └── .mcp.json             # Config MCP Supabase
+```
+
+---
+
+## INFRASTRUCTURE SUPABASE (Self-hosted Railway)
+
+```
+Cardynal Data layer
+├── Kong (API Gateway)         → kong-r2vq-cardynal.up.railway.app
+├── PostgREST                  → API REST automatique
+├── Postgres                   → Base de données principale
+├── Postgres Meta              → Métadonnées
+├── Supabase Realtime          → WebSockets
+├── Supabase Studio            → Interface admin Supabase
+├── Supabase Storage + S3      → Stockage fichiers
+├── Imgproxy                   → Traitement images
+└── Gotrue Auth                → Authentification
 ```
 
 ---
@@ -61,11 +86,12 @@ experience/
 - **Build:** Vite 7.x + vite-express
 - **Backend:** Node.js + Express 4.18.2 (ESM)
 - **Auth:** JWT (jsonwebtoken) - tokens 24h
-- **Base de données:** Supabase (PostgreSQL)
+- **Base de données:** Supabase self-hosted (PostgreSQL)
 - **Frontend:** HTML5 + CSS3 + ES Modules
 - **Éditeur:** Tiptap 3.x (WYSIWYG Notion-like)
 - **Markdown:** Marked 17.x + Turndown 7.x
 - **Thème:** Light/Dark avec toggle + design system
+- **i18n:** FR/EN/HE avec support RTL
 
 ---
 
@@ -74,12 +100,13 @@ experience/
 Architecture CSS modulaire inspirée Notion/Linear:
 
 - **tokens.css** - Variables: couleurs, typographie (ratio 1.25), spacing (base 4px), shadows
-- **base.css** - Reset, focus states, scrollbar, typography de base
+- **base.css** - Reset, focus states, scrollbar, typography de base, RTL rules
 - **animations.css** - fadeIn, slideUp, scaleIn, pulse, spin
-- **layout.css** - Header sticky, footer, modal backdrop
+- **layout.css** - Header sticky, footer, modal backdrop, language selector
 - **components/** - BEM naming: `.btn--primary`, `.card-list-item__title`
 
 Dark mode: `[data-theme="dark"]` sur `<html>`
+RTL mode: `[dir="rtl"]` sur `<html>` (automatique pour Hebrew)
 
 ---
 
@@ -96,9 +123,14 @@ npm run start   # Production (après build)
 ## API REST
 
 ### Public
-- `GET /api/articles` - Liste des articles
+- `GET /api/articles` - Liste des articles (?lang=fr|en|he)
 - `GET /api/articles/:slug` - Article par slug
+- `GET /api/articles/:slug/translations` - Traductions d'un article
+- `GET /api/languages` - Config langues supportées
+- `GET /api/images/:id` - Servir image depuis DB
 - `GET /rss.xml` - Feed RSS
+- `GET /sitemap.xml` - Sitemap avec hreflang
+- `GET /robots.txt` - Robots.txt
 
 ### Protégé (Authorization: Bearer {JWT_TOKEN})
 - `POST /api/login` - Auth → retourne JWT token
@@ -106,14 +138,21 @@ npm run start   # Production (après build)
 - `POST /api/articles` - Créer article
 - `PUT /api/articles/:id` - Modifier article
 - `DELETE /api/articles/:id` - Supprimer article
+- `POST /api/upload` - Upload image (base64 → DB)
+
+### Routes multilingues
+- `/` - Français (défaut)
+- `/en/` - English
+- `/he/` - Hebrew (RTL)
+- `/[lang]/article/:slug` - Article dans une langue
 
 ---
 
 ## VARIABLES D'ENVIRONNEMENT
 
 ```
-SUPABASE_URL=
-SUPABASE_ANON_KEY=
+SUPABASE_URL=https://kong-r2vq-cardynal.up.railway.app
+SUPABASE_ANON_KEY=eyJ...
 ADMIN_PASSWORD=
 JWT_SECRET=          # Clé secrète pour signer les JWT
 SITE_URL=
@@ -122,75 +161,111 @@ PORT=3000
 
 ---
 
+## BASE DE DONNÉES
+
+### Table `articles`
+```sql
+id               SERIAL PRIMARY KEY
+title            TEXT NOT NULL
+content          TEXT NOT NULL (Markdown)
+slug             TEXT NOT NULL UNIQUE
+tags             TEXT
+emoji            TEXT DEFAULT '📄'
+cover_image      TEXT (URL)
+lang             TEXT DEFAULT 'fr' CHECK (lang IN ('fr', 'en', 'he'))
+translation_group UUID
+meta_title       TEXT
+meta_description TEXT
+created_at       TIMESTAMPTZ DEFAULT NOW()
+updated_at       TIMESTAMPTZ
+```
+
+### Table `images`
+```sql
+id               UUID PRIMARY KEY DEFAULT uuid_generate_v4()
+data             TEXT NOT NULL (base64)
+content_type     TEXT DEFAULT 'image/jpeg'
+created_at       TIMESTAMPTZ DEFAULT NOW()
+```
+
+---
+
 ## FONCTIONNALITES
 
+### SEO
+- Meta tags Open Graph et Twitter Cards (dynamiques)
+- JSON-LD Schema (Article, WebSite)
+- Sitemap.xml avec hreflang pour les traductions
+- Robots.txt
+- Canonical URLs
+- PWA Manifest avec shortcuts
+
+### Multilingue
+- 3 langues: Français (défaut), English, Hebrew
+- Support RTL automatique pour Hebrew
+- Hreflang tags pour les traductions
+- Liaison d'articles entre langues
+- Language selector dans le header
+
 ### Éditeur (admin.html)
-- Toolbar en haut (60px): Publier, Annuler, X
-- Banner image avec placeholder "Ajouter une image de couverture"
+- Toolbar en haut: Publier, Annuler, X
+- Banner image avec upload/URL
 - Emoji picker pour icône du document
-- Slash commands (/) pour blocs: Texte, H1-H3, Listes, Image, Citation, Code
-- Bubble menu sur sélection: Bold, Italic, Strike, Code, Link
+- Slash commands (/) pour blocs
+- Bubble menu sur sélection
 - Floating menu (+) sur ligne vide
-- Drag & drop / paste d'images
+- Sélecteur de langue
+- Liaison de traductions
+- Champs SEO (meta title, meta description)
 
 ### Pages publiques
 - Header avec bouton Admin (si connecté)
 - Toggle grille/liste sur archive
-- Cover images affichées dans les listes (60x60)
+- Cover images avec emoji overlay
 - Dark mode persistant
+- Language selector
 
 ### Sécurité
 - JWT tokens (expire 24h)
-- Vérification token au chargement des pages
+- Vérification token au chargement
 - Logout automatique si token invalide
-
----
-
-## BASE DE DONNÉES
-
-Table `articles`:
-- `id` (int, auto)
-- `title` (text)
-- `content` (text, Markdown)
-- `slug` (text, unique)
-- `tags` (text, comma-separated)
-- `emoji` (text, nullable)
-- `cover_image` (text, URL, nullable)
-- `created_at`, `updated_at` (timestamp)
 
 ---
 
 ## HISTORIQUE DES SESSIONS
 
+### Session 2026-01-27 (SEO + Multilingue)
+- **Contexte:** Optimisation SEO complète + support multilingue
+- **Actions:**
+  - Meta tags OG/Twitter dynamiques
+  - JSON-LD Schema
+  - Sitemap.xml avec hreflang
+  - Robots.txt
+  - Module i18n.js
+  - Support 3 langues (FR/EN/HE)
+  - RTL pour Hebrew
+  - Translation linking entre articles
+  - Champs meta_title, meta_description
+  - Admin multilingue complet
+  - Migration vers Supabase self-hosted Railway
+- **État:** Production ready
+
+### Session 2026-01-27 (Upload Images)
+- **Contexte:** Upload d'images depuis l'ordinateur
+- **Actions:**
+  - Table `images` pour stockage base64
+  - Endpoint `/api/upload` et `/api/images/:id`
+  - Cache 1 an sur les images
+- **État:** Fonctionnel
+
 ### Session 2026-01-27 (UI/UX Refonte complète)
 - **Contexte:** Refonte totale de l'interface
 - **Actions:**
-  - Nouveau design system CSS modulaire (tokens, components, BEM)
-  - Sécurisation auth avec JWT (jsonwebtoken)
-  - Bouton Admin dans header quand connecté
+  - Nouveau design system CSS modulaire
+  - Sécurisation auth avec JWT
   - Toggle grille/liste sur archive
-  - Éditeur: toolbar en haut, banner image avec placeholder
-  - Cover images dans les listes (home, archive)
-  - Slash menu compact (liste, icônes SVG)
-  - Fix outlines bleus, underlines sur hover
+  - Cover images dans les listes
 - **État:** Production ready
-
-### Session 2026-01-27 (Design Notion)
-- **Contexte:** Amélioration éditeur style Notion
-- **Actions:**
-  - Slash commands avec catégories
-  - Bubble menu, Floating menu
-  - Support images (drag & drop, paste)
-  - CSS refait style Notion
-- **État:** Éditeur Notion-like complet
-
-### Session 2026-01-27 (Migration Vite)
-- **Contexte:** Migration vers Vite + Tiptap
-- **Actions:**
-  - Setup Vite + vite-express
-  - Migration ES Modules
-  - Intégration Tiptap WYSIWYG
-- **État:** Migration complète
 
 ---
 
@@ -206,15 +281,20 @@ _Aucun bug identifié_
 2. Le frontend utilise Vite et ES Modules
 3. L'éditeur Tiptap est WYSIWYG mais stocke en Markdown
 4. Le RSS génère les 20 derniers articles
-5. `JWT_SECRET` doit être défini en production (Railway)
-6. Les fichiers .claude/ sont dans .gitignore
+5. `JWT_SECRET` doit être défini en production
+6. Les images sont stockées en base64 dans PostgreSQL
+7. Supabase est self-hosted sur Railway (pas Supabase Cloud)
+8. RLS désactivé (auth gérée côté serveur)
 
 ---
 
 ## PROCHAINES AMÉLIORATIONS POSSIBLES
 
-1. Upload d'images vers Supabase Storage
-2. Recherche d'articles
-3. Catégories/tags filtrable
-4. Commentaires
-5. Analytics simples
+1. ~~Upload d'images vers Supabase Storage~~ (fait en DB)
+2. Migrer images vers Supabase Storage (S3)
+3. Google Analytics / Search Console
+4. Recherche d'articles
+5. Catégories/tags filtrable
+6. Commentaires
+7. Utiliser Imgproxy pour redimensionnement
+8. Utiliser Gotrue Auth au lieu du JWT custom
