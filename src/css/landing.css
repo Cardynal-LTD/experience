@@ -648,6 +648,7 @@
 .feature-card__content {
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   gap: 0.75rem;
 }
 
@@ -711,6 +712,7 @@
 .feature-grid-two .feature-card {
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   padding: 2rem;
 }
 
