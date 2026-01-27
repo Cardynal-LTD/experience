@@ -1326,12 +1326,7 @@
 
     // Translate function
     function t(key) {
-      const result = TRANSLATIONS[currentLang]?.[key] || TRANSLATIONS['en']?.[key] || key;
-      // Debug: log missing translations
-      if (result === key && key.includes('list')) {
-        console.log('Missing translation:', key, 'lang:', currentLang, 'available:', Object.keys(TRANSLATIONS[currentLang] || {}).filter(k => k.includes('routing.list')));
-      }
-      return result;
+      return TRANSLATIONS[currentLang]?.[key] || TRANSLATIONS['en']?.[key] || key;
     }
 
     // Apply translations
@@ -2304,7 +2299,6 @@
     })();
 
     // Initialize
-    console.log('DEBUG: currentLang=', currentLang, 'TRANSLATIONS.he has routing.list1:', !!TRANSLATIONS?.he?.['features.routing.list1']);
     translatePage();
     loadBlogArticles();
   </script>
