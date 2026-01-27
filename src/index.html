@@ -230,8 +230,16 @@
           Our AI doesn't just match keywords — it understands context. Each conversation triggers the right playbook, pulling from your knowledge base to deliver accurate, on-brand responses.
         </p>
       </div>
-      <div class="feature-card__visual">
-        <div class="feature-visual-placeholder">Playbook Flow</div>
+      <div class="feature-card__visual feature-card__visual--playbook">
+        <!-- Playbook Flow Widget -->
+        <div id="playbook-widget">
+          <div class="pbw-progress-container">
+            <div class="pbw-progress-bar" id="pbw-progress"></div>
+          </div>
+          <div class="pbw-track-container">
+            <div class="pbw-track" id="pbw-track"></div>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -1004,6 +1012,127 @@
       chatFlowInstance = new ChatFlowDemo('chat-flow-demo', CHAT_CONFIG);
     }
     setTimeout(initChatFlow, 500);
+
+    // ============================================
+    // PLAYBOOK FLOW WIDGET
+    // ============================================
+    (function initPlaybookWidget() {
+      const CONFIG = {
+        stepDuration: 1800,
+        pauseAtEnd: 2500,
+      };
+
+      const steps = [
+        {
+          icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path><path d="M8 9h8M8 13h6"></path></svg>`,
+          title: "Intent detected",
+          desc: "Customer requesting refund",
+          status: "Analyzing"
+        },
+        {
+          icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M3 12h18M5.6 5.6l12.8 12.8M18.4 5.6 5.6 18.4"/><circle cx="12" cy="12" r="3"/></svg>`,
+          title: "AI playbook",
+          desc: "Matching policy rules",
+          status: "Processing"
+        },
+        {
+          icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path><path d="M3 12c0 1.66 4 3 9 3s9-1.34 9-3"></path></svg>`,
+          title: "Data verified",
+          desc: "Order #12847 confirmed",
+          status: "Validating"
+        },
+        {
+          icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4 20-7z"></path></svg>`,
+          title: "Resolved",
+          desc: "Response sent in 4.2s",
+          status: "Complete"
+        }
+      ];
+
+      const track = document.getElementById('pbw-track');
+      const progressBar = document.getElementById('pbw-progress');
+      if (!track || !progressBar) return;
+
+      let html = '';
+      steps.forEach((step, i) => {
+        html += `
+          <div class="pbw-node" id="pbw-node-${i}">
+            <span class="pbw-step-badge">${i + 1}</span>
+            <div class="pbw-icon">${step.icon}</div>
+            <div class="pbw-title">${step.title}</div>
+            <div class="pbw-desc">${step.desc}</div>
+            <div class="pbw-status">
+              <span class="pbw-status-dot"></span>
+              ${step.status}
+            </div>
+          </div>
+        `;
+        if (i < steps.length - 1) {
+          html += `<div class="pbw-line" id="pbw-line-${i}"></div>`;
+        }
+      });
+      track.innerHTML = html;
+
+      const nodes = Array.from(document.querySelectorAll('.pbw-node'));
+      const lines = Array.from(document.querySelectorAll('.pbw-line'));
+
+      const centerOnNode = (index) => {
+        const node = nodes[index];
+        if (!node) return;
+        const offset = node.offsetLeft + (node.offsetWidth / 2);
+        track.style.transform = `translateX(-${offset}px)`;
+      };
+
+      const updateProgress = (index) => {
+        const percent = ((index + 1) / steps.length) * 100;
+        progressBar.style.width = `${percent}%`;
+      };
+
+      const resetAll = () => {
+        nodes.forEach(n => n.classList.remove('active', 'passed', 'success'));
+        lines.forEach(l => l.classList.remove('active', 'complete'));
+        progressBar.style.width = '0%';
+      };
+
+      let currentIndex = 0;
+      let timeoutId = null;
+
+      const animateStep = () => {
+        for (let i = 0; i < currentIndex; i++) {
+          nodes[i].classList.remove('active', 'success');
+          nodes[i].classList.add('passed');
+          if (lines[i]) lines[i].classList.add('active', 'complete');
+        }
+
+        const node = nodes[currentIndex];
+        node.classList.remove('passed');
+        if (currentIndex === steps.length - 1) {
+          node.classList.add('success');
+        } else {
+          node.classList.add('active');
+        }
+
+        centerOnNode(currentIndex);
+        updateProgress(currentIndex);
+
+        if (currentIndex < steps.length - 1) {
+          currentIndex++;
+          timeoutId = setTimeout(animateStep, CONFIG.stepDuration);
+        } else {
+          timeoutId = setTimeout(() => {
+            resetAll();
+            currentIndex = 0;
+            centerOnNode(0);
+            timeoutId = setTimeout(animateStep, 600);
+          }, CONFIG.pauseAtEnd);
+        }
+      };
+
+      setTimeout(() => {
+        centerOnNode(0);
+        setTimeout(animateStep, 800);
+      }, 400);
+    })();
 
     // Load blog articles
     async function loadBlogArticles() {
