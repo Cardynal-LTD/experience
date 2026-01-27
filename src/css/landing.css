@@ -3171,6 +3171,14 @@
   z-index: 2;
 }
 
+.omni-logo-img {
+  width: 38px;
+  height: 38px;
+  object-fit: contain;
+  position: relative;
+  z-index: 2;
+}
+
 .omni-pulse {
   position: absolute;
   inset: -2px;
