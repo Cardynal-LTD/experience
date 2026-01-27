@@ -37,10 +37,7 @@
   <header class="landing-header">
     <div class="landing-header__content">
       <a href="/" class="landing-header__logo">
-        <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
-          <rect width="32" height="32" rx="8" fill="currentColor"/>
-          <path d="M8 16C8 11.5817 11.5817 8 16 8V8C20.4183 8 24 11.5817 24 16V24H16C11.5817 24 8 20.4183 8 16V16Z" fill="#020917"/>
-        </svg>
+        <img src="/logo-cardynal.png" alt="Cardynal" class="landing-header__logo-img">
         <span>Cardynal</span>
       </a>
       <nav class="landing-header__nav" id="mainNav">
@@ -51,14 +48,14 @@
       </nav>
       <div class="landing-header__actions">
         <div class="lang-selector">
-          <button class="lang-selector__btn" id="langBtn">
+          <button type="button" class="lang-selector__btn" id="langBtn">
             <span id="currentLang">EN</span>
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
           </button>
           <div class="lang-selector__dropdown" id="langDropdown">
-            <button class="lang-selector__option" data-lang="en">English</button>
-            <button class="lang-selector__option" data-lang="fr">Francais</button>
-            <button class="lang-selector__option" data-lang="he">עברית</button>
+            <button type="button" class="lang-selector__option" data-lang="en">English</button>
+            <button type="button" class="lang-selector__option" data-lang="fr">Francais</button>
+            <button type="button" class="lang-selector__option" data-lang="he">עברית</button>
           </div>
         </div>
         <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
@@ -539,15 +536,13 @@
           <button type="button" class="btn btn--secondary btn--lg btn--full pricing-roi-btn" id="openRoiCalculator" data-i18n="pricing.roiBtn">Calculate your ROI</button>
         </div>
         <div class="pricing-card__features">
-          <h4 data-i18n="pricing.included">What's a resolution?</h4>
-          <p class="pricing-card__note" data-i18n="pricing.resolution">
-            When your AI successfully handles a customer request — answers a question, completes an action, or closes a conversation. Escalated conversations are free: if AI hands to your agent you're not charged.
-          </p>
-          <h4 style="margin-top: 1.5rem;" data-i18n="pricing.features">Key features included</h4>
+          <h4 data-i18n="pricing.features">Key features included</h4>
           <ul>
-            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> <span data-i18n="pricing.f1">AI dashboard</span></li>
-            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> <span data-i18n="pricing.f2">Help desk</span></li>
-            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> <span data-i18n="pricing.f3">WhatsApp + Web chat</span></li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> <span data-i18n="pricing.f1">100 AI resolutions included</span></li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> <span data-i18n="pricing.f2">2 seats (1 admin + 1 agent)</span></li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> <span data-i18n="pricing.f3">Unlimited escalations</span></li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> <span data-i18n="pricing.f4">Unlimited AI conversations*</span></li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> <span data-i18n="pricing.f5">WhatsApp + Web chat</span></li>
           </ul>
         </div>
       </div>
@@ -641,10 +636,7 @@
     <div class="landing-footer__content">
       <div class="landing-footer__brand">
         <a href="/" class="landing-footer__logo">
-          <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
-            <rect width="32" height="32" rx="8" fill="currentColor"/>
-            <path d="M8 16C8 11.5817 11.5817 8 16 8V8C20.4183 8 24 11.5817 24 16V24H16C11.5817 24 8 20.4183 8 16V16Z" fill="#020917"/>
-          </svg>
+          <img src="/logo-cardynal.png" alt="Cardynal" class="landing-footer__logo-img">
           <span>Cardynal</span>
         </a>
         <p data-i18n="footer.tagline">Human + AI Customer Support<br>Fully managed, from day one.</p>
@@ -709,9 +701,12 @@
               <label data-i18n="roi.agentHourlyCost">Agent hourly cost (<span class="roi-currency">$</span>)</label>
               <input type="number" id="roiAgentCost" value="25" min="10" step="5">
             </div>
-            <div class="roi-input-group">
-              <label data-i18n="roi.aiResolutionRate">AI resolution rate (%)</label>
-              <input type="number" id="roiResolutionRate" value="70" min="30" max="95" step="5">
+            <div class="roi-input-group roi-input-group--slider">
+              <div class="roi-slider-header">
+                <label data-i18n="roi.aiResolutionRate">AI resolution rate</label>
+                <span class="roi-slider-value" id="roiResolutionValue">70%</span>
+              </div>
+              <input type="range" id="roiResolutionRate" value="70" min="30" max="95" step="5" class="roi-slider">
             </div>
           </div>
           <div class="roi-calculator__results">
@@ -798,12 +793,12 @@
         'pricing.addon1': 'per seat/month',
         'pricing.addon2': 'per resolution',
         'pricing.cta': 'Get started',
-        'pricing.included': 'What\'s a resolution?',
-        'pricing.resolution': 'When your AI successfully handles a customer request — answers a question, completes an action, or closes a conversation. Escalated conversations are free: if AI hands to your agent you\'re not charged.',
         'pricing.features': 'Key features included',
-        'pricing.f1': 'AI dashboard',
-        'pricing.f2': 'Help desk',
-        'pricing.f3': 'WhatsApp + Web chat',
+        'pricing.f1': '100 AI resolutions included',
+        'pricing.f2': '2 seats (1 admin + 1 agent)',
+        'pricing.f3': 'Unlimited escalations',
+        'pricing.f4': 'Unlimited AI conversations*',
+        'pricing.f5': 'WhatsApp + Web chat',
         'faq.title': 'Questions?<br>Let\'s clear things up.',
         'faq.subtitle': 'AI-powered solutions, business automation tools... a lot of big words can get confusing. We\'re here to make it clear.',
         'faq.q1': 'What exactly is Cardynal?',
@@ -902,12 +897,12 @@
         'pricing.addon1': 'par utilisateur/mois',
         'pricing.addon2': 'par resolution',
         'pricing.cta': 'Commencer',
-        'pricing.included': 'C\'est quoi une resolution ?',
-        'pricing.resolution': 'Quand votre IA gere avec succes une demande client — repond a une question, complete une action ou cloture une conversation.',
         'pricing.features': 'Fonctionnalites incluses',
-        'pricing.f1': 'Tableau de bord IA',
-        'pricing.f2': 'Help desk',
-        'pricing.f3': 'WhatsApp + Chat Web',
+        'pricing.f1': '100 resolutions IA incluses',
+        'pricing.f2': '2 utilisateurs (1 admin + 1 agent)',
+        'pricing.f3': 'Escalades illimitees',
+        'pricing.f4': 'Conversations IA illimitees*',
+        'pricing.f5': 'WhatsApp + Chat Web',
         'faq.title': 'Questions ?<br>Clarifions tout ca.',
         'faq.subtitle': 'Solutions IA, outils d\'automatisation... beaucoup de mots compliques. On est la pour simplifier.',
         'faq.q1': 'Qu\'est-ce que Cardynal exactement ?',
@@ -1006,12 +1001,12 @@
         'pricing.addon1': 'למשתמש/חודש',
         'pricing.addon2': 'לפתרון',
         'pricing.cta': 'התחילו',
-        'pricing.included': 'מה זה פתרון?',
-        'pricing.resolution': 'כאשר ה-AI שלכם מטפל בהצלחה בבקשת לקוח — עונה על שאלה, משלים פעולה או סוגר שיחה.',
         'pricing.features': 'תכונות כלולות',
-        'pricing.f1': 'לוח בקרה AI',
-        'pricing.f2': 'Help desk',
-        'pricing.f3': 'WhatsApp + צאט אינטרנט',
+        'pricing.f1': '100 פתרונות AI כלולים',
+        'pricing.f2': '2 משתמשים (1 מנהל + 1 נציג)',
+        'pricing.f3': 'אסקלציות ללא הגבלה',
+        'pricing.f4': 'שיחות AI ללא הגבלה*',
+        'pricing.f5': 'WhatsApp + צאט אינטרנט',
         'faq.title': 'שאלות?<br>בואו נבהיר.',
         'faq.subtitle': 'פתרונות AI, כלי אוטומציה... הרבה מילים גדולות שיכולות לבלבל. אנחנו כאן כדי להבהיר.',
         'faq.q1': 'מה זה בדיוק Cardynal?',
@@ -1093,23 +1088,30 @@
     const langBtn = document.getElementById('langBtn');
     const langDropdown = document.getElementById('langDropdown');
 
-    langBtn?.addEventListener('click', (e) => {
-      e.stopPropagation();
-      langDropdown.classList.toggle('is-open');
-    });
-
-    document.querySelectorAll('.lang-selector__option').forEach(btn => {
-      btn.addEventListener('click', () => {
-        currentLang = btn.dataset.lang;
-        localStorage.setItem('cardynal_lang', currentLang);
-        translatePage();
-        langDropdown.classList.remove('is-open');
+    if (langBtn && langDropdown) {
+      langBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        langDropdown.classList.toggle('is-open');
       });
-    });
 
-    document.addEventListener('click', () => {
-      langDropdown?.classList.remove('is-open');
-    });
+      document.querySelectorAll('.lang-selector__option').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          currentLang = btn.dataset.lang;
+          localStorage.setItem('cardynal_lang', currentLang);
+          translatePage();
+          langDropdown.classList.remove('is-open');
+        });
+      });
+
+      document.addEventListener('click', (e) => {
+        if (!e.target.closest('.lang-selector')) {
+          langDropdown.classList.remove('is-open');
+        }
+      });
+    }
 
     // Theme toggle
     const themeToggle = document.getElementById('themeToggle');
@@ -2028,6 +2030,15 @@
       ['roiConversations', 'roiHandleTime', 'roiAgentCost', 'roiResolutionRate'].forEach(id => {
         document.getElementById(id)?.addEventListener('input', calculateROI);
       });
+
+      // Update slider value display
+      const slider = document.getElementById('roiResolutionRate');
+      const sliderValue = document.getElementById('roiResolutionValue');
+      if (slider && sliderValue) {
+        slider.addEventListener('input', () => {
+          sliderValue.textContent = `${slider.value}%`;
+        });
+      }
 
       // Recalculate when language changes
       const originalTranslate = window.translatePage || translatePage;
