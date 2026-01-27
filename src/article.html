@@ -93,7 +93,7 @@
   <script type="module">
     import './js/theme.js'
     import { initAuth } from './js/auth.js'
-    import { initLangSelector, getCurrentLang, addHreflangTags, getLangPrefix } from './js/i18n.js'
+    import { initLangSelector, getCurrentLang, addHreflangTags, getLangPrefix, updateNavLinks } from './js/i18n.js'
     import { marked } from 'marked'
 
     initAuth()
@@ -207,6 +207,7 @@
             </div>
           </article>
         `
+        updateNavLinks()
 
       } catch (err) {
         showError()
@@ -230,6 +231,7 @@
           </div>
         </div>
       `
+      updateNavLinks()
     }
 
     function escapeHtml(text) {

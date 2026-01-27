@@ -53,10 +53,27 @@ export function setDocumentDirection(lang) {
   document.documentElement.setAttribute('lang', lang)
 }
 
+// Update all navigation links to preserve current language
+export function updateNavLinks() {
+  const currentLang = getCurrentLang()
+  if (currentLang === DEFAULT_LANG) return // No prefix needed for default lang
+
+  const prefix = `/${currentLang}`
+
+  // Update all internal links
+  document.querySelectorAll('a[href^="/"]').forEach(link => {
+    const href = link.getAttribute('href')
+    // Skip if already has lang prefix or is an API/admin link
+    if (href.match(/^\/(en|he)\//) || href.startsWith('/api') || href.startsWith('/admin')) return
+    link.setAttribute('href', prefix + href)
+  })
+}
+
 // Initialize language selector in header
 export function initLangSelector() {
   const currentLang = getCurrentLang()
   setDocumentDirection(currentLang)
+  updateNavLinks()
 
   // Find or create lang selector container
   const headerActions = document.querySelector('.header__actions')
