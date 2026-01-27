@@ -767,6 +767,7 @@
 
 [dir="rtl"] .feature-list {
   justify-content: flex-end;
+  padding: 0 !important;
 }
 
 .feature-list li {
@@ -871,7 +872,8 @@
   }
 
   [dir="rtl"] .feature-list {
-    justify-content: flex-start !important;
+    justify-content: flex-end !important;
+    padding: 0 !important;
   }
 }
 
@@ -1484,7 +1486,8 @@
 }
 
 [dir="rtl"] .feature-list {
-  justify-content: flex-start !important;
+  justify-content: flex-end !important;
+  padding: 0 !important;
 }
 
 /* Widgets - Keep LTR in RTL mode (visual flow stays left-to-right) */
