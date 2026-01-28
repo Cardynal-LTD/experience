@@ -362,36 +362,147 @@ app.delete('/api/articles/:id', checkAuth, async (req, res) => {
 // Analytics API
 // ============================================
 
+// Helper: Parse User-Agent for device type
+function getDeviceType(ua) {
+  if (!ua) return 'unknown'
+  ua = ua.toLowerCase()
+  if (/mobile|android|iphone|ipod|blackberry|windows phone/.test(ua)) return 'mobile'
+  if (/ipad|tablet/.test(ua)) return 'tablet'
+  return 'desktop'
+}
+
+// Helper: Get visitor info from previous visits
+async function getVisitorInfo(supabase, visitorId) {
+  if (!visitorId) return { isNew: true, visitCount: 1 }
+
+  const { data } = await supabase
+    .from('page_views')
+    .select('visitor_id, viewed_at')
+    .eq('visitor_id', visitorId)
+    .order('viewed_at', { ascending: false })
+    .limit(1)
+
+  if (!data || data.length === 0) {
+    return { isNew: true, visitCount: 1 }
+  }
+
+  // Count unique sessions for this visitor
+  const { count } = await supabase
+    .from('page_views')
+    .select('session_id', { count: 'exact', head: true })
+    .eq('visitor_id', visitorId)
+
+  return { isNew: false, visitCount: (count || 0) + 1 }
+}
+
 // Track page view (public - no auth required)
 app.post('/api/track', async (req, res) => {
   if (!supabase) {
     return res.status(500).json({ error: 'Supabase non configure' })
   }
 
-  const { path, article_id, referrer } = req.body
+  const {
+    path,
+    article_id,
+    referrer,
+    visitor_id,
+    session_id,
+    screen_width,
+    screen_height,
+    timezone,
+    language,
+    page_load_time,
+    utm_source,
+    utm_medium,
+    utm_campaign
+  } = req.body
 
   if (!path) {
     return res.status(400).json({ error: 'Path requis' })
   }
 
   try {
+    // Get user agent from request
+    const userAgent = req.headers['user-agent'] || null
+    const deviceType = getDeviceType(userAgent)
+
+    // Get visitor info
+    const visitorInfo = await getVisitorInfo(supabase, visitor_id)
+
+    // Get country/city from IP (basic - using request headers or external service)
+    // For now, we'll leave country/city null - can integrate IP geolocation API later
+    const country = null
+    const city = null
+
     const { error } = await supabase
       .from('page_views')
       .insert({
         path,
         article_id: article_id || null,
-        referrer: referrer || null
+        referrer: referrer || null,
+        visitor_id: visitor_id || null,
+        session_id: session_id || null,
+        user_agent: userAgent,
+        device_type: deviceType,
+        screen_width: screen_width || null,
+        screen_height: screen_height || null,
+        timezone: timezone || null,
+        language: language || null,
+        is_new_visitor: visitorInfo.isNew,
+        visit_count: visitorInfo.visitCount,
+        page_load_time: page_load_time || null,
+        country,
+        city,
+        utm_source: utm_source || null,
+        utm_medium: utm_medium || null,
+        utm_campaign: utm_campaign || null
       })
 
     if (error) {
-      // Table might not exist yet - fail silently
-      console.log('Track error (table may not exist):', error.message)
+      console.log('Track error:', error.message)
       return res.json({ tracked: false })
     }
 
-    res.json({ tracked: true })
+    res.json({ tracked: true, isNew: visitorInfo.isNew })
   } catch (err) {
+    console.log('Track exception:', err.message)
     res.json({ tracked: false })
+  }
+})
+
+// Update page view with scroll depth and time on page (called on page exit)
+app.post('/api/track/update', async (req, res) => {
+  if (!supabase) {
+    return res.status(500).json({ error: 'Supabase non configure' })
+  }
+
+  const { session_id, path, time_on_page, scroll_depth, is_exit } = req.body
+
+  if (!session_id || !path) {
+    return res.status(400).json({ error: 'session_id and path required' })
+  }
+
+  try {
+    const { error } = await supabase
+      .from('page_views')
+      .update({
+        time_on_page: time_on_page || null,
+        scroll_depth: scroll_depth || null,
+        is_exit: is_exit || false
+      })
+      .eq('session_id', session_id)
+      .eq('path', path)
+      .order('viewed_at', { ascending: false })
+      .limit(1)
+
+    if (error) {
+      console.log('Track update error:', error.message)
+      return res.json({ updated: false })
+    }
+
+    res.json({ updated: true })
+  } catch (err) {
+    res.json({ updated: false })
   }
 })
 
@@ -417,118 +528,185 @@ app.get('/api/stats', checkAuth, async (req, res) => {
       byLang[lang] = (byLang[lang] || 0) + 1
     })
 
-    // Count by month (last 6 months)
-    const byMonth = {}
-    const now = new Date()
-    for (let i = 5; i >= 0; i--) {
-      const d = new Date(now.getFullYear(), now.getMonth() - i, 1)
-      const key = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}`
-      byMonth[key] = 0
+    // Initialize pageViews response
+    let pageViews = {
+      total: 0,
+      today: 0,
+      thisWeek: 0,
+      thisMonth: 0,
+      uniqueVisitors: 0,
+      uniqueToday: 0,
+      newVisitors: 0,
+      returningVisitors: 0,
+      avgTimeOnPage: 0,
+      avgScrollDepth: 0,
+      bounceRate: 0,
+      byArticle: [],
+      byDay: [],
+      byDevice: { desktop: 0, mobile: 0, tablet: 0 },
+      byCountry: [],
+      byReferrer: [],
+      byUtmSource: []
     }
-    articles.forEach(a => {
-      const d = new Date(a.created_at)
-      const key = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}`
-      if (byMonth.hasOwnProperty(key)) {
-        byMonth[key]++
-      }
-    })
-
-    // Try to get page views stats
-    let pageViews = { total: 0, today: 0, thisWeek: 0, thisMonth: 0, byArticle: [], byDay: [] }
 
     try {
-      // Total views
-      const { count: totalViews } = await supabase
-        .from('page_views')
-        .select('*', { count: 'exact', head: true })
-
-      // Today's views
+      const now = new Date()
       const today = new Date()
       today.setHours(0, 0, 0, 0)
-      const { count: todayViews } = await supabase
+      const weekAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000)
+      const monthAgo = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000)
+
+      // Get all page views for comprehensive stats
+      const { data: allViews } = await supabase
         .from('page_views')
-        .select('*', { count: 'exact', head: true })
-        .gte('viewed_at', today.toISOString())
+        .select('*')
+        .order('viewed_at', { ascending: false })
+        .limit(10000)
 
-      // This week
-      const weekAgo = new Date()
-      weekAgo.setDate(weekAgo.getDate() - 7)
-      const { count: weekViews } = await supabase
-        .from('page_views')
-        .select('*', { count: 'exact', head: true })
-        .gte('viewed_at', weekAgo.toISOString())
+      if (allViews && allViews.length > 0) {
+        // Total views
+        pageViews.total = allViews.length
 
-      // This month
-      const monthAgo = new Date()
-      monthAgo.setDate(monthAgo.getDate() - 30)
-      const { count: monthViews } = await supabase
-        .from('page_views')
-        .select('*', { count: 'exact', head: true })
-        .gte('viewed_at', monthAgo.toISOString())
+        // Time-based counts
+        pageViews.today = allViews.filter(v => new Date(v.viewed_at) >= today).length
+        pageViews.thisWeek = allViews.filter(v => new Date(v.viewed_at) >= weekAgo).length
+        pageViews.thisMonth = allViews.filter(v => new Date(v.viewed_at) >= monthAgo).length
 
-      // Views by article (top 10)
-      const { data: viewsByArticle } = await supabase
-        .from('page_views')
-        .select('article_id')
-        .not('article_id', 'is', null)
+        // Unique visitors
+        const uniqueVisitorIds = new Set(allViews.map(v => v.visitor_id).filter(Boolean))
+        pageViews.uniqueVisitors = uniqueVisitorIds.size
 
-      const articleViewCounts = {}
-      viewsByArticle?.forEach(v => {
-        articleViewCounts[v.article_id] = (articleViewCounts[v.article_id] || 0) + 1
-      })
+        const todayViews = allViews.filter(v => new Date(v.viewed_at) >= today)
+        const uniqueTodayIds = new Set(todayViews.map(v => v.visitor_id).filter(Boolean))
+        pageViews.uniqueToday = uniqueTodayIds.size
 
-      const topArticles = Object.entries(articleViewCounts)
-        .sort((a, b) => b[1] - a[1])
-        .slice(0, 10)
-        .map(([id, views]) => {
-          const article = articles.find(a => a.id === parseInt(id))
-          return {
-            id: parseInt(id),
-            title: article?.title || 'Article supprime',
-            slug: article?.slug || '',
-            emoji: article?.emoji || '📄',
-            views
+        // New vs returning
+        pageViews.newVisitors = allViews.filter(v => v.is_new_visitor === true).length
+        pageViews.returningVisitors = allViews.filter(v => v.is_new_visitor === false).length
+
+        // Average time on page (exclude nulls and outliers > 30 min)
+        const timesOnPage = allViews
+          .map(v => v.time_on_page)
+          .filter(t => t && t > 0 && t < 1800)
+        if (timesOnPage.length > 0) {
+          pageViews.avgTimeOnPage = Math.round(timesOnPage.reduce((a, b) => a + b, 0) / timesOnPage.length)
+        }
+
+        // Average scroll depth
+        const scrollDepths = allViews.map(v => v.scroll_depth).filter(s => s && s > 0)
+        if (scrollDepths.length > 0) {
+          pageViews.avgScrollDepth = Math.round(scrollDepths.reduce((a, b) => a + b, 0) / scrollDepths.length)
+        }
+
+        // Bounce rate (sessions with only 1 page view)
+        const sessionCounts = {}
+        allViews.forEach(v => {
+          if (v.session_id) {
+            sessionCounts[v.session_id] = (sessionCounts[v.session_id] || 0) + 1
+          }
+        })
+        const totalSessions = Object.keys(sessionCounts).length
+        const bounceSessions = Object.values(sessionCounts).filter(c => c === 1).length
+        if (totalSessions > 0) {
+          pageViews.bounceRate = Math.round((bounceSessions / totalSessions) * 100)
+        }
+
+        // Device breakdown
+        allViews.forEach(v => {
+          const device = v.device_type || 'desktop'
+          if (pageViews.byDevice[device] !== undefined) {
+            pageViews.byDevice[device]++
           }
         })
 
-      // Views by day (last 14 days)
-      const { data: recentViews } = await supabase
-        .from('page_views')
-        .select('viewed_at')
-        .gte('viewed_at', new Date(Date.now() - 14 * 24 * 60 * 60 * 1000).toISOString())
+        // Top countries
+        const countryCounts = {}
+        allViews.forEach(v => {
+          if (v.country) {
+            countryCounts[v.country] = (countryCounts[v.country] || 0) + 1
+          }
+        })
+        pageViews.byCountry = Object.entries(countryCounts)
+          .sort((a, b) => b[1] - a[1])
+          .slice(0, 10)
+          .map(([country, count]) => ({ country, count }))
 
-      const viewsByDay = {}
-      for (let i = 13; i >= 0; i--) {
-        const d = new Date()
-        d.setDate(d.getDate() - i)
-        const key = d.toISOString().split('T')[0]
-        viewsByDay[key] = 0
-      }
-      recentViews?.forEach(v => {
-        const key = v.viewed_at.split('T')[0]
-        if (viewsByDay.hasOwnProperty(key)) {
-          viewsByDay[key]++
+        // Top referrers
+        const referrerCounts = {}
+        allViews.forEach(v => {
+          if (v.referrer) {
+            try {
+              const url = new URL(v.referrer)
+              const domain = url.hostname.replace('www.', '')
+              referrerCounts[domain] = (referrerCounts[domain] || 0) + 1
+            } catch {
+              referrerCounts[v.referrer] = (referrerCounts[v.referrer] || 0) + 1
+            }
+          }
+        })
+        pageViews.byReferrer = Object.entries(referrerCounts)
+          .sort((a, b) => b[1] - a[1])
+          .slice(0, 10)
+          .map(([referrer, count]) => ({ referrer, count }))
+
+        // UTM sources
+        const utmCounts = {}
+        allViews.forEach(v => {
+          if (v.utm_source) {
+            const key = [v.utm_source, v.utm_medium, v.utm_campaign].filter(Boolean).join(' / ')
+            utmCounts[key] = (utmCounts[key] || 0) + 1
+          }
+        })
+        pageViews.byUtmSource = Object.entries(utmCounts)
+          .sort((a, b) => b[1] - a[1])
+          .slice(0, 10)
+          .map(([source, count]) => ({ source, count }))
+
+        // Views by article (top 10)
+        const articleViewCounts = {}
+        allViews.forEach(v => {
+          if (v.article_id) {
+            articleViewCounts[v.article_id] = (articleViewCounts[v.article_id] || 0) + 1
+          }
+        })
+        pageViews.byArticle = Object.entries(articleViewCounts)
+          .sort((a, b) => b[1] - a[1])
+          .slice(0, 10)
+          .map(([id, views]) => {
+            const article = articles.find(a => a.id === parseInt(id))
+            return {
+              id: parseInt(id),
+              title: article?.title || 'Article supprime',
+              slug: article?.slug || '',
+              emoji: article?.emoji || '📄',
+              views
+            }
+          })
+
+        // Views by day (last 14 days)
+        const viewsByDay = {}
+        for (let i = 13; i >= 0; i--) {
+          const d = new Date()
+          d.setDate(d.getDate() - i)
+          const key = d.toISOString().split('T')[0]
+          viewsByDay[key] = 0
         }
-      })
-
-      pageViews = {
-        total: totalViews || 0,
-        today: todayViews || 0,
-        thisWeek: weekViews || 0,
-        thisMonth: monthViews || 0,
-        byArticle: topArticles,
-        byDay: Object.entries(viewsByDay).map(([date, views]) => ({ date, views }))
+        allViews.forEach(v => {
+          const key = v.viewed_at.split('T')[0]
+          if (viewsByDay.hasOwnProperty(key)) {
+            viewsByDay[key]++
+          }
+        })
+        pageViews.byDay = Object.entries(viewsByDay).map(([date, views]) => ({ date, views }))
       }
     } catch (e) {
-      // page_views table doesn't exist yet
-      console.log('Page views table not found:', e.message)
+      console.log('Page views stats error:', e.message)
     }
 
     res.json({
       articles: {
         total: articles.length,
         byLang,
-        byMonth,
         recent: articles.slice(0, 5)
       },
       pageViews

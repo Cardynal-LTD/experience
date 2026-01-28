@@ -366,26 +366,44 @@ async function loadStats() {
 }
 
 function renderStats(stats) {
-  // Update stat cards
-  $('#statTotalArticles').textContent = stats.articles.total
-  $('#statTotalViews').textContent = formatNumber(stats.pageViews.total)
-  $('#statTodayViews').textContent = formatNumber(stats.pageViews.today)
-  $('#statWeekViews').textContent = formatNumber(stats.pageViews.thisWeek)
+  const pv = stats.pageViews
 
-  // Hide setup instructions (table is created)
+  // Row 1: Vues
+  $('#statTotalViews').textContent = formatNumber(pv.total)
+  $('#statTodayViews').textContent = formatNumber(pv.today)
+  $('#statWeekViews').textContent = formatNumber(pv.thisWeek)
+  $('#statMonthViews').textContent = formatNumber(pv.thisMonth)
+
+  // Row 2: Visiteurs
+  $('#statUniqueVisitors').textContent = formatNumber(pv.uniqueVisitors)
+  $('#statNewVisitors').textContent = formatNumber(pv.newVisitors)
+  $('#statReturning').textContent = formatNumber(pv.returningVisitors)
+  $('#statBounceRate').textContent = pv.bounceRate + '%'
+
+  // Row 3: Engagement
+  $('#statAvgTime').textContent = formatTime(pv.avgTimeOnPage)
+  $('#statAvgScroll').textContent = pv.avgScrollDepth + '%'
+  $('#statDesktop').textContent = formatNumber(pv.byDevice?.desktop || 0)
+  $('#statMobile').textContent = formatNumber(pv.byDevice?.mobile || 0)
+
+  // Hide setup instructions
   const setupCard = $('#analyticsSetup')
-  if (setupCard) {
-    setupCard.style.display = 'none'
-  }
+  if (setupCard) setupCard.style.display = 'none'
 
-  // Render views chart
-  renderViewsChart(stats.pageViews.byDay)
+  // Render charts
+  renderViewsChart(pv.byDay)
+  renderDeviceStats(pv.byDevice)
+  renderReferrerStats(pv.byReferrer)
+  renderUtmStats(pv.byUtmSource)
+  renderTopArticles(pv.byArticle)
+}
 
-  // Render language stats
-  renderLangStats(stats.articles.byLang, stats.articles.total)
-
-  // Render top articles
-  renderTopArticles(stats.pageViews.byArticle)
+function formatTime(seconds) {
+  if (!seconds || seconds === 0) return '0s'
+  if (seconds < 60) return seconds + 's'
+  const mins = Math.floor(seconds / 60)
+  const secs = seconds % 60
+  return mins + 'm ' + secs + 's'
 }
 
 function renderViewsChart(byDay) {
@@ -411,31 +429,68 @@ function renderViewsChart(byDay) {
   }).join('')
 }
 
-function renderLangStats(byLang, total) {
-  const container = $('#langStats')
-  const maxCount = Math.max(...Object.values(byLang), 1)
-
-  const langInfo = {
-    en: { flag: '🇬🇧', name: 'English' },
-    fr: { flag: '🇫🇷', name: 'Francais' },
-    he: { flag: '🇮🇱', name: 'Hebrew' }
+function renderDeviceStats(byDevice) {
+  const container = $('#deviceStats')
+  if (!byDevice) {
+    container.innerHTML = '<div class="analytics-empty">Aucune donnee</div>'
+    return
   }
 
-  container.innerHTML = Object.entries(byLang).map(([lang, count]) => {
-    const info = langInfo[lang] || { flag: '🌐', name: lang }
-    const percent = (count / maxCount) * 100
+  const devices = [
+    { key: 'desktop', icon: '🖥️', name: 'Desktop' },
+    { key: 'mobile', icon: '📱', name: 'Mobile' },
+    { key: 'tablet', icon: '📱', name: 'Tablet' }
+  ]
+
+  const total = Object.values(byDevice).reduce((a, b) => a + b, 0) || 1
+
+  container.innerHTML = devices.map(d => {
+    const count = byDevice[d.key] || 0
+    const percent = Math.round((count / total) * 100)
 
     return `
       <div class="lang-stat">
-        <span class="lang-stat__flag">${info.flag}</span>
-        <span class="lang-stat__name">${info.name}</span>
+        <span class="lang-stat__flag">${d.icon}</span>
+        <span class="lang-stat__name">${d.name}</span>
         <div class="lang-stat__bar">
           <div class="lang-stat__fill" style="width: ${percent}%"></div>
         </div>
-        <span class="lang-stat__count">${count}</span>
+        <span class="lang-stat__count">${percent}%</span>
       </div>
     `
   }).join('')
+}
+
+function renderReferrerStats(byReferrer) {
+  const container = $('#referrerStats')
+  if (!byReferrer || byReferrer.length === 0) {
+    container.innerHTML = '<div class="analytics-empty">Aucune donnee</div>'
+    return
+  }
+
+  container.innerHTML = byReferrer.slice(0, 5).map((r, i) => `
+    <div class="top-article">
+      <span class="top-article__rank">${i + 1}</span>
+      <span class="top-article__title">${escapeHtml(r.referrer)}</span>
+      <span class="top-article__views">${formatNumber(r.count)}</span>
+    </div>
+  `).join('')
+}
+
+function renderUtmStats(byUtmSource) {
+  const container = $('#utmStats')
+  if (!byUtmSource || byUtmSource.length === 0) {
+    container.innerHTML = '<div class="analytics-empty">Aucune campagne UTM</div>'
+    return
+  }
+
+  container.innerHTML = byUtmSource.slice(0, 5).map((u, i) => `
+    <div class="top-article">
+      <span class="top-article__rank">${i + 1}</span>
+      <span class="top-article__title">${escapeHtml(u.source)}</span>
+      <span class="top-article__views">${formatNumber(u.count)}</span>
+    </div>
+  `).join('')
 }
 
 function renderTopArticles(byArticle) {

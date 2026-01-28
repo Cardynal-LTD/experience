@@ -189,7 +189,7 @@
         `
 
         // Track page view
-        trackPageView(article.id)
+        import('/js/tracking.js').then(m => m.initTracking(article.id))
 
       } catch (err) {
         showError()
@@ -225,19 +225,6 @@
         month: 'long',
         year: 'numeric'
       })
-    }
-
-    // Track page view (fire and forget)
-    function trackPageView(articleId) {
-      fetch('/api/track', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          path: window.location.pathname,
-          article_id: articleId,
-          referrer: document.referrer || null
-        })
-      }).catch(() => {})
     }
 
     loadArticle()
