@@ -1,7 +1,7 @@
 // Internationalization module
 
-const SUPPORTED_LANGS = ['fr', 'en', 'he']
-const DEFAULT_LANG = 'fr'
+const SUPPORTED_LANGS = ['en', 'fr', 'he']
+const DEFAULT_LANG = 'en'
 const RTL_LANGS = ['he']
 
 const LANG_NAMES = {
