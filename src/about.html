@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>About - Cardynal</title>
-  <meta name="description" content="About Cardynal - We help businesses deliver exceptional customer support with AI-powered automation.">
+  <meta name="description" content="Cardynal was born out of frustration. We built something different for businesses that deserve better customer support.">
   <meta name="author" content="Cardynal">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://cardynal.io/about.html">
@@ -13,7 +13,7 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Cardynal">
   <meta property="og:title" content="About - Cardynal">
-  <meta property="og:description" content="About Cardynal - AI-powered customer support automation.">
+  <meta property="og:description" content="Cardynal was born out of frustration. We built something different.">
   <meta property="og:url" content="https://cardynal.io/about.html">
   <meta property="og:image" content="https://cardynal.io/logo-cardynal.png">
 
@@ -33,6 +33,154 @@
   <link rel="stylesheet" href="./css/main.css">
   <link rel="stylesheet" href="./css/landing/index.css">
 
+  <style>
+    .about-hero {
+      padding: 8rem 2rem 4rem;
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .about-hero__label {
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      background: var(--landing-primary-alpha, rgba(59, 130, 246, 0.1));
+      color: var(--landing-primary, #3b82f6);
+      border-radius: 2rem;
+      font-size: 0.875rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+    }
+    .about-hero__title {
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      line-height: 1.2;
+    }
+    .about-hero__text {
+      font-size: 1.125rem;
+      color: var(--landing-text-secondary, #a3a3a3);
+      line-height: 1.8;
+    }
+
+    .about-beliefs {
+      padding: 4rem 2rem;
+      background: var(--landing-surface, #0f0f0f);
+    }
+    .about-beliefs__inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .about-beliefs__title {
+      font-size: 1.75rem;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    .about-beliefs__grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+    .belief-card {
+      background: var(--landing-bg, #0a0a0a);
+      border: 1px solid var(--landing-border, #1f1f1f);
+      border-radius: 1rem;
+      padding: 2rem;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+    .belief-card:hover {
+      border-color: var(--landing-primary, #3b82f6);
+      transform: translateY(-4px);
+    }
+    .belief-card__icon {
+      width: 48px;
+      height: 48px;
+      background: var(--landing-primary-alpha, rgba(59, 130, 246, 0.1));
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+      color: var(--landing-primary, #3b82f6);
+    }
+    .belief-card__title {
+      font-size: 1.125rem;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+    }
+    .belief-card__text {
+      color: var(--landing-text-secondary, #a3a3a3);
+      line-height: 1.7;
+      font-size: 0.9375rem;
+    }
+
+    .about-team {
+      padding: 5rem 2rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .about-team__title {
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+    }
+    .about-team__text {
+      font-size: 1.0625rem;
+      color: var(--landing-text-secondary, #a3a3a3);
+      line-height: 1.8;
+      margin-bottom: 1rem;
+    }
+
+    .about-cta {
+      padding: 5rem 2rem;
+      background: linear-gradient(135deg, var(--landing-primary-alpha, rgba(59, 130, 246, 0.1)) 0%, transparent 50%);
+      text-align: center;
+    }
+    .about-cta__inner {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .about-cta__title {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    .about-cta__text {
+      color: var(--landing-text-secondary, #a3a3a3);
+      margin-bottom: 2rem;
+      font-size: 1.0625rem;
+    }
+    .about-cta__btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 1rem 2rem;
+      background: var(--landing-primary, #3b82f6);
+      color: #fff;
+      border-radius: 0.5rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.3s, transform 0.2s;
+    }
+    .about-cta__btn:hover {
+      background: var(--landing-primary-hover, #2563eb);
+      transform: translateY(-2px);
+    }
+    .about-cta__btn svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    /* Light mode */
+    .light-mode .belief-card {
+      background: #fff;
+      border-color: #e5e5e5;
+    }
+    .light-mode .about-beliefs {
+      background: #f5f5f5;
+    }
+  </style>
+
   <!-- JSON-LD -->
   <script type="application/ld+json">
   {
@@ -40,7 +188,8 @@
     "@type": "Organization",
     "name": "Cardynal",
     "url": "https://cardynal.io/",
-    "description": "AI-powered customer support automation platform.",
+    "description": "AI-powered customer support automation platform built in Jerusalem.",
+    "foundingLocation": "Jerusalem, Israel",
     "contactPoint": {
       "@type": "ContactPoint",
       "email": "contact@cardynal.io",
@@ -53,39 +202,89 @@
   <!-- Header injected by JS -->
   <div id="header-container"></div>
 
-  <main class="about-page-content">
-    <div class="about-page-content__inner">
-      <div class="about-header">
-        <h1 class="about-header__title" data-i18n="about.title">About</h1>
+  <main>
+    <!-- Hero Section -->
+    <section class="about-hero">
+      <span class="about-hero__label" data-i18n="about.label">Our Story</span>
+      <h1 class="about-hero__title" data-i18n="about.heroTitle">Cardynal was born out of frustration.</h1>
+      <p class="about-hero__text" data-i18n="about.heroText">
+        Years of working with customer service platforms — Intercom, Zendesk, local solutions — and always the same problems: too expensive, months to implement, or Hebrew that sounds like Google Translate. So we built something different.
+      </p>
+    </section>
+
+    <!-- What We Believe -->
+    <section class="about-beliefs">
+      <div class="about-beliefs__inner">
+        <h2 class="about-beliefs__title" data-i18n="about.beliefsTitle">What We Believe</h2>
+        <div class="about-beliefs__grid">
+          <div class="belief-card">
+            <div class="belief-card__icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                <circle cx="9" cy="7" r="4"/>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+              </svg>
+            </div>
+            <h3 class="belief-card__title" data-i18n="about.belief1Title">AI shouldn't replace people</h3>
+            <p class="belief-card__text" data-i18n="about.belief1Text">
+              It should free them. Our agents handle 70% of routine inquiries. The rest? Goes to your team, with full context, without the customer repeating themselves.
+            </p>
+          </div>
+          <div class="belief-card">
+            <div class="belief-card__icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"/>
+                <polyline points="12 6 12 12 16 14"/>
+              </svg>
+            </div>
+            <h3 class="belief-card__title" data-i18n="about.belief2Title">Good tech should be simple</h3>
+            <p class="belief-card__text" data-i18n="about.belief2Text">
+              No month-long integration projects. No IT teams. No headaches. 48 hours from "let's go" — you're live.
+            </p>
+          </div>
+          <div class="belief-card">
+            <div class="belief-card__icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              </svg>
+            </div>
+            <h3 class="belief-card__title" data-i18n="about.belief3Title">Hebrew isn't a translated language</h3>
+            <p class="belief-card__text" data-i18n="about.belief3Text">
+              We built Cardynal from day one for the Israeli market. Natural Hebrew, proper RTL, and a tone that actually speaks to your customers.
+            </p>
+          </div>
+        </div>
       </div>
+    </section>
 
-      <div class="about-content">
-        <p>Cardynal is an AI-powered customer support platform that helps businesses deliver exceptional service without the complexity.</p>
+    <!-- Who We Are -->
+    <section class="about-team">
+      <h2 class="about-team__title" data-i18n="about.teamTitle">Who We Are</h2>
+      <p class="about-team__text" data-i18n="about.teamText1">
+        Cardynal is built in Jerusalem by a team with deep experience in automation, AI, and customer service systems.
+      </p>
+      <p class="about-team__text" data-i18n="about.teamText2">
+        We watched Israeli businesses pay a fortune for tools that don't really fit them. We decided to give them an alternative — no compromise on quality, fair pricing, support in their language.
+      </p>
+    </section>
 
-        <p>We believe that every business deserves access to enterprise-grade AI support technology. That's why we've built a fully managed solution that deploys in 48 hours, not months.</p>
-
-        <h2>Our Mission</h2>
-        <p>To make AI customer support accessible to businesses of all sizes. We handle the technical complexity so you can focus on what matters most: your customers.</p>
-
-        <h2>What We Do</h2>
-        <p>We deploy intelligent AI agents that handle customer conversations across WhatsApp, web chat, and all your communication channels. Our AI learns from your knowledge base to provide accurate, helpful responses while seamlessly escalating complex issues to your team.</p>
-
-        <h2>Why Cardynal?</h2>
-        <ul>
-          <li><strong>Fully Managed:</strong> We handle setup, training, and optimization</li>
-          <li><strong>Quick Deployment:</strong> Live in 48 hours, not weeks</li>
-          <li><strong>No Developers Needed:</strong> Just connect your channels and go</li>
-          <li><strong>Human + AI:</strong> Perfect blend of automation and human touch</li>
-        </ul>
-
-        <h2>Contact</h2>
-        <p>Have questions? We'd love to hear from you.</p>
-        <p>
-          <strong>Email:</strong> <a href="mailto:contact@cardynal.io">contact@cardynal.io</a><br>
-          <strong>Schedule a call:</strong> <a href="https://cal.com/cardynal.io/30min" target="_blank">Book a 30-minute demo</a>
+    <!-- CTA Section -->
+    <section class="about-cta">
+      <div class="about-cta__inner">
+        <h2 class="about-cta__title" data-i18n="about.ctaTitle">Want to Talk?</h2>
+        <p class="about-cta__text" data-i18n="about.ctaText">
+          We're always happy to hear from businesses looking for a better way to serve their customers.
         </p>
+        <a href="https://cal.com/cardynal.io/30min" class="about-cta__btn">
+          <span data-i18n="about.ctaBtn">Get in Touch</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="5" y1="12" x2="19" y2="12"/>
+            <polyline points="12 5 19 12 12 19"/>
+          </svg>
+        </a>
       </div>
-    </div>
+    </section>
   </main>
 
   <!-- Footer injected by JS -->
