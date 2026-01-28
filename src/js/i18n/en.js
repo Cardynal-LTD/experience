@@ -134,6 +134,8 @@ export default {
   'footer.contact': 'Contact',
   'footer.privacy': 'Privacy',
   'footer.terms': 'Terms',
+  'footer.aiTransparency': 'AI Transparency',
+  'footer.security': 'Security',
   'footer.getInTouch': 'Get In Touch',
   'roi.title': 'Calculate Your ROI',
   'roi.subtitle': 'See how much you can save with Cardynal AI support',

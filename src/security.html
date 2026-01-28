@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Security - Cardynal</title>
+  <meta name="description" content="Cardynal Security - How we protect your data with industry-standard practices and infrastructure.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://cardynal.io/security.html">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Security - Cardynal">
+  <meta property="og:url" content="https://cardynal.io/security.html">
+
+  <meta name="theme-color" content="#020917">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="apple-touch-icon" href="/logo-cardynal.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="./css/main.css">
+  <link rel="stylesheet" href="./css/landing/index.css">
+  <link rel="stylesheet" href="./css/legal.css">
+</head>
+<body class="landing-page">
+  <div id="header-container"></div>
+
+  <main class="legal-page">
+    <div class="legal-page__inner">
+      <div class="legal-header">
+        <span class="legal-header__badge legal-header__badge--security">Security</span>
+        <h1 class="legal-header__title">Security</h1>
+        <p class="legal-header__updated">Last updated: January 2026</p>
+      </div>
+
+      <div class="legal-content">
+        <section class="legal-section">
+          <h2>Our Commitment</h2>
+          <p>Cardynal is built with security at its core. We protect your data and your customers' data with industry-standard practices and infrastructure.</p>
+        </section>
+
+        <section class="legal-section">
+          <h2>Infrastructure</h2>
+          <p><strong>Hosting.</strong> Our infrastructure runs on Railway, using isolated containers with automatic scaling and redundancy.</p>
+          <p><strong>Database.</strong> We use PostgreSQL with encrypted connections. Database backups are performed daily and retained for 30 days.</p>
+          <p><strong>Network.</strong> All traffic is encrypted in transit using TLS 1.3. We enforce HTTPS on all endpoints.</p>
+        </section>
+
+        <section class="legal-section">
+          <h2>Data Protection</h2>
+          <div class="security-grid">
+            <div class="security-item">
+              <div class="security-item__icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                  <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                </svg>
+              </div>
+              <div class="security-item__content">
+                <h4>Encryption at Rest</h4>
+                <p>All stored data is encrypted using AES-256.</p>
+              </div>
+            </div>
+            <div class="security-item">
+              <div class="security-item__icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                </svg>
+              </div>
+              <div class="security-item__content">
+                <h4>Encryption in Transit</h4>
+                <p>All data transmission uses TLS 1.3.</p>
+              </div>
+            </div>
+            <div class="security-item">
+              <div class="security-item__icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                  <circle cx="9" cy="7" r="4"/>
+                  <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                </svg>
+              </div>
+              <div class="security-item__content">
+                <h4>Access Control</h4>
+                <p>Role-based access. Employee access is logged and restricted.</p>
+              </div>
+            </div>
+            <div class="security-item">
+              <div class="security-item__icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                </svg>
+              </div>
+              <div class="security-item__content">
+                <h4>Data Isolation</h4>
+                <p>Customer data is logically isolated per account.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="legal-section">
+          <h2>Authentication</h2>
+          <p><strong>Password Security.</strong> Passwords are hashed using bcrypt with appropriate cost factors. We never store plaintext passwords.</p>
+          <p><strong>Session Management.</strong> Sessions use secure, HTTP-only cookies with appropriate expiration.</p>
+          <p><strong>JWT Tokens.</strong> API authentication uses signed JWT tokens with 24-hour expiration.</p>
+        </section>
+
+        <section class="legal-section">
+          <h2>Application Security</h2>
+          <p><strong>Input Validation.</strong> All user inputs are validated and sanitized to prevent injection attacks.</p>
+          <p><strong>API Security.</strong> Rate limiting is implemented on all endpoints. Authentication is required for all non-public APIs.</p>
+          <p><strong>Dependency Management.</strong> We regularly update dependencies and monitor for known vulnerabilities.</p>
+        </section>
+
+        <section class="legal-section">
+          <h2>Operational Security</h2>
+          <p><strong>Monitoring.</strong> We monitor our systems 24/7 for anomalies and security events.</p>
+          <p><strong>Incident Response.</strong> We have documented procedures for security incidents. Critical issues are addressed immediately.</p>
+          <p><strong>Change Management.</strong> All code changes go through review before deployment.</p>
+        </section>
+
+        <section class="legal-section">
+          <h2>Compliance</h2>
+          <p>Cardynal complies with:</p>
+          <ul>
+            <li>Israel's Protection of Privacy Law (Amendment 13, 2025)</li>
+            <li>Privacy Protection Authority guidelines on data security</li>
+            <li>Industry best practices for SaaS security</li>
+          </ul>
+        </section>
+
+        <section class="legal-section">
+          <h2>Employee Security</h2>
+          <p><strong>Background Checks.</strong> Key personnel undergo background verification.</p>
+          <p><strong>Access Principles.</strong> We follow least-privilege access principles. Employees only have access to systems necessary for their role.</p>
+          <p><strong>Training.</strong> Team members receive security awareness training.</p>
+        </section>
+
+        <section class="legal-section">
+          <h2>Third-Party Security</h2>
+          <p>We carefully evaluate third-party providers for security practices. Key providers include:</p>
+          <ul>
+            <li><strong>Railway</strong> — Infrastructure hosting</li>
+            <li><strong>Supabase</strong> — Database services (self-hosted)</li>
+            <li><strong>LLM Providers</strong> — AI processing (enterprise agreements with data protection terms)</li>
+          </ul>
+        </section>
+
+        <section class="legal-section">
+          <h2>Vulnerability Reporting</h2>
+          <div class="legal-highlight">
+            If you discover a security vulnerability, please report it to <a href="mailto:security@cardynal.io">security@cardynal.io</a>. We appreciate responsible disclosure and will respond within 48 hours.
+          </div>
+        </section>
+
+        <section class="legal-section">
+          <h2>Data Retention and Deletion</h2>
+          <p>You control your data retention settings. Upon account termination, data is deleted within 30 days. You can request immediate deletion at any time.</p>
+        </section>
+
+        <section class="legal-section">
+          <h2>Business Continuity</h2>
+          <p><strong>Backups.</strong> Daily automated backups with 30-day retention.</p>
+          <p><strong>Redundancy.</strong> Multi-region infrastructure with automatic failover.</p>
+          <p><strong>Recovery.</strong> Documented disaster recovery procedures with regular testing.</p>
+        </section>
+
+        <section class="legal-section">
+          <h2>Questions?</h2>
+          <p>Contact our security team at <a href="mailto:security@cardynal.io">security@cardynal.io</a></p>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <div id="footer-container"></div>
+
+  <script type="module">
+    import { renderHeader, initHeader } from '/js/components/header.js'
+    import { renderFooter } from '/js/components/footer.js'
+    import { initLangSelector, setLang, translatePage } from '/js/i18n.js'
+
+    document.getElementById('header-container').innerHTML = renderHeader()
+    document.getElementById('footer-container').innerHTML = renderFooter()
+    initHeader()
+    initLangSelector()
+    translatePage()
+    window.setLang = setLang
+
+    if (localStorage.getItem('theme') === 'light') {
+      document.body.classList.add('light-mode')
+    }
+  </script>
+</body>
+</html>

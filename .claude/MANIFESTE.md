@@ -28,6 +28,10 @@ experience/
 │   ├── article.html          # Vue article unique
 │   ├── archive.html          # Tous les articles (grid/list toggle)
 │   ├── about.html            # Page à propos
+│   ├── privacy.html          # Privacy Policy
+│   ├── terms.html            # Terms of Service
+│   ├── ai-transparency.html  # AI Transparency
+│   ├── security.html         # Security
 │   ├── admin.html            # Interface admin + éditeur Tiptap
 │   ├── css/
 │   │   ├── main.css          # Point d'entrée CSS blog (imports)
@@ -56,6 +60,7 @@ experience/
 │   │       ├── roi.css       # ROI calculator
 │   │       ├── pages.css     # Blog/archive/article pages
 │   │       └── rtl.css       # Support RTL Hebrew
+│   │   └── legal.css         # Styles pages légales
 │   └── js/
 │       ├── theme.js          # Gestion du thème (light/dark)
 │       ├── auth.js           # Module auth partagé (JWT)
@@ -178,6 +183,10 @@ npm run start   # Production (après build)
 - `/[lang]/blog.html` - Liste articles
 - `/[lang]/archive.html` - Archives
 - `/[lang]/about.html` - À propos
+- `/[lang]/privacy.html` - Privacy Policy
+- `/[lang]/terms.html` - Terms of Service
+- `/[lang]/ai-transparency.html` - AI Transparency
+- `/[lang]/security.html` - Security
 - `/[lang]/article/:slug` - Article dans une langue
 
 ---
@@ -270,6 +279,21 @@ created_at       TIMESTAMPTZ DEFAULT NOW()
 ---
 
 ## HISTORIQUE DES SESSIONS
+
+### Session 2026-01-28 (Legal Pages & About Redesign)
+- **Contexte:** Ajout des pages légales et refonte page About
+- **Actions:**
+  - Redesign page About avec nouveau contenu (Our Story, beliefs, team)
+  - 4 pages légales créées: Privacy Policy, Terms of Service, AI Transparency, Security
+  - CSS modulaire legal.css pour les pages légales
+  - Routes multilingues pour toutes les pages légales
+  - Liens footer mis à jour (AI Transparency, Security)
+  - Traductions i18n ajoutées pour footer (aiTransparency, security)
+  - Sitemap mis à jour avec toutes les pages légales
+  - XSLT stylesheets pour affichage visuel sitemap.xml et rss.xml
+  - Sitemap groupé par langue (EN → FR → HE)
+  - Config Vite mise à jour pour builder les pages légales
+- **État:** Production ready
 
 ### Session 2026-01-28 (Navigation & i18n Unification)
 - **Contexte:** Unification header/footer et correction bugs navigation multilingue

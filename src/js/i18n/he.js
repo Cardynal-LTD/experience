@@ -134,6 +134,8 @@ export default {
   'footer.contact': 'צור קשר',
   'footer.privacy': 'פרטיות',
   'footer.terms': 'תנאים',
+  'footer.aiTransparency': 'שקיפות AI',
+  'footer.security': 'אבטחה',
   'footer.getInTouch': 'בוא נדבר',
   'roi.title': 'חשב את ה-ROI שלך',
   'roi.subtitle': 'גלה כמה תוכל לחסוך עם Cardynal',

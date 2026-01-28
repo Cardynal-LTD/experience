@@ -382,7 +382,11 @@ app.get('/sitemap.xml', async (req, res) => {
     { path: '', priority: '1.0', changefreq: 'daily' },
     { path: '/blog.html', priority: '0.9', changefreq: 'daily' },
     { path: '/archive.html', priority: '0.8', changefreq: 'daily' },
-    { path: '/about.html', priority: '0.6', changefreq: 'monthly' }
+    { path: '/about.html', priority: '0.6', changefreq: 'monthly' },
+    { path: '/privacy.html', priority: '0.4', changefreq: 'monthly' },
+    { path: '/terms.html', priority: '0.4', changefreq: 'monthly' },
+    { path: '/ai-transparency.html', priority: '0.4', changefreq: 'monthly' },
+    { path: '/security.html', priority: '0.4', changefreq: 'monthly' }
   ]
 
   // Generate URLs grouped by language
@@ -591,6 +595,58 @@ app.get('/:lang/about.html', (req, res, next) => {
   if (SUPPORTED_LANGS.includes(lang) && lang !== DEFAULT_LANG) {
     if (process.env.NODE_ENV === 'production') {
       res.sendFile('about.html', { root: './dist' })
+    } else {
+      next()
+    }
+  } else {
+    next()
+  }
+})
+
+app.get('/:lang/privacy.html', (req, res, next) => {
+  const lang = req.params.lang
+  if (SUPPORTED_LANGS.includes(lang) && lang !== DEFAULT_LANG) {
+    if (process.env.NODE_ENV === 'production') {
+      res.sendFile('privacy.html', { root: './dist' })
+    } else {
+      next()
+    }
+  } else {
+    next()
+  }
+})
+
+app.get('/:lang/terms.html', (req, res, next) => {
+  const lang = req.params.lang
+  if (SUPPORTED_LANGS.includes(lang) && lang !== DEFAULT_LANG) {
+    if (process.env.NODE_ENV === 'production') {
+      res.sendFile('terms.html', { root: './dist' })
+    } else {
+      next()
+    }
+  } else {
+    next()
+  }
+})
+
+app.get('/:lang/ai-transparency.html', (req, res, next) => {
+  const lang = req.params.lang
+  if (SUPPORTED_LANGS.includes(lang) && lang !== DEFAULT_LANG) {
+    if (process.env.NODE_ENV === 'production') {
+      res.sendFile('ai-transparency.html', { root: './dist' })
+    } else {
+      next()
+    }
+  } else {
+    next()
+  }
+})
+
+app.get('/:lang/security.html', (req, res, next) => {
+  const lang = req.params.lang
+  if (SUPPORTED_LANGS.includes(lang) && lang !== DEFAULT_LANG) {
+    if (process.env.NODE_ENV === 'production') {
+      res.sendFile('security.html', { root: './dist' })
     } else {
       next()
     }
