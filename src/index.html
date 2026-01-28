@@ -1239,12 +1239,11 @@
       return val || path;
     }
 
-    // Current language - detect from URL first, then localStorage
+    // Current language - detect from URL only (consistent with i18n.js)
     const urlPath = window.location.pathname;
-    let urlLang = null;
-    if (urlPath.startsWith('/fr')) urlLang = 'fr';
-    else if (urlPath.startsWith('/he')) urlLang = 'he';
-    let currentLang = urlLang || localStorage.getItem('cardynal_lang') || 'en';
+    let currentLang = 'en';
+    if (urlPath.startsWith('/fr')) currentLang = 'fr';
+    else if (urlPath.startsWith('/he')) currentLang = 'he';
 
     // Translate function
     function t(key) {
@@ -2257,7 +2256,7 @@
       var path = window.location.pathname;
       if (path.startsWith('/fr')) return 'fr';
       if (path.startsWith('/he')) return 'he';
-      return localStorage.getItem('cardynal_lang') || 'en';
+      return 'en';
     }
 
     window.chatwootSettings = {
