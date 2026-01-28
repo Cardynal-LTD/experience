@@ -774,8 +774,15 @@
   </script>
 
   <script type="module">
-    // Translations
-    const TRANSLATIONS = {
+    // Import translations from external modules
+    import { TRANSLATIONS, WIDGET_TRANSLATIONS } from '/js/i18n/index.js';
+
+    // Note: TRANSLATIONS and WIDGET_TRANSLATIONS are now imported from:
+    // - src/js/i18n/en.js, fr.js, he.js
+    // - src/js/i18n/widgets/en.js, fr.js, he.js
+
+    // Legacy inline translations removed - using imports above
+    const _UNUSED_TRANSLATIONS = {
       en: {
         'nav.home': 'Home',
         'nav.features': 'Product',
@@ -1142,8 +1149,8 @@
       }
     };
 
-    // Widget translations (conversations only - system stays in English)
-    const WIDGET_TRANSLATIONS = {
+    // Widget translations - now imported from ./js/i18n/index.js
+    const _UNUSED_WIDGET_TRANSLATIONS = {
       en: {
         // Chat Flow Demo - conversations
         chat: {
