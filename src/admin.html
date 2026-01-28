@@ -64,18 +64,103 @@
 
     <!-- Admin Section -->
     <section id="adminSection" class="page page--wide" style="display: none;">
+      <!-- Admin Header -->
       <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: var(--space-6);">
-        <h1>Articles</h1>
+        <div class="admin-tabs">
+          <button class="admin-tab is-active" data-tab="articles">Articles</button>
+          <button class="admin-tab" data-tab="analytics">Analytics</button>
+        </div>
         <div style="display: flex; align-items: center; gap: var(--space-3);">
           <button class="btn btn--primary" id="newArticleBtn">+ Nouvel article</button>
           <button class="btn btn--ghost" id="logoutBtn">Deconnexion</button>
         </div>
       </div>
 
-      <div class="card" id="articlesList">
-        <div class="empty-state">
-          <div class="empty-state__icon">📝</div>
-          <div class="empty-state__title">Chargement...</div>
+      <!-- Articles Tab -->
+      <div class="admin-panel is-active" data-panel="articles">
+        <div class="card" id="articlesList">
+          <div class="empty-state">
+            <div class="empty-state__icon">📝</div>
+            <div class="empty-state__title">Chargement...</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Analytics Tab -->
+      <div class="admin-panel" data-panel="analytics">
+        <!-- Stats Grid -->
+        <div class="stats-grid" id="statsGrid">
+          <div class="stat-card">
+            <div class="stat-card__value" id="statTotalArticles">-</div>
+            <div class="stat-card__label">Articles</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card__value" id="statTotalViews">-</div>
+            <div class="stat-card__label">Vues totales</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card__value" id="statTodayViews">-</div>
+            <div class="stat-card__label">Vues aujourd'hui</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card__value" id="statWeekViews">-</div>
+            <div class="stat-card__label">7 derniers jours</div>
+          </div>
+        </div>
+
+        <!-- Charts Row -->
+        <div class="stats-row">
+          <!-- Views Chart -->
+          <div class="card stats-chart-card">
+            <div class="card__header">
+              <h3 class="card__title">Vues (14 derniers jours)</h3>
+            </div>
+            <div class="card__body">
+              <div class="chart-container" id="viewsChart"></div>
+            </div>
+          </div>
+
+          <!-- Articles by Language -->
+          <div class="card stats-lang-card">
+            <div class="card__header">
+              <h3 class="card__title">Articles par langue</h3>
+            </div>
+            <div class="card__body">
+              <div class="lang-stats" id="langStats"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Top Articles -->
+        <div class="card">
+          <div class="card__header">
+            <h3 class="card__title">Articles les plus vus</h3>
+          </div>
+          <div class="card__body" id="topArticles">
+            <div class="empty-state">
+              <div class="empty-state__title">Aucune donnee</div>
+              <div class="empty-state__subtitle">Les statistiques apparaitront apres la creation de la table page_views</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Setup Instructions -->
+        <div class="card" id="analyticsSetup" style="display: none;">
+          <div class="card__header">
+            <h3 class="card__title">Configuration requise</h3>
+          </div>
+          <div class="card__body">
+            <p style="margin-bottom: var(--space-4); color: var(--color-text-secondary);">
+              Pour activer le tracking des vues, executez ce SQL dans Supabase Studio :
+            </p>
+            <pre class="code-block">CREATE TABLE page_views (
+  id SERIAL PRIMARY KEY,
+  path TEXT NOT NULL,
+  article_id INTEGER REFERENCES articles(id) ON DELETE CASCADE,
+  viewed_at TIMESTAMPTZ DEFAULT NOW(),
+  referrer TEXT
+);</pre>
+          </div>
         </div>
       </div>
     </section>

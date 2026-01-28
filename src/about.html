@@ -313,6 +313,13 @@
     if (savedTheme === 'light') {
       document.body.classList.add('light-mode')
     }
+
+    // Track page view
+    fetch('/api/track', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ path: window.location.pathname, referrer: document.referrer || null })
+    }).catch(() => {})
   </script>
 </body>
 </html>

@@ -358,6 +358,186 @@ app.delete('/api/articles/:id', checkAuth, async (req, res) => {
   res.json({ success: true })
 })
 
+// ============================================
+// Analytics API
+// ============================================
+
+// Track page view (public - no auth required)
+app.post('/api/track', async (req, res) => {
+  if (!supabase) {
+    return res.status(500).json({ error: 'Supabase non configure' })
+  }
+
+  const { path, article_id, referrer } = req.body
+
+  if (!path) {
+    return res.status(400).json({ error: 'Path requis' })
+  }
+
+  try {
+    const { error } = await supabase
+      .from('page_views')
+      .insert({
+        path,
+        article_id: article_id || null,
+        referrer: referrer || null
+      })
+
+    if (error) {
+      // Table might not exist yet - fail silently
+      console.log('Track error (table may not exist):', error.message)
+      return res.json({ tracked: false })
+    }
+
+    res.json({ tracked: true })
+  } catch (err) {
+    res.json({ tracked: false })
+  }
+})
+
+// Get analytics stats (protected)
+app.get('/api/stats', checkAuth, async (req, res) => {
+  if (!supabase) {
+    return res.status(500).json({ error: 'Supabase non configure' })
+  }
+
+  try {
+    // Get article stats
+    const { data: articles, error: articlesError } = await supabase
+      .from('articles')
+      .select('id, title, slug, lang, emoji, created_at')
+      .order('created_at', { ascending: false })
+
+    if (articlesError) throw articlesError
+
+    // Count by language
+    const byLang = { en: 0, fr: 0, he: 0 }
+    articles.forEach(a => {
+      const lang = a.lang || 'fr'
+      byLang[lang] = (byLang[lang] || 0) + 1
+    })
+
+    // Count by month (last 6 months)
+    const byMonth = {}
+    const now = new Date()
+    for (let i = 5; i >= 0; i--) {
+      const d = new Date(now.getFullYear(), now.getMonth() - i, 1)
+      const key = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}`
+      byMonth[key] = 0
+    }
+    articles.forEach(a => {
+      const d = new Date(a.created_at)
+      const key = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}`
+      if (byMonth.hasOwnProperty(key)) {
+        byMonth[key]++
+      }
+    })
+
+    // Try to get page views stats
+    let pageViews = { total: 0, today: 0, thisWeek: 0, thisMonth: 0, byArticle: [], byDay: [] }
+
+    try {
+      // Total views
+      const { count: totalViews } = await supabase
+        .from('page_views')
+        .select('*', { count: 'exact', head: true })
+
+      // Today's views
+      const today = new Date()
+      today.setHours(0, 0, 0, 0)
+      const { count: todayViews } = await supabase
+        .from('page_views')
+        .select('*', { count: 'exact', head: true })
+        .gte('viewed_at', today.toISOString())
+
+      // This week
+      const weekAgo = new Date()
+      weekAgo.setDate(weekAgo.getDate() - 7)
+      const { count: weekViews } = await supabase
+        .from('page_views')
+        .select('*', { count: 'exact', head: true })
+        .gte('viewed_at', weekAgo.toISOString())
+
+      // This month
+      const monthAgo = new Date()
+      monthAgo.setDate(monthAgo.getDate() - 30)
+      const { count: monthViews } = await supabase
+        .from('page_views')
+        .select('*', { count: 'exact', head: true })
+        .gte('viewed_at', monthAgo.toISOString())
+
+      // Views by article (top 10)
+      const { data: viewsByArticle } = await supabase
+        .from('page_views')
+        .select('article_id')
+        .not('article_id', 'is', null)
+
+      const articleViewCounts = {}
+      viewsByArticle?.forEach(v => {
+        articleViewCounts[v.article_id] = (articleViewCounts[v.article_id] || 0) + 1
+      })
+
+      const topArticles = Object.entries(articleViewCounts)
+        .sort((a, b) => b[1] - a[1])
+        .slice(0, 10)
+        .map(([id, views]) => {
+          const article = articles.find(a => a.id === parseInt(id))
+          return {
+            id: parseInt(id),
+            title: article?.title || 'Article supprime',
+            slug: article?.slug || '',
+            emoji: article?.emoji || '📄',
+            views
+          }
+        })
+
+      // Views by day (last 14 days)
+      const { data: recentViews } = await supabase
+        .from('page_views')
+        .select('viewed_at')
+        .gte('viewed_at', new Date(Date.now() - 14 * 24 * 60 * 60 * 1000).toISOString())
+
+      const viewsByDay = {}
+      for (let i = 13; i >= 0; i--) {
+        const d = new Date()
+        d.setDate(d.getDate() - i)
+        const key = d.toISOString().split('T')[0]
+        viewsByDay[key] = 0
+      }
+      recentViews?.forEach(v => {
+        const key = v.viewed_at.split('T')[0]
+        if (viewsByDay.hasOwnProperty(key)) {
+          viewsByDay[key]++
+        }
+      })
+
+      pageViews = {
+        total: totalViews || 0,
+        today: todayViews || 0,
+        thisWeek: weekViews || 0,
+        thisMonth: monthViews || 0,
+        byArticle: topArticles,
+        byDay: Object.entries(viewsByDay).map(([date, views]) => ({ date, views }))
+      }
+    } catch (e) {
+      // page_views table doesn't exist yet
+      console.log('Page views table not found:', e.message)
+    }
+
+    res.json({
+      articles: {
+        total: articles.length,
+        byLang,
+        byMonth,
+        recent: articles.slice(0, 5)
+      },
+      pageViews
+    })
+  } catch (err) {
+    res.status(500).json({ error: err.message })
+  }
+})
+
 // Robots.txt
 app.get('/robots.txt', (req, res) => {
   res.setHeader('Content-Type', 'text/plain')

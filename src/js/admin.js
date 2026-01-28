@@ -324,6 +324,149 @@ function showAdmin() {
   $('#loginSection').style.display = 'none'
   $('#adminSection').style.display = 'block'
   loadArticles()
+  initTabs()
+}
+
+// Tab switching
+function initTabs() {
+  document.querySelectorAll('.admin-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      const tabName = tab.dataset.tab
+
+      // Update active tab
+      document.querySelectorAll('.admin-tab').forEach(t => t.classList.remove('is-active'))
+      tab.classList.add('is-active')
+
+      // Update active panel
+      document.querySelectorAll('.admin-panel').forEach(p => p.classList.remove('is-active'))
+      document.querySelector(`.admin-panel[data-panel="${tabName}"]`).classList.add('is-active')
+
+      // Load analytics when switching to that tab
+      if (tabName === 'analytics') {
+        loadStats()
+      }
+    })
+  })
+}
+
+// Load and display analytics
+async function loadStats() {
+  try {
+    const r = await fetch('/api/stats', {
+      headers: { Authorization: `Bearer ${authToken}` }
+    })
+
+    if (!r.ok) throw new Error('Failed to load stats')
+
+    const stats = await r.json()
+    renderStats(stats)
+  } catch (err) {
+    console.error('Error loading stats:', err)
+  }
+}
+
+function renderStats(stats) {
+  // Update stat cards
+  $('#statTotalArticles').textContent = stats.articles.total
+  $('#statTotalViews').textContent = formatNumber(stats.pageViews.total)
+  $('#statTodayViews').textContent = formatNumber(stats.pageViews.today)
+  $('#statWeekViews').textContent = formatNumber(stats.pageViews.thisWeek)
+
+  // Show setup instructions if no views tracked yet
+  const setupCard = $('#analyticsSetup')
+  if (stats.pageViews.total === 0) {
+    setupCard.style.display = 'block'
+  } else {
+    setupCard.style.display = 'none'
+  }
+
+  // Render views chart
+  renderViewsChart(stats.pageViews.byDay)
+
+  // Render language stats
+  renderLangStats(stats.articles.byLang, stats.articles.total)
+
+  // Render top articles
+  renderTopArticles(stats.pageViews.byArticle)
+}
+
+function renderViewsChart(byDay) {
+  const container = $('#viewsChart')
+
+  if (!byDay || byDay.length === 0) {
+    container.innerHTML = '<div class="analytics-empty"><div class="analytics-empty__icon">📊</div>Aucune donnee</div>'
+    return
+  }
+
+  const maxViews = Math.max(...byDay.map(d => d.views), 1)
+
+  container.innerHTML = byDay.map(d => {
+    const height = Math.max((d.views / maxViews) * 100, 4)
+    const date = new Date(d.date)
+    const label = `${date.getDate()}/${date.getMonth() + 1}`
+
+    return `
+      <div class="chart-bar" style="height: ${height}%" data-value="${d.views}">
+        <span class="chart-bar-label">${label}</span>
+      </div>
+    `
+  }).join('')
+}
+
+function renderLangStats(byLang, total) {
+  const container = $('#langStats')
+  const maxCount = Math.max(...Object.values(byLang), 1)
+
+  const langInfo = {
+    en: { flag: '🇬🇧', name: 'English' },
+    fr: { flag: '🇫🇷', name: 'Francais' },
+    he: { flag: '🇮🇱', name: 'Hebrew' }
+  }
+
+  container.innerHTML = Object.entries(byLang).map(([lang, count]) => {
+    const info = langInfo[lang] || { flag: '🌐', name: lang }
+    const percent = (count / maxCount) * 100
+
+    return `
+      <div class="lang-stat">
+        <span class="lang-stat__flag">${info.flag}</span>
+        <span class="lang-stat__name">${info.name}</span>
+        <div class="lang-stat__bar">
+          <div class="lang-stat__fill" style="width: ${percent}%"></div>
+        </div>
+        <span class="lang-stat__count">${count}</span>
+      </div>
+    `
+  }).join('')
+}
+
+function renderTopArticles(byArticle) {
+  const container = $('#topArticles')
+
+  if (!byArticle || byArticle.length === 0) {
+    container.innerHTML = `
+      <div class="analytics-empty">
+        <div class="analytics-empty__icon">📈</div>
+        Les articles les plus vus apparaitront ici
+      </div>
+    `
+    return
+  }
+
+  container.innerHTML = byArticle.map((article, index) => `
+    <div class="top-article">
+      <span class="top-article__rank">${index + 1}</span>
+      <span class="top-article__emoji">${article.emoji}</span>
+      <span class="top-article__title">${escapeHtml(article.title)}</span>
+      <span class="top-article__views">${formatNumber(article.views)} vues</span>
+    </div>
+  `).join('')
+}
+
+function formatNumber(num) {
+  if (num >= 1000000) return (num / 1000000).toFixed(1) + 'M'
+  if (num >= 1000) return (num / 1000).toFixed(1) + 'k'
+  return num.toString()
 }
 
 function logout() {
