@@ -201,7 +201,7 @@ export function updateNavLinks() {
   document.querySelectorAll('a[href^="/"]').forEach(link => {
     const href = link.getAttribute('href')
     // Skip if already has lang prefix or is an API/admin link
-    if (href.match(/^\/(en|he)\//) || href.startsWith('/api') || href.startsWith('/admin')) return
+    if (href.match(/^\/(en|fr|he)(\/|$)/) || href.startsWith('/api') || href.startsWith('/admin')) return
     link.setAttribute('href', prefix + href)
   })
 }

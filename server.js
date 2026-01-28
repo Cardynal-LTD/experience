@@ -569,6 +569,19 @@ app.get('/:lang/archive.html', (req, res, next) => {
   }
 })
 
+app.get('/:lang/blog.html', (req, res, next) => {
+  const lang = req.params.lang
+  if (SUPPORTED_LANGS.includes(lang) && lang !== DEFAULT_LANG) {
+    if (process.env.NODE_ENV === 'production') {
+      res.sendFile('blog.html', { root: './dist' })
+    } else {
+      next()
+    }
+  } else {
+    next()
+  }
+})
+
 app.get('/:lang/about.html', (req, res, next) => {
   const lang = req.params.lang
   if (SUPPORTED_LANGS.includes(lang) && lang !== DEFAULT_LANG) {
