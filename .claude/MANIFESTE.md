@@ -1,7 +1,7 @@
 # MANIFESTE DU PROJET - Experience Blog
 
 > Ce fichier est maintenu par Claude pour suivre l'état du projet et les modifications en cours.
-> **Dernière mise à jour:** 2026-01-27
+> **Dernière mise à jour:** 2026-01-28
 
 ---
 
@@ -51,7 +51,11 @@ experience/
 │   ├── manifest.json         # PWA manifest
 │   ├── favicon.svg           # Favicon SVG
 │   ├── icon-192.png          # App icon (à créer)
-│   └── icon-512.png          # App icon (à créer)
+│   ├── icon-512.png          # App icon (à créer)
+│   ├── dashboard-light-en.png # Dashboard preview light EN/FR
+│   ├── dashboard-light-he.png # Dashboard preview light HE
+│   ├── dashboard-dark-en.png  # Dashboard preview dark EN/FR
+│   └── dashboard-dark-he.png  # Dashboard preview dark HE
 ├── server.js                 # Serveur Express + API REST + JWT + SEO
 ├── vite.config.js            # Configuration Vite (multi-page)
 ├── package.json              # Dépendances (type: module)
@@ -234,6 +238,21 @@ created_at       TIMESTAMPTZ DEFAULT NOW()
 
 ## HISTORIQUE DES SESSIONS
 
+### Session 2026-01-28 (Landing Page Polish + Chatwoot)
+- **Contexte:** Finalisation landing page avec copie pro et widget chat
+- **Actions:**
+  - Copie francaise professionnelle complete (hero, features, FAQ, pricing)
+  - Dashboard preview dynamique (4 images: dark/light x en/he)
+  - Preview switch automatique selon theme et langue
+  - FAQ: couleur reponses corrigee en dark mode
+  - FAQ: police questions augmentee a 16px
+  - Widget Chatwoot integre avec avatar custom
+  - Chatwoot sync theme (dark/light) avec la page
+  - Chatwoot sync langue (en/fr/he) avec la page
+  - Config Vite publicDir pour servir /public
+  - Pricing FR: 99EUR/mois, +25EUR/user, +0.90EUR/resolution
+- **Etat:** Production ready
+
 ### Session 2026-01-27 (Landing Page Widgets i18n)
 - **Contexte:** Traduction des widgets de la landing page
 - **Actions:**
@@ -315,6 +334,18 @@ wt('rag.userQuestion') // → Question utilisateur traduite
 - `/` - English (defaut)
 - `/fr` - Francais
 - `/he` - Hebrew (RTL)
+
+### Dashboard Preview
+- 4 images: dark/light x en/he
+- Switch automatique selon theme et langue de la page
+- Images dans `/public/dashboard-*.png`
+
+### Chatwoot Widget
+- URL: chat.cardynal.io
+- Avatar custom apparait apres 120px de scroll
+- Theme sync avec la page (dark/light)
+- Langue sync avec la page (en/fr/he)
+- Messages de bienvenue configurables dans Chatwoot dashboard
 
 ---
 
