@@ -89,71 +89,87 @@
       <!-- Analytics Tab -->
       <div class="admin-panel" data-panel="analytics">
         <!-- Stats Grid - Row 1: Vues -->
+        <h3 class="stats-section-title">Vues</h3>
         <div class="stats-grid">
-          <div class="stat-card">
+          <div class="stat-card stat-card--highlight">
+            <span class="stat-card__icon">👁</span>
             <div class="stat-card__value" id="statTotalViews">-</div>
             <div class="stat-card__label">Vues totales</div>
           </div>
           <div class="stat-card">
+            <span class="stat-card__icon">📅</span>
             <div class="stat-card__value" id="statTodayViews">-</div>
             <div class="stat-card__label">Aujourd'hui</div>
           </div>
           <div class="stat-card">
+            <span class="stat-card__icon">📊</span>
             <div class="stat-card__value" id="statWeekViews">-</div>
             <div class="stat-card__label">7 jours</div>
           </div>
           <div class="stat-card">
+            <span class="stat-card__icon">📈</span>
             <div class="stat-card__value" id="statMonthViews">-</div>
             <div class="stat-card__label">30 jours</div>
           </div>
         </div>
 
         <!-- Stats Grid - Row 2: Visiteurs -->
+        <h3 class="stats-section-title">Visiteurs</h3>
         <div class="stats-grid">
           <div class="stat-card">
+            <span class="stat-card__icon">👤</span>
             <div class="stat-card__value" id="statUniqueVisitors">-</div>
             <div class="stat-card__label">Visiteurs uniques</div>
           </div>
           <div class="stat-card">
+            <span class="stat-card__icon">✨</span>
             <div class="stat-card__value" id="statNewVisitors">-</div>
             <div class="stat-card__label">Nouveaux</div>
           </div>
           <div class="stat-card">
+            <span class="stat-card__icon">🔄</span>
             <div class="stat-card__value" id="statReturning">-</div>
             <div class="stat-card__label">Retours</div>
           </div>
           <div class="stat-card">
+            <span class="stat-card__icon">↩️</span>
             <div class="stat-card__value" id="statBounceRate">-</div>
             <div class="stat-card__label">Taux rebond</div>
           </div>
         </div>
 
         <!-- Stats Grid - Row 3: Engagement -->
+        <h3 class="stats-section-title">Engagement</h3>
         <div class="stats-grid">
           <div class="stat-card">
+            <span class="stat-card__icon">⏱</span>
             <div class="stat-card__value" id="statAvgTime">-</div>
             <div class="stat-card__label">Temps moyen</div>
           </div>
           <div class="stat-card">
+            <span class="stat-card__icon">📜</span>
             <div class="stat-card__value" id="statAvgScroll">-</div>
             <div class="stat-card__label">Scroll moyen</div>
           </div>
           <div class="stat-card">
+            <span class="stat-card__icon">🖥</span>
             <div class="stat-card__value" id="statDesktop">-</div>
             <div class="stat-card__label">Desktop</div>
           </div>
           <div class="stat-card">
+            <span class="stat-card__icon">📱</span>
             <div class="stat-card__value" id="statMobile">-</div>
             <div class="stat-card__label">Mobile</div>
           </div>
         </div>
 
         <!-- Charts Row -->
+        <h3 class="stats-section-title">Tendances</h3>
         <div class="stats-row">
           <!-- Views Chart -->
           <div class="card stats-chart-card">
             <div class="card__header">
-              <h3 class="card__title">Vues (14 derniers jours)</h3>
+              <h3 class="card__title"><span class="live-dot"></span>Vues (14 derniers jours)</h3>
             </div>
             <div class="card__body">
               <div class="chart-container" id="viewsChart"></div>
@@ -172,7 +188,8 @@
         </div>
 
         <!-- Second Row: Referrers & UTM -->
-        <div class="stats-row">
+        <h3 class="stats-section-title">Acquisition</h3>
+        <div class="stats-row stats-row--equal">
           <!-- Top Referrers -->
           <div class="card">
             <div class="card__header">
@@ -195,6 +212,7 @@
         </div>
 
         <!-- Top Articles -->
+        <h3 class="stats-section-title">Contenu</h3>
         <div class="card">
           <div class="card__header">
             <h3 class="card__title">Articles les plus vus</h3>
