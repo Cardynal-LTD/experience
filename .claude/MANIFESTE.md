@@ -9,11 +9,11 @@
 
 | Aspect | Valeur |
 |--------|--------|
-| **Type** | Blog personnel multilingue avec admin |
+| **Type** | Landing page Cardynal + Blog multilingue avec admin |
 | **Stack** | Vite + Express.js + Supabase (self-hosted) + Tiptap |
 | **Déploiement** | Railway |
 | **Branche principale** | main |
-| **Langues** | Français (défaut), English, עברית (Hebrew) |
+| **Langues** | English (défaut), Français, עברית (Hebrew) |
 | **État** | Production ready |
 
 ---
@@ -23,30 +23,57 @@
 ```
 experience/
 ├── src/                      # Sources Vite
-│   ├── index.html            # Page d'accueil
+│   ├── index.html            # Landing page Cardynal
+│   ├── blog.html             # Liste articles blog
 │   ├── article.html          # Vue article unique
-│   ├── admin.html            # Interface admin + éditeur Tiptap
 │   ├── archive.html          # Tous les articles (grid/list toggle)
 │   ├── about.html            # Page à propos
+│   ├── admin.html            # Interface admin + éditeur Tiptap
 │   ├── css/
-│   │   ├── main.css          # Point d'entrée CSS (imports)
+│   │   ├── main.css          # Point d'entrée CSS blog (imports)
 │   │   ├── tokens.css        # Design tokens (couleurs, typo, spacing)
 │   │   ├── base.css          # Reset, styles de base, RTL support
 │   │   ├── animations.css    # Keyframes et utilitaires
-│   │   ├── layout.css        # Header, footer, sidebar, modal, lang selector
+│   │   ├── layout.css        # Header, footer, sidebar, modal
 │   │   ├── pages.css         # Styles spécifiques aux pages
 │   │   ├── editor.css        # Styles éditeur Tiptap + form fields
-│   │   └── components/
-│   │       ├── button.css    # Boutons (variants, sizes)
-│   │       ├── input.css     # Inputs, textarea, select
-│   │       ├── card.css      # Cards et list items
-│   │       └── popover.css   # Popover, tooltip, toast
+│   │   ├── components/
+│   │   │   ├── button.css    # Boutons (variants, sizes)
+│   │   │   ├── input.css     # Inputs, textarea, select
+│   │   │   ├── card.css      # Cards et list items
+│   │   │   └── popover.css   # Popover, tooltip, toast
+│   │   └── landing/          # CSS modulaire landing page
+│   │       ├── index.css     # Point d'entrée (imports)
+│   │       ├── variables.css # Variables landing
+│   │       ├── header.css    # Header landing
+│   │       ├── hero.css      # Hero section
+│   │       ├── sections.css  # Sections communes
+│   │       ├── features.css  # Features section
+│   │       ├── pricing.css   # Pricing section
+│   │       ├── faq.css       # FAQ section
+│   │       ├── footer.css    # Footer landing
+│   │       ├── widgets.css   # Widgets interactifs
+│   │       ├── roi.css       # ROI calculator
+│   │       ├── pages.css     # Blog/archive/article pages
+│   │       └── rtl.css       # Support RTL Hebrew
 │   └── js/
 │       ├── theme.js          # Gestion du thème (light/dark)
 │       ├── auth.js           # Module auth partagé (JWT)
-│       ├── i18n.js           # Module multilingue (lang detection, hreflang)
+│       ├── i18n.js           # Module i18n principal (importe les traductions)
 │       ├── editor.js         # Module Tiptap + slash commands
-│       └── admin.js          # Logique admin + traductions
+│       ├── admin.js          # Logique admin + traductions
+│       ├── components/
+│       │   ├── header.js     # Header partagé (toutes les pages)
+│       │   └── footer.js     # Footer partagé (toutes les pages)
+│       └── i18n/
+│           ├── index.js      # Export centralisé des traductions
+│           ├── en.js         # Traductions anglais (défaut)
+│           ├── fr.js         # Traductions français
+│           ├── he.js         # Traductions hébreu
+│           └── widgets/
+│               ├── en.js     # Traductions widgets EN
+│               ├── fr.js     # Traductions widgets FR
+│               └── he.js     # Traductions widgets HE
 ├── public/
 │   ├── manifest.json         # PWA manifest
 │   ├── favicon.svg           # Favicon SVG
@@ -145,9 +172,12 @@ npm run start   # Production (après build)
 - `POST /api/upload` - Upload image (base64 → DB)
 
 ### Routes multilingues
-- `/` - Français (défaut)
-- `/en/` - English
+- `/` - English (défaut)
+- `/fr/` - Français
 - `/he/` - Hebrew (RTL)
+- `/[lang]/blog.html` - Liste articles
+- `/[lang]/archive.html` - Archives
+- `/[lang]/about.html` - À propos
 - `/[lang]/article/:slug` - Article dans une langue
 
 ---
@@ -205,11 +235,13 @@ created_at       TIMESTAMPTZ DEFAULT NOW()
 - PWA Manifest avec shortcuts
 
 ### Multilingue
-- 3 langues: Français (défaut), English, Hebrew
+- 3 langues: English (défaut), Français, Hebrew
 - Support RTL automatique pour Hebrew
 - Hreflang tags pour les traductions
 - Liaison d'articles entre langues
-- Language selector dans le header
+- Language selector dans le header (select natif)
+- Détection langue par URL uniquement (pas de localStorage)
+- Traductions modulaires dans `js/i18n/*.js`
 
 ### Éditeur (admin.html)
 - Toolbar en haut: Publier, Annuler, X
@@ -223,11 +255,12 @@ created_at       TIMESTAMPTZ DEFAULT NOW()
 - Champs SEO (meta title, meta description)
 
 ### Pages publiques
-- Header avec bouton Admin (si connecté)
+- Header/footer partagés (composants JS injectés)
+- Navigation unifiée: Home, Product, Pricing, Blog
 - Toggle grille/liste sur archive
 - Cover images avec emoji overlay
-- Dark mode persistant
-- Language selector
+- Dark mode persistant (localStorage)
+- Language selector (URL-based)
 
 ### Sécurité
 - JWT tokens (expire 24h)
@@ -237,6 +270,25 @@ created_at       TIMESTAMPTZ DEFAULT NOW()
 ---
 
 ## HISTORIQUE DES SESSIONS
+
+### Session 2026-01-28 (Navigation & i18n Unification)
+- **Contexte:** Unification header/footer et correction bugs navigation multilingue
+- **Actions:**
+  - Header/footer partagés via composants JS (`header.js`, `footer.js`)
+  - CSS landing modulaire (split en fichiers séparés dans `css/landing/`)
+  - Traductions unifiées: `i18n.js` importe maintenant les fichiers modulaires
+  - Fix regex `updateNavLinks()` pour inclure `/fr/`
+  - Fix regex `getCurrentLang()` pour matcher URLs `.html`
+  - Ajout route serveur `/:lang/blog.html`
+  - Suppression fallback localStorage pour détection langue
+  - Langue déterminée uniquement par URL (plus de persistence localStorage)
+  - DEFAULT_LANG changé de 'fr' à 'en'
+- **Bugs corrigés:**
+  - Navigation ne préservait pas la langue sur changement de page
+  - Changement langue ramenait toujours à la home
+  - Traductions manquantes sur blog/archive/article
+  - Home page affichait français même avec URL anglaise
+- **État:** Production ready
 
 ### Session 2026-01-28 (Landing Page Polish + Chatwoot)
 - **Contexte:** Finalisation landing page avec copie pro et widget chat
@@ -331,9 +383,9 @@ wt('rag.userQuestion') // → Question utilisateur traduite
 - Calcul automatique des economies
 
 ### Routes Multilingues Landing
-- `/` - English (defaut)
-- `/fr` - Francais
-- `/he` - Hebrew (RTL)
+- `/` - English (défaut)
+- `/fr/` - Français
+- `/he/` - Hebrew (RTL)
 
 ### Dashboard Preview
 - 4 images: dark/light x en/he
