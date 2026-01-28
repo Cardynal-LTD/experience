@@ -76,6 +76,8 @@ export default {
   'pricing.f4': 'Conversations IA illimitees*',
   'pricing.f5': 'WhatsApp + Chat web',
   'pricing.roiBtn': 'Calculez votre ROI',
+  'pricing.resolution': "C'est quoi une resolution ?",
+  'pricing.resolutionDesc': "Quand votre IA gere avec succes une demande client — repond a une question, resout un probleme, fournit une information. Les conversations transferees et les messages de test ne comptent pas. Vous ne payez que quand l'IA apporte de la valeur.",
   'faq.title': 'Des questions ?<br>On clarifie.',
   'faq.subtitle': 'IA, automatisation, agents intelligents... beaucoup de jargon. On simplifie.',
   'faq.q1': "C'est quoi exactement Cardynal ?",

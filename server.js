@@ -27,7 +27,7 @@ const SITE_DESCRIPTION = 'Un blog minimaliste pour partager des idees, des refle
 
 // Supported languages
 const SUPPORTED_LANGS = ['en', 'fr', 'he']
-const DEFAULT_LANG = 'en'
+const DEFAULT_LANG = 'fr'
 const RTL_LANGS = ['he']
 
 // Language-specific content

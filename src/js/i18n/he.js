@@ -43,7 +43,7 @@ export default {
   'features.escalation.list3': 'תעדוף חכם',
   'features.knowledge.badge': 'בסיס ידע',
   'features.knowledge.title': 'כל המידע שלך — בשנייה',
-  'features.knowledge.description': 'העלה מסמכים, FAQ, מדיניות. Cardynal מאנדקס הכל ומוציא את התשובה הנכונה תוך מילישניות.',
+  'features.knowledge.description': 'העלה מסמכים, שאלות נפוצות, מדיניות. Cardynal מאנדקס הכל ומוציא את התשובה הנכונה תוך מילישניות.',
   'features.knowledge.list1': 'PDF, Word, Excel, קישורים',
   'features.knowledge.list2': 'אחזור חכם מבוסס RAG',
   'features.knowledge.list3': 'ציטוט מקורות',
