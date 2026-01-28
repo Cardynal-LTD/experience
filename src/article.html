@@ -1,24 +1,21 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Experience - Article</title>
+  <title>Article - Cardynal</title>
   <meta name="description" content="">
-  <meta name="author" content="Experience">
-  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <meta name="author" content="Cardynal">
+  <meta name="robots" content="index, follow">
   <link rel="canonical" href="">
 
   <!-- Open Graph (dynamically updated) -->
   <meta property="og:type" content="article">
-  <meta property="og:site_name" content="Experience">
-  <meta property="og:locale" content="fr_FR">
+  <meta property="og:site_name" content="Cardynal">
   <meta property="og:title" content="">
   <meta property="og:description" content="">
   <meta property="og:url" content="">
   <meta property="og:image" content="">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
   <meta property="article:published_time" content="">
   <meta property="article:modified_time" content="">
 
@@ -29,75 +26,62 @@
   <meta name="twitter:image" content="">
 
   <!-- Theme -->
-  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#0a0a0a" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#020917">
 
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="apple-touch-icon" href="/logo-cardynal.png">
   <link rel="manifest" href="/manifest.json">
 
-  <!-- Preconnect -->
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anonymous+Pro:wght@400;700&family=Libre+Baskerville:wght@400;700&family=Open+Sans:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./css/main.css">
+  <link rel="stylesheet" href="./css/landing/index.css">
 
   <!-- JSON-LD (dynamically injected) -->
   <script type="application/ld+json" id="articleSchema"></script>
 </head>
-<body>
-  <header class="header">
-    <div class="header__content">
-      <a href="/" class="header__logo">Cardynal</a>
-      <nav class="header__nav">
-        <a href="/" class="header__nav-link" data-i18n="nav.home">Accueil</a>
-        <a href="/blog.html" class="header__nav-link">Blog</a>
-        <a href="/archive.html" class="header__nav-link" data-i18n="nav.archive">Archive</a>
-      </nav>
-      <div class="header__actions">
-        <button class="btn btn--ghost btn--icon" onclick="toggleTheme()" aria-label="Toggle theme">
-          <svg class="sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <circle cx="12" cy="12" r="5"/>
-            <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
-          </svg>
-          <svg class="moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none">
-            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
-          </svg>
-        </button>
-      </div>
-    </div>
-  </header>
+<body class="landing-page">
+  <!-- Header injected by JS -->
+  <div id="header-container"></div>
 
-  <main class="main main--full" id="mainContent">
-    <div class="page">
-      <div class="empty-state animate-pulse">
-        <div class="empty-state__title">Chargement de l'article...</div>
+  <main class="article-page-content" id="mainContent">
+    <div class="article-page-content__inner">
+      <div style="text-align: center; padding: 3rem; color: var(--landing-text-muted);">
+        Loading article...
       </div>
     </div>
   </main>
 
-  <footer class="footer">
-    <div class="footer__content">
-      <p class="footer__text">Cardynal Blog</p>
-      <div class="footer__links">
-        <a href="/" class="footer__link" data-i18n="nav.home">Accueil</a>
-        <a href="/blog.html" class="footer__link">Blog</a>
-        <a href="/archive.html" class="footer__link" data-i18n="nav.archive">Archive</a>
-        <a href="/rss.xml" class="footer__link" data-i18n="nav.rss">RSS</a>
-      </div>
-    </div>
-  </footer>
+  <!-- Footer injected by JS -->
+  <div id="footer-container"></div>
 
   <script type="module">
-    import './js/theme.js'
-    import { initAuth } from './js/auth.js'
-    import { initLangSelector, getCurrentLang, addHreflangTags, getLangPrefix, updateNavLinks, t } from './js/i18n.js'
+    import { renderHeader, initHeader } from '/js/components/header.js'
+    import { renderFooter } from '/js/components/footer.js'
+    import { initLangSelector, getCurrentLang, setLang, addHreflangTags, translatePage, t } from '/js/i18n.js'
     import { marked } from 'marked'
 
-    initAuth()
+    // Inject header and footer
+    document.getElementById('header-container').innerHTML = renderHeader({ activePage: 'blog' })
+    document.getElementById('footer-container').innerHTML = renderFooter()
+
+    // Initialize
+    initHeader()
     initLangSelector()
+    translatePage()
+
+    // Expose setLang globally
+    window.setLang = setLang
+
+    // Theme from localStorage
+    const savedTheme = localStorage.getItem('theme')
+    if (savedTheme === 'light') {
+      document.body.classList.add('light-mode')
+    }
 
     const currentLang = getCurrentLang()
 
@@ -120,10 +104,10 @@
         const siteUrl = window.location.origin
         const articleUrl = `${siteUrl}/article/${article.slug}`
         const description = article.content.substring(0, 160).replace(/[#*_`\n]/g, ' ').trim() + '...'
-        const coverImage = article.cover_image || `${siteUrl}/og-image.jpg`
+        const coverImage = article.cover_image || `${siteUrl}/logo-cardynal.png`
 
         // Update document title
-        document.title = `${article.title} - Experience`
+        document.title = `${article.title} - Cardynal`
 
         // Update meta tags
         document.querySelector('meta[name="description"]').content = description
@@ -152,14 +136,14 @@
           "datePublished": article.created_at,
           "dateModified": article.updated_at || article.created_at,
           "mainEntityOfPage": articleUrl,
-          "inLanguage": article.lang || "fr",
+          "inLanguage": article.lang || "en",
           "author": {
-            "@type": "Person",
-            "name": "Experience"
+            "@type": "Organization",
+            "name": "Cardynal"
           },
           "publisher": {
             "@type": "Organization",
-            "name": "Experience",
+            "name": "Cardynal",
             "url": siteUrl
           }
         })
@@ -174,40 +158,35 @@
         }
 
         const contentHtml = marked.parse(article.content)
+        const locale = currentLang === 'he' ? 'he-IL' : currentLang === 'fr' ? 'fr-FR' : 'en-US'
 
         main.innerHTML = `
-          <article class="page page--article animate-fadeIn">
-            <div class="article-hero ${article.cover_image ? 'has-cover' : ''}">
+          <div class="article-page-content__inner">
+            <article class="article-wrapper">
               ${article.cover_image ? `
-                <div class="article-hero__cover">
-                  <img src="${article.cover_image}" alt="${escapeHtml(article.title)}" class="article-hero__image" loading="eager" decoding="async">
-                </div>
+                <img src="${article.cover_image}" alt="${escapeHtml(article.title)}" class="article-header__cover">
               ` : ''}
-              <div class="article-hero__emoji">${article.emoji || '📄'}</div>
-            </div>
-            <div class="article-header">
-              <h1 class="article-header__title">${escapeHtml(article.title)}</h1>
-              <div class="article-header__meta">
-                <span>Publie le ${formatDate(article.created_at)}</span>
-                ${article.updated_at && article.updated_at !== article.created_at ?
-                  `<span>Mis a jour le ${formatDate(article.updated_at)}</span>` : ''}
-                ${article.tags ? `<span class="tag">${escapeHtml(article.tags)}</span>` : ''}
+              <div class="article-header">
+                <div class="article-header__meta">
+                  ${formatDate(article.created_at, locale)}
+                  ${article.tags ? ` · ${escapeHtml(article.tags)}` : ''}
+                </div>
+                <h1 class="article-header__title">${escapeHtml(article.title)}</h1>
               </div>
-            </div>
-            <div class="article-content prose">
-              ${contentHtml}
-            </div>
-            <div style="margin-top: var(--space-12); padding-top: var(--space-6); border-top: 1px solid var(--border-default);">
-              <a href="/archive.html" class="btn btn--ghost">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M19 12H5M12 19l-7-7 7-7"/>
-                </svg>
-                ${t('article.backToArchive')}
-              </a>
-            </div>
-          </article>
+              <div class="article-content">
+                ${contentHtml}
+              </div>
+              <div style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--landing-border);">
+                <a href="/blog.html" class="btn btn--secondary">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M19 12H5M12 19l-7-7 7-7"/>
+                  </svg>
+                  Back to Blog
+                </a>
+              </div>
+            </article>
+          </div>
         `
-        updateNavLinks()
 
       } catch (err) {
         showError()
@@ -217,21 +196,17 @@
     function showError() {
       const main = document.getElementById('mainContent')
       main.innerHTML = `
-        <div class="page animate-fadeIn">
-          <div class="empty-state">
-            <div class="empty-state__icon">🔍</div>
-            <div class="empty-state__title">${t('article.notFound')}</div>
-            <div class="empty-state__description">${t('article.notFoundDesc')}</div>
-            <a href="/archive.html" class="btn btn--primary" style="margin-top: var(--space-4);">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M19 12H5M12 19l-7-7 7-7"/>
-              </svg>
-              ${t('article.backToArchive')}
-            </a>
-          </div>
+        <div class="article-page-content__inner" style="text-align: center; padding: 6rem 2rem;">
+          <h2 style="color: var(--landing-text); margin-bottom: 1rem;">Article not found</h2>
+          <p style="color: var(--landing-text-muted); margin-bottom: 2rem;">The article you're looking for doesn't exist or has been moved.</p>
+          <a href="/blog.html" class="btn btn--primary">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M19 12H5M12 19l-7-7 7-7"/>
+            </svg>
+            Back to Blog
+          </a>
         </div>
       `
-      updateNavLinks()
     }
 
     function escapeHtml(text) {
@@ -240,9 +215,9 @@
       return div.innerHTML
     }
 
-    function formatDate(dateStr) {
+    function formatDate(dateStr, locale) {
       const date = new Date(dateStr)
-      return date.toLocaleDateString('fr-FR', {
+      return date.toLocaleDateString(locale, {
         day: 'numeric',
         month: 'long',
         year: 'numeric'

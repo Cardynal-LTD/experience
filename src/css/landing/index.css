@@ -11,4 +11,5 @@
 @import './footer.css';
 @import './widgets.css';
 @import './roi.css';
+@import './pages.css';
 @import './rtl.css';  /* RTL overrides last */
