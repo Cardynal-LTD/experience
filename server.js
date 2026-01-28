@@ -385,11 +385,11 @@ app.get('/sitemap.xml', async (req, res) => {
     { path: '/about.html', priority: '0.6', changefreq: 'monthly' }
   ]
 
-  // Generate URLs for each language
+  // Generate URLs grouped by language
   const staticPages = []
-  staticPagesBase.forEach(page => {
-    SUPPORTED_LANGS.forEach(lang => {
-      const langPrefix = lang === DEFAULT_LANG ? '' : `/${lang}`
+  SUPPORTED_LANGS.forEach(lang => {
+    const langPrefix = lang === DEFAULT_LANG ? '' : `/${lang}`
+    staticPagesBase.forEach(page => {
       staticPages.push({
         loc: `${langPrefix}${page.path}`,
         priority: page.priority,
@@ -405,6 +405,7 @@ app.get('/sitemap.xml', async (req, res) => {
     const { data } = await supabase
       .from('articles')
       .select('slug, lang, translation_group, updated_at, created_at')
+      .order('lang', { ascending: true })
       .order('created_at', { ascending: false })
     articles = data || []
   }
