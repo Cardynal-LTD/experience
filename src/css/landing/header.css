@@ -1,0 +1,198 @@
+/* Header */
+.landing-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding: 0.75rem 2rem;
+  transition: background 0.3s, backdrop-filter 0.3s;
+}
+
+.landing-header.is-scrolled {
+  background: rgba(2, 9, 23, 0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--landing-border);
+}
+
+.light-mode .landing-header.is-scrolled {
+  background: rgba(255, 255, 255, 0.95);
+}
+
+.landing-header__content {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.landing-header__logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--landing-text);
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 1.125rem;
+  font-family: 'Poppins', sans-serif;
+}
+
+.landing-header__logo svg {
+  color: var(--landing-primary);
+}
+
+.landing-header__logo-img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+}
+
+.landing-header__nav {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.landing-header__nav a {
+  color: var(--landing-text-muted);
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.landing-header__nav a:hover {
+  color: var(--landing-text);
+}
+
+.landing-header__actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.landing-header__menu-btn {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--landing-text);
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+/* Language Select */
+.lang-select {
+  padding: 0.5rem 0.75rem;
+  background: var(--landing-surface);
+  border: 1px solid var(--landing-border);
+  border-radius: 0.5rem;
+  color: var(--landing-text);
+  font-size: 0.875rem;
+  font-family: 'Poppins', sans-serif;
+  cursor: pointer;
+  transition: all 0.2s;
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.5rem center;
+  padding-right: 2rem;
+}
+
+.lang-select:hover {
+  border-color: var(--landing-text-muted);
+}
+
+.lang-select:focus {
+  outline: none;
+  border-color: var(--landing-primary);
+}
+
+.lang-select option {
+  background: var(--landing-surface);
+  color: var(--landing-text);
+}
+
+/* Theme Toggle */
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background: transparent;
+  border: 1px solid var(--landing-border);
+  border-radius: 0.5rem;
+  color: var(--landing-text-muted);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.theme-toggle:hover {
+  border-color: var(--landing-text-muted);
+  color: var(--landing-text);
+}
+
+.theme-toggle .sun { display: block; }
+.theme-toggle .moon { display: none; }
+.light-mode .theme-toggle .sun { display: none; }
+.light-mode .theme-toggle .moon { display: block; }
+
+/* Buttons */
+.landing-page .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1.25rem;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  font-size: 0.875rem;
+  text-decoration: none;
+  transition: all 0.2s;
+  cursor: pointer;
+  border: none;
+  font-family: 'Poppins', sans-serif;
+}
+
+.landing-page .btn--primary {
+  background: var(--landing-primary);
+  color: white;
+}
+
+.landing-page .btn--primary:hover {
+  background: var(--landing-primary-hover);
+  transform: translateY(-1px);
+}
+
+.landing-page .btn--secondary {
+  background: transparent;
+  color: var(--landing-text);
+  border: 1px solid var(--landing-border);
+}
+
+.landing-page .btn--secondary:hover {
+  border-color: var(--landing-text-muted);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.landing-page .btn--ghost {
+  background: transparent;
+  color: var(--landing-text-muted);
+}
+
+.landing-page .btn--ghost:hover {
+  color: var(--landing-text);
+}
+
+.landing-page .btn--lg {
+  padding: 0.875rem 1.75rem;
+  font-size: 0.9375rem;
+}
+
+.landing-page .btn--full {
+  width: 100%;
+}
+

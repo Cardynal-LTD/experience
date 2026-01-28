@@ -1,0 +1,158 @@
+/* Problem Section */
+.problem-section {
+  padding: 6rem 2rem;
+  text-align: center;
+}
+
+.problem-section__content {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.landing-page .section-title {
+  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+  line-height: 1.25;
+  margin-bottom: 1.5rem;
+  color: var(--landing-text);
+  text-transform: none;
+  letter-spacing: normal;
+}
+
+.section-subtitle {
+  font-size: 0.9375rem;
+  color: var(--landing-text-muted);
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+}
+
+/* Stats Section */
+.stats-section {
+  padding: 4rem 2rem;
+  background: var(--landing-surface);
+  border-top: 1px solid var(--landing-border);
+  border-bottom: 1px solid var(--landing-border);
+}
+
+.stats-section__content {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+}
+
+.stat-card {
+  text-align: center;
+}
+
+.stat-card__number {
+  font-family: 'Anonymous Pro', monospace;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  color: var(--landing-text);
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+
+.stat-card__label {
+  color: var(--landing-text-muted);
+  font-size: 0.8125rem;
+  line-height: 1.4;
+}
+
+/* Audience Section */
+.audience-section {
+  padding: 6rem 2rem;
+}
+
+.audience-section__content {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.audience-section .section-title {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.audience-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+.audience-card {
+  background: var(--landing-surface);
+  border: 1px solid var(--landing-border);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  text-align: center;
+  transition: transform 0.3s, border-color 0.3s;
+}
+
+.audience-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--landing-primary);
+}
+
+.audience-card__icon {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.audience-card__icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.audience-card__title {
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--landing-text);
+}
+
+.audience-card__description {
+  color: var(--landing-text-muted);
+  font-size: 0.8125rem;
+  line-height: 1.5;
+}
+
+.audience-section__cta {
+  text-align: center;
+}
+
+/* Laptop Showcase */
+.laptop-section {
+  padding: 4rem 2rem 6rem;
+  text-align: center;
+}
+
+.laptop-section__image {
+  max-width: 900px;
+  margin: 0 auto 3rem;
+}
+
+.laptop-section__image img {
+  width: 100%;
+  height: auto;
+  border-radius: 0.5rem;
+}
+
+.laptop-section .section-title {
+  max-width: 600px;
+  margin: 0 auto 1rem;
+}
+
+.laptop-section .section-subtitle {
+  max-width: 700px;
+  margin: 0 auto;
+}
+

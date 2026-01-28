@@ -1,0 +1,135 @@
+/* Pricing Section */
+.pricing-section {
+  padding: 6rem 2rem;
+  background: var(--landing-surface);
+}
+
+.pricing-section__content {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.pricing-section__header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.pricing-section__header .feature-badge {
+  margin-bottom: 1.5rem;
+}
+
+.pricing-card {
+  background: var(--landing-bg);
+  border: 1px solid var(--landing-border);
+  border-radius: 1.5rem;
+  padding: 2.5rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+.pricing-card__left {
+  border-right: 1px solid var(--landing-border);
+  padding-right: 2rem;
+}
+
+.pricing-card__title {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.pricing-card__description {
+  color: var(--landing-text-muted);
+  font-size: 0.875rem;
+  margin-bottom: 1.5rem;
+}
+
+.pricing-card__price {
+  display: flex;
+  align-items: baseline;
+  gap: 0.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.pricing-card__amount {
+  font-family: 'Anonymous Pro', monospace;
+  font-size: 3rem;
+  font-weight: 700;
+}
+
+.pricing-card__period {
+  color: var(--landing-text-muted);
+  font-size: 0.875rem;
+}
+
+.pricing-card__addons {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.pricing-addon {
+  display: flex;
+  flex-direction: column;
+}
+
+.pricing-addon__price {
+  font-family: 'Anonymous Pro', monospace;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--landing-primary);
+}
+
+.pricing-addon__label {
+  font-size: 0.75rem;
+  color: var(--landing-text-muted);
+}
+
+.pricing-card__features {
+  padding-left: 2rem;
+}
+
+.pricing-card__features h4 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: var(--landing-text);
+}
+
+.pricing-card__features ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.pricing-card__features li {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  color: var(--landing-text-muted);
+  font-size: 0.8125rem;
+}
+
+.pricing-card__features svg {
+  color: var(--landing-primary);
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+}
+
+.pricing-card__note {
+  font-size: 0.75rem;
+  color: var(--landing-text-muted);
+  line-height: 1.5;
+}
+
+.pricing-card__note strong {
+  color: var(--landing-text);
+}
+

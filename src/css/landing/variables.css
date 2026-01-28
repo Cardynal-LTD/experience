@@ -1,0 +1,45 @@
+/* Landing Page Styles - Cardynal.io Design */
+
+/* Variables */
+:root {
+  --landing-bg: #020917;
+  --landing-bg-light: #f8fafc;
+  --landing-surface: #0a1628;
+  --landing-surface-light: #ffffff;
+  --landing-border: rgba(148, 163, 184, 0.15);
+  --landing-border-light: rgba(148, 163, 184, 0.2);
+  --landing-text: #ffffff;
+  --landing-text-light: #1e293b;
+  --landing-text-muted: #94a3b8;
+  --landing-text-muted-light: #64748b;
+  --landing-primary: #f97316;
+  --landing-primary-hover: #ea580c;
+  --landing-blue: #3b82f6;
+  --landing-blue-light: #60a5fa;
+}
+
+/* Light mode overrides */
+.landing-page.light-mode {
+  --landing-bg: #f8fafc;
+  --landing-surface: #ffffff;
+  --landing-border: rgba(148, 163, 184, 0.2);
+  --landing-text: #1e293b;
+  --landing-text-muted: #64748b;
+}
+
+.landing-page {
+  background: var(--landing-bg);
+  color: var(--landing-text);
+  min-height: 100vh;
+  font-family: 'Poppins', system-ui, -apple-system, sans-serif;
+  font-size: 16px;
+}
+
+/* Typography */
+.landing-page h1,
+.landing-page h2,
+.landing-page h3 {
+  font-family: 'Libre Baskerville', Georgia, serif;
+  font-weight: 700;
+}
+

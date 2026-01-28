@@ -1,0 +1,92 @@
+/* RTL Support for Hebrew - Open Sans + min 16px */
+[dir="rtl"],
+[dir="rtl"] * {
+  font-family: 'Open Sans', system-ui, -apple-system, sans-serif !important;
+}
+
+/* Ensure minimum 16px for Hebrew text */
+[dir="rtl"] p,
+[dir="rtl"] span,
+[dir="rtl"] li,
+[dir="rtl"] a,
+[dir="rtl"] label,
+[dir="rtl"] .cfd-bubble,
+[dir="rtl"] .cfd-message__label,
+[dir="rtl"] .feature-card__description,
+[dir="rtl"] .section-subtitle,
+[dir="rtl"] .faq-item p,
+[dir="rtl"] .stat-card__label,
+[dir="rtl"] .audience-card__description,
+[dir="rtl"] .pricing-card__description {
+  font-size: 16px !important;
+}
+
+[dir="rtl"] .hero-section__content,
+[dir="rtl"] .feature-row,
+[dir="rtl"] .faq-section__content {
+  direction: rtl;
+}
+
+[dir="rtl"] .feature-row--reverse {
+  direction: ltr;
+}
+
+[dir="rtl"] .landing-header__content {
+  direction: ltr;
+}
+
+[dir="rtl"] .hero-section__features {
+  justify-content: flex-start;
+}
+
+/* Feature cards RTL alignment (in RTL + flex-direction:column, flex-start = right) */
+[dir="rtl"] .feature-card__content {
+  align-items: flex-start !important;
+  text-align: right !important;
+}
+
+[dir="rtl"] .feature-card .feature-badge {
+  align-self: flex-start !important;
+}
+
+[dir="rtl"] .feature-card__title,
+[dir="rtl"] .feature-card__description {
+  text-align: right !important;
+}
+
+[dir="rtl"] .feature-list {
+  justify-content: flex-start !important;
+  padding: 0 !important;
+}
+
+/* Widgets - Keep LTR in RTL mode (visual flow stays left-to-right) */
+[dir="rtl"] #tree-widget,
+[dir="rtl"] #playbook-widget,
+[dir="rtl"] #rag-widget,
+[dir="rtl"] #omni-widget {
+  direction: ltr;
+}
+
+/* Chat Flow Demo - Keep LTR layout, only fix text alignment */
+[dir="rtl"] .cfd-container {
+  direction: ltr;
+}
+
+[dir="rtl"] .cfd-message--customer .cfd-message__label {
+  text-align: right;
+}
+
+[dir="rtl"] .cfd-message--ai .cfd-message__label,
+[dir="rtl"] .cfd-message--human .cfd-message__label {
+  text-align: left;
+}
+
+[dir="rtl"] .cfd-bubble {
+  direction: rtl;
+  text-align: right;
+}
+
+/* ============================================
+   CHAT FLOW DEMO WIDGET
+   ============================================ */
+
