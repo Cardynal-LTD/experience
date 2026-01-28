@@ -368,29 +368,19 @@ async function loadStats() {
 function renderStats(stats) {
   const pv = stats.pageViews
 
-  // Row 1: Vues
+  // Hero metrics
   $('#statTotalViews').textContent = formatNumber(pv.total)
+  $('#statUniqueVisitors').textContent = formatNumber(pv.uniqueVisitors)
+  $('#statBounceRate').textContent = pv.bounceRate + '%'
+  $('#statAvgTime').textContent = formatTime(pv.avgTimeOnPage)
+
+  // Secondary metrics
   $('#statTodayViews').textContent = formatNumber(pv.today)
   $('#statWeekViews').textContent = formatNumber(pv.thisWeek)
   $('#statMonthViews').textContent = formatNumber(pv.thisMonth)
-
-  // Row 2: Visiteurs
-  $('#statUniqueVisitors').textContent = formatNumber(pv.uniqueVisitors)
-  $('#statNewVisitors').textContent = formatNumber(pv.newVisitors)
-  $('#statReturning').textContent = formatNumber(pv.returningVisitors)
-  $('#statBounceRate').textContent = pv.bounceRate + '%'
-
-  // Row 3: Engagement
-  $('#statAvgTime').textContent = formatTime(pv.avgTimeOnPage)
   $('#statAvgScroll').textContent = pv.avgScrollDepth + '%'
-  $('#statDesktop').textContent = formatNumber(pv.byDevice?.desktop || 0)
-  $('#statMobile').textContent = formatNumber(pv.byDevice?.mobile || 0)
 
-  // Hide setup instructions
-  const setupCard = $('#analyticsSetup')
-  if (setupCard) setupCard.style.display = 'none'
-
-  // Render charts
+  // Render components
   renderViewsChart(pv.byDay)
   renderDeviceStats(pv.byDevice)
   renderReferrerStats(pv.byReferrer)
@@ -410,7 +400,7 @@ function renderViewsChart(byDay) {
   const container = $('#viewsChart')
 
   if (!byDay || byDay.length === 0) {
-    container.innerHTML = '<div class="analytics-empty"><div class="analytics-empty__icon">📊</div>Aucune donnee</div>'
+    container.innerHTML = '<div class="empty-state"><div class="empty-state__icon">📊</div><div class="empty-state__title">Aucune donnee</div></div>'
     return
   }
 
@@ -422,8 +412,9 @@ function renderViewsChart(byDay) {
     const label = `${date.getDate()}/${date.getMonth() + 1}`
 
     return `
-      <div class="chart-bar" style="height: ${height}%" data-value="${d.views}">
-        <span class="chart-bar-label">${label}</span>
+      <div class="chart__bar-wrapper">
+        <div class="chart__bar" style="height: ${height}%" data-value="${d.views}"></div>
+        <span class="chart__label">${label}</span>
       </div>
     `
   }).join('')
@@ -432,14 +423,14 @@ function renderViewsChart(byDay) {
 function renderDeviceStats(byDevice) {
   const container = $('#deviceStats')
   if (!byDevice) {
-    container.innerHTML = '<div class="analytics-empty">Aucune donnee</div>'
+    container.innerHTML = '<div class="empty-state"><div class="empty-state__icon">📱</div><div class="empty-state__title">Aucune donnee</div></div>'
     return
   }
 
   const devices = [
-    { key: 'desktop', icon: '🖥️', name: 'Desktop' },
-    { key: 'mobile', icon: '📱', name: 'Mobile' },
-    { key: 'tablet', icon: '📱', name: 'Tablet' }
+    { key: 'desktop', icon: '🖥️', name: 'Desktop', color: '' },
+    { key: 'mobile', icon: '📱', name: 'Mobile', color: '--green' },
+    { key: 'tablet', icon: '📲', name: 'Tablet', color: '--purple' }
   ]
 
   const total = Object.values(byDevice).reduce((a, b) => a + b, 0) || 1
@@ -449,13 +440,17 @@ function renderDeviceStats(byDevice) {
     const percent = Math.round((count / total) * 100)
 
     return `
-      <div class="lang-stat">
-        <span class="lang-stat__flag">${d.icon}</span>
-        <span class="lang-stat__name">${d.name}</span>
-        <div class="lang-stat__bar">
-          <div class="lang-stat__fill" style="width: ${percent}%"></div>
+      <div class="stat-item">
+        <div class="stat-item__icon">${d.icon}</div>
+        <div class="stat-item__info">
+          <div class="stat-item__header">
+            <span class="stat-item__name">${d.name}</span>
+            <span class="stat-item__value">${percent}%</span>
+          </div>
+          <div class="stat-item__bar">
+            <div class="stat-item__fill${d.color}" style="width: ${percent}%"></div>
+          </div>
         </div>
-        <span class="lang-stat__count">${percent}%</span>
       </div>
     `
   }).join('')
@@ -464,33 +459,37 @@ function renderDeviceStats(byDevice) {
 function renderReferrerStats(byReferrer) {
   const container = $('#referrerStats')
   if (!byReferrer || byReferrer.length === 0) {
-    container.innerHTML = '<div class="analytics-empty">Aucune donnee</div>'
+    container.innerHTML = '<div class="empty-state"><div class="empty-state__icon">🔗</div><div class="empty-state__title">Aucune source</div></div>'
     return
   }
 
-  container.innerHTML = byReferrer.slice(0, 5).map((r, i) => `
-    <div class="top-article">
-      <span class="top-article__rank">${i + 1}</span>
-      <span class="top-article__title">${escapeHtml(r.referrer)}</span>
-      <span class="top-article__views">${formatNumber(r.count)}</span>
+  container.innerHTML = '<div class="data-table">' + byReferrer.slice(0, 5).map((r, i) => `
+    <div class="data-row">
+      <span class="data-row__rank${i === 0 ? ' data-row__rank--gold' : i === 1 ? ' data-row__rank--silver' : i === 2 ? ' data-row__rank--bronze' : ''}">${i + 1}</span>
+      <div class="data-row__content">
+        <div class="data-row__title">${escapeHtml(r.referrer)}</div>
+      </div>
+      <span class="data-row__badge">${formatNumber(r.count)}</span>
     </div>
-  `).join('')
+  `).join('') + '</div>'
 }
 
 function renderUtmStats(byUtmSource) {
   const container = $('#utmStats')
   if (!byUtmSource || byUtmSource.length === 0) {
-    container.innerHTML = '<div class="analytics-empty">Aucune campagne UTM</div>'
+    container.innerHTML = '<div class="empty-state"><div class="empty-state__icon">📢</div><div class="empty-state__title">Aucune campagne</div></div>'
     return
   }
 
-  container.innerHTML = byUtmSource.slice(0, 5).map((u, i) => `
-    <div class="top-article">
-      <span class="top-article__rank">${i + 1}</span>
-      <span class="top-article__title">${escapeHtml(u.source)}</span>
-      <span class="top-article__views">${formatNumber(u.count)}</span>
+  container.innerHTML = '<div class="data-table">' + byUtmSource.slice(0, 5).map((u, i) => `
+    <div class="data-row">
+      <span class="data-row__rank${i === 0 ? ' data-row__rank--gold' : i === 1 ? ' data-row__rank--silver' : i === 2 ? ' data-row__rank--bronze' : ''}">${i + 1}</span>
+      <div class="data-row__content">
+        <div class="data-row__title">${escapeHtml(u.source)}</div>
+      </div>
+      <span class="data-row__badge">${formatNumber(u.count)}</span>
     </div>
-  `).join('')
+  `).join('') + '</div>'
 }
 
 function renderTopArticles(byArticle) {
@@ -498,22 +497,25 @@ function renderTopArticles(byArticle) {
 
   if (!byArticle || byArticle.length === 0) {
     container.innerHTML = `
-      <div class="analytics-empty">
-        <div class="analytics-empty__icon">📈</div>
-        Les articles les plus vus apparaitront ici
+      <div class="empty-state">
+        <div class="empty-state__icon">📄</div>
+        <div class="empty-state__title">Aucun article</div>
+        <div class="empty-state__desc">Les articles les plus vus apparaitront ici</div>
       </div>
     `
     return
   }
 
-  container.innerHTML = byArticle.map((article, index) => `
-    <div class="top-article">
-      <span class="top-article__rank">${index + 1}</span>
-      <span class="top-article__emoji">${article.emoji}</span>
-      <span class="top-article__title">${escapeHtml(article.title)}</span>
-      <span class="top-article__views">${formatNumber(article.views)} vues</span>
+  container.innerHTML = '<div class="data-table">' + byArticle.map((article, index) => `
+    <div class="data-row">
+      <span class="data-row__rank${index === 0 ? ' data-row__rank--gold' : index === 1 ? ' data-row__rank--silver' : index === 2 ? ' data-row__rank--bronze' : ''}">${index + 1}</span>
+      <span class="data-row__icon">${article.emoji || '📄'}</span>
+      <div class="data-row__content">
+        <div class="data-row__title">${escapeHtml(article.title)}</div>
+      </div>
+      <span class="data-row__badge">${formatNumber(article.views)}</span>
     </div>
-  `).join('')
+  `).join('') + '</div>'
 }
 
 function formatNumber(num) {

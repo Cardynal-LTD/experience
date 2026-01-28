@@ -19,6 +19,7 @@
 
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./css/main.css">
+  <link rel="stylesheet" href="./css/admin.css">
 </head>
 <body>
   <header class="header">
@@ -88,160 +89,126 @@
 
       <!-- Analytics Tab -->
       <div class="admin-panel" data-panel="analytics">
-        <!-- Stats Grid - Row 1: Vues -->
-        <h3 class="stats-section-title">Vues</h3>
-        <div class="stats-grid">
-          <div class="stat-card stat-card--highlight">
-            <span class="stat-card__icon">👁</span>
-            <div class="stat-card__value" id="statTotalViews">-</div>
-            <div class="stat-card__label">Vues totales</div>
+
+        <!-- Hero Metrics Row -->
+        <div class="metrics-row">
+          <div class="metric-card metric-card--primary">
+            <div class="metric-card__label">Vues totales</div>
+            <div class="metric-card__value" id="statTotalViews">-</div>
           </div>
-          <div class="stat-card">
-            <span class="stat-card__icon">📅</span>
-            <div class="stat-card__value" id="statTodayViews">-</div>
-            <div class="stat-card__label">Aujourd'hui</div>
+          <div class="metric-card">
+            <div class="metric-card__label">Visiteurs uniques</div>
+            <div class="metric-card__value" id="statUniqueVisitors">-</div>
           </div>
-          <div class="stat-card">
-            <span class="stat-card__icon">📊</span>
-            <div class="stat-card__value" id="statWeekViews">-</div>
-            <div class="stat-card__label">7 jours</div>
+          <div class="metric-card">
+            <div class="metric-card__label">Taux de rebond</div>
+            <div class="metric-card__value" id="statBounceRate">-</div>
           </div>
-          <div class="stat-card">
-            <span class="stat-card__icon">📈</span>
-            <div class="stat-card__value" id="statMonthViews">-</div>
-            <div class="stat-card__label">30 jours</div>
+          <div class="metric-card">
+            <div class="metric-card__label">Temps moyen</div>
+            <div class="metric-card__value" id="statAvgTime">-</div>
           </div>
         </div>
 
-        <!-- Stats Grid - Row 2: Visiteurs -->
-        <h3 class="stats-section-title">Visiteurs</h3>
-        <div class="stats-grid">
-          <div class="stat-card">
-            <span class="stat-card__icon">👤</span>
-            <div class="stat-card__value" id="statUniqueVisitors">-</div>
-            <div class="stat-card__label">Visiteurs uniques</div>
+        <!-- Secondary Metrics -->
+        <div class="metrics-row">
+          <div class="metric-card">
+            <div class="metric-card__label">Aujourd'hui</div>
+            <div class="metric-card__value" id="statTodayViews">-</div>
           </div>
-          <div class="stat-card">
-            <span class="stat-card__icon">✨</span>
-            <div class="stat-card__value" id="statNewVisitors">-</div>
-            <div class="stat-card__label">Nouveaux</div>
+          <div class="metric-card">
+            <div class="metric-card__label">7 derniers jours</div>
+            <div class="metric-card__value" id="statWeekViews">-</div>
           </div>
-          <div class="stat-card">
-            <span class="stat-card__icon">🔄</span>
-            <div class="stat-card__value" id="statReturning">-</div>
-            <div class="stat-card__label">Retours</div>
+          <div class="metric-card">
+            <div class="metric-card__label">30 derniers jours</div>
+            <div class="metric-card__value" id="statMonthViews">-</div>
           </div>
-          <div class="stat-card">
-            <span class="stat-card__icon">↩️</span>
-            <div class="stat-card__value" id="statBounceRate">-</div>
-            <div class="stat-card__label">Taux rebond</div>
+          <div class="metric-card">
+            <div class="metric-card__label">Scroll moyen</div>
+            <div class="metric-card__value" id="statAvgScroll">-</div>
           </div>
         </div>
 
-        <!-- Stats Grid - Row 3: Engagement -->
-        <h3 class="stats-section-title">Engagement</h3>
-        <div class="stats-grid">
-          <div class="stat-card">
-            <span class="stat-card__icon">⏱</span>
-            <div class="stat-card__value" id="statAvgTime">-</div>
-            <div class="stat-card__label">Temps moyen</div>
-          </div>
-          <div class="stat-card">
-            <span class="stat-card__icon">📜</span>
-            <div class="stat-card__value" id="statAvgScroll">-</div>
-            <div class="stat-card__label">Scroll moyen</div>
-          </div>
-          <div class="stat-card">
-            <span class="stat-card__icon">🖥</span>
-            <div class="stat-card__value" id="statDesktop">-</div>
-            <div class="stat-card__label">Desktop</div>
-          </div>
-          <div class="stat-card">
-            <span class="stat-card__icon">📱</span>
-            <div class="stat-card__value" id="statMobile">-</div>
-            <div class="stat-card__label">Mobile</div>
-          </div>
+        <!-- Charts Section -->
+        <div class="section-header">
+          <span class="section-title">Tendances</span>
+          <span class="live-indicator">Live</span>
         </div>
 
-        <!-- Charts Row -->
-        <h3 class="stats-section-title">Tendances</h3>
-        <div class="stats-row">
+        <div class="dashboard-grid">
           <!-- Views Chart -->
-          <div class="card stats-chart-card">
-            <div class="card__header">
-              <h3 class="card__title"><span class="live-dot"></span>Vues (14 derniers jours)</h3>
+          <div class="panel">
+            <div class="panel__header">
+              <h3 class="panel__title">Vues par jour</h3>
+              <span class="section-badge">14 jours</span>
             </div>
-            <div class="card__body">
+            <div class="panel__body">
               <div class="chart-container" id="viewsChart"></div>
             </div>
           </div>
 
-          <!-- Device Breakdown -->
-          <div class="card stats-lang-card">
-            <div class="card__header">
-              <h3 class="card__title">Appareils</h3>
+          <!-- Device Stats -->
+          <div class="panel">
+            <div class="panel__header">
+              <h3 class="panel__title">Appareils</h3>
             </div>
-            <div class="card__body">
-              <div class="lang-stats" id="deviceStats"></div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Second Row: Referrers & UTM -->
-        <h3 class="stats-section-title">Acquisition</h3>
-        <div class="stats-row stats-row--equal">
-          <!-- Top Referrers -->
-          <div class="card">
-            <div class="card__header">
-              <h3 class="card__title">Sources de trafic</h3>
-            </div>
-            <div class="card__body" id="referrerStats">
-              <div class="empty-state"><div class="empty-state__title">Aucune donnee</div></div>
-            </div>
-          </div>
-
-          <!-- UTM Campaigns -->
-          <div class="card">
-            <div class="card__header">
-              <h3 class="card__title">Campagnes UTM</h3>
-            </div>
-            <div class="card__body" id="utmStats">
-              <div class="empty-state"><div class="empty-state__title">Aucune donnee</div></div>
+            <div class="panel__body">
+              <div class="stat-list" id="deviceStats"></div>
             </div>
           </div>
         </div>
 
-        <!-- Top Articles -->
-        <h3 class="stats-section-title">Contenu</h3>
-        <div class="card">
-          <div class="card__header">
-            <h3 class="card__title">Articles les plus vus</h3>
+        <!-- Acquisition Section -->
+        <div class="section-header">
+          <span class="section-title">Acquisition</span>
+        </div>
+
+        <div class="dashboard-grid dashboard-grid--equal">
+          <!-- Referrers -->
+          <div class="panel">
+            <div class="panel__header">
+              <h3 class="panel__title">Sources de trafic</h3>
+            </div>
+            <div class="panel__body" id="referrerStats">
+              <div class="empty-state">
+                <div class="empty-state__icon">🔗</div>
+                <div class="empty-state__title">Aucune source</div>
+              </div>
+            </div>
           </div>
-          <div class="card__body" id="topArticles">
+
+          <!-- UTM -->
+          <div class="panel">
+            <div class="panel__header">
+              <h3 class="panel__title">Campagnes UTM</h3>
+            </div>
+            <div class="panel__body" id="utmStats">
+              <div class="empty-state">
+                <div class="empty-state__icon">📢</div>
+                <div class="empty-state__title">Aucune campagne</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Content Section -->
+        <div class="section-header">
+          <span class="section-title">Contenu populaire</span>
+        </div>
+
+        <div class="panel">
+          <div class="panel__header">
+            <h3 class="panel__title">Articles les plus vus</h3>
+          </div>
+          <div class="panel__body panel__body--flush" id="topArticles">
             <div class="empty-state">
+              <div class="empty-state__icon">📄</div>
               <div class="empty-state__title">Aucune donnee</div>
             </div>
           </div>
         </div>
 
-        <!-- Setup Instructions (hidden) -->
-        <div class="card" id="analyticsSetup" style="display: none;">
-          <div class="card__header">
-            <h3 class="card__title">Configuration requise</h3>
-          </div>
-          <div class="card__body">
-            <p style="margin-bottom: var(--space-4); color: var(--color-text-secondary);">
-              Table page_views configuree.
-            </p>
-            <pre class="code-block">CREATE TABLE page_views (
-  id SERIAL PRIMARY KEY,
-  path TEXT NOT NULL,
-  article_id INTEGER REFERENCES articles(id) ON DELETE CASCADE,
-  viewed_at TIMESTAMPTZ DEFAULT NOW(),
-  referrer TEXT
-);</pre>
-          </div>
-        </div>
       </div>
     </section>
   </main>
