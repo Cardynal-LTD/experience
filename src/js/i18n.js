@@ -159,6 +159,12 @@ export function getLangPrefix(lang) {
   return lang === DEFAULT_LANG ? '' : `/${lang}`
 }
 
+// Set language and redirect
+export function setLang(lang) {
+  const url = buildLangUrl(lang)
+  window.location.href = url
+}
+
 // Build URL for a different language
 export function buildLangUrl(targetLang, currentPath) {
   const currentLang = getCurrentLang()
