@@ -1,4 +1,8 @@
 // Internationalization module
+// Import translations from modular files
+import en from './i18n/en.js'
+import fr from './i18n/fr.js'
+import he from './i18n/he.js'
 
 const SUPPORTED_LANGS = ['en', 'fr', 'he']
 const DEFAULT_LANG = 'en'
@@ -16,111 +20,8 @@ const LANG_FULL_NAMES = {
   he: 'עברית'
 }
 
-// Translations dictionary
-const TRANSLATIONS = {
-  fr: {
-    // Navigation
-    'nav.home': 'Accueil',
-    'nav.archive': 'Archive',
-    'nav.about': 'A propos',
-    'nav.rss': 'RSS',
-
-    // Home page
-    'home.title': 'Experience',
-    'home.recentArticles': 'Articles recents',
-    'home.viewAll': 'Voir tous les articles',
-
-    // Archive page
-    'archive.title': 'Archive',
-    'archive.description': 'Tous les articles',
-
-    // About page
-    'about.title': 'A propos',
-    'about.subtitle': 'En savoir plus sur ce blog et son auteur',
-
-    // Article page
-    'article.backToArchive': 'Retour aux archives',
-    'article.notFound': 'Article non trouve',
-    'article.notFoundDesc': 'Cet article n\'existe pas ou a ete supprime.',
-
-    // Empty states
-    'empty.noArticles': 'Aucun article',
-    'empty.noArticlesDesc': 'Aucun article pour le moment.',
-    'empty.error': 'Erreur',
-    'empty.errorDesc': 'Erreur de chargement.',
-
-    // Misc
-    'lang.change': 'Changer de langue'
-  },
-  en: {
-    // Navigation
-    'nav.home': 'Home',
-    'nav.archive': 'Archive',
-    'nav.about': 'About',
-    'nav.rss': 'RSS',
-
-    // Home page
-    'home.title': 'Experience',
-    'home.recentArticles': 'Recent articles',
-    'home.viewAll': 'View all articles',
-
-    // Archive page
-    'archive.title': 'Archive',
-    'archive.description': 'All articles',
-
-    // About page
-    'about.title': 'About',
-    'about.subtitle': 'Learn more about this blog and its author',
-
-    // Article page
-    'article.backToArchive': 'Back to archive',
-    'article.notFound': 'Article not found',
-    'article.notFoundDesc': 'This article does not exist or has been deleted.',
-
-    // Empty states
-    'empty.noArticles': 'No articles',
-    'empty.noArticlesDesc': 'No articles yet.',
-    'empty.error': 'Error',
-    'empty.errorDesc': 'Loading error.',
-
-    // Misc
-    'lang.change': 'Change language'
-  },
-  he: {
-    // Navigation
-    'nav.home': 'בית',
-    'nav.archive': 'ארכיון',
-    'nav.about': 'אודות',
-    'nav.rss': 'RSS',
-
-    // Home page
-    'home.title': 'Experience',
-    'home.recentArticles': 'מאמרים אחרונים',
-    'home.viewAll': 'לכל המאמרים',
-
-    // Archive page
-    'archive.title': 'ארכיון',
-    'archive.description': 'כל המאמרים',
-
-    // About page
-    'about.title': 'אודות',
-    'about.subtitle': 'למידע נוסף על הבלוג והכותב',
-
-    // Article page
-    'article.backToArchive': 'חזרה לארכיון',
-    'article.notFound': 'המאמר לא נמצא',
-    'article.notFoundDesc': 'המאמר הזה לא קיים או נמחק.',
-
-    // Empty states
-    'empty.noArticles': 'אין מאמרים',
-    'empty.noArticlesDesc': 'אין מאמרים כרגע.',
-    'empty.error': 'שגיאה',
-    'empty.errorDesc': 'שגיאת טעינה.',
-
-    // Misc
-    'lang.change': 'החלף שפה'
-  }
-}
+// Translations dictionary (imported from modular files)
+const TRANSLATIONS = { en, fr, he }
 
 // Get translation for a key
 export function t(key) {
