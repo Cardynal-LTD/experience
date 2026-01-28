@@ -150,7 +150,7 @@ export function translatePage() {
 // Detect current language from URL
 export function getCurrentLang() {
   const path = window.location.pathname
-  const match = path.match(/^\/(en|he)(\/|$)/)
+  const match = path.match(/^\/(en|fr|he)(\/|$)/)
   return match ? match[1] : DEFAULT_LANG
 }
 

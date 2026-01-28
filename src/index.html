@@ -667,52 +667,27 @@
     </div>
   </div>
 
-  <script>
-    // Global function for language switching with URL change
-    function setLang(lang) {
-      localStorage.setItem('cardynal_lang', lang);
-      // Redirect to language-specific URL
-      var path = window.location.pathname;
-      // Remove existing lang prefix
-      path = path.replace(/^\/(en|fr|he)(\/|$)/, '/');
-      // Add new lang prefix (except for English which is default)
-      if (lang === 'en') {
-        window.location.href = path || '/';
-      } else {
-        window.location.href = '/' + lang + (path === '/' ? '' : path);
-      }
-    }
-    // Detect language from URL and set on page load
-    document.addEventListener('DOMContentLoaded', function() {
-      var path = window.location.pathname;
-      var urlLang = null;
-      if (path.startsWith('/fr')) urlLang = 'fr';
-      else if (path.startsWith('/he')) urlLang = 'he';
-
-      var storedLang = localStorage.getItem('cardynal_lang');
-      var lang = urlLang || storedLang || 'en';
-
-      if (urlLang && urlLang !== storedLang) {
-        localStorage.setItem('cardynal_lang', urlLang);
-      }
-
-      var select = document.getElementById('langSelect');
-      if (select) select.value = lang;
-    });
-  </script>
-
   <script type="module">
     // Import header/footer components
     import { renderHeader, initHeader } from '/js/components/header.js';
     import { renderFooter } from '/js/components/footer.js';
+    import { setLang, getCurrentLang } from '/js/i18n.js';
 
     // Import translations from external modules
     import { TRANSLATIONS, WIDGET_TRANSLATIONS } from '/js/i18n/index.js';
+
+    // Expose setLang globally for the header select
+    window.setLang = setLang;
 
     // Inject header and footer
     document.getElementById('header-container').innerHTML = renderHeader({ activePage: 'home' });
     document.getElementById('footer-container').innerHTML = renderFooter();
     initHeader();
+
+    // Set language selector value
+    const lang = getCurrentLang();
+    const select = document.getElementById('langSelect');
+    if (select) select.value = lang;
 
     // Note: TRANSLATIONS and WIDGET_TRANSLATIONS are now imported from:
     // - src/js/i18n/en.js, fr.js, he.js
