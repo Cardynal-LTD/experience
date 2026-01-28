@@ -380,6 +380,7 @@ app.get('/sitemap.xml', async (req, res) => {
   // Static pages with all language variants
   const staticPagesBase = [
     { path: '', priority: '1.0', changefreq: 'daily' },
+    { path: '/blog.html', priority: '0.9', changefreq: 'daily' },
     { path: '/archive.html', priority: '0.8', changefreq: 'daily' },
     { path: '/about.html', priority: '0.6', changefreq: 'monthly' }
   ]
