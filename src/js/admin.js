@@ -372,11 +372,9 @@ function renderStats(stats) {
   $('#statTodayViews').textContent = formatNumber(stats.pageViews.today)
   $('#statWeekViews').textContent = formatNumber(stats.pageViews.thisWeek)
 
-  // Show setup instructions if no views tracked yet
+  // Hide setup instructions (table is created)
   const setupCard = $('#analyticsSetup')
-  if (stats.pageViews.total === 0) {
-    setupCard.style.display = 'block'
-  } else {
+  if (setupCard) {
     setupCard.style.display = 'none'
   }
 
