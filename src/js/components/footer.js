@@ -1,6 +1,8 @@
 // Shared Footer Component for all pages
 
 export function renderFooter() {
+  const year = new Date().getFullYear()
+
   return `
   <footer class="landing-footer">
     <div class="landing-footer__content">
@@ -20,8 +22,8 @@ export function renderFooter() {
         </div>
         <div class="landing-footer__column">
           <h4 data-i18n="footer.company">Company</h4>
-          <a href="/blog.html" data-i18n="footer.blog">Blog</a>
-          <a href="/about.html" data-i18n="footer.about">About</a>
+          <a href="/blog.html" data-i18n="nav.blog">Blog</a>
+          <a href="/about.html" data-i18n="nav.about">About</a>
           <a href="mailto:contact@cardynal.io" data-i18n="footer.contact">Contact</a>
         </div>
         <div class="landing-footer__column">
@@ -36,7 +38,7 @@ export function renderFooter() {
       </div>
     </div>
     <div class="landing-footer__bottom">
-      <p>&copy; ${new Date().getFullYear()} Cardynal. All rights reserved.</p>
+      <p>&copy; ${year} Cardynal. All rights reserved.</p>
     </div>
   </footer>
   `

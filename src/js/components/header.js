@@ -1,30 +1,27 @@
 // Shared Header Component for all pages
-import { getCurrentLang, LANG_NAMES, setLang } from '../i18n.js'
+import { getCurrentLang, LANG_NAMES } from '../i18n.js'
 
 export function renderHeader(options = {}) {
-  const { activePage = 'home', showLandingNav = false } = options
-
+  const { activePage = 'home' } = options
   const currentLang = getCurrentLang()
-
-  // Navigation items based on page type
-  const landingNav = `
-    <a href="/" data-i18n="nav.home">Home</a>
-    <a href="#features" data-i18n="nav.features">Features</a>
-    <a href="#pricing" data-i18n="nav.pricing">Pricing</a>
-    <a href="#faq" data-i18n="nav.faq">FAQ</a>
-  `
-
-  const siteNav = `
-    <a href="/" data-i18n="nav.home" ${activePage === 'home' ? 'class="is-active"' : ''}>Home</a>
-    <a href="/blog.html" data-i18n="nav.blog" ${activePage === 'blog' ? 'class="is-active"' : ''}>Blog</a>
-    <a href="/archive.html" data-i18n="nav.archive" ${activePage === 'archive' ? 'class="is-active"' : ''}>Archive</a>
-    <a href="/about.html" data-i18n="nav.about" ${activePage === 'about' ? 'class="is-active"' : ''}>About</a>
-  `
 
   // Language options
   const langOptions = Object.entries(LANG_NAMES)
     .map(([code, name]) => `<option value="${code}" ${code === currentLang ? 'selected' : ''}>${name}</option>`)
     .join('')
+
+  // Unified navigation - same on all pages
+  const navItems = [
+    { key: 'home', href: '/', i18n: 'nav.home', label: 'Home' },
+    { key: 'features', href: '/#features', i18n: 'nav.features', label: 'Product' },
+    { key: 'pricing', href: '/#pricing', i18n: 'nav.pricing', label: 'Pricing' },
+    { key: 'blog', href: '/blog.html', i18n: 'nav.blog', label: 'Blog' },
+  ]
+
+  const navHtml = navItems.map(item => {
+    const isActive = item.key === activePage
+    return `<a href="${item.href}" data-i18n="${item.i18n}" ${isActive ? 'class="is-active"' : ''}>${item.label}</a>`
+  }).join('')
 
   return `
   <header class="landing-header">
@@ -34,7 +31,7 @@ export function renderHeader(options = {}) {
         <span>Cardynal</span>
       </a>
       <nav class="landing-header__nav" id="mainNav">
-        ${showLandingNav ? landingNav : siteNav}
+        ${navHtml}
       </nav>
       <div class="landing-header__actions">
         <select class="lang-select" id="langSelect" onchange="window.setLang ? window.setLang(this.value) : null">
@@ -67,6 +64,8 @@ export function initHeader() {
     window.addEventListener('scroll', () => {
       header.classList.toggle('is-scrolled', window.scrollY > 50)
     })
+    // Check initial scroll position
+    header.classList.toggle('is-scrolled', window.scrollY > 50)
   }
 
   // Mobile menu toggle

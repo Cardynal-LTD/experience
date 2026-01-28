@@ -33,42 +33,8 @@
   <link rel="stylesheet" href="./css/landing/index.css">
 </head>
 <body class="landing-page">
-  <!-- Header -->
-  <header class="landing-header">
-    <div class="landing-header__content">
-      <a href="/" class="landing-header__logo">
-        <img src="/logo-cardynal.png" alt="Cardynal" class="landing-header__logo-img">
-        <span>Cardynal</span>
-      </a>
-      <nav class="landing-header__nav" id="mainNav">
-        <a href="/" data-i18n="nav.home">Home</a>
-        <a href="#features" data-i18n="nav.features">Features</a>
-        <a href="#pricing" data-i18n="nav.pricing">Pricing</a>
-        <a href="#faq" data-i18n="nav.faq">FAQ</a>
-      </nav>
-      <div class="landing-header__actions">
-        <select class="lang-select" id="langSelect" onchange="setLang(this.value)">
-          <option value="en">EN</option>
-          <option value="fr">FR</option>
-          <option value="he">HE</option>
-        </select>
-        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
-          <svg class="sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
-          </svg>
-          <svg class="moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
-          </svg>
-        </button>
-        <a href="https://cal.com/cardynal.io/30min" class="btn btn--primary" data-i18n="nav.contact">Contact Us</a>
-      </div>
-      <button class="landing-header__menu-btn" id="menuBtn" aria-label="Menu">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
-        </svg>
-      </button>
-    </div>
-  </header>
+  <!-- Header (injected by JS) -->
+  <div id="header-container"></div>
 
   <!-- Hero Section -->
   <section class="hero-section" id="hero">
@@ -635,46 +601,8 @@
     </div>
   </section>
 
-  <!-- Footer -->
-  <footer class="landing-footer">
-    <div class="landing-footer__content">
-      <div class="landing-footer__brand">
-        <a href="/" class="landing-footer__logo">
-          <img src="/logo-cardynal.png" alt="Cardynal" class="landing-footer__logo-img">
-          <span>Cardynal</span>
-        </a>
-        <p data-i18n="footer.tagline">Human + AI Customer Support<br>Fully managed, from day one.</p>
-      </div>
-      <div class="landing-footer__links">
-        <div class="landing-footer__column">
-          <h4 data-i18n="footer.product">Product</h4>
-          <a href="#features" data-i18n="nav.features">Features</a>
-          <a href="#pricing" data-i18n="nav.pricing">Pricing</a>
-          <a href="#faq" data-i18n="nav.faq">FAQ</a>
-        </div>
-        <div class="landing-footer__column">
-          <h4 data-i18n="footer.company">Company</h4>
-          <a href="/blog.html" data-i18n="footer.blog">Blog</a>
-          <a href="/about.html" data-i18n="footer.about">About</a>
-          <a href="mailto:contact@cardynal.io" data-i18n="footer.contact">Contact</a>
-        </div>
-        <div class="landing-footer__column">
-          <h4 data-i18n="footer.legal">Legal</h4>
-          <a href="/privacy.html" data-i18n="footer.privacy">Privacy</a>
-          <a href="/terms.html" data-i18n="footer.terms">Terms</a>
-        </div>
-      </div>
-      <div class="landing-footer__contact">
-        <h4 data-i18n="footer.getInTouch">Get In Touch</h4>
-        <p>
-          Email: contact@cardynal.io
-        </p>
-      </div>
-    </div>
-    <div class="landing-footer__bottom">
-      <p>&copy; 2026 Cardynal. All rights reserved.</p>
-    </div>
-  </footer>
+  <!-- Footer (injected by JS) -->
+  <div id="footer-container"></div>
 
   <!-- ROI Calculator Modal -->
   <div class="roi-modal" id="roiModal">
@@ -774,8 +702,17 @@
   </script>
 
   <script type="module">
+    // Import header/footer components
+    import { renderHeader, initHeader } from '/js/components/header.js';
+    import { renderFooter } from '/js/components/footer.js';
+
     // Import translations from external modules
     import { TRANSLATIONS, WIDGET_TRANSLATIONS } from '/js/i18n/index.js';
+
+    // Inject header and footer
+    document.getElementById('header-container').innerHTML = renderHeader({ activePage: 'home' });
+    document.getElementById('footer-container').innerHTML = renderFooter();
+    initHeader();
 
     // Note: TRANSLATIONS and WIDGET_TRANSLATIONS are now imported from:
     // - src/js/i18n/en.js, fr.js, he.js
