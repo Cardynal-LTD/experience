@@ -2244,7 +2244,7 @@
   <script>
   (function (d, t) {
     var BASE_URL = "https://chat.cardynal.io";
-    var WEBSITE_TOKEN = "7PwgMVsR7wfFz6E5A5CUqPTW";
+    var WEBSITE_TOKEN = "PpVGutCqGgnkqD91hYGwifB5";
     var AVATAR_URL = "https://framerusercontent.com/images/GPZG3phbgDD3soiTuaEEK2Tq8A.png";
 
     var SHOW_AFTER_SCROLL_Y = 120;
@@ -2282,13 +2282,12 @@
 
     function updateWidgetTheme() {
       var theme = getPageTheme();
+      if (window.$chatwoot && window.$chatwoot.setDarkMode) {
+        window.$chatwoot.setDarkMode(theme);
+      }
       var ifr = d.querySelector('iframe#chatwoot_live_chat_widget, iframe[id*="chatwoot"]');
       if (ifr) {
         ifr.style.colorScheme = theme;
-      }
-      // Update chatwoot settings for next load
-      if (window.chatwootSettings) {
-        window.chatwootSettings.darkMode = theme;
       }
     }
 
@@ -2363,9 +2362,6 @@
       onScroll();
     }
 
-    var mo = new MutationObserver(function () { ensureWidgetAbove(); });
-    mo.observe(document.documentElement, { childList: true, subtree: true });
-
     // Watch for theme changes on body class
     var themeObserver = new MutationObserver(function (mutations) {
       mutations.forEach(function (mutation) {
@@ -2376,25 +2372,32 @@
     });
     themeObserver.observe(d.body, { attributes: true, attributeFilter: ['class'] });
 
+    // Observer cible sur body direct pour repositionner le widget si necessaire
+    var widgetObserver = new MutationObserver(function () {
+      var holder = getHolder();
+      if (holder && holder !== d.body.lastElementChild) {
+        widgetObserver.disconnect();
+        ensureWidgetAbove();
+        widgetObserver.observe(d.body, { childList: true });
+      }
+    });
+    widgetObserver.observe(d.body, { childList: true });
+
     g.onload = function () {
       window.chatwootSDK.run({ websiteToken: WEBSITE_TOKEN, baseUrl: BASE_URL });
+      var ready = false;
       function onReady() {
+        if (ready) return;
+        ready = true;
         createAvatar();
         ensureWidgetAbove();
         installScrollReveal();
         updateWidgetTheme();
         window.addEventListener("chatwoot:opened", function(){ ensureWidgetAbove(); softenAvatar(); });
         window.addEventListener("chatwoot:closed", function(){ restoreAvatar(); });
-        if (window.$chatwoot && window.$chatwoot.on) {
-          try {
-            window.$chatwoot.on("widget:opened", function(){ ensureWidgetAbove(); softenAvatar(); });
-            window.$chatwoot.on("widget:closed", function(){ restoreAvatar(); });
-          } catch(e){}
-        }
       }
-      if (window.chatwootSDK && window.chatwootSDK.on) window.chatwootSDK.on("ready", onReady);
       window.addEventListener("chatwoot:ready", onReady);
-      setTimeout(onReady, 1200);
+      setTimeout(onReady, 3000);
     };
   })(document, "script");
   </script>
