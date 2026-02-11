@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Refund Policy - Cardynal</title>
+  <meta name="description" content="Cardynal Refund Policy - Our 14-day money-back guarantee and refund process.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://cardynal.io/refund.html">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Refund Policy - Cardynal">
+  <meta property="og:url" content="https://cardynal.io/refund.html">
+
+  <meta name="theme-color" content="#020917">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="apple-touch-icon" href="/logo-cardynal.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="./css/main.css">
+  <link rel="stylesheet" href="./css/landing/index.css">
+  <link rel="stylesheet" href="./css/legal.css">
+</head>
+<body class="landing-page">
+  <div id="header-container"></div>
+
+  <main class="legal-page">
+    <div class="legal-page__inner">
+      <div class="legal-header">
+        <span class="legal-header__badge">Legal</span>
+        <h1 class="legal-header__title">Refund Policy</h1>
+        <p class="legal-header__updated">Last updated: February 2026</p>
+      </div>
+
+      <div class="legal-content">
+        <section class="legal-section">
+          <h2>Overview</h2>
+          <p>We want you to be completely satisfied with Cardynal. If you are not happy with your purchase, you can request a full refund within 14 days — no questions asked.</p>
+        </section>
+
+        <section class="legal-section">
+          <h2>Merchant of Record</h2>
+          <p>All payments for Cardynal are processed by <a href="https://www.paddle.com" target="_blank" rel="noopener">Paddle.com</a>, who acts as the Merchant of Record for all transactions. Paddle handles all billing, payments, taxes, and refunds on our behalf.</p>
+          <p>By purchasing a subscription, you also agree to Paddle's <a href="https://www.paddle.com/legal/invoiced-consumer-terms" target="_blank" rel="noopener">Consumer Terms and Conditions</a>.</p>
+        </section>
+
+        <section class="legal-section">
+          <h2>14-Day Money-Back Guarantee</h2>
+          <p>You have the right to cancel your purchase and receive a full refund within <strong>14 days</strong> from the date of your initial purchase. No reason is required.</p>
+          <p>The refund will be issued to the same payment method used for the original transaction. Refunds are processed within 14 days of your cancellation request.</p>
+        </section>
+
+        <section class="legal-section">
+          <h2>How to Request a Refund</h2>
+          <p>To request a refund, contact us at <a href="mailto:hello@cardynal.io">hello@cardynal.io</a> with your order details. You can also contact Paddle directly through your purchase receipt.</p>
+        </section>
+
+        <section class="legal-section">
+          <h2>Subscriptions</h2>
+          <p>You may cancel your subscription at any time. Upon cancellation, you will retain access to the service until the end of your current billing period.</p>
+          <p>If you cancel within the first 14 days of your initial subscription, you are entitled to a full refund as described above.</p>
+        </section>
+
+        <section class="legal-section">
+          <h2>Contact</h2>
+          <p>Questions about refunds:</p>
+          <p>
+            Email: <a href="mailto:hello@cardynal.io">hello@cardynal.io</a><br>
+            DASA DOR LTD (trading as Cardynal.io)<br>
+            Ben Gavriel 7, Jerusalem 93546, Israel
+          </p>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <div id="footer-container"></div>
+
+  <script type="module">
+    import { renderHeader, initHeader } from '/js/components/header.js'
+    import { renderFooter } from '/js/components/footer.js'
+    import { initLangSelector, setLang, translatePage } from '/js/i18n.js'
+
+    document.getElementById('header-container').innerHTML = renderHeader()
+    document.getElementById('footer-container').innerHTML = renderFooter()
+    initHeader()
+    initLangSelector()
+    translatePage()
+    window.setLang = setLang
+
+    if (localStorage.getItem('theme') === 'light') {
+      document.body.classList.add('light-mode')
+    }
+
+    // Track page view
+    import('/js/tracking.js').then(m => m.initTracking())
+  </script>
+</body>
+</html>

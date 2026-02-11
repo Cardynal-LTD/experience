@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Data Deletion Instructions - Cardynal</title>
+  <meta name="description" content="How to request deletion of your data from Cardynal.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://cardynal.io/data-deletion.html">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Data Deletion Instructions - Cardynal">
+  <meta property="og:url" content="https://cardynal.io/data-deletion.html">
+
+  <meta name="theme-color" content="#020917">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="apple-touch-icon" href="/logo-cardynal.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="./css/main.css">
+  <link rel="stylesheet" href="./css/landing/index.css">
+  <link rel="stylesheet" href="./css/legal.css">
+</head>
+<body class="landing-page">
+  <div id="header-container"></div>
+
+  <main class="legal-page">
+    <div class="legal-page__inner">
+      <div class="legal-header">
+        <span class="legal-header__badge">Legal</span>
+        <h1 class="legal-header__title">Data Deletion Instructions</h1>
+        <p class="legal-header__updated">Last updated: February 2026</p>
+      </div>
+
+      <div class="legal-content">
+        <section class="legal-section">
+          <h2>How to Request Data Deletion</h2>
+          <p>If you have interacted with Cardynal through Facebook, Instagram, or any other connected platform, you can request the deletion of your data at any time.</p>
+          <p>To request deletion of your data, follow these steps:</p>
+          <ol>
+            <li>Send an email to <a href="mailto:privacy@cardynal.io">privacy@cardynal.io</a> with the subject line <strong>"Data Deletion Request"</strong>.</li>
+            <li>Include the email address or identifier associated with your account or interaction (e.g., your Facebook profile name or page you contacted).</li>
+            <li>We will confirm receipt of your request within 48 hours.</li>
+          </ol>
+        </section>
+
+        <section class="legal-section">
+          <h2>What Data Will Be Deleted</h2>
+          <p>Upon receiving your request, we will delete the following data associated with your interactions:</p>
+          <ul>
+            <li>Conversation history and messages</li>
+            <li>Contact information collected during interactions</li>
+            <li>Any analytics data linked to your identifier</li>
+          </ul>
+        </section>
+
+        <section class="legal-section">
+          <h2>Processing Time</h2>
+          <p>Your data deletion request will be processed within <strong>30 days</strong> of receipt. You will receive a confirmation email once the deletion is complete.</p>
+        </section>
+
+        <section class="legal-section">
+          <h2>Additional Information</h2>
+          <p>For more details about how we collect and handle your data, please see our <a href="/privacy.html">Privacy Policy</a>.</p>
+          <p>If you have any questions about the data deletion process, contact us at <a href="mailto:privacy@cardynal.io">privacy@cardynal.io</a>.</p>
+        </section>
+
+        <section class="legal-section">
+          <h2>Contact</h2>
+          <p>
+            Email: <a href="mailto:privacy@cardynal.io">privacy@cardynal.io</a><br>
+            DASA DOR LTD (trading as Cardynal.io)<br>
+            Ben Gavriel 7, Jerusalem 93546, Israel
+          </p>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <div id="footer-container"></div>
+
+  <script type="module">
+    import { renderHeader, initHeader } from '/js/components/header.js'
+    import { renderFooter } from '/js/components/footer.js'
+    import { initLangSelector, setLang, translatePage } from '/js/i18n.js'
+
+    document.getElementById('header-container').innerHTML = renderHeader()
+    document.getElementById('footer-container').innerHTML = renderFooter()
+    initHeader()
+    initLangSelector()
+    translatePage()
+    window.setLang = setLang
+
+    if (localStorage.getItem('theme') === 'light') {
+      document.body.classList.add('light-mode')
+    }
+
+    // Track page view
+    import('/js/tracking.js').then(m => m.initTracking())
+  </script>
+</body>
+</html>

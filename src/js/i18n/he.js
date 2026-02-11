@@ -135,6 +135,7 @@ export default {
   'footer.privacy': 'פרטיות',
   'footer.terms': 'תנאים',
   'footer.aiTransparency': 'שקיפות AI',
+  'footer.refund': 'מדיניות החזרים',
   'footer.security': 'אבטחה',
   'footer.getInTouch': 'בוא נדבר',
   'roi.title': 'חשב את ה-ROI שלך',

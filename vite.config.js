@@ -22,6 +22,8 @@ export default defineConfig({
         terms: resolve(__dirname, 'src/terms.html'),
         aiTransparency: resolve(__dirname, 'src/ai-transparency.html'),
         security: resolve(__dirname, 'src/security.html'),
+        refund: resolve(__dirname, 'src/refund.html'),
+        dataDeletion: resolve(__dirname, 'src/data-deletion.html'),
       },
     },
   },

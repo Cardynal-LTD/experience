@@ -135,6 +135,7 @@ export default {
   'footer.privacy': 'Confidentialite',
   'footer.terms': 'Conditions',
   'footer.aiTransparency': 'Transparence IA',
+  'footer.refund': 'Remboursement',
   'footer.security': 'Securite',
   'footer.getInTouch': 'Discutons-en',
   'roi.title': 'Calculez Votre ROI',

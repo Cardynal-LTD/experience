@@ -30,6 +30,7 @@ export function renderFooter() {
           <h4 data-i18n="footer.legal">Legal</h4>
           <a href="/privacy.html" data-i18n="footer.privacy">Privacy</a>
           <a href="/terms.html" data-i18n="footer.terms">Terms</a>
+          <a href="/refund.html" data-i18n="footer.refund">Refund Policy</a>
           <a href="/ai-transparency.html" data-i18n="footer.aiTransparency">AI Transparency</a>
           <a href="/security.html" data-i18n="footer.security">Security</a>
         </div>

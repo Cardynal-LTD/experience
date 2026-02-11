@@ -135,6 +135,7 @@ export default {
   'footer.privacy': 'Privacy',
   'footer.terms': 'Terms',
   'footer.aiTransparency': 'AI Transparency',
+  'footer.refund': 'Refund Policy',
   'footer.security': 'Security',
   'footer.getInTouch': 'Get In Touch',
   'roi.title': 'Calculate Your ROI',

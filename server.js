@@ -744,7 +744,9 @@ app.get('/sitemap.xml', async (req, res) => {
     { path: '/privacy.html', priority: '0.4', changefreq: 'monthly' },
     { path: '/terms.html', priority: '0.4', changefreq: 'monthly' },
     { path: '/ai-transparency.html', priority: '0.4', changefreq: 'monthly' },
-    { path: '/security.html', priority: '0.4', changefreq: 'monthly' }
+    { path: '/security.html', priority: '0.4', changefreq: 'monthly' },
+    { path: '/refund.html', priority: '0.4', changefreq: 'monthly' },
+    { path: '/data-deletion.html', priority: '0.3', changefreq: 'monthly' }
   ]
 
   // Generate URLs grouped by language
@@ -1005,6 +1007,32 @@ app.get('/:lang/security.html', (req, res, next) => {
   if (SUPPORTED_LANGS.includes(lang) && lang !== DEFAULT_LANG) {
     if (process.env.NODE_ENV === 'production') {
       res.sendFile('security.html', { root: './dist' })
+    } else {
+      next()
+    }
+  } else {
+    next()
+  }
+})
+
+app.get('/:lang/refund.html', (req, res, next) => {
+  const lang = req.params.lang
+  if (SUPPORTED_LANGS.includes(lang) && lang !== DEFAULT_LANG) {
+    if (process.env.NODE_ENV === 'production') {
+      res.sendFile('refund.html', { root: './dist' })
+    } else {
+      next()
+    }
+  } else {
+    next()
+  }
+})
+
+app.get('/:lang/data-deletion.html', (req, res, next) => {
+  const lang = req.params.lang
+  if (SUPPORTED_LANGS.includes(lang) && lang !== DEFAULT_LANG) {
+    if (process.env.NODE_ENV === 'production') {
+      res.sendFile('data-deletion.html', { root: './dist' })
     } else {
       next()
     }
