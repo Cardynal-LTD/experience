@@ -1,0 +1,264 @@
+{
+  "header": {
+    "login": "Se connecter",
+    "getStarted": "Essai gratuit"
+  },
+  "nav": {
+    "features": "Produit",
+    "featuresMain": {
+      "title": "Operations client IA",
+      "description": "Une plateforme pour remplacer tout votre stack support."
+    },
+    "featuresItems": [
+      { "title": "Agents IA", "description": "Detection d'intention, execution de playbooks, resolution autonome des conversations." },
+      { "title": "Inbox omnicanal", "description": "WhatsApp, web, email, Instagram — toutes les conversations dans une seule inbox." },
+      { "title": "Workflows visuels", "description": "28+ types de noeuds. Triggers, conditions, boucles, HTTP, prompts IA — tout visuel." }
+    ],
+    "solutions": "Cas d'usage",
+    "solutionsItems": [
+      { "title": "E-commerce", "description": "Des agents IA qui connaissent votre catalogue, traitent les retours et suivent les commandes." },
+      { "title": "SaaS & Tech", "description": "Deflectez les tickets L1 avec l'IA, routez vers les humains, automatisez l'onboarding." },
+      { "title": "Reservations & RDV", "description": "Automatisez la prise de rendez-vous, les confirmations et les rappels de bout en bout." },
+      { "title": "Assurance & Finance", "description": "Gerez les reclamations, questions de contrat et demandes de compte avec precision." },
+      { "title": "Services", "description": "Ne ratez plus un lead. L'IA qualifie, route et cree des tickets — 24/7." },
+      { "title": "Agences", "description": "Deployez et gerez le support IA de plusieurs clients depuis une seule plateforme." }
+    ],
+    "pricing": "Tarifs",
+    "blog": "Blog",
+    "docs": "Docs"
+  },
+  "hero": {
+    "pill": "OPERATIONS CLIENT IA",
+    "pillSub": "Remplacez votre stack par une seule plateforme",
+    "title": [
+      "Ops",
+      "client IA.",
+      "Une",
+      "plateforme.",
+      "Tout",
+      "unifie."
+    ],
+    "description": "Agents IA, workflows visuels, inbox omnicanal, ticketing et base de connaissances — dans une seule plateforme. Deployez pour vos clients ou utilisez-la en interne. Operationnel en 5 minutes.",
+    "cta": "14 jours d'essai gratuit",
+    "ctaSecondary": "Reserver une demo",
+    "noCreditCard": "Sans carte bancaire."
+  },
+  "logos": {
+    "title": "ILS NOUS FONT DEJA CONFIANCE"
+  },
+  "problem": {
+    "tag": "LE CONSTAT",
+    "title": "5 abonnements. 5 dashboards. Zero vue d'ensemble.",
+    "items": [
+      {
+        "title": "Des outils qui ne communiquent pas",
+        "description": "Un chatbot ici, un helpdesk la, Zapier au milieu. Six abonnements, six interfaces, aucun partage de donnees. Votre equipe passe sa journee a jongler entre les ecrans."
+      },
+      {
+        "title": "Vos clients subissent les coutures",
+        "description": "Des outils fragmentes = une experience fragmentee. Transferts lents, questions repetees, contexte perdu. Vos clients le remarquent — et s'en souviennent."
+      },
+      {
+        "title": "Le faire en interne, c'est un gouffre",
+        "description": "Vous pourriez tout construire vous-meme. Mais ca veut dire des mois de developpement, une equipe dediee, et une maintenance permanente. Pendant ce temps, votre roadmap est a l'arret."
+      }
+    ]
+  },
+  "solution": {
+    "tag": "LA SOLUTION",
+    "title": "Six modules. Une plateforme. Zero bricolage.",
+    "description": "Cardynal unifie agents IA, workflows, inbox, ticketing et base de connaissances dans une seule plateforme. Vous etes agence ? Deployez pour vos clients. Vous etes une equipe ? Utilisez-la directement. Dans les deux cas, vous etes operationnel en minutes.",
+    "cards": [
+      {
+        "title": "Des agents IA qui resolvent vraiment",
+        "description": "Detection d'intention, execution du bon playbook, appels API, resolution. Quand l'IA ne peut pas gerer, elle escalade a un humain avec tout le contexte."
+      },
+      {
+        "title": "Moteur d'automatisation visuel, 28+ noeuds",
+        "description": "Triggers, conditions, boucles, requetes HTTP, prompts IA, execution de code. Construisez une fois — ca tourne sur evenements, horaires ou webhooks."
+      },
+      {
+        "title": "Tous les canaux, une seule inbox",
+        "description": "WhatsApp, chat web, email, Instagram, Messenger — toutes les conversations dans une inbox partagee. Synchro temps reel, assignation intelligente, transfert IA-humain sans couture."
+      },
+      {
+        "title": "Ticketing integre avec suivi SLA",
+        "description": "Les conversations deviennent des tickets automatiquement. Kanban, priorites, SLA, champs personnalises et vues multiples — tout est integre."
+      }
+    ]
+  },
+  "howItWorks": {
+    "title": "Comment ca marche",
+    "subtitle": "De zero a un agent live. Trois etapes, sans developpeur.",
+    "steps": [
+      {
+        "title": "1. Connectez vos canaux",
+        "description": "Ajoutez WhatsApp, le widget web, email ou Instagram en deux clics. Sans code, sans equipe specialisee."
+      },
+      {
+        "title": "2. Alimentez la base de connaissances",
+        "description": "Importez vos documents, crawlez votre site, ou redigez du contenu. L'IA apprend votre metier et commence a repondre instantanement."
+      },
+      {
+        "title": "3. Deployez et automatisez",
+        "description": "Votre agent gere les conversations, declenche des workflows et cree des tickets. Vous gerez les exceptions."
+      }
+    ]
+  },
+  "features": {
+    "title": "Produit",
+    "subtitle": "Tout ce qu'il faut pour piloter vos operations client",
+    "items": [
+      {
+        "title": "Inbox omnicanal",
+        "description": "Toutes les conversations, tous les canaux, gerees par l'IA. Votre equipe intervient a tout moment en un clic."
+      },
+      {
+        "title": "Base de connaissances",
+        "description": "Importez des PDF, crawlez vos sites, ou redigez manuellement. Decoupe, indexe et restitue via RAG — avec rafraichissement automatique."
+      },
+      {
+        "title": "Moteur de workflows visuel",
+        "description": "28+ types de noeuds : triggers, conditions, boucles, HTTP, prompts IA, code. Construisez une fois, ca tourne sur evenements, horaires ou webhooks."
+      },
+      {
+        "title": "Integrations",
+        "description": "Shopify, WooCommerce et plus. Des integrations par manifeste donnent a vos agents un acces temps reel aux donnees — sans code."
+      }
+    ]
+  },
+  "testimonials": {
+    "title": "Temoignages",
+    "subtitle": "Ce que les equipes en disent"
+  },
+  "pricing": {
+    "title": "Tarifs",
+    "subtitle": "Tarification transparente. Sans frais par resolution.",
+    "monthly": "Mensuel",
+    "yearly": "Annuel",
+    "billedMonthly": "facturation mensuelle",
+    "billedAnnually": "facturation annuelle",
+    "popular": "Le plus choisi",
+    "contactUs": "Nous contacter",
+    "plans": [
+      {
+        "name": "STARTER",
+        "price": "49 \u20ac",
+        "yearlyPrice": "39 \u20ac",
+        "period": "mois",
+        "description": "Pour les petites equipes qui demarrent avec le support IA",
+        "buttonText": "Essai gratuit 14 jours",
+        "features": [
+          "500 conversations/mois",
+          "1 agent IA",
+          "2 inboxes",
+          "5 sources de connaissances",
+          "WhatsApp inclus"
+        ]
+      },
+      {
+        "name": "GROWTH",
+        "price": "149 \u20ac",
+        "yearlyPrice": "119 \u20ac",
+        "period": "mois",
+        "description": "Pour les equipes qui montent en charge",
+        "buttonText": "Essai gratuit 14 jours",
+        "features": [
+          "2 000 conversations/mois",
+          "3 agents IA",
+          "5 inboxes",
+          "20 sources de connaissances",
+          "Workflows visuels",
+          "Acces API"
+        ]
+      },
+      {
+        "name": "ENTERPRISE",
+        "price": "399 \u20ac",
+        "yearlyPrice": "329 \u20ac",
+        "period": "mois",
+        "description": "Pour les agences et equipes qui veulent un controle total",
+        "buttonText": "Discutons-en",
+        "features": [
+          "Conversations illimitees",
+          "Agents IA illimites",
+          "Inboxes illimitees",
+          "Integrations sur mesure",
+          "Branding personnalise",
+          "Garantie SLA",
+          "Onboarding dedie"
+        ]
+      }
+    ]
+  },
+  "faq": {
+    "title": "Questions frequentes",
+    "subtitle": "Des questions ? Des reponses claires.",
+    "stillHaveQuestions": "D'autres questions ? Ecrivez-nous a",
+    "items": [
+      {
+        "question": "Quelle difference avec Intercom ou Zendesk ?",
+        "answer": "Ce sont des helpdesks qui ont ajoute de l'IA apres coup. Cardynal est AI-native — avec un moteur de workflows visuel (28+ noeuds), le support multi-LLM (OpenAI + Anthropic) et un marketplace d'integrations zero-code. Le tout a une fraction du prix."
+      },
+      {
+        "question": "C'est pour les agences ou les entreprises ?",
+        "answer": "Les deux. Les agences et freelances deployent du support IA pour leurs clients depuis un seul workspace. Les PME de 20+ employes l'utilisent directement. La gestion multi-workspace est integree."
+      },
+      {
+        "question": "Que se passe-t-il quand l'IA ne sait pas repondre ?",
+        "answer": "Elle escalade a un humain avec tout le contexte. Votre equipe recoit une notification et reprend la conversation dans la meme inbox. Le client ne voit aucune coupure."
+      },
+      {
+        "question": "Faut-il un developpeur ?",
+        "answer": "Non. Tout est visuel — canvas drag-and-drop pour les agents, editeur de workflows, marketplace d'integrations. On propose aussi un onboarding accompagne."
+      },
+      {
+        "question": "Quels canaux sont inclus ?",
+        "answer": "Tous — dans chaque plan. WhatsApp (Meta Cloud API ou QR), widget chat, email (Gmail), Instagram, Messenger et API. Sans frais par message."
+      },
+      {
+        "question": "Comment fonctionne la tarification ?",
+        "answer": "Forfait mensuel avec des quotas clairs — sessions, agents, inboxes, sources, workflows. Aucun frais par resolution. 14 jours d'essai gratuit, resiliable a tout moment."
+      },
+      {
+        "question": "Quels cas d'usage couvre Cardynal ?",
+        "answer": "Support SaaS, e-commerce (suivi commandes, retours), reservations et RDV, reclamations assurance, services — tout business qui gere des conversations client a l'echelle."
+      },
+      {
+        "question": "Quels modeles IA sont supportes ?",
+        "answer": "OpenAI (GPT-4) et Anthropic (Claude). Choix par agent, changement a tout moment. Les embeddings utilisent OpenAI pour un search vectoriel coherent."
+      }
+    ]
+  },
+  "blog": {
+    "title": "Blog",
+    "subtitle": "Nos derniers articles"
+  },
+  "cta": {
+    "title": "Arretez de payer pour des outils qui ne communiquent pas.",
+    "subtitle": "Deployez votre premier agent IA en moins de 5 minutes. Sans carte bancaire.",
+    "cta": "Essai gratuit"
+  },
+  "footer": {
+    "product": "Produit",
+    "company": "Entreprise",
+    "legal": "Mentions legales",
+    "social": "Reseaux",
+    "links": {
+      "features": "Produit",
+      "pricing": "Tarifs",
+      "howItWorks": "Comment ca marche",
+      "faq": "FAQ",
+      "ourStory": "Qui sommes-nous",
+      "blog": "Blog",
+      "docs": "Docs",
+      "contact": "Contact",
+      "privacy": "Confidentialite",
+      "terms": "CGV",
+      "aiTransparency": "Transparence IA",
+      "security": "Securite",
+      "refund": "Remboursement"
+    },
+    "email": "Ecrivez-nous a"
+  }
+}

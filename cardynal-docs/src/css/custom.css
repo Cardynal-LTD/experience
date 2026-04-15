@@ -1,0 +1,57 @@
+/**
+ * Cardynal docs theme - inspired by the landing page design system
+ */
+
+:root {
+  --ifm-color-primary: #e63946;
+  --ifm-color-primary-dark: #d42836;
+  --ifm-color-primary-darker: #c92533;
+  --ifm-color-primary-darkest: #a51e2a;
+  --ifm-color-primary-light: #e95260;
+  --ifm-color-primary-lighter: #ea5d6a;
+  --ifm-color-primary-lightest: #ef8490;
+  --ifm-code-font-size: 95%;
+  --ifm-font-family-base: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', sans-serif;
+  --docusaurus-highlighted-code-line-bg: rgba(230, 57, 70, 0.1);
+}
+
+[data-theme='dark'] {
+  --ifm-color-primary: #ff6b7a;
+  --ifm-color-primary-dark: #ff4a5c;
+  --ifm-color-primary-darker: #ff3a4e;
+  --ifm-color-primary-darkest: #ff0922;
+  --ifm-color-primary-light: #ff8c98;
+  --ifm-color-primary-lighter: #ff9ca6;
+  --ifm-color-primary-lightest: #ffdee2;
+  --docusaurus-highlighted-code-line-bg: rgba(255, 107, 122, 0.15);
+}
+
+/* Navbar */
+.navbar__title {
+  font-weight: 700;
+}
+
+.navbar__logo img {
+  height: 28px;
+}
+
+/* Sidebar */
+.theme-doc-sidebar-menu .menu__link {
+  font-size: 0.9rem;
+}
+
+/* API badge styles */
+.api-method {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-right: 8px;
+}
+
+.api-method--get { background: #61affe22; color: #61affe; }
+.api-method--post { background: #49cc9022; color: #49cc90; }
+.api-method--put { background: #fca13022; color: #fca130; }
+.api-method--delete { background: #f9372622; color: #f93726; }
