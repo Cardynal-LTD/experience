@@ -37,10 +37,9 @@ interface DisplayPlan {
   features: string[];
 }
 
-function formatCurrency(amount: number, locale: string): string {
-  if (locale === "he") return `₪ ${Math.round(amount * 3.6)}`;
-  if (locale === "fr") return `${Math.round(amount * 0.92)} €`;
-  return `$${amount}`;
+function formatCurrency(amount: number, currency: string): string {
+  const symbol = currency === "EUR" ? "€" : currency === "ILS" ? "₪" : "$";
+  return currency === "USD" ? `${symbol}${amount}` : `${symbol} ${amount}`;
 }
 
 function formatLimit(n: number | null, locale: string): string {
@@ -117,8 +116,8 @@ export default function PricingSection() {
 
           return {
             name: plan.name.toUpperCase(),
-            price: isEnterprise ? (locale === "fr" ? "Sur devis" : locale === "he" ? "בהתאמה" : "Custom") : formatCurrency(plan.priceMonthly, locale),
-            yearlyPrice: isEnterprise ? (locale === "fr" ? "Sur devis" : locale === "he" ? "בהתאמה" : "Custom") : formatCurrency(plan.priceYearly, locale),
+            price: isEnterprise ? (locale === "fr" ? "Sur devis" : locale === "he" ? "בהתאמה" : "Custom") : formatCurrency(plan.priceMonthly, plan.currency),
+            yearlyPrice: isEnterprise ? (locale === "fr" ? "Sur devis" : locale === "he" ? "בהתאמה" : "Custom") : formatCurrency(plan.priceYearly, plan.currency),
             period: isEnterprise ? "" : periodLabel,
             description: "",
             buttonText: isEnterprise ? contactLabel : ctaLabel,

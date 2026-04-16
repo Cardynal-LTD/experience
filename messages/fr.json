@@ -142,8 +142,8 @@
     "plans": [
       {
         "name": "STARTER",
-        "price": "27 €",
-        "yearlyPrice": "21 €",
+        "price": "$29",
+        "yearlyPrice": "$23",
         "period": "mois",
         "description": "Pour les petites équipes qui démarrent avec le support IA",
         "buttonText": "Essai gratuit 14 jours",
@@ -156,8 +156,8 @@
       },
       {
         "name": "GROWTH",
-        "price": "91 €",
-        "yearlyPrice": "73 €",
+        "price": "$99",
+        "yearlyPrice": "$79",
         "period": "mois",
         "description": "Pour les équipes qui montent en charge",
         "buttonText": "Essai gratuit 14 jours",
@@ -171,8 +171,8 @@
       },
       {
         "name": "PROFESSIONAL",
-        "price": "275 €",
-        "yearlyPrice": "220 €",
+        "price": "$299",
+        "yearlyPrice": "$239",
         "period": "mois",
         "description": "Pour les agences et équipes qui veulent un contrôle total",
         "buttonText": "Essai gratuit 14 jours",
