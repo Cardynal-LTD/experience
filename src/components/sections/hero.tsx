@@ -86,7 +86,7 @@ function HeroCTA() {
         transition={{ delay: 0.8, duration: 0.8, ease }}
       >
         <a
-          href="https://app.cardynal.io/signup"
+          href="https://app.cardynal.io/register"
           className={cn(
             buttonVariants({ variant: "default" }),
             "w-full sm:w-auto text-background"
@@ -94,24 +94,18 @@ function HeroCTA() {
         >
           {t("cta")}
         </a>
-        <Link
-          href="#how-it-works"
+        <a
+          href="https://cal.com/cardynal.io/30min"
+          target="_blank"
+          rel="noopener noreferrer"
           className={cn(
             buttonVariants({ variant: "outline" }),
             "w-full sm:w-auto"
           )}
         >
           {t("ctaSecondary")}
-        </Link>
+        </a>
       </motion.div>
-      <motion.p
-        className="mt-5 text-sm text-muted-foreground"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.0, duration: 0.8 }}
-      >
-        {t("noCreditCard")}
-      </motion.p>
     </>
   );
 }
@@ -126,8 +120,8 @@ function HeroImage() {
     >
       <ThemedSafari
         url="https://app.cardynal.io"
-        lightSrc="/dashboard-light.png"
-        darkSrc="/dashboard-dark.png"
+        lightSrc="/agent-builder-light.png"
+        darkSrc="/agent-builder-dark.png"
         className="size-full rounded-lg border border-border/60 shadow-2xl ring-1 ring-black/5 dark:ring-white/10 max-w-screen-lg mt-16"
       />
     </motion.div>

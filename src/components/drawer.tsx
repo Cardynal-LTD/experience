@@ -64,7 +64,7 @@ export default function drawerDemo() {
             {t("login")}
           </a>
           <a
-            href="https://app.cardynal.io/signup"
+            href="https://app.cardynal.io/register"
             className={cn(
               buttonVariants({ variant: "default" }),
               "w-full sm:w-auto text-background flex gap-2"

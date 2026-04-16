@@ -39,8 +39,7 @@
     ],
     "description": "AI agents, visual workflows, omnichannel inbox, ticketing, and knowledge base — unified. Deploy for your clients or run it yourself. Live in 5 minutes.",
     "cta": "Start free — 14 days",
-    "ctaSecondary": "Book a demo",
-    "noCreditCard": "No credit card required."
+    "ctaSecondary": "Book a demo"
   },
   "logos": {
     "title": "TRUSTED BY GROWING TEAMS"
@@ -142,50 +141,64 @@
     "plans": [
       {
         "name": "STARTER",
-        "price": "$49",
-        "yearlyPrice": "$39",
+        "price": "$29",
+        "yearlyPrice": "$23",
         "period": "month",
         "description": "For small teams getting started with AI support",
         "buttonText": "Try free for 14 days",
         "features": [
-          "500 conversations/month",
+          "50 sessions/month",
           "1 AI agent",
-          "2 inboxes",
-          "5 knowledge sources",
-          "WhatsApp included"
+          "1 inbox",
+          "20 knowledge sources"
         ]
       },
       {
         "name": "GROWTH",
-        "price": "$149",
-        "yearlyPrice": "$119",
+        "price": "$99",
+        "yearlyPrice": "$79",
         "period": "month",
         "description": "For teams scaling their customer operations",
         "buttonText": "Try free for 14 days",
         "features": [
-          "2,000 conversations/month",
+          "300 sessions/month",
           "3 AI agents",
-          "5 inboxes",
-          "20 knowledge sources",
-          "Visual workflows",
-          "API access"
+          "3 inboxes",
+          "100 knowledge sources",
+          "WhatsApp included"
+        ]
+      },
+      {
+        "name": "PROFESSIONAL",
+        "price": "$299",
+        "yearlyPrice": "$239",
+        "period": "month",
+        "description": "For agencies and teams that need full control",
+        "buttonText": "Try free for 14 days",
+        "features": [
+          "1,200 sessions/month",
+          "Unlimited AI agents",
+          "Unlimited inboxes",
+          "Unlimited knowledge sources",
+          "WhatsApp included",
+          "API access",
+          "Custom LLM",
+          "Custom branding"
         ]
       },
       {
         "name": "ENTERPRISE",
-        "price": "$399",
-        "yearlyPrice": "$329",
-        "period": "month",
-        "description": "For agencies and teams that need full control",
-        "buttonText": "Let's talk",
+        "price": "Custom",
+        "yearlyPrice": "Custom",
+        "period": "",
+        "description": "For enterprises with custom requirements",
+        "buttonText": "Talk to us",
         "features": [
-          "Unlimited conversations",
-          "Unlimited AI agents",
-          "Unlimited inboxes",
-          "Custom integrations",
-          "Custom branding",
+          "Unlimited everything",
+          "Dedicated onboarding",
           "SLA guarantee",
-          "Dedicated onboarding"
+          "Custom integrations",
+          "Priority support"
         ]
       }
     ]
@@ -235,7 +248,7 @@
   },
   "cta": {
     "title": "Stop paying for tools that don't work together.",
-    "subtitle": "Deploy your first AI agent in under 5 minutes. No credit card required.",
+    "subtitle": "Deploy your first AI agent in under 5 minutes.",
     "cta": "Start Free"
   },
   "footer": {

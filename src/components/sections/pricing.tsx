@@ -13,17 +13,18 @@ import { FaStar } from "react-icons/fa";
 import { useTranslations, useLocale } from "next-intl";
 
 interface ApiPlan {
-  id: number;
   name: string;
-  display_name: string;
-  price_monthly: number;
-  price_yearly: number;
-  session_limit: number;
-  agent_limit: number;
-  inbox_limit: number;
-  source_limit: number;
-  features: string[] | null;
-  sort_order: number;
+  slug: string;
+  tier: string;
+  priceMonthly: number;
+  priceYearly: number;
+  currency: string;
+  sessionLimit: number | null;
+  agentLimit: number | null;
+  inboxLimit: number | null;
+  sourceLimit: number | null;
+  features: Record<string, boolean>;
+  trialDays: number;
 }
 
 interface DisplayPlan {
@@ -38,17 +39,45 @@ interface DisplayPlan {
 
 function formatCurrency(amount: number, locale: string): string {
   if (locale === "he") return `₪ ${Math.round(amount * 3.6)}`;
-  if (locale === "fr") return `${amount} €`;
+  if (locale === "fr") return `${Math.round(amount * 0.92)} €`;
   return `$${amount}`;
 }
 
-function formatLimit(n: number, locale: string): string {
-  if (n === -1 || n >= 999999) {
-    if (locale === "fr") return "Illimite";
+function formatLimit(n: number | null, locale: string): string {
+  if (n === null || n === -1 || n >= 999999) {
+    if (locale === "fr") return "Illimité";
     if (locale === "he") return "ללא הגבלה";
     return "Unlimited";
   }
   return n.toLocaleString(locale === "he" ? "he-IL" : locale === "fr" ? "fr-FR" : "en-US");
+}
+
+function featureLabels(locale: string) {
+  if (locale === "fr") {
+    return {
+      whatsapp: "WhatsApp inclus",
+      api_access: "Accès API",
+      custom_llm: "LLM personnalisé",
+      export_import: "Export / Import",
+      custom_branding: "Branding personnalisé",
+    };
+  }
+  if (locale === "he") {
+    return {
+      whatsapp: "WhatsApp כלול",
+      api_access: "גישת API",
+      custom_llm: "LLM מותאם",
+      export_import: "ייצוא / ייבוא",
+      custom_branding: "מיתוג מותאם",
+    };
+  }
+  return {
+    whatsapp: "WhatsApp included",
+    api_access: "API access",
+    custom_llm: "Custom LLM",
+    export_import: "Export / Import",
+    custom_branding: "Custom branding",
+  };
 }
 
 export default function PricingSection() {
@@ -60,8 +89,8 @@ export default function PricingSection() {
   const { isDesktop } = useWindowSize();
 
   useEffect(() => {
-    fetch("https://cardynal.io/api/plans")
-      .then((res) => res.json())
+    fetch("/api/plans")
+      .then((res) => (res.ok ? res.json() : Promise.reject()))
       .then((data: ApiPlan[]) => {
         if (!Array.isArray(data) || data.length === 0) return;
 
@@ -70,27 +99,27 @@ export default function PricingSection() {
         const contactLabel = locale === "fr" ? "Parlons-en" : locale === "he" ? "דברו איתנו" : "Talk to us";
         const sessionLabel = locale === "fr" ? "sessions/mois" : locale === "he" ? "סשנים/חודש" : "sessions/month";
         const agentLabel = locale === "fr" ? "agents IA" : locale === "he" ? "סוכני AI" : "AI agents";
-        const inboxLabel = locale === "fr" ? "boites de reception" : locale === "he" ? "תיבות דואר" : "inboxes";
+        const inboxLabel = locale === "fr" ? "boîtes de réception" : locale === "he" ? "תיבות דואר" : "inboxes";
         const sourceLabel = locale === "fr" ? "sources de connaissances" : locale === "he" ? "מקורות ידע" : "knowledge sources";
+        const flags = featureLabels(locale);
 
         const mapped: DisplayPlan[] = data.map((plan) => {
-          const isEnterprise = plan.name.toLowerCase().includes("enterprise");
-          const features: string[] = [];
-
-          features.push(`${formatLimit(plan.session_limit, locale)} ${sessionLabel}`);
-          features.push(`${formatLimit(plan.agent_limit, locale)} ${agentLabel}`);
-          features.push(`${formatLimit(plan.inbox_limit, locale)} ${inboxLabel}`);
-          features.push(`${formatLimit(plan.source_limit, locale)} ${sourceLabel}`);
-
-          if (plan.features && Array.isArray(plan.features)) {
-            features.push(...plan.features);
-          }
+          const isEnterprise = plan.tier === "enterprise" || plan.priceMonthly === 0;
+          const features: string[] = [
+            `${formatLimit(plan.sessionLimit, locale)} ${sessionLabel}`,
+            `${formatLimit(plan.agentLimit, locale)} ${agentLabel}`,
+            `${formatLimit(plan.inboxLimit, locale)} ${inboxLabel}`,
+            `${formatLimit(plan.sourceLimit, locale)} ${sourceLabel}`,
+          ];
+          (Object.keys(flags) as Array<keyof typeof flags>).forEach((k) => {
+            if (plan.features?.[k]) features.push(flags[k]);
+          });
 
           return {
-            name: plan.display_name || plan.name.toUpperCase(),
-            price: formatCurrency(plan.price_monthly, locale),
-            yearlyPrice: formatCurrency(plan.price_yearly, locale),
-            period: periodLabel,
+            name: plan.name.toUpperCase(),
+            price: isEnterprise ? (locale === "fr" ? "Sur devis" : locale === "he" ? "בהתאמה" : "Custom") : formatCurrency(plan.priceMonthly, locale),
+            yearlyPrice: isEnterprise ? (locale === "fr" ? "Sur devis" : locale === "he" ? "בהתאמה" : "Custom") : formatCurrency(plan.priceYearly, locale),
+            period: isEnterprise ? "" : periodLabel,
             description: "",
             buttonText: isEnterprise ? contactLabel : ctaLabel,
             features,
@@ -121,7 +150,7 @@ export default function PricingSection() {
         </label>
         <span className="ml-2 font-semibold">{t("yearly")}</span>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-3 sm:2 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {plans.map((plan, index) => (
           <motion.div
             key={index}
@@ -200,7 +229,7 @@ export default function PricingSection() {
               <hr className="w-full my-4" />
 
               <a
-                href="https://app.cardynal.io/signup"
+                href="https://app.cardynal.io/register"
                 className={cn(
                   buttonVariants({
                     variant: "outline",

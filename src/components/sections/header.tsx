@@ -4,6 +4,7 @@ import Drawer from "@/components/drawer";
 import { Icons } from "@/components/icons";
 import LanguageSelector from "@/components/language-selector";
 import Menu from "@/components/menu";
+import { ThemeToggle } from "@/components/theme-toggle";
 import { buttonVariants } from "@/components/ui/button";
 import { siteConfig } from "@/lib/config";
 import { cn } from "@/lib/utils";
@@ -54,6 +55,7 @@ export default function Header() {
             </nav>
 
             <div className="gap-2 flex items-center">
+              <ThemeToggle />
               <LanguageSelector />
               <a
                 href="https://app.cardynal.io/login"
@@ -62,7 +64,7 @@ export default function Header() {
                 {t("login")}
               </a>
               <a
-                href="https://app.cardynal.io/signup"
+                href="https://app.cardynal.io/register"
                 className={cn(
                   buttonVariants({ variant: "default" }),
                   "w-full sm:w-auto text-background flex gap-2"
