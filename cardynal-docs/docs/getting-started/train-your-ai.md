@@ -8,13 +8,9 @@ Your AI agent answers questions based on the knowledge you provide. The more rel
 
 ## How It Works
 
-Cardynal uses **Retrieval-Augmented Generation (RAG)**:
+You add content — documents, websites, or pasted text. When a customer asks a question, Cardynal finds the most relevant passages from your knowledge and uses them to ground the AI's answer in your actual data.
 
-1. You add content (documents, websites, or manual text)
-2. Cardynal splits the content into chunks and creates **vector embeddings** (1536-dimension)
-3. When a customer asks a question, Cardynal searches for the most relevant chunks using semantic similarity
-4. The matched content is injected into the AI prompt as context
-5. The AI generates a response grounded in your actual data
+You don't need to think about how it's stored or searched. Just keep your sources clear, accurate, and up to date.
 
 ## Adding Knowledge Sources
 
@@ -30,7 +26,7 @@ Upload files that contain your support knowledge.
 2. Upload one or more files
 3. Processing begins automatically — watch the status indicator:
    - **Pending** (gray) — Queued
-   - **Processing** (amber, pulsing) — Being chunked and embedded
+   - **Processing** (amber, pulsing) — Being indexed
    - **Complete** (green) — Ready to use
    - **Error** (red) — Something went wrong; check the error message
 

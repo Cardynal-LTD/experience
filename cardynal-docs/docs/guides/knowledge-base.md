@@ -4,7 +4,7 @@ sidebar_position: 4
 
 # Knowledge Base
 
-The knowledge base is the foundation of your AI agent's intelligence. It stores your company's knowledge as vector embeddings that the AI searches in real time to answer customer questions.
+The knowledge base is the foundation of your AI agent's intelligence. It stores your company's knowledge so the agent can search it in real time and ground its answers in your actual content.
 
 ## Overview
 
@@ -29,7 +29,7 @@ The knowledge base lives in **Sources** in the sidebar. It has two panels:
 2. Select files from your computer
 3. Processing starts automatically
 
-Supported formats: PDF, DOCX, TXT, MD, CSV. Each file is chunked into smaller pieces, and each chunk gets a vector embedding for semantic search.
+Supported formats: PDF, DOCX, TXT, MD, CSV. Cardynal indexes each file so the agent can find the right passage on demand.
 
 ### Crawling Websites
 
@@ -62,16 +62,16 @@ For sitemaps, Cardynal reads the `sitemap.xml` and lists all URLs with their `la
 After adding a source, it goes through a pipeline:
 
 1. **Pending** — Queued for processing
-2. **Processing** — Content is being extracted, chunked, and embedded
+2. **Processing** — Content is being extracted and indexed
 3. **Complete** — Ready for AI queries
 4. **Error** — Processing failed (check the error message)
 
 For website sources, each page has its own status:
 - **Pending** → **Scraping** → **Done** / **Error** / **Skipped**
 
-### Chunk Count
+### Coverage
 
-Each source shows its **chunk count** — the number of text chunks stored in the vector database. More chunks generally means more comprehensive coverage.
+Each source shows how much content it contributes to the knowledge base. More coverage generally means the agent has more material to draw from.
 
 ## Organizing with Folders
 
@@ -101,8 +101,8 @@ Click a source to open the detail panel with tabs:
 - Refresh schedule (if configured)
 
 ### Content Tab
-- View individual chunks as cards
-- Edit chunk content inline
+- View the indexed content as cards
+- Edit content inline
 - See the raw extracted text
 
 ### Configuration Tab
@@ -123,7 +123,7 @@ Keep website content up to date with automatic refreshes.
 3. Set refresh schedule:
    - **Daily** — Re-crawl every day at a specific hour
    - **Weekly** — Re-crawl once a week on a specific day
-4. Cardynal re-fetches the content and updates the embeddings
+4. Cardynal re-fetches the content and refreshes the index
 
 The **last refreshed** date shows when content was last updated.
 
@@ -133,14 +133,14 @@ Force a refresh by clicking the **Refresh** button in the source's action menu.
 
 ## Testing the Knowledge Base
 
-### Semantic Search
+### Test Knowledge Base
 
 Test how well your knowledge base answers questions:
 
 1. Open a source's detail page
 2. Use **Test KB** — enter a question
 3. Results show:
-   - Matched chunks with relevance scores
+   - Matched passages with a relevance indicator
    - Source page titles
    - Content snippets
 
@@ -172,7 +172,7 @@ If some pages failed during processing:
 - **Do** set importance levels on website pages to prioritize key content
 - **Do** test with real customer questions after adding new content
 - **Do** schedule refreshes for websites that change frequently
-- **Do** review chunk content to ensure quality
+- **Do** review indexed content to ensure quality
 - **Don't** upload the same content in multiple sources
 - **Don't** add irrelevant content — it can lower response quality
 - **Don't** create too many small sources — fewer, well-organized sources are better

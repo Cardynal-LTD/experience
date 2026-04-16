@@ -25,8 +25,7 @@ After signing in, you'll land on the **Dashboard**. An onboarding checklist guid
 4. On the agent config page, set:
    - **System prompt** — Instructions for how the agent should behave
    - **Tone** — Professional, Friendly, or Casual
-   - **LLM Provider** — OpenAI or Anthropic
-   - **LLM Model** — e.g., gpt-4.1-mini, claude-sonnet-4-20250514
+   - **Response length** — Short, Medium, or Long
 
 Your agent is now ready. You can refine it later by adding playbooks, tools, and escalation rules.
 

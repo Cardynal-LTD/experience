@@ -81,8 +81,8 @@ This links the conversation to an identified contact, making it easier for agent
 2. Message is sent to Cardynal and stored in the conversation
 3. If an AI agent is assigned to the inbox:
    - The agent searches the knowledge base for relevant context
-   - Generates a response using the configured LLM
-   - Sends the response back to the widget
+   - Generates a response
+   - Sends it back to the widget
 4. If a human agent is assigned or AI is disabled:
    - The message appears in the agent's inbox
    - The agent responds manually

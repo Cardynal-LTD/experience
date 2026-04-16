@@ -3,7 +3,6 @@
 /** @type {import('@docusaurus/plugin-content-docs').SidebarsConfig} */
 const sidebars = {
   guidesSidebar: [
-    'intro',
     {
       type: 'category',
       label: 'Getting Started',
@@ -45,42 +44,6 @@ const sidebars = {
         'white-label/overview',
         'white-label/branding',
         'white-label/custom-domain',
-      ],
-    },
-  ],
-  apiSidebar: [
-    'api/overview',
-    {
-      type: 'category',
-      label: 'Authentication',
-      items: [
-        'api/authentication',
-      ],
-    },
-    {
-      type: 'category',
-      label: 'Conversations',
-      items: [
-        'api/conversations/list',
-        'api/conversations/create',
-        'api/conversations/messages',
-      ],
-    },
-    {
-      type: 'category',
-      label: 'Contacts',
-      items: [
-        'api/contacts/list',
-        'api/contacts/create',
-        'api/contacts/update',
-      ],
-    },
-    {
-      type: 'category',
-      label: 'Webhooks',
-      items: [
-        'api/webhooks/overview',
-        'api/webhooks/events',
       ],
     },
   ],

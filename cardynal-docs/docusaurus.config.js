@@ -59,12 +59,6 @@ const config = {
             label: 'Guides',
           },
           {
-            type: 'docSidebar',
-            sidebarId: 'apiSidebar',
-            position: 'left',
-            label: 'API Reference',
-          },
-          {
             href: 'https://cardynal.io',
             label: 'Website',
             position: 'right',
@@ -82,9 +76,9 @@ const config = {
           {
             title: 'Documentation',
             items: [
-              { label: 'Getting Started', to: '/' },
+              { label: 'Getting Started', to: '/getting-started/quickstart' },
               { label: 'Guides', to: '/guides/inbox' },
-              { label: 'API Reference', to: '/api/overview' },
+              { label: 'Channels', to: '/channels/web-chat' },
             ],
           },
           {

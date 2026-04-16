@@ -10,14 +10,13 @@ This guide covers everything from creating your first agent to building advanced
 
 ## How an Agent Works
 
-When a customer sends a message, the agent processes it through a pipeline:
+When a customer sends a message, Cardynal automatically:
 
-1. **Routing** — An LLM-based router analyzes the message + conversation history and picks the best playbook or escalation rule. Routing is multilingual: a Hebrew message can match a French playbook by semantic meaning.
-2. **Execution** — The selected playbook's instructions become the agent's behavior. If the playbook has connected tools (KB search, API calls, ticket creation...), the agent can use them in a loop — up to 10 tool rounds per message.
-3. **Anti-hallucination** — Before sending the response, Cardynal strips any URLs, emails, or phone numbers not found in trusted sources (playbook content, KB results, tool responses, contact record). A grounding check flags low-confidence answers.
-4. **Delivery** — The final response is sent to the customer.
+1. **Routes** the message to the most relevant playbook or escalation rule based on intent and conversation context. Routing is multilingual — a message in any language can match a playbook written in another.
+2. **Executes** the selected playbook, calling any connected tools (knowledge base search, API calls, ticket creation, etc.) as needed.
+3. **Grounds** the response in your trusted sources (playbook content, knowledge base, tool responses, contact record) before delivering it.
 
-If no playbooks exist, the agent responds in "direct mode" using only its global instructions and knowledge base.
+If no playbooks exist, the agent responds in "direct mode" using its global instructions and knowledge base.
 
 ---
 
@@ -42,7 +41,7 @@ The global instructions that apply to every conversation this agent handles. Thi
 
 > You are the support agent for Acme SaaS. You help customers with billing, account management, and product questions. Always be helpful, concise, and honest. If you don't know something, say so.
 
-The system prompt is injected as the LLM system message for every playbook execution.
+The system prompt sets the agent's baseline behavior across every playbook.
 
 ### Tone
 
@@ -64,17 +63,6 @@ Controls the conversational style. Choose one:
 | **Short** | 1-2 sentences. Concise and direct |
 | **Medium** | 2-4 sentences |
 | **Long** | Detailed, thorough responses with full explanations |
-
-### LLM Provider & Model
-
-Choose which AI model powers the agent.
-
-| Provider | Models |
-|----------|--------|
-| **OpenAI** | gpt-4.1-mini (default, fast), gpt-4.1, gpt-4o, gpt-4o-mini |
-| **Anthropic** | claude-sonnet-4-20250514, claude-haiku-4-20250414 |
-
-**Tip:** Start with gpt-4.1-mini for speed and cost. Upgrade to gpt-4.1 or claude-sonnet if you need better reasoning on complex playbooks.
 
 ---
 
@@ -113,7 +101,7 @@ The canvas is a visual graph editor where you connect the agent to its capabilit
 
 | Node | Purpose |
 |------|---------|
-| **Condition** | Branch based on rules or LLM evaluation |
+| **Condition** | Branch based on rules or AI evaluation |
 | **Sticky Note** | Canvas annotations for your team |
 
 ### Connection Rules
@@ -190,17 +178,13 @@ Step 4: Ask if they have any other questions.
 
 ### How the Router Picks a Playbook
 
-The router is an LLM call (temperature 0.2) that receives:
-- The current message
-- Conversation history
-- All active playbook titles, audiences, and triggers
-- All active escalation rules
+The router reads the latest message, the conversation history, and all of your active playbooks and escalation rules to pick the best match.
 
-It returns the best match. Important behaviors:
-- **Multilingual**: A Hebrew message will match a French playbook if the semantic meaning aligns
-- **Context-aware**: If the user says "yes" after being asked about pricing, the router keeps the pricing playbook active
-- **Topic switching**: If the user changes topic mid-conversation, the router switches to the matching playbook
-- **Priority**: Playbooks are always preferred over escalation rules unless the message clearly matches an escalation trigger
+Key behaviors to keep in mind:
+- **Multilingual** — A message in one language will match a playbook written in another if the meaning aligns
+- **Context-aware** — Short follow-ups like "yes" or "and the price?" stay on the active playbook
+- **Topic switching** — If the customer changes topic mid-conversation, the router switches playbooks
+- **Priority** — Playbooks are preferred over escalation rules unless the message clearly matches an escalation trigger
 
 ### Connecting Tools to Playbooks
 
@@ -222,8 +206,8 @@ Tools give the agent the ability to call external HTTP APIs during a conversatio
 
 | Field | Purpose |
 |-------|---------|
-| **Name** | Identifier the LLM sees (e.g., "lookup-account") |
-| **Description** | What the tool does — the LLM uses this to decide when to call it |
+| **Name** | Identifier the agent sees (e.g., "lookup-account") |
+| **Description** | What the tool does — the agent uses this to decide when to call it |
 | **Method** | HTTP verb: GET, POST, PUT, PATCH, DELETE |
 | **URL** | API endpoint |
 | **Query Parameters** | URL parameters (key-value pairs) |
@@ -255,17 +239,17 @@ For POST/PUT tools, define the request body as a schema. Each field has a type a
 }
 ```
 
-The LLM reads these descriptions to understand what values to fill in based on the conversation context.
+The agent reads these descriptions to understand what values to fill in based on the conversation context.
 
 ### How Tools Execute
 
-During a conversation, the agent can call tools in a loop (up to 10 rounds):
+During a conversation, the agent can call tools as needed:
 
-1. The LLM decides to call a tool and provides arguments
+1. The agent decides to call a tool and provides arguments
 2. Cardynal validates the arguments
 3. The HTTP request is made with the provided headers, params, and body
-4. The JSON response is appended to the conversation context
-5. The LLM generates the next response (or calls another tool)
+4. The response feeds back into the conversation
+5. The agent generates the next response (or calls another tool)
 
 ---
 
@@ -284,20 +268,9 @@ In custom mode, you see a folder tree with checkboxes. Select the folders/source
 
 ### How KB Search Works
 
-When a memory node is connected to a playbook:
+When a memory node is connected to a playbook, the agent searches the knowledge base before answering factual questions, picks the most relevant passages, and cites them inline using `[Source N]`.
 
-1. The agent receives a mandatory instruction: "You MUST search the knowledge base BEFORE answering factual questions"
-2. A `search_knowledge_base` tool is injected into the LLM call
-3. The agent calls it with relevant keywords
-4. Results are ranked by semantic similarity (cosine distance on vector embeddings)
-5. High-confidence results (score >= 0.45) are presented first, low-confidence separately
-6. The agent cites sources inline using `[Source N]` format
-
-**Multilingual search**: The agent is instructed to search in the likely language of KB content (often English or French), not just the user's language. If the first search returns nothing, it retries in another language.
-
-### Pre-emptive Search
-
-If a memory node is connected and the user's message is longer than 15 characters, Cardynal automatically runs a KB search BEFORE the first LLM call and injects the results directly. This speeds up responses and ensures the agent always has context.
+The search is multilingual: if the customer asks in one language but your knowledge is in another, the agent will still find the right content.
 
 ---
 
@@ -342,14 +315,14 @@ Connect action nodes to escalation rules for automated side-effects:
 
 ### Create Ticket
 
-Auto-create tickets from conversations. Fields support **dual mode** — manual (fixed values) or AI (LLM-generated from conversation context):
+Auto-create tickets from conversations. Fields support **dual mode** — manual (fixed values) or AI (generated from conversation context):
 
 | Field | Manual Mode | AI Mode |
 |-------|-------------|---------|
-| **Subject** | Fixed text template | LLM generates from conversation |
-| **Description** | Fixed text | LLM summarizes the issue |
-| **Priority** | Dropdown (low/medium/high/urgent) | LLM decides based on context |
-| **Tags** | Comma-separated list | LLM generates relevant tags |
+| **Subject** | Fixed text template | AI generates from conversation |
+| **Description** | Fixed text | AI summarizes the issue |
+| **Priority** | Dropdown (low/medium/high/urgent) | AI decides based on context |
+| **Tags** | Comma-separated list | AI generates relevant tags |
 
 Additional settings:
 - **Ticket Type** — Select from your custom ticket types
@@ -386,7 +359,7 @@ Branch the conversation based on rules:
 - Agent fields: is_available
 - Operators: equals, not equals, contains, exists
 
-**LLM-based conditions:** Write a natural language condition and the LLM evaluates it against the conversation context.
+**AI-based conditions:** Write a natural language condition and the AI evaluates it against the conversation context.
 
 Match mode: **All** (AND) or **Any** (OR).
 
@@ -454,7 +427,6 @@ Routing decisions are logged as private notes in each conversation for admin vis
 **Agent Config:**
 - Tone: Friendly
 - Response length: Medium
-- Model: gpt-4.1-mini
 
 **Playbooks:**
 
@@ -487,7 +459,6 @@ Routing decisions are logged as private notes in each conversation for admin vis
 **Agent Config:**
 - Tone: Professional
 - Response length: Long (detailed explanations)
-- Model: gpt-4.1 (better reasoning for complex setup flows)
 
 **Playbooks:**
 
@@ -517,7 +488,6 @@ Routing decisions are logged as private notes in each conversation for admin vis
 **Agent Config:**
 - Tone: Formal
 - Response length: Short (concise for scheduling)
-- Model: gpt-4.1-mini
 
 **Playbooks:**
 
@@ -530,7 +500,7 @@ Routing decisions are logged as private notes in each conversation for admin vis
 
 **Create Event node config:**
 - Tool prompt: "Book an appointment when the patient confirms a time slot. Always check availability first."
-- Subject: AI mode (LLM generates from conversation, e.g., "Dental cleaning - Dr. Smith")
+- Subject: AI mode (generated from conversation, e.g., "Dental cleaning - Dr. Smith")
 - Check availability: enabled
 
 **Escalation:**
@@ -548,7 +518,6 @@ Routing decisions are logged as private notes in each conversation for admin vis
 **Agent Config:**
 - System prompt: "You are the support agent for GlobalCorp. Respond in the same language as the customer. Our knowledge base is primarily in English and French."
 - Tone: Professional
-- Model: gpt-4.1 (best multilingual reasoning)
 
 **Playbooks:**
 All playbook titles, audiences, and triggers can be written in English. The router matches semantically regardless of the customer's language.
@@ -565,33 +534,11 @@ All playbook titles, audiences, and triggers can be written in English. The rout
 
 ---
 
-## Anti-Hallucination Pipeline
+## Anti-Hallucination
 
-Cardynal applies multiple layers to prevent the agent from making things up:
+Cardynal automatically prevents the agent from inventing facts. URLs, phone numbers, emails, and prices that don't come from your trusted sources (playbook, knowledge base, tool responses, contact record) are stripped from the response, and answers grounded in low-confidence sources are flagged.
 
-### Layer 1: Prompt Instructions
-The system prompt explicitly tells the agent:
-- Only state facts from the playbook, KB, or tool responses
-- Never invent URLs, phone numbers, emails, prices, or deadlines
-- Cite sources when using KB data: `[Source N]`
-- Say "I don't have that information" rather than guessing
-
-### Layer 2: URL Stripping
-After generating a response, Cardynal removes:
-- Markdown images `![alt](url)` with URLs not in the trusted set
-- Markdown links `[label](url)` with untrusted URLs (keeps the label text)
-- Raw URLs not found in playbook content, KB results, or tool responses
-
-### Layer 3: Contact Info Stripping
-Removes emails and phone numbers that don't appear in:
-- The playbook instructions
-- The customer's contact record
-- KB search results
-
-### Layer 4: Grounding Check
-For responses that use KB data and are longer than 80 characters:
-- A fast, cheap model (gpt-4.1-nano or claude-haiku) checks if claims are supported by sources
-- If confidence is below 0.7, a localized disclaimer is appended
+You don't need to configure this — it's on by default. Your job is to keep your sources accurate and your playbook instructions clear.
 
 ---
 
@@ -605,12 +552,12 @@ For responses that use KB data and are longer than 80 characters:
 ### Playbooks
 - **3-7 playbooks per agent** is the sweet spot. Too many confuses the router.
 - **Be specific in triggers** — "Customer asks about pricing, cost, plans, subscription, how much" is better than "pricing"
-- **Write instructions as scripts** — Step 1, Step 2, Step 3. The LLM follows structured instructions better.
+- **Write instructions as scripts** — Step 1, Step 2, Step 3. The agent follows structured instructions better.
 - **Always include fallbacks** — "If you can't find the answer in the KB, say so and offer to connect with a human"
 
 ### Tools
 - **Test before deploying** — Use the Test button to verify responses
-- **Write clear descriptions** — The LLM uses the description to decide when to call the tool
+- **Write clear descriptions** — The agent uses the description to decide when to call the tool
 - **Use cURL import** — Paste a working cURL command to save setup time
 
 ### Escalation
