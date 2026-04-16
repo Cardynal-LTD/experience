@@ -99,10 +99,15 @@ export default function Features({
   data = [],
 }: FeaturesProps) {
   const [currentIndex, setCurrentIndex] = useState<number>(-1);
+  const [mounted, setMounted] = useState(false);
   const { resolvedTheme } = useTheme();
 
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   const getImageSrc = (item: CardDataProps) => {
-    if (resolvedTheme === "dark" && item.imageDark) return item.imageDark;
+    if (mounted && resolvedTheme === "dark" && item.imageDark) return item.imageDark;
     return item.image;
   };
 
@@ -277,7 +282,7 @@ export default function Features({
             >
               {data[currentIndex]?.image ? (
                 <motion.img
-                  key={`${currentIndex}-${resolvedTheme}`}
+                  key={`${currentIndex}-${mounted ? resolvedTheme : "light"}`}
                   src={getImageSrc(data[currentIndex])}
                   alt="feature"
                   className="aspect-auto h-full w-full object-contain relative border border-border/60 rounded-lg shadow-2xl ring-1 ring-black/5 dark:ring-white/10 bg-neutral-50 dark:bg-neutral-900"

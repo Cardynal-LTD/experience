@@ -101,6 +101,7 @@ export default function Features({
   data = [],
 }: FeaturesProps) {
   const [currentIndex, setCurrentIndex] = useState<number>(-1);
+  const [mounted, setMounted] = useState(false);
   const carouselRef = useRef<HTMLUListElement>(null);
   const ref = useRef(null);
   const isInView = useInView(ref, {
@@ -109,8 +110,12 @@ export default function Features({
   });
   const { resolvedTheme } = useTheme();
 
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   const getImageSrc = (item: FeaturesDataProps) => {
-    if (resolvedTheme === "dark" && item.imageDark) return item.imageDark;
+    if (mounted && resolvedTheme === "dark" && item.imageDark) return item.imageDark;
     return item.image;
   };
 
@@ -280,7 +285,7 @@ export default function Features({
             >
               {data[currentIndex]?.image ? (
                 <motion.img
-                  key={`${currentIndex}-${resolvedTheme}`}
+                  key={`${currentIndex}-${mounted ? resolvedTheme : "light"}`}
                   src={getImageSrc(data[currentIndex])}
                   alt="feature"
                   className="aspect-auto h-full w-full rounded-xl border border-border/60 object-contain p-1 shadow-2xl ring-1 ring-black/5 dark:ring-white/10 bg-neutral-50 dark:bg-neutral-900"
