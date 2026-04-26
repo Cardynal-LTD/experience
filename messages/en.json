@@ -64,6 +64,10 @@
         "description": "Detect intent, run the right playbook, call your APIs, resolve the conversation. When the AI can't handle it, it escalates to a human with full context — no gaps."
       },
       {
+        "title": "Connect every channel",
+        "description": "WhatsApp Business, web chat, email, Instagram, Messenger — plug them all in. Manifest-driven integrations let your agents pull real-time data from Shopify, your CRM, anything with an API. No code."
+      },
+      {
         "title": "Your shared team inbox",
         "description": "Every customer conversation in one queue, regardless of channel. Filter by status, agent, or channel. Pick up exactly where the AI left off — no context lost between handoffs."
       },
@@ -182,16 +186,16 @@
         "price": "Custom",
         "yearlyPrice": "Custom",
         "period": "",
-        "description": "Full white-glove setup. Agency mode for managing multiple clients.",
+        "description": "Full setup, end-to-end accompaniment. We build it with you, migrate your data, train your team, and stay on call.",
         "buttonText": "Talk to us",
         "features": [
-          "Unlimited everything",
-          "Done-for-you setup & migration",
+          "Done-for-you setup, config & migration",
+          "Hands-on onboarding & team training",
+          "Dedicated success manager throughout",
+          "Custom integrations built for you",
           "Multi-workspace agency mode",
-          "Dedicated onboarding",
-          "SLA guarantee",
-          "Custom integrations",
-          "Priority support"
+          "SLA guarantee + priority support",
+          "Unlimited everything"
         ]
       }
     ]

@@ -64,6 +64,10 @@
         "description": "Détection d'intention, exécution du bon playbook, appels API, résolution. Quand l'IA ne peut pas gérer, elle escalade à un humain avec tout le contexte."
       },
       {
+        "title": "Connectez tous les canaux",
+        "description": "WhatsApp Business, chat web, email, Instagram, Messenger — branchez-les tous. Les intégrations par manifeste permettent à vos agents de tirer des données en temps réel depuis Shopify, votre CRM, n'importe quoi avec une API. Sans code."
+      },
+      {
         "title": "Votre inbox d'équipe",
         "description": "Toutes les conversations clients dans une seule file, peu importe le canal. Filtrez par statut, agent ou canal. Reprenez exactement où l'IA s'est arrêtée — aucun contexte perdu lors des transferts."
       },
@@ -182,16 +186,16 @@
         "price": "Sur devis",
         "yearlyPrice": "Sur devis",
         "period": "",
-        "description": "Setup complet en mode agence. Idéal pour gérer plusieurs clients.",
+        "description": "Installation complète, accompagnement de bout en bout. On construit avec vous, on migre vos données, on forme votre équipe, on reste à vos côtés.",
         "buttonText": "Parlons-en",
         "features": [
-          "Tout illimité",
-          "Mise en place + migration clé en main",
+          "Installation, configuration & migration clé en main",
+          "Onboarding et formation pratique de l'équipe",
+          "Customer success manager dédié",
+          "Intégrations sur mesure développées pour vous",
           "Mode agence multi-workspace",
-          "Onboarding dédié",
-          "Garantie SLA",
-          "Intégrations sur mesure",
-          "Support prioritaire"
+          "Garantie SLA + support prioritaire",
+          "Tout illimité"
         ]
       }
     ]
