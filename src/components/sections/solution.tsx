@@ -31,8 +31,8 @@ export default function Component() {
       className: "hover:bg-blue-500/10 transition-all duration-500 ease-out",
       content: (
         <ThemedSafari
-          lightSrc="/workflow-builder-light.png"
-          darkSrc="/workflow-builder-dark.png"
+          lightSrc="/chat-inbox-light.png"
+          darkSrc="/chat-inbox-dark.png"
           url="https://app.cardynal.io"
           className="-mb-32 mt-4 max-h-64 w-full px-4 select-none drop-shadow-[0_0_28px_rgba(0,0,0,.1)] dark:drop-shadow-[0_0_28px_rgba(0,0,0,.4)] group-hover:translate-y-[-10px] transition-all duration-300"
         />
