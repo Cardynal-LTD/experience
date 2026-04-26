@@ -109,7 +109,7 @@ export default function Component() {
       className="bg-neutral-100 dark:bg-neutral-900"
     >
       <motion.div
-        className="relative mx-auto mt-12 w-full max-w-5xl"
+        className="relative mx-auto mt-12 w-full max-w-5xl [mask-image:linear-gradient(to_bottom,black_60%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,black_60%,transparent_100%)]"
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
@@ -121,7 +121,6 @@ export default function Component() {
           darkSrc="/agent-builder-dark.png"
           className="size-full drop-shadow-2xl"
         />
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[30%] bg-gradient-to-t from-neutral-100 via-neutral-100/70 to-transparent dark:from-neutral-900 dark:via-neutral-900/70" />
       </motion.div>
       <div className="mx-auto mt-16 grid max-w-sm grid-cols-1 gap-6 text-gray-500 md:max-w-3xl md:grid-cols-2 xl:grid-rows-2 md:grid-rows-3 xl:max-w-6xl xl:auto-rows-fr xl:grid-cols-3">
         {features.map((feature, index) => (
