@@ -25,7 +25,6 @@ export default function Footer() {
       title: t("company"),
       links: [
         { href: "/about", text: footerLinks.ourStory },
-        { href: "/blog", text: footerLinks.blog },
         { href: "/docs", text: footerLinks.docs },
         { href: "mailto:support@cardynal.io", text: footerLinks.contact },
       ],

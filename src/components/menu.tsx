@@ -88,15 +88,6 @@ export default function NavigationMenuDemo() {
           </Link>
         </NavigationMenuItem>
 
-        {/* Blog link */}
-        <NavigationMenuItem>
-          <Link href="/blog" legacyBehavior passHref>
-            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-              {t("blog")}
-            </NavigationMenuLink>
-          </Link>
-        </NavigationMenuItem>
-
         {/* Docs link */}
         <NavigationMenuItem>
           <NavigationMenuLink

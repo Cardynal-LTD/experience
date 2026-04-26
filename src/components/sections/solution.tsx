@@ -109,7 +109,7 @@ export default function Component() {
       className="bg-neutral-100 dark:bg-neutral-900"
     >
       <motion.div
-        className="relative mx-auto mt-12 w-full max-w-5xl [mask-image:linear-gradient(to_bottom,black_30%,transparent_95%)] [-webkit-mask-image:linear-gradient(to_bottom,black_30%,transparent_95%)]"
+        className="relative mx-auto mt-12 w-full max-w-5xl [mask-image:linear-gradient(to_bottom,black_10%,transparent_85%)] [-webkit-mask-image:linear-gradient(to_bottom,black_10%,transparent_85%)]"
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
@@ -122,7 +122,7 @@ export default function Component() {
           className="size-full drop-shadow-2xl"
         />
       </motion.div>
-      <div className="mx-auto mt-16 grid max-w-sm grid-cols-1 gap-6 text-gray-500 md:max-w-3xl md:grid-cols-2 xl:grid-rows-2 md:grid-rows-3 xl:max-w-6xl xl:auto-rows-fr xl:grid-cols-3">
+      <div className="relative z-10 mx-auto -mt-32 grid max-w-sm grid-cols-1 gap-6 text-gray-500 md:-mt-40 md:max-w-3xl md:grid-cols-2 xl:grid-rows-2 md:grid-rows-3 xl:max-w-6xl xl:auto-rows-fr xl:grid-cols-3">
         {features.map((feature, index) => (
           <motion.div
             key={index}
