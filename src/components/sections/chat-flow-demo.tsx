@@ -222,30 +222,41 @@ export default function ChatFlowDemo() {
   }, [messages]);
 
   return (
-    <div className="mx-auto w-full max-w-2xl rounded-3xl border border-border/60 bg-background/80 shadow-2xl backdrop-blur-sm">
-      <div className="flex items-center gap-3 border-b border-border/50 px-5 py-3">
-        <div className="flex h-9 w-9 items-center justify-center rounded-full bg-primary/15">
-          <svg className="h-5 w-5 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+    <div className="mx-auto flex w-full max-w-[380px] flex-col overflow-hidden rounded-[28px] border border-border/60 bg-background shadow-[0_25px_60px_-15px_rgba(0,0,0,0.25)] dark:shadow-[0_25px_60px_-15px_rgba(0,0,0,0.6)]">
+      <div className="flex items-center gap-3 bg-[#C6613F] px-4 py-3 text-white">
+        <div className="flex h-9 w-9 items-center justify-center rounded-full bg-white/20 ring-1 ring-white/30">
+          <svg className="h-5 w-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
             <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
           </svg>
         </div>
         <div className="flex-1">
-          <div className="text-sm font-semibold leading-tight">Cardynal</div>
-          <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
-            <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-500" />
+          <div className="text-sm font-semibold leading-tight">Cardynal Support</div>
+          <div className="flex items-center gap-1.5 text-[11px] text-white/80">
+            <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-300" />
             AI + human, live
           </div>
         </div>
       </div>
       <div
         ref={containerRef}
-        className="flex h-[420px] flex-col gap-2 overflow-y-auto px-5 py-4 [scrollbar-width:thin]"
+        className="flex h-[520px] flex-col gap-2 overflow-y-auto bg-slate-50 px-4 py-4 dark:bg-neutral-950 [scrollbar-width:thin]"
       >
         <AnimatePresence initial={false}>
           {messages.map((m) => (
             <MessageBubble key={m.id} msg={m} />
           ))}
         </AnimatePresence>
+      </div>
+      <div className="flex items-center gap-2 border-t border-border/50 bg-background px-4 py-3">
+        <div className="flex-1 rounded-full bg-muted/60 px-3 py-2 text-xs text-muted-foreground">
+          Type a message...
+        </div>
+        <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[#C6613F] text-white">
+          <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M22 2 11 13" />
+            <path d="m22 2-7 20-4-9-9-4 20-7z" />
+          </svg>
+        </div>
       </div>
     </div>
   );
