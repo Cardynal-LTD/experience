@@ -109,7 +109,7 @@ export default function Component() {
       className="bg-neutral-100 dark:bg-neutral-900"
     >
       <motion.div
-        className="relative mx-auto mt-12 w-full max-w-5xl [mask-image:linear-gradient(to_bottom,black_60%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,black_60%,transparent_100%)]"
+        className="relative mx-auto mt-12 w-full max-w-5xl [mask-image:linear-gradient(to_bottom,black_30%,transparent_95%)] [-webkit-mask-image:linear-gradient(to_bottom,black_30%,transparent_95%)]"
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
