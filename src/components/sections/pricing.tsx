@@ -58,7 +58,6 @@ function featureLabels(locale: string) {
       api_access: "Accès API",
       custom_llm: "LLM personnalisé",
       export_import: "Export / Import",
-      custom_branding: "Branding personnalisé",
     };
   }
   if (locale === "he") {
@@ -67,7 +66,6 @@ function featureLabels(locale: string) {
       api_access: "גישת API",
       custom_llm: "LLM מותאם",
       export_import: "ייצוא / ייבוא",
-      custom_branding: "מיתוג מותאם",
     };
   }
   return {
@@ -75,7 +73,6 @@ function featureLabels(locale: string) {
     api_access: "API access",
     custom_llm: "Custom LLM",
     export_import: "Export / Import",
-    custom_branding: "Custom branding",
   };
 }
 

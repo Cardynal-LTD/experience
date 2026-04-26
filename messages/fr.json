@@ -28,14 +28,14 @@
     "docs": "Docs"
   },
   "hero": {
-    "pill": "SUPPORT CLIENT IA",
-    "pillSub": "Remplacez votre stack par une seule plateforme",
+    "pill": "SUPPORT IA",
+    "pillSub": "Une plateforme, tous les canaux",
     "title": [
-      "Le support",
-      "client",
-      "unifié."
+      "Ne ratez",
+      "plus jamais",
+      "un client."
     ],
-    "description": "Résolvez vos conversations clients sur tous les canaux avec des agents IA, des workflows visuels et une inbox partagée. Opérationnel en cinq minutes.",
+    "description": "Les agents IA résolvent les conversations sur WhatsApp, web, email, Instagram et Messenger — et passent le reste à votre équipe avec tout le contexte. Opérationnel en cinq minutes.",
     "cta": "14 jours d'essai gratuit",
     "ctaSecondary": "Réserver une démo"
   },
@@ -52,20 +52,7 @@
   "problem": {
     "tag": "LE CONSTAT",
     "title": "6 abonnements. 6 dashboards. Zéro vue d'ensemble.",
-    "items": [
-      {
-        "title": "Des outils qui ne communiquent pas",
-        "description": "Un chatbot ici, un helpdesk là, Zapier au milieu. Six abonnements, six interfaces, aucun partage de données. Votre équipe passe sa journée à jongler entre les écrans."
-      },
-      {
-        "title": "Vos clients subissent les coutures",
-        "description": "Des outils fragmentés = une expérience fragmentée. Transferts lents, questions répétées, contexte perdu. Vos clients le remarquent — et s'en souviennent."
-      },
-      {
-        "title": "Le faire en interne, c'est un gouffre",
-        "description": "Vous pourriez tout construire vous-même. Mais ça veut dire des mois de développement, une équipe dédiée, et une maintenance permanente. Pendant ce temps, votre roadmap est à l'arrêt."
-      }
-    ]
+    "body": "Cardynal les remplace tous par une seule plateforme — votre équipe et vos clients ne sentent plus les coutures."
   },
   "solution": {
     "tag": "LA SOLUTION",
@@ -81,8 +68,8 @@
         "description": "Triggers, conditions, boucles, requêtes HTTP, prompts IA, exécution de code. Construisez une fois — ça tourne sur événements, horaires ou webhooks."
       },
       {
-        "title": "Tous les canaux, une seule inbox",
-        "description": "WhatsApp, chat web, email, Instagram, Messenger — toutes les conversations dans une inbox partagée. Synchro temps réel, assignation intelligente, transfert IA-humain sans couture."
+        "title": "Votre inbox d'équipe",
+        "description": "Toutes les conversations clients dans une seule file, peu importe le canal. Filtrez par statut, agent ou canal. Reprenez exactement où l'IA s'est arrêtée — aucun contexte perdu lors des transferts."
       },
       {
         "title": "Ticketing intégré avec suivi SLA",
@@ -191,19 +178,20 @@
           "Sources de connaissances illimitées",
           "WhatsApp inclus",
           "Accès API",
-          "LLM personnalisé",
-          "Branding personnalisé"
+          "LLM personnalisé"
         ]
       },
       {
-        "name": "ENTERPRISE",
+        "name": "CUSTOM",
         "price": "Sur devis",
         "yearlyPrice": "Sur devis",
         "period": "",
-        "description": "Pour les entreprises avec des besoins sur mesure",
+        "description": "Setup complet en mode agence. Idéal pour gérer plusieurs clients.",
         "buttonText": "Parlons-en",
         "features": [
           "Tout illimité",
+          "Mise en place + migration clé en main",
+          "Mode agence multi-workspace",
           "Onboarding dédié",
           "Garantie SLA",
           "Intégrations sur mesure",
@@ -236,6 +224,10 @@
       {
         "question": "Quels canaux sont inclus ?",
         "answer": "Widget chat, email (Gmail), Instagram, Messenger et API sont inclus dans chaque plan. WhatsApp (Meta Cloud API ou QR) est inclus à partir du plan Growth. Aucun frais par message, sur aucun canal."
+      },
+      {
+        "question": "Les agents vocaux / téléphoniques sont-ils supportés ? (Bientôt)",
+        "answer": "Les agents IA vocaux pour les appels entrants et sortants arrivent bientôt. Ils fonctionneront comme nos agents chat — détection d'intention, exécution du bon playbook, escalade à un humain avec tout le contexte si besoin — mais au téléphone. Vous voulez un accès anticipé ? Parlons-en."
       },
       {
         "question": "Comment fonctionne la tarification ?",

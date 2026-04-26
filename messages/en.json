@@ -28,14 +28,14 @@
     "docs": "Docs"
   },
   "hero": {
-    "pill": "AI CUSTOMER SUPPORT",
-    "pillSub": "Replace your support stack with one platform",
+    "pill": "AI SUPPORT",
+    "pillSub": "One platform for every channel",
     "title": [
-      "AI customer",
-      "support,",
-      "unified."
+      "Never",
+      "miss a",
+      "customer."
     ],
-    "description": "Resolve customer conversations across every channel with AI agents, visual workflows, and a shared inbox. Live in five minutes.",
+    "description": "AI agents resolve conversations across WhatsApp, web, email, Instagram, and Messenger — and pass the rest to your team with full context. Live in five minutes.",
     "cta": "Start free — 14 days",
     "ctaSecondary": "Book a demo"
   },
@@ -51,21 +51,8 @@
   },
   "problem": {
     "tag": "THE PROBLEM",
-    "title": "You're paying for 6 tools that don't talk to each other.",
-    "items": [
-      {
-        "title": "Tool sprawl is the norm",
-        "description": "A chatbot here, a helpdesk there, Zapier in between. Six subscriptions, six dashboards, six logins. None of them share data, and your team context-switches all day."
-      },
-      {
-        "title": "Your customers feel every seam",
-        "description": "Fragmented tools mean fragmented experiences. Slow handoffs, repeated questions, lost context. Your customers notice — and they remember."
-      },
-      {
-        "title": "Building in-house is a trap",
-        "description": "You could build it yourself — but that means months of development, a specialized team, and constant maintenance. Meanwhile, your actual product roadmap stalls."
-      }
-    ]
+    "title": "Six tools, six dashboards, zero shared context.",
+    "body": "Cardynal replaces all of them with one platform — so your team and your customers never feel the seams again."
   },
   "solution": {
     "tag": "THE SOLUTION",
@@ -81,8 +68,8 @@
         "description": "Triggers, conditions, loops, HTTP requests, AI prompts, code execution. Build automation once — it runs on events, schedules, or webhooks."
       },
       {
-        "title": "Every channel, one inbox",
-        "description": "WhatsApp, web chat, email, Instagram, Messenger — all conversations land in a shared inbox. Real-time sync, smart assignment, seamless AI-to-human handoff."
+        "title": "Your shared team inbox",
+        "description": "Every customer conversation in one queue, regardless of channel. Filter by status, agent, or channel. Pick up exactly where the AI left off — no context lost between handoffs."
       },
       {
         "title": "Built-in ticketing with SLA tracking",
@@ -191,19 +178,20 @@
           "Unlimited knowledge sources",
           "WhatsApp included",
           "API access",
-          "Custom LLM",
-          "Custom branding"
+          "Custom LLM"
         ]
       },
       {
-        "name": "ENTERPRISE",
+        "name": "CUSTOM",
         "price": "Custom",
         "yearlyPrice": "Custom",
         "period": "",
-        "description": "For enterprises with custom requirements",
+        "description": "Full white-glove setup. Agency mode for managing multiple clients.",
         "buttonText": "Talk to us",
         "features": [
           "Unlimited everything",
+          "Done-for-you setup & migration",
+          "Multi-workspace agency mode",
           "Dedicated onboarding",
           "SLA guarantee",
           "Custom integrations",
@@ -236,6 +224,10 @@
       {
         "question": "Which channels are included?",
         "answer": "Web chat, email (Gmail), Instagram, Messenger, and API are included in every plan. WhatsApp (Meta Cloud API or QR code) is included from the Growth plan upwards. No per-message fees on any channel."
+      },
+      {
+        "question": "Do you support voice / phone agents? (Coming soon)",
+        "answer": "Voice AI agents for inbound and outbound phone calls are on the roadmap and coming soon. They'll work the same way as our chat agents — detect intent, run the right playbook, escalate to a human with full context when needed — but over the phone. Want early access? Talk to us."
       },
       {
         "question": "How does pricing work?",

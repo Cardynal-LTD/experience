@@ -122,7 +122,7 @@ function HeroImage() {
         url="https://app.cardynal.io"
         lightSrc="/agent-builder-light.png"
         darkSrc="/agent-builder-dark.png"
-        className="size-full rounded-lg border border-border/60 shadow-2xl ring-1 ring-black/5 dark:ring-white/10 max-w-screen-lg mt-10 sm:mt-12"
+        className="size-full max-w-screen-lg mt-10 sm:mt-12 drop-shadow-2xl"
       />
     </motion.div>
   );
