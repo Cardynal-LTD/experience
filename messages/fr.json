@@ -50,9 +50,8 @@
     ]
   },
   "problem": {
-    "tag": "LE CONSTAT",
-    "title": "6 abonnements. 6 dashboards. Zéro vue d'ensemble.",
-    "body": "Cardynal les remplace tous par une seule plateforme — votre équipe et vos clients ne sentent plus les coutures."
+    "tag": "Le constat",
+    "quote": "6 abonnements, 6 dashboards, zéro vue d'ensemble — Cardynal les remplace tous par une seule plateforme, pour que ni votre équipe ni vos clients ne sentent plus les coutures."
   },
   "solution": {
     "tag": "LA SOLUTION",
@@ -246,6 +245,12 @@
   "blog": {
     "title": "Blog",
     "subtitle": "Nos derniers articles"
+  },
+  "comingSoon": {
+    "badge": "Bientôt",
+    "title": "Des agents IA vocaux pour vos appels entrants et sortants.",
+    "description": "Le même cerveau d'agent que vous construisez pour le chat — qui répond maintenant au téléphone. Détection d'intention en appel, exécution du bon playbook, transfert à un humain avec la transcription complète si besoin. Faible latence, multilingue, sur le canal qui génère encore le plus de revenu.",
+    "cta": "Accès anticipé"
   },
   "cta": {
     "title": "Arrêtez de payer pour des outils qui ne communiquent pas.",

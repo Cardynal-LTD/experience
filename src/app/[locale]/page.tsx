@@ -1,3 +1,4 @@
+import ComingSoon from "@/components/sections/coming-soon";
 import CTA from "@/components/sections/cta";
 import FAQ from "@/components/sections/faq";
 import Footer from "@/components/sections/footer";
@@ -20,6 +21,7 @@ export default function Home() {
       <HowItWorks />
       <Pricing />
       <FAQ />
+      <ComingSoon />
       <CTA />
       <Footer />
     </main>

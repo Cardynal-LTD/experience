@@ -50,9 +50,8 @@
     ]
   },
   "problem": {
-    "tag": "THE PROBLEM",
-    "title": "Six tools, six dashboards, zero shared context.",
-    "body": "Cardynal replaces all of them with one platform — so your team and your customers never feel the seams again."
+    "tag": "The problem",
+    "quote": "Six tools, six dashboards, zero shared context — Cardynal replaces them with one platform, so your team and your customers never feel the seams again."
   },
   "solution": {
     "tag": "THE SOLUTION",
@@ -246,6 +245,12 @@
   "blog": {
     "title": "Blog",
     "subtitle": "Latest Articles"
+  },
+  "comingSoon": {
+    "badge": "Coming soon",
+    "title": "AI voice agents for inbound and outbound calls.",
+    "description": "The same agent brain you build for chat — now answering the phone. Detect intent on a live call, run the right playbook, transfer to a human with the full transcript when needed. Low-latency, multilingual, on the channel that still drives most revenue.",
+    "cta": "Get early access"
   },
   "cta": {
     "title": "Stop paying for tools that don't work together.",

@@ -1,19 +1,46 @@
 "use client";
 
 import BlurFade from "@/components/magicui/blur-fade";
-import Section from "@/components/section";
 import { useTranslations } from "next-intl";
 
-export default function Component() {
+export default function Problem() {
   const t = useTranslations("problem");
+  const quote = t("quote");
+  const [highlight, ...rest] = quote.split(" — ");
+  const remainder = rest.join(" — ");
 
   return (
-    <Section title={t("tag")} subtitle={t("title")}>
-      <BlurFade delay={0.2} inView>
-        <p className="mx-auto mt-6 max-w-2xl text-center text-lg leading-relaxed text-muted-foreground md:text-xl">
-          {t("body")}
+    <section id="problem" className="container mx-auto px-4 py-20 md:px-8 md:py-24">
+      <BlurFade delay={0.15} inView>
+        <p className="text-center font-mono text-xs font-medium uppercase tracking-[0.2em] text-primary">
+          {t("tag")}
         </p>
       </BlurFade>
-    </Section>
+      <BlurFade delay={0.3} inView>
+        <figure className="relative mx-auto mt-8 max-w-3xl">
+          <span
+            aria-hidden
+            className="pointer-events-none absolute -top-6 left-0 select-none font-serif text-7xl leading-none text-primary/15 md:-top-10 md:text-8xl"
+          >
+            &ldquo;
+          </span>
+          <span
+            aria-hidden
+            className="pointer-events-none absolute -bottom-16 right-0 select-none font-serif text-7xl leading-none text-primary/15 md:-bottom-20 md:text-8xl"
+          >
+            &rdquo;
+          </span>
+          <blockquote className="relative px-4 text-center text-lg font-medium leading-snug text-foreground text-balance md:px-12 md:text-2xl lg:text-3xl">
+            <span className="text-primary">{highlight}</span>
+            {remainder && (
+              <>
+                {" \u2014 "}
+                <span>{remainder}</span>
+              </>
+            )}
+          </blockquote>
+        </figure>
+      </BlurFade>
+    </section>
   );
 }
