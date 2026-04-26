@@ -33,7 +33,7 @@ function HeroTitles() {
   return (
     <div className="flex w-full flex-col space-y-4 overflow-hidden pt-6">
       <motion.h1
-        className="text-center text-3xl font-medium leading-tight text-foreground sm:text-5xl md:text-6xl lg:text-left"
+        className="text-center text-3xl font-medium leading-tight text-foreground text-balance sm:text-4xl md:text-5xl lg:text-6xl lg:text-start"
         initial={{ filter: "blur(10px)", opacity: 0, y: 50 }}
         animate={{ filter: "blur(0px)", opacity: 1, y: 0 }}
         transition={{
@@ -59,7 +59,7 @@ function HeroTitles() {
         ))}
       </motion.h1>
       <motion.p
-        className="mx-auto max-w-xl text-center text-base leading-6 text-muted-foreground text-balance sm:text-xl sm:leading-9 lg:mx-0 lg:text-left"
+        className="mx-auto max-w-xl text-center text-base leading-6 text-muted-foreground text-balance sm:text-xl sm:leading-9 lg:mx-0 lg:text-start"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{

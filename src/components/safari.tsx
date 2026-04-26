@@ -12,6 +12,7 @@ export default function Safari({
   url,
   width = 1203,
   height = 753,
+  className,
   ...props
 }: SafariProps) {
   return (
@@ -21,6 +22,7 @@ export default function Safari({
       viewBox={`0 0 ${width} ${height}`}
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      className={`max-w-full h-auto ${className ?? ""}`}
       {...props}
     >
       <g clipPath="url(#path0)">

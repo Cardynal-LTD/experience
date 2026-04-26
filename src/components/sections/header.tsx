@@ -42,15 +42,15 @@ export default function Header() {
         <Link
           href="/"
           title="brand-logo"
-          className="relative mr-6 flex items-center space-x-2"
+          className="relative me-6 flex items-center space-x-2"
         >
-          <Icons.logo className="w-auto h-[40px]" />
+          <Icons.logo className="w-auto h-8 sm:h-10" />
           <span className="font-bold text-xl">{siteConfig.name}</span>
         </Link>
 
         <div className="hidden lg:block">
           <div className="flex items-center ">
-            <nav className="mr-10">
+            <nav className="me-10">
               <Menu />
             </nav>
 
@@ -75,7 +75,7 @@ export default function Header() {
             </div>
           </div>
         </div>
-        <div className="mt-2 cursor-pointer block lg:hidden">
+        <div className="mt-2 cursor-pointer block lg:hidden min-h-11 min-w-11 p-3">
           <Drawer />
         </div>
       </div>

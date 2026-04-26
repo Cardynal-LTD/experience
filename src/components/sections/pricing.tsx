@@ -139,16 +139,16 @@ export default function PricingSection() {
 
   return (
     <Section title={t("title")} subtitle={t("subtitle")}>
-      <div className="flex justify-center mb-10">
-        <span className="mr-2 font-semibold">{t("monthly")}</span>
+      <div className="flex flex-col items-center gap-3 sm:flex-row sm:gap-2 justify-center mb-10">
+        <span className="me-2 font-semibold">{t("monthly")}</span>
         <label className="relative inline-flex items-center cursor-pointer">
           <Label>
             <Switch checked={!isMonthly} onCheckedChange={handleToggle} />
           </Label>
         </label>
-        <span className="ml-2 font-semibold">{t("yearly")}</span>
+        <span className="ms-2 font-semibold">{t("yearly")}</span>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
         {regularPlans.map((plan, index) => (
           <motion.div
             key={index}
@@ -183,9 +183,9 @@ export default function PricingSection() {
             )}
           >
             {index === 1 && (
-              <div className="absolute top-0 right-0 bg-primary py-0.5 px-2 rounded-bl-xl rounded-tr-xl flex items-center">
+              <div className="absolute top-0 end-0 bg-primary py-0.5 px-2 rounded-bl-xl rounded-tr-xl flex items-center">
                 <FaStar className="text-white" />
-                <span className="text-white ml-1 font-sans font-semibold">
+                <span className="text-white ms-1 font-sans font-semibold">
                   {t("popular")}
                 </span>
               </div>
@@ -207,10 +207,10 @@ export default function PricingSection() {
                 {isMonthly ? t("billedMonthly") : t("billedAnnually")}
               </p>
 
-              <ul className="mt-5 gap-2 flex flex-col">
+              <ul className="mt-5 gap-3 sm:gap-2 flex flex-col">
                 {plan.features.map((feature, idx) => (
                   <li key={idx} className="flex items-center">
-                    <Check className="mr-2 h-4 w-4 text-primary" />
+                    <Check className="me-2 h-4 w-4 text-primary" />
                     <span>{feature}</span>
                   </li>
                 ))}
@@ -225,10 +225,10 @@ export default function PricingSection() {
                     variant: "outline",
                   }),
                   "group relative w-full gap-2 overflow-hidden text-lg font-semibold tracking-tighter",
-                  "transform-gpu ring-offset-current transition-all duration-300 ease-out hover:ring-2 hover:ring-primary hover:ring-offset-1 hover:bg-primary hover:text-white",
+                  "transform-gpu ring-offset-current transition-all duration-300 ease-out hover:ring-2 hover:ring-primary hover:ring-offset-1 hover:bg-primary hover:text-primary-foreground",
                   index === 1
-                    ? "bg-primary text-white"
-                    : "bg-white text-black"
+                    ? "bg-primary text-primary-foreground"
+                    : "bg-background text-foreground"
                 )}
               >
                 {plan.buttonText}
@@ -252,7 +252,7 @@ export default function PricingSection() {
           className="mt-6 rounded-2xl border border-primary/30 bg-gradient-to-br from-primary/5 via-background to-background p-6 md:p-10"
         >
           <div className="grid grid-cols-1 gap-8 lg:grid-cols-[1fr_1.2fr] lg:gap-12 lg:items-center">
-            <div className="text-left">
+            <div className="text-start">
               <div className="inline-flex items-center gap-2 rounded-full bg-primary/15 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-primary">
                 <FaStar className="h-3 w-3" />
                 {customPlan.name}
@@ -267,7 +267,7 @@ export default function PricingSection() {
                 href="mailto:support@cardynal.io"
                 className={cn(
                   buttonVariants({ variant: "default" }),
-                  "mt-6 text-background"
+                  "mt-6 w-full sm:w-auto text-background"
                 )}
               >
                 {customPlan.buttonText}

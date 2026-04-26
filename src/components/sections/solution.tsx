@@ -21,7 +21,7 @@ export default function Component() {
           lightSrc="/agent-builder-light.png"
           darkSrc="/agent-builder-dark.png"
           url="https://app.cardynal.io"
-          className="-mb-32 mt-4 max-h-64 w-full px-4 select-none drop-shadow-[0_0_28px_rgba(0,0,0,.1)] dark:drop-shadow-[0_0_28px_rgba(0,0,0,.4)] group-hover:translate-y-[-10px] transition-all duration-300"
+          className="lg:-mb-32 mt-4 max-h-64 w-full px-4 select-none drop-shadow-[0_0_28px_rgba(0,0,0,.1)] dark:drop-shadow-[0_0_28px_rgba(0,0,0,.4)] group-hover:translate-y-[-10px] transition-all duration-300"
         />
       ),
     },
@@ -34,7 +34,7 @@ export default function Component() {
           lightSrc="/chat-inbox-light.png"
           darkSrc="/chat-inbox-dark.png"
           url="https://app.cardynal.io"
-          className="-mb-32 mt-4 max-h-64 w-full px-4 select-none drop-shadow-[0_0_28px_rgba(0,0,0,.1)] dark:drop-shadow-[0_0_28px_rgba(0,0,0,.4)] group-hover:translate-y-[-10px] transition-all duration-300"
+          className="lg:-mb-32 mt-4 max-h-64 w-full px-4 select-none drop-shadow-[0_0_28px_rgba(0,0,0,.1)] dark:drop-shadow-[0_0_28px_rgba(0,0,0,.4)] group-hover:translate-y-[-10px] transition-all duration-300"
         />
       ),
     },
@@ -42,7 +42,7 @@ export default function Component() {
       title: t("cards.2.title"),
       description: t("cards.2.description"),
       className:
-        "md:row-span-2 hover:bg-orange-500/10 transition-all duration-500 ease-out",
+        "md:row-span-2 hover:bg-accent/10 transition-all duration-500 ease-out",
       content: (
         <>
           <FlickeringGrid
@@ -59,7 +59,7 @@ export default function Component() {
             lightSrc="/chat-inbox-light.png"
             darkSrc="/chat-inbox-dark.png"
             url="https://app.cardynal.io"
-            className="-mb-48 ml-12 mt-16 h-full px-4 select-none drop-shadow-[0_0_28px_rgba(0,0,0,.1)] dark:drop-shadow-[0_0_28px_rgba(0,0,0,.4)] group-hover:translate-x-[-10px] transition-all duration-300"
+            className="lg:-mb-48 ms-12 mt-16 h-full px-4 select-none drop-shadow-[0_0_28px_rgba(0,0,0,.1)] dark:drop-shadow-[0_0_28px_rgba(0,0,0,.4)] group-hover:translate-x-[-10px] rtl:group-hover:translate-x-[10px] transition-all duration-300"
           />
         </>
       ),
@@ -75,7 +75,7 @@ export default function Component() {
             lightSrc="/ticket-kanban-light.png"
             darkSrc="/ticket-kanban-dark.png"
             url="https://app.cardynal.io"
-            className="-mb-32 mt-4 max-h-64 w-full px-4 select-none drop-shadow-[0_0_28px_rgba(0,0,0,.1)] dark:drop-shadow-[0_0_28px_rgba(0,0,0,.4)] group-hover:translate-y-[-10px] transition-all duration-300"
+            className="lg:-mb-32 mt-4 max-h-64 w-full px-4 select-none drop-shadow-[0_0_28px_rgba(0,0,0,.1)] dark:drop-shadow-[0_0_28px_rgba(0,0,0,.4)] group-hover:translate-y-[-10px] transition-all duration-300"
           />
         </>
       ),
@@ -89,7 +89,7 @@ export default function Component() {
           lightSrc="/knowledge-base-light.png"
           darkSrc="/knowledge-base-dark.png"
           url="https://app.cardynal.io"
-          className="-mb-32 mt-4 max-h-64 w-full px-4 select-none drop-shadow-[0_0_28px_rgba(0,0,0,.1)] dark:drop-shadow-[0_0_28px_rgba(0,0,0,.4)] group-hover:translate-y-[-10px] transition-all duration-300"
+          className="lg:-mb-32 mt-4 max-h-64 w-full px-4 select-none drop-shadow-[0_0_28px_rgba(0,0,0,.1)] dark:drop-shadow-[0_0_28px_rgba(0,0,0,.4)] group-hover:translate-y-[-10px] transition-all duration-300"
         />
       ),
     },
@@ -122,7 +122,7 @@ export default function Component() {
           className="size-full drop-shadow-2xl"
         />
       </motion.div>
-      <div className="relative z-10 mx-auto -mt-32 grid max-w-sm grid-cols-1 gap-6 text-gray-500 md:-mt-40 md:max-w-3xl md:grid-cols-2 xl:grid-rows-2 md:grid-rows-3 xl:max-w-6xl xl:auto-rows-fr xl:grid-cols-3">
+      <div className="relative z-10 mx-auto mt-8 grid max-w-sm grid-cols-1 gap-6 text-gray-500 lg:-mt-40 md:max-w-3xl md:grid-cols-2 xl:grid-rows-2 md:grid-rows-3 xl:max-w-6xl xl:auto-rows-fr xl:grid-cols-3">
         {features.map((feature, index) => (
           <motion.div
             key={index}
@@ -148,7 +148,7 @@ export default function Component() {
               <p className="text-foreground">{feature.description}</p>
             </div>
             {feature.content}
-            <div className="absolute bottom-0 left-0 h-32 w-full bg-gradient-to-t from-neutral-50 dark:from-neutral-900 pointer-events-none"></div>
+            <div className="absolute bottom-0 start-0 h-32 w-full bg-gradient-to-t from-neutral-50 dark:from-neutral-900 pointer-events-none"></div>
           </motion.div>
         ))}
       </div>

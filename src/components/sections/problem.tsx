@@ -20,13 +20,13 @@ export default function Problem() {
         <figure className="relative mx-auto mt-8 max-w-3xl">
           <span
             aria-hidden
-            className="pointer-events-none absolute -top-6 left-0 select-none font-serif text-7xl leading-none text-primary/15 md:-top-10 md:text-8xl"
+            className="pointer-events-none absolute -top-6 start-0 select-none font-serif text-4xl leading-none text-primary/15 sm:text-6xl md:-top-10 md:text-7xl lg:text-8xl"
           >
             &ldquo;
           </span>
           <span
             aria-hidden
-            className="pointer-events-none absolute -bottom-16 right-0 select-none font-serif text-7xl leading-none text-primary/15 md:-bottom-20 md:text-8xl"
+            className="pointer-events-none absolute -bottom-16 end-0 select-none font-serif text-4xl leading-none text-primary/15 sm:text-6xl md:-bottom-20 md:text-7xl lg:text-8xl"
           >
             &rdquo;
           </span>

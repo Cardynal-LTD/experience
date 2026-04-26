@@ -17,7 +17,7 @@ export default function FAQ() {
 
   return (
     <Section title={t("title")} subtitle={t("subtitle")}>
-      <div className="mx-auto my-12 md:max-w-[800px]">
+      <div className="mx-auto my-12 px-3 sm:px-4 md:max-w-[800px]">
         <Accordion
           type="single"
           collapsible
@@ -29,10 +29,10 @@ export default function FAQ() {
               value={faq.question}
               className="w-full border rounded-lg overflow-hidden"
             >
-              <AccordionTrigger className="px-4">
+              <AccordionTrigger className="px-4 py-4 text-start">
                 {faq.question}
               </AccordionTrigger>
-              <AccordionContent className="px-4">{faq.answer}</AccordionContent>
+              <AccordionContent className="px-4 text-start">{faq.answer}</AccordionContent>
             </AccordionItem>
           ))}
         </Accordion>

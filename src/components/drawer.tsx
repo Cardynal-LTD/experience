@@ -21,7 +21,7 @@ export default function drawerDemo() {
 
   return (
     <Drawer>
-      <DrawerTrigger>
+      <DrawerTrigger className="min-h-11 min-w-11 inline-flex items-center justify-center">
         <IoMenuSharp className="text-2xl" />
       </DrawerTrigger>
       <DrawerContent>
@@ -30,14 +30,14 @@ export default function drawerDemo() {
             <Link
               href="/"
               title="brand-logo"
-              className="relative mr-6 flex items-center space-x-2"
+              className="relative me-6 flex items-center space-x-2"
             >
               <Icons.logo className="w-auto h-[40px]" />
               <span className="font-bold text-xl">{siteConfig.name}</span>
             </Link>
           </div>
-          <nav>
-            <ul className="mt-7 text-left">
+          <nav className="max-h-[80vh] overflow-y-auto">
+            <ul className="mt-7 text-start">
               <li className="my-3">
                 <Link href="#features" className="font-semibold">{tn("features")}</Link>
               </li>

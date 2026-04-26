@@ -87,12 +87,15 @@ const Carousel = React.forwardRef<
 
     const handleKeyDown = React.useCallback(
       (event: React.KeyboardEvent<HTMLDivElement>) => {
+        const isRtl =
+          typeof document !== "undefined" &&
+          document.documentElement.dir === "rtl";
         if (event.key === "ArrowLeft") {
           event.preventDefault();
-          scrollPrev();
+          isRtl ? scrollNext() : scrollPrev();
         } else if (event.key === "ArrowRight") {
           event.preventDefault();
-          scrollNext();
+          isRtl ? scrollPrev() : scrollNext();
         }
       },
       [scrollPrev, scrollNext]
@@ -208,7 +211,7 @@ const CarouselPrevious = React.forwardRef<
       className={cn(
         "absolute  h-8 w-8 rounded-full",
         orientation === "horizontal"
-          ? "left-1/2 -translate-x-16 bottom-0 translate-y-4"
+          ? "left-1/2 -translate-x-16 bottom-0 translate-y-4 rtl:left-auto rtl:right-1/2 rtl:translate-x-16"
           : "-top-12 right-1/2 -translate-x-1/2 rotate-90",
         className
       )}
@@ -216,7 +219,7 @@ const CarouselPrevious = React.forwardRef<
       onClick={scrollPrev}
       {...props}
     >
-      <ArrowLeft className="h-4 w-4" />
+      <ArrowLeft className="h-4 w-4 rtl:rotate-180" />
       <span className="sr-only">Previous slide</span>
     </Button>
   );
@@ -237,7 +240,7 @@ const CarouselNext = React.forwardRef<
       className={cn(
         "absolute h-8 w-8 rounded-full",
         orientation === "horizontal"
-          ? "right-1/2 bottom-0 translate-y-4 translate-x-16"
+          ? "right-1/2 bottom-0 translate-y-4 translate-x-16 rtl:right-auto rtl:left-1/2 rtl:-translate-x-16"
           : "-bottom-12 left-1/2 -translate-x-1/2 rotate-90",
         className
       )}
@@ -245,7 +248,7 @@ const CarouselNext = React.forwardRef<
       onClick={scrollNext}
       {...props}
     >
-      <ArrowRight className="h-4 w-4" />
+      <ArrowRight className="h-4 w-4 rtl:rotate-180" />
       <span className="sr-only">Next slide</span>
     </Button>
   );

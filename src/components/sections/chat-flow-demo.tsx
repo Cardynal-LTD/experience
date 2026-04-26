@@ -96,14 +96,14 @@ function MessageBubble({ msg }: { msg: Message }) {
   const isRight = msg.type === "ai" || msg.type === "human" || msg.type === "note";
 
   const align = isLeft ? "self-start" : isRight ? "self-end" : "self-center";
-  const labelAlign = isLeft ? "text-left" : "text-right";
+  const labelAlign = isLeft ? "text-start" : "text-end";
 
   const bubble: Record<MessageType, string> = {
     customer: "bg-slate-100 text-slate-900 dark:bg-white/10 dark:text-slate-100",
-    ai: "bg-[#362595] text-white",
-    human: "bg-[#f95603] text-white",
-    system: "bg-slate-500/8 text-slate-500 text-xs italic ring-1 ring-slate-500/15 dark:bg-white/5 dark:text-slate-400 dark:ring-white/10",
-    tool: "bg-indigo-500/8 text-indigo-600 font-mono text-xs ring-1 ring-indigo-500/20 dark:bg-indigo-400/15 dark:text-indigo-300 dark:ring-indigo-400/30",
+    ai: "bg-accent text-accent-foreground",
+    human: "bg-primary text-primary-foreground",
+    system: "bg-slate-500/8 text-slate-500 text-[11px] sm:text-xs italic ring-1 ring-slate-500/15 dark:bg-white/5 dark:text-slate-400 dark:ring-white/10",
+    tool: "bg-indigo-500/8 text-indigo-600 font-mono text-[11px] sm:text-xs ring-1 ring-indigo-500/20 dark:bg-indigo-400/15 dark:text-indigo-300 dark:ring-indigo-400/30",
     note: "bg-amber-500/8 text-amber-800 ring-1 ring-amber-500/30 dark:bg-amber-400/12 dark:text-amber-300",
   };
 
@@ -114,10 +114,10 @@ function MessageBubble({ msg }: { msg: Message }) {
       animate={{ opacity: 1, y: 0, scale: 1 }}
       exit={{ opacity: 0, scale: 0.96, transition: { duration: 0.2 } }}
       transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-      className={cn("flex max-w-[85%] flex-col gap-1", align)}
+      className={cn("flex max-w-[80%] sm:max-w-[85%] flex-col gap-1", align)}
     >
       {(msg.label && (msg.type === "customer" || msg.type === "ai" || msg.type === "human")) && (
-        <span className={cn("text-[11px] font-medium text-muted-foreground", labelAlign)}>
+        <span className={cn("text-[11px] sm:text-xs font-medium text-muted-foreground", labelAlign)}>
           {msg.label}
         </span>
       )}
@@ -222,8 +222,8 @@ export default function ChatFlowDemo() {
   }, [messages]);
 
   return (
-    <div className="mx-auto flex w-full max-w-[380px] flex-col overflow-hidden rounded-[28px] border border-border/60 bg-background shadow-[0_25px_60px_-15px_rgba(0,0,0,0.25)] dark:shadow-[0_25px_60px_-15px_rgba(0,0,0,0.6)]">
-      <div className="flex items-center gap-3 bg-[#C6613F] px-4 py-3 text-white">
+    <div className="mx-auto flex w-full max-w-[90vw] sm:max-w-[380px] flex-col overflow-hidden rounded-[28px] border border-border/60 bg-background shadow-[0_25px_60px_-15px_rgba(0,0,0,0.25)] dark:shadow-[0_25px_60px_-15px_rgba(0,0,0,0.6)]">
+      <div className="flex items-center gap-3 bg-accent px-4 py-3 text-accent-foreground">
         <div className="flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-full bg-white p-1 ring-1 ring-white/40">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
@@ -234,7 +234,7 @@ export default function ChatFlowDemo() {
         </div>
         <div className="flex-1">
           <div className="text-sm font-semibold leading-tight">Cardynal Support</div>
-          <div className="flex items-center gap-1.5 text-[11px] text-white/80">
+          <div className="flex items-center gap-1.5 text-[11px] text-accent-foreground/80">
             <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-300" />
             AI + human, live
           </div>
@@ -242,7 +242,7 @@ export default function ChatFlowDemo() {
       </div>
       <div
         ref={containerRef}
-        className="flex h-[520px] flex-col gap-2 overflow-y-auto bg-slate-50 px-4 py-4 dark:bg-neutral-950 [scrollbar-width:thin]"
+        className="flex h-[420px] sm:h-[480px] md:h-[520px] flex-col gap-2 overflow-y-auto bg-slate-50 px-4 py-4 dark:bg-neutral-950 [scrollbar-width:thin]"
       >
         <AnimatePresence initial={false}>
           {messages.map((m) => (
@@ -254,7 +254,7 @@ export default function ChatFlowDemo() {
         <div className="flex-1 rounded-full bg-muted/60 px-3 py-2 text-xs text-muted-foreground">
           Type a message...
         </div>
-        <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[#C6613F] text-white">
+        <div className="flex h-8 w-8 items-center justify-center rounded-full bg-accent text-accent-foreground">
           <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
             <path d="M22 2 11 13" />
             <path d="m22 2-7 20-4-9-9-4 20-7z" />

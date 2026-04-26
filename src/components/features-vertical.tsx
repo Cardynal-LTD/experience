@@ -2,6 +2,7 @@
 
 import * as Accordion from "@radix-ui/react-accordion";
 import { motion, useInView } from "framer-motion";
+import { useLocale } from "next-intl";
 import { useTheme } from "next-themes";
 import React, {
   forwardRef,
@@ -44,7 +45,7 @@ const AccordionTrigger = forwardRef<HTMLButtonElement, AccordionTriggerProps>(
     <Accordion.Header className="flex">
       <Accordion.Trigger
         className={cn(
-          "group flex flex-1 cursor-pointer items-center justify-between px-5 text-[15px] leading-none outline-none",
+          "group flex min-h-11 flex-1 cursor-pointer items-center justify-between px-5 text-[15px] leading-none outline-none",
           className
         )}
         {...props}
@@ -109,6 +110,8 @@ export default function Features({
     amount: 0.5,
   });
   const { resolvedTheme } = useTheme();
+  const locale = useLocale();
+  const isRtl = locale === "he";
 
   useEffect(() => {
     setMounted(true);
@@ -197,7 +200,7 @@ export default function Features({
           <div className="mx-auto my-12 h-full grid lg:grid-cols-2 gap-10 items-center">
             <div
               className={` hidden lg:flex order-1 lg:order-[0] ${
-                ltr ? "lg:order-2 lg:justify-end" : "justify-start"
+                ltr ? "lg:order-2 lg:justify-end" : "lg:order-1 lg:justify-start"
               }`}
             >
               <Accordion.Root
@@ -219,12 +222,12 @@ export default function Features({
                       <div
                         className={`absolute bottom-0 top-0 h-full w-0.5 overflow-hidden rounded-lg bg-neutral-300/50 dark:bg-neutral-300/30 ${
                           linePosition === "right"
-                            ? "left-auto right-0"
-                            : "left-0 right-auto"
+                            ? "start-auto end-0"
+                            : "start-0 end-auto"
                         }`}
                       >
                         <div
-                          className={`absolute left-0 top-0 w-full ${
+                          className={`absolute start-0 top-0 w-full ${
                             currentIndex === index ? "h-full" : "h-0"
                           } origin-top bg-primary transition-all ease-linear dark:bg-white`}
                           style={{
@@ -239,12 +242,12 @@ export default function Features({
 
                     {linePosition === "top" || linePosition === "bottom" ? (
                       <div
-                        className={`absolute left-0 right-0 w-full h-0.5 overflow-hidden rounded-lg bg-neutral-300/50 dark:bg-neutral-300/30 ${
+                        className={`absolute start-0 end-0 w-full h-0.5 overflow-hidden rounded-lg bg-neutral-300/50 dark:bg-neutral-300/30 ${
                           linePosition === "bottom" ? "bottom-0" : "top-0"
                         }`}
                       >
                         <div
-                          className={`absolute left-0 ${
+                          className={`absolute start-0 ${
                             linePosition === "bottom" ? "bottom-0" : "top-0"
                           } h-full ${
                             currentIndex === index ? "w-full" : "w-0"
@@ -265,11 +268,11 @@ export default function Features({
                       </div>
 
                       <div>
-                        <AccordionTrigger className="text-xl font-bold pl-0">
+                        <AccordionTrigger className="text-xl font-bold ps-0">
                           {item.title}
                         </AccordionTrigger>
 
-                        <AccordionTrigger className="justify-start text-left leading-4 text-[16px] pl-0">
+                        <AccordionTrigger className="justify-start text-start leading-4 text-[16px] ps-0">
                           {item.content}
                         </AccordionTrigger>
                       </div>
@@ -279,7 +282,7 @@ export default function Features({
               </Accordion.Root>
             </div>
             <div
-              className={`h-[350px] min-h-[200px] w-auto  ${
+              className={`h-auto sm:h-[350px] min-h-[200px] w-auto  ${
                 ltr && "lg:order-1"
               }`}
             >
@@ -316,23 +319,25 @@ export default function Features({
 
             <ul
               ref={carouselRef}
-              className=" flex h-full snap-x flex-nowrap overflow-x-auto py-10 [-ms-overflow-style:none] [-webkit-mask-image:linear-gradient(90deg,transparent,black_20%,white_80%,transparent)] [mask-image:linear-gradient(90deg,transparent,black_20%,white_80%,transparent)] [scrollbar-width:none] lg:hidden [&::-webkit-scrollbar]:hidden snap-mandatory"
+              className=" flex h-full snap-x flex-nowrap overflow-x-auto py-10 [-ms-overflow-style:none] [scrollbar-width:none] lg:hidden [&::-webkit-scrollbar]:hidden snap-mandatory"
               style={{
                 padding: "50px calc(50%)",
+                WebkitMaskImage: `linear-gradient(${isRtl ? 270 : 90}deg,transparent,black 20%,white 80%,transparent)`,
+                maskImage: `linear-gradient(${isRtl ? 270 : 90}deg,transparent,black 20%,white 80%,transparent)`,
               }}
             >
               {data.map((item, index) => (
                 <div
                   key={item.id}
-                  className="card relative mr-8 grid h-full max-w-60 shrink-0 items-start justify-center py-4 last:mr-0"
+                  className="card relative me-8 grid h-full max-w-48 sm:max-w-60 shrink-0 items-start justify-center py-4 last:me-0"
                   onClick={() => setCurrentIndex(index)}
                   style={{
                     scrollSnapAlign: "center",
                   }}
                 >
-                  <div className="absolute bottom-0 left-0 right-auto top-0 h-0.5 w-full overflow-hidden rounded-lg bg-neutral-300/50 dark:bg-neutral-300/30">
+                  <div className="absolute bottom-0 start-0 end-auto top-0 h-0.5 w-full overflow-hidden rounded-lg bg-neutral-300/50 dark:bg-neutral-300/30">
                     <div
-                      className={`absolute left-0 top-0 h-full ${
+                      className={`absolute start-0 top-0 h-full ${
                         currentIndex === index ? "w-full" : "w-0"
                       } origin-top bg-primary transition-all ease-linear`}
                       style={{

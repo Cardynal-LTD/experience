@@ -47,13 +47,13 @@ export default function Footer() {
         <a
           href="/"
           title={siteConfig.name}
-          className="relative mr-6 flex items-center space-x-2"
+          className="relative me-6 flex items-center space-x-2"
         >
           <Icons.logo className="w-auto h-[40px]" />
           <span className="font-bold text-xl">{siteConfig.name}</span>
         </a>
 
-        <div className="grid md:grid-cols-3 lg:grid-cols-3 sm:grid-cols-2 mt-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-8 gap-6 md:gap-8">
           {footerConfig.map((section, index) => (
             <div key={index} className="mb-5">
               <h2 className="font-semibold">{section.title}</h2>
@@ -70,12 +70,12 @@ export default function Footer() {
                       {isExternal ? (
                         <a href={link.href} className={linkClass}>
                           {link.text}
-                          <ChevronRight className="h-4 w-4 translate-x-0 transform opacity-0 transition-all duration-300 ease-out group-hover:translate-x-1 group-hover:opacity-100" />
+                          <ChevronRight className="h-4 w-4 translate-x-0 transform opacity-0 transition-all duration-300 ease-out group-hover:translate-x-1 group-hover:opacity-100 rtl:rotate-180 rtl:group-hover:-translate-x-1" />
                         </a>
                       ) : (
                         <Link href={link.href} className={linkClass}>
                           {link.text}
-                          <ChevronRight className="h-4 w-4 translate-x-0 transform opacity-0 transition-all duration-300 ease-out group-hover:translate-x-1 group-hover:opacity-100" />
+                          <ChevronRight className="h-4 w-4 translate-x-0 transform opacity-0 transition-all duration-300 ease-out group-hover:translate-x-1 group-hover:opacity-100 rtl:rotate-180 rtl:group-hover:-translate-x-1" />
                         </Link>
                       )}
                     </li>
@@ -94,12 +94,12 @@ export default function Footer() {
             - {siteConfig.description}
           </span>
           <ul className="flex justify-start md:justify-end text-sm tracking-tight text-foreground">
-            <li className="mr-3 md:mx-4">
+            <li className="me-3 md:mx-4">
               <Link href="/privacy" target="_blank" rel="noopener noreferrer">
                 {footerLinks.privacy}
               </Link>
             </li>
-            <li className="mr-3 md:mx-4">
+            <li className="me-3 md:mx-4">
               <Link href="/terms" target="_blank" rel="noopener noreferrer">
                 {footerLinks.terms}
               </Link>

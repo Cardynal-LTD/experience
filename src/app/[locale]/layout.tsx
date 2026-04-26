@@ -82,7 +82,7 @@ export default async function LocaleLayout({
           data-api-key="ab6006085320c7c0da744213cf0c957227f9393d71825836a2820e3d784853e3"
           data-base-url="https://app.cardynal.io"
           data-inbox-id="2e0c0f86-0e9a-4bc5-acd8-bddb43eba4c2"
-          data-color="#C6613F"
+          data-color="#2A3F73"
           data-position="right"
         />
       </body>
