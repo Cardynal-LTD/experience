@@ -23,8 +23,8 @@ export default function Home() {
       <Features />
       <Pricing />
       <FAQ />
-      <Blog />
       <CTA />
+      <Blog />
       <Footer />
     </main>
   );

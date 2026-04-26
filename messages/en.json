@@ -6,13 +6,13 @@
   "nav": {
     "features": "Product",
     "featuresMain": {
-      "title": "AI Customer Operations",
+      "title": "AI Customer Support",
       "description": "One platform to replace your support stack."
     },
     "featuresItems": [
       { "title": "AI Agents", "description": "Detect intent, run playbooks, resolve conversations autonomously." },
       { "title": "Omnichannel Inbox", "description": "WhatsApp, web, email, Instagram — every conversation in one shared inbox." },
-      { "title": "Visual Workflows", "description": "28+ node types. Triggers, conditions, loops, HTTP, AI prompts — all visual." }
+      { "title": "Visual Workflows", "description": "Triggers, conditions, HTTP, AI prompts — build automation visually, no code." }
     ],
     "solutions": "Use Cases",
     "solutionsItems": [
@@ -28,16 +28,14 @@
     "docs": "Docs"
   },
   "hero": {
-    "pill": "AI CUSTOMER OPERATIONS",
+    "pill": "AI CUSTOMER SUPPORT",
     "pillSub": "Replace your support stack with one platform",
     "title": [
-      "AI-powered",
-      "customer ops.",
-      "One",
-      "unified",
-      "platform."
+      "AI customer",
+      "support,",
+      "unified."
     ],
-    "description": "AI agents, visual workflows, omnichannel inbox, ticketing, and knowledge base — unified. Deploy for your clients or run it yourself. Live in 5 minutes.",
+    "description": "Resolve customer conversations across every channel with AI agents, visual workflows, and a shared inbox. Live in five minutes.",
     "cta": "Start free — 14 days",
     "ctaSecondary": "Book a demo"
   },
@@ -128,7 +126,7 @@
       },
       {
         "title": "Visual Workflow Engine",
-        "description": "28+ node types: triggers, conditions, loops, HTTP, AI prompts, code. Build once, runs on events, schedules, or webhooks."
+        "description": "Drag-and-drop automation: triggers, conditions, AI prompts, HTTP requests, and inline code. Build once — runs on events, schedules, or webhooks."
       },
       {
         "title": "Integrations",
