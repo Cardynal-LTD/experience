@@ -1,7 +1,7 @@
 interface SectionProps {
   id?: string;
   title?: string;
-  subtitle?: string;
+  subtitle?: React.ReactNode;
   description?: string;
   children?: React.ReactNode;
   className?: string;
@@ -15,9 +15,9 @@ export default function Section({
   children,
   className,
 }: SectionProps) {
-  const sectionId = title ? title.toLowerCase().replace(/\s+/g, "-") : id;
+  const sectionId = id || (title ? title.toLowerCase().replace(/\s+/g, "-") : undefined);
   return (
-    <section id={id || sectionId}>
+    <section id={sectionId}>
       <div className={className}>
         <div className="relative container mx-auto px-4 py-16 max-w-7xl">
           <div className="text-center space-y-4 pb-6 mx-auto">

@@ -55,7 +55,8 @@
   },
   "solution": {
     "tag": "LA SOLUTION",
-    "title": "Une plateforme. L'IA et vos équipes, en symbiose.",
+    "title": "Une plateforme.",
+    "titleAccent": "L'IA et vos équipes, en symbiose.",
     "description": "L'IA résout ce qu'elle peut, puis transmet à votre équipe avec toute la conversation, le profil client et l'historique intacts — pas de redémarrage, pas de copier-coller, aucun contexte perdu. Le client ne sent jamais la couture entre l'IA et l'humain. Déployez-la pour vos clients ou en interne — opérationnel en minutes, pas en mois.",
     "cards": [
       {

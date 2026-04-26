@@ -98,7 +98,13 @@ export default function Component() {
   return (
     <Section
       title={t("tag")}
-      subtitle={t("title")}
+      subtitle={
+        <>
+          {t("title")}
+          <br />
+          <span className="text-primary">{t("titleAccent")}</span>
+        </>
+      }
       description={t("description")}
       className="bg-neutral-100 dark:bg-neutral-900"
     >
