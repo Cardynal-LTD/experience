@@ -1,14 +1,13 @@
 "use client";
 
-import { Icons } from "@/components/icons";
 import Section from "@/components/section";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { Link } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
 
 export default function CtaSection() {
   const t = useTranslations("cta");
+  const tHero = useTranslations("hero");
 
   return (
     <Section
@@ -22,10 +21,21 @@ export default function CtaSection() {
           href="https://app.cardynal.io/register"
           className={cn(
             buttonVariants({ variant: "default" }),
-            "w-full sm:w-auto text-background flex gap-2"
+            "w-full sm:w-auto text-background"
           )}
         >
           {t("cta")}
+        </a>
+        <a
+          href="https://cal.com/cardynal.io/30min"
+          target="_blank"
+          rel="noopener noreferrer"
+          className={cn(
+            buttonVariants({ variant: "outline" }),
+            "w-full sm:w-auto"
+          )}
+        >
+          {tHero("ctaSecondary")}
         </a>
       </div>
     </Section>

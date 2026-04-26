@@ -17,21 +17,19 @@ export default function Component() {
       description: t("cards.0.description"),
       className: "hover:bg-red-500/10 transition-all duration-500 ease-out",
       content: (
-        <>
-          <ThemedSafari
-            lightSrc="/agent-builder-light.png"
-            darkSrc="/agent-builder-dark.png"
-            url="https://app.cardynal.io"
-            className="-mb-32 mt-4 max-h-64 w-full px-4 select-none drop-shadow-[0_0_28px_rgba(0,0,0,.1)] dark:drop-shadow-[0_0_28px_rgba(0,0,0,.4)] group-hover:translate-y-[-10px] transition-all duration-300"
-          />
-        </>
+        <ThemedSafari
+          lightSrc="/agent-builder-light.png"
+          darkSrc="/agent-builder-dark.png"
+          url="https://app.cardynal.io"
+          className="-mb-32 mt-4 max-h-64 w-full px-4 select-none drop-shadow-[0_0_28px_rgba(0,0,0,.1)] dark:drop-shadow-[0_0_28px_rgba(0,0,0,.4)] group-hover:translate-y-[-10px] transition-all duration-300"
+        />
       ),
     },
     {
       title: t("cards.1.title"),
       description: t("cards.1.description"),
       className:
-        "order-3 xl:order-none hover:bg-blue-500/10 transition-all duration-500 ease-out",
+        "hover:bg-blue-500/10 transition-all duration-500 ease-out",
       content: (
         <ThemedSafari
           lightSrc="/workflow-builder-light.png"
@@ -71,7 +69,7 @@ export default function Component() {
       title: t("cards.3.title"),
       description: t("cards.3.description"),
       className:
-        "flex-row order-4 md:col-span-2 md:flex-row xl:order-none hover:bg-green-500/10 transition-all duration-500 ease-out",
+        "hover:bg-green-500/10 transition-all duration-500 ease-out",
       content: (
         <>
           <Ripple className="absolute -bottom-full" />
@@ -82,6 +80,20 @@ export default function Component() {
             className="-mb-32 mt-4 max-h-64 w-full px-4 select-none drop-shadow-[0_0_28px_rgba(0,0,0,.1)] dark:drop-shadow-[0_0_28px_rgba(0,0,0,.4)] group-hover:translate-y-[-10px] transition-all duration-300"
           />
         </>
+      ),
+    },
+    {
+      title: t("cards.4.title"),
+      description: t("cards.4.description"),
+      className:
+        "md:col-span-2 xl:col-span-1 hover:bg-purple-500/10 transition-all duration-500 ease-out",
+      content: (
+        <ThemedSafari
+          lightSrc="/knowledge-base-light.png"
+          darkSrc="/knowledge-base-dark.png"
+          url="https://app.cardynal.io"
+          className="-mb-32 mt-4 max-h-64 w-full px-4 select-none drop-shadow-[0_0_28px_rgba(0,0,0,.1)] dark:drop-shadow-[0_0_28px_rgba(0,0,0,.4)] group-hover:translate-y-[-10px] transition-all duration-300"
+        />
       ),
     },
   ];

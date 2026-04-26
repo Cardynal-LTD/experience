@@ -18,6 +18,7 @@ const config = {
       },
     },
     fontFamily: {
+      sans: ["var(--font-inter)", "ui-sans-serif", "system-ui", "sans-serif"],
       hebrew: ["var(--font-hebrew)", "sans-serif"],
     },
     extend: {

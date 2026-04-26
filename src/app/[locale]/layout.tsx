@@ -3,12 +3,18 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { cn, constructMetadata } from "@/lib/utils";
 import type { Metadata, Viewport } from "next";
-import { Noto_Sans_Hebrew } from "next/font/google";
+import { Inter, Noto_Sans_Hebrew } from "next/font/google";
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
 import "../globals.css";
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
+});
 
 const notoSansHebrew = Noto_Sans_Hebrew({
   subsets: ["hebrew"],
@@ -46,14 +52,15 @@ export default async function LocaleLayout({
   const dir = locale === 'he' ? 'rtl' : 'ltr';
 
   return (
-    <html lang={locale} dir={dir} suppressHydrationWarning className={locale === 'he' ? notoSansHebrew.variable : ''}>
-      <head>
-        <link rel="preconnect" href="https://rsms.me/" />
-        <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
-      </head>
+    <html
+      lang={locale}
+      dir={dir}
+      suppressHydrationWarning
+      className={cn(inter.variable, locale === 'he' && notoSansHebrew.variable)}
+    >
       <body
         className={cn(
-          "min-h-screen bg-background antialiased w-full mx-auto scroll-smooth",
+          "min-h-screen bg-background antialiased w-full mx-auto scroll-smooth font-sans",
           locale === 'he' && "font-hebrew"
         )}
       >

@@ -2,42 +2,32 @@
 
 import BlurFade from "@/components/magicui/blur-fade";
 import Section from "@/components/section";
-import { Card, CardContent } from "@/components/ui/card";
-import { MessageSquareOff, Clock, Languages } from "lucide-react";
 import { useTranslations } from "next-intl";
-
-const iconMap = {
-  MessageSquareOff,
-  Clock,
-  Languages,
-};
 
 export default function Component() {
   const t = useTranslations("problem");
   const problems = t.raw("items");
 
   return (
-    <Section
-      title={t("tag")}
-      subtitle={t("title")}
-    >
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
-        {problems.map((problem: any, index: number) => {
-          const IconComponent = Object.values(iconMap)[index] as React.ComponentType<{className: string}>;
-          return (
-            <BlurFade key={index} delay={0.2 + index * 0.2} inView>
-              <Card className="bg-background border-none shadow-none">
-                <CardContent className="p-6 space-y-4">
-                  <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
-                    <IconComponent className="w-6 h-6 text-primary" />
-                  </div>
-                  <h3 className="text-xl font-semibold">{problem.title}</h3>
-                  <p className="text-muted-foreground">{problem.description}</p>
-                </CardContent>
-              </Card>
-            </BlurFade>
-          );
-        })}
+    <Section title={t("tag")} subtitle={t("title")}>
+      <div className="mx-auto mt-16 max-w-4xl divide-y divide-border">
+        {problems.map((problem: any, index: number) => (
+          <BlurFade key={index} delay={0.15 + index * 0.15} inView>
+            <div className="grid grid-cols-1 gap-6 py-10 md:grid-cols-[6rem_1fr] md:gap-12 md:py-12">
+              <span className="font-mono text-4xl font-light text-primary md:text-5xl">
+                {String(index + 1).padStart(2, "0")}
+              </span>
+              <div className="space-y-3">
+                <h3 className="text-2xl font-semibold leading-tight md:text-3xl">
+                  {problem.title}
+                </h3>
+                <p className="text-base leading-relaxed text-muted-foreground md:text-lg">
+                  {problem.description}
+                </p>
+              </div>
+            </div>
+          </BlurFade>
+        ))}
       </div>
     </Section>
   );

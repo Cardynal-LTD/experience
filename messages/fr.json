@@ -42,12 +42,19 @@
     "cta": "14 jours d'essai gratuit",
     "ctaSecondary": "Réserver une démo"
   },
-  "logos": {
-    "title": "ILS NOUS FONT DÉJÀ CONFIANCE"
+  "trustStrip": {
+    "title": "Construit sur ce que vous connaissez déjà",
+    "items": [
+      "OpenAI GPT-4",
+      "Anthropic Claude",
+      "WhatsApp Business",
+      "Hébergé en Europe",
+      "Sans frais par résolution"
+    ]
   },
   "problem": {
     "tag": "LE CONSTAT",
-    "title": "5 abonnements. 5 dashboards. Zéro vue d'ensemble.",
+    "title": "6 abonnements. 6 dashboards. Zéro vue d'ensemble.",
     "items": [
       {
         "title": "Des outils qui ne communiquent pas",
@@ -65,7 +72,7 @@
   },
   "solution": {
     "tag": "LA SOLUTION",
-    "title": "Six modules. Une plateforme. Zéro bricolage.",
+    "title": "Cinq modules. Une plateforme. Zéro bricolage.",
     "description": "Cardynal unifie agents IA, workflows, inbox, ticketing et base de connaissances dans une seule plateforme. Vous êtes agence ? Déployez pour vos clients. Vous êtes une équipe ? Utilisez-la directement. Dans les deux cas, vous êtes opérationnel en minutes.",
     "cards": [
       {
@@ -83,6 +90,10 @@
       {
         "title": "Ticketing intégré avec suivi SLA",
         "description": "Les conversations deviennent des tickets automatiquement. Kanban, priorités, SLA, champs personnalisés et vues multiples — tout est intégré."
+      },
+      {
+        "title": "Base de connaissances avec RAG",
+        "description": "Importez des PDF, crawlez vos sites, ou rédigez directement. Découpé, indexé et récupéré via RAG — l'IA cite ses sources et se rafraîchit automatiquement."
       }
     ]
   },
@@ -227,7 +238,7 @@
       },
       {
         "question": "Quels canaux sont inclus ?",
-        "answer": "Tous — dans chaque plan. WhatsApp (Meta Cloud API ou QR), widget chat, email (Gmail), Instagram, Messenger et API. Sans frais par message."
+        "answer": "Widget chat, email (Gmail), Instagram, Messenger et API sont inclus dans chaque plan. WhatsApp (Meta Cloud API ou QR) est inclus à partir du plan Growth. Aucun frais par message, sur aucun canal."
       },
       {
         "question": "Comment fonctionne la tarification ?",

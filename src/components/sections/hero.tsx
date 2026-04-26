@@ -13,15 +13,15 @@ function HeroPill() {
   const t = useTranslations("hero");
   return (
     <motion.div
-      className="flex w-auto items-center space-x-2 rounded-full bg-primary/20 px-2 py-1 ring-1 ring-accent whitespace-pre"
+      className="flex w-fit max-w-full items-center gap-2 rounded-full bg-primary/20 px-2 py-1 ring-1 ring-accent"
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, ease }}
     >
-      <div className="w-fit rounded-full bg-accent px-2 py-0.5 text-center text-xs font-medium text-primary sm:text-sm">
+      <div className="shrink-0 rounded-full bg-accent px-2 py-0.5 text-xs font-medium text-primary sm:text-sm">
         {t("pill")}
       </div>
-      <p className="text-xs font-medium text-primary sm:text-sm">
+      <p className="hidden text-xs font-medium text-primary sm:block sm:text-sm">
         {t("pillSub")}
       </p>
     </motion.div>
@@ -32,9 +32,9 @@ function HeroTitles() {
   const t = useTranslations("hero");
   const titleWords = t.raw("title");
   return (
-    <div className="flex w-full max-w-2xl flex-col space-y-4 overflow-hidden pt-8">
+    <div className="flex w-full max-w-2xl flex-col space-y-4 overflow-hidden pt-6">
       <motion.h1
-        className="text-center text-4xl font-medium leading-tight text-foreground sm:text-5xl md:text-6xl"
+        className="text-center text-3xl font-medium leading-tight text-foreground sm:text-5xl md:text-6xl"
         initial={{ filter: "blur(10px)", opacity: 0, y: 50 }}
         animate={{ filter: "blur(0px)", opacity: 1, y: 0 }}
         transition={{
@@ -46,7 +46,7 @@ function HeroTitles() {
         {titleWords.map((text: string, index: number) => (
           <motion.span
             key={index}
-            className="inline-block px-1 md:px-2 text-balance font-semibold"
+            className="inline-block px-0.5 sm:px-1 md:px-2 text-balance font-semibold"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{
@@ -60,7 +60,7 @@ function HeroTitles() {
         ))}
       </motion.h1>
       <motion.p
-        className="mx-auto max-w-xl text-center text-lg leading-7 text-muted-foreground sm:text-xl sm:leading-9 text-balance"
+        className="mx-auto max-w-xl text-center text-base leading-6 text-muted-foreground sm:text-xl sm:leading-9 text-balance"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{
@@ -122,7 +122,7 @@ function HeroImage() {
         url="https://app.cardynal.io"
         lightSrc="/agent-builder-light.png"
         darkSrc="/agent-builder-dark.png"
-        className="size-full rounded-lg border border-border/60 shadow-2xl ring-1 ring-black/5 dark:ring-white/10 max-w-screen-lg mt-16"
+        className="size-full rounded-lg border border-border/60 shadow-2xl ring-1 ring-black/5 dark:ring-white/10 max-w-screen-lg mt-10 sm:mt-12"
       />
     </motion.div>
   );
@@ -130,8 +130,8 @@ function HeroImage() {
 
 export default function Hero2() {
   return (
-    <section id="hero">
-      <div className="relative flex w-full flex-col items-center justify-start px-4 pt-32 sm:px-6 sm:pt-24 md:pt-32 lg:px-8">
+    <section id="hero" className="overflow-x-hidden">
+      <div className="relative flex w-full flex-col items-center justify-start px-4 pt-16 sm:px-6 sm:pt-20 md:pt-24 lg:px-8">
         <HeroPill />
         <HeroTitles />
         <HeroCTA />

@@ -41,8 +41,15 @@
     "cta": "Start free — 14 days",
     "ctaSecondary": "Book a demo"
   },
-  "logos": {
-    "title": "TRUSTED BY GROWING TEAMS"
+  "trustStrip": {
+    "title": "Built on what you already trust",
+    "items": [
+      "OpenAI GPT-4",
+      "Anthropic Claude",
+      "WhatsApp Business",
+      "EU-hosted",
+      "No per-resolution fees"
+    ]
   },
   "problem": {
     "tag": "THE PROBLEM",
@@ -64,7 +71,7 @@
   },
   "solution": {
     "tag": "THE SOLUTION",
-    "title": "Six modules. One platform. Zero duct tape.",
+    "title": "Five modules. One platform. Zero duct tape.",
     "description": "Cardynal unifies AI agents, workflows, inbox, ticketing, and knowledge base into one platform. Deploy for your clients if you're an agency, or use it directly if you're a team. Either way, you're live in minutes — not months.",
     "cards": [
       {
@@ -82,6 +89,10 @@
       {
         "title": "Built-in ticketing with SLA tracking",
         "description": "Conversations become tickets automatically. Kanban, priorities, SLA deadlines, custom fields, and multiple views — all built in."
+      },
+      {
+        "title": "Knowledge base with RAG retrieval",
+        "description": "Upload PDFs, crawl websites, or write content directly. Chunked, indexed, and retrieved through RAG — the AI cites sources and refreshes automatically."
       }
     ]
   },
@@ -226,7 +237,7 @@
       },
       {
         "question": "Which channels are included?",
-        "answer": "All of them — in every plan. WhatsApp (Meta Cloud API or QR code), web chat, email (Gmail), Instagram, Messenger, and API. No per-message fees."
+        "answer": "Web chat, email (Gmail), Instagram, Messenger, and API are included in every plan. WhatsApp (Meta Cloud API or QR code) is included from the Growth plan upwards. No per-message fees on any channel."
       },
       {
         "question": "How does pricing work?",
