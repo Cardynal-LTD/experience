@@ -56,16 +56,12 @@
   },
   "solution": {
     "tag": "LA SOLUTION",
-    "title": "Cinq modules. Une plateforme. Zéro bricolage.",
-    "description": "Cardynal unifie agents IA, workflows, inbox, ticketing et base de connaissances dans une seule plateforme. Vous êtes agence ? Déployez pour vos clients. Vous êtes une équipe ? Utilisez-la directement. Dans les deux cas, vous êtes opérationnel en minutes.",
+    "title": "Une plateforme. Zéro bricolage.",
+    "description": "Cardynal unifie agents IA, inbox omnicanal, ticketing et base de connaissances dans une seule plateforme. Déployez-la pour vos clients ou utilisez-la en interne — opérationnel en minutes, pas en mois.",
     "cards": [
       {
         "title": "Des agents IA qui résolvent vraiment",
         "description": "Détection d'intention, exécution du bon playbook, appels API, résolution. Quand l'IA ne peut pas gérer, elle escalade à un humain avec tout le contexte."
-      },
-      {
-        "title": "Moteur d'automatisation visuel, 28+ nœuds",
-        "description": "Triggers, conditions, boucles, requêtes HTTP, prompts IA, exécution de code. Construisez une fois — ça tourne sur événements, horaires ou webhooks."
       },
       {
         "title": "Votre inbox d'équipe",

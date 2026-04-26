@@ -56,16 +56,12 @@
   },
   "solution": {
     "tag": "THE SOLUTION",
-    "title": "Five modules. One platform. Zero duct tape.",
-    "description": "Cardynal unifies AI agents, workflows, inbox, ticketing, and knowledge base into one platform. Deploy for your clients if you're an agency, or use it directly if you're a team. Either way, you're live in minutes — not months.",
+    "title": "One platform. Zero duct tape.",
+    "description": "Cardynal unifies AI agents, an omnichannel inbox, ticketing, and a knowledge base into a single platform. Deploy it for your clients or run it yourself — live in minutes, not months.",
     "cards": [
       {
         "title": "AI agents that actually resolve",
         "description": "Detect intent, run the right playbook, call your APIs, resolve the conversation. When the AI can't handle it, it escalates to a human with full context — no gaps."
-      },
-      {
-        "title": "Visual workflows with 28+ node types",
-        "description": "Triggers, conditions, loops, HTTP requests, AI prompts, code execution. Build automation once — it runs on events, schedules, or webhooks."
       },
       {
         "title": "Your shared team inbox",

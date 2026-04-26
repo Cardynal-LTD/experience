@@ -130,6 +130,8 @@ export default function PricingSection() {
   }, [locale]);
 
   const plans = apiPlans || fallbackPlans;
+  const customPlan = plans.find((p) => !p.period);
+  const regularPlans = plans.filter((p) => p.period);
 
   const handleToggle = () => {
     setIsMonthly(!isMonthly);
@@ -146,8 +148,8 @@ export default function PricingSection() {
         </label>
         <span className="ml-2 font-semibold">{t("yearly")}</span>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        {plans.map((plan, index) => (
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {regularPlans.map((plan, index) => (
           <motion.div
             key={index}
             initial={{ y: 50, opacity: 1 }}
@@ -157,15 +159,12 @@ export default function PricingSection() {
                     y: 0,
                     opacity: 1,
                     x:
-                      index === plans.length - 1
-                        ? -30
+                      index === regularPlans.length - 1
+                        ? -20
                         : index === 0
-                        ? 30
+                        ? 20
                         : 0,
-                    scale:
-                      index === 0 || index === plans.length - 1
-                        ? 0.94
-                        : 1.0,
+                    scale: index === 1 ? 1.0 : 0.96,
                   }
                 : {}
             }
@@ -180,12 +179,7 @@ export default function PricingSection() {
             }}
             className={cn(
               `rounded-2xl border-[1px] p-6 bg-background text-center lg:flex lg:flex-col lg:justify-center relative`,
-              index === 1 ? "border-primary border-[2px]" : "border-border",
-              index === 0 || index === plans.length - 1
-                ? "z-0 transform translate-x-0 translate-y-0 -translate-z-[50px] rotate-y-[10deg]"
-                : "z-10",
-              index === 0 && "origin-right",
-              index === plans.length - 1 && "origin-left"
+              index === 1 ? "border-primary border-[2px] z-10" : "border-border z-0"
             )}
           >
             {index === 1 && (
@@ -248,6 +242,48 @@ export default function PricingSection() {
           </motion.div>
         ))}
       </div>
+
+      {customPlan && (
+        <motion.div
+          initial={{ y: 30, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="mt-6 rounded-2xl border border-primary/30 bg-gradient-to-br from-primary/5 via-background to-background p-6 md:p-10"
+        >
+          <div className="grid grid-cols-1 gap-8 lg:grid-cols-[1fr_1.2fr] lg:gap-12 lg:items-center">
+            <div className="text-left">
+              <div className="inline-flex items-center gap-2 rounded-full bg-primary/15 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-primary">
+                <FaStar className="h-3 w-3" />
+                {customPlan.name}
+              </div>
+              <h3 className="mt-4 text-3xl font-bold tracking-tight md:text-4xl">
+                {customPlan.description}
+              </h3>
+              <p className="mt-4 text-base text-muted-foreground md:text-lg">
+                {isMonthly ? customPlan.price : customPlan.yearlyPrice}
+              </p>
+              <a
+                href="mailto:support@cardynal.io"
+                className={cn(
+                  buttonVariants({ variant: "default" }),
+                  "mt-6 text-background"
+                )}
+              >
+                {customPlan.buttonText}
+              </a>
+            </div>
+            <ul className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+              {customPlan.features.map((feature, idx) => (
+                <li key={idx} className="flex items-start gap-2 text-sm md:text-base">
+                  <Check className="mt-0.5 h-5 w-5 shrink-0 text-primary" />
+                  <span>{feature}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </motion.div>
+      )}
     </Section>
   );
 }
