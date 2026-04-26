@@ -3,8 +3,7 @@
 import { motion } from "framer-motion";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { Link } from "@/i18n/routing";
-import ThemedSafari from "@/components/themed-safari";
+import ChatFlowDemo from "@/components/sections/chat-flow-demo";
 import { useTranslations } from "next-intl";
 
 const ease = [0.16, 1, 0.3, 1];
@@ -32,9 +31,9 @@ function HeroTitles() {
   const t = useTranslations("hero");
   const titleWords = t.raw("title");
   return (
-    <div className="flex w-full max-w-2xl flex-col space-y-4 overflow-hidden pt-6">
+    <div className="flex w-full flex-col space-y-4 overflow-hidden pt-6">
       <motion.h1
-        className="text-center text-3xl font-medium leading-tight text-foreground sm:text-5xl md:text-6xl"
+        className="text-center text-3xl font-medium leading-tight text-foreground sm:text-5xl md:text-6xl lg:text-left"
         initial={{ filter: "blur(10px)", opacity: 0, y: 50 }}
         animate={{ filter: "blur(0px)", opacity: 1, y: 0 }}
         transition={{
@@ -60,7 +59,7 @@ function HeroTitles() {
         ))}
       </motion.h1>
       <motion.p
-        className="mx-auto max-w-xl text-center text-base leading-6 text-muted-foreground sm:text-xl sm:leading-9 text-balance"
+        className="mx-auto max-w-xl text-center text-base leading-6 text-muted-foreground text-balance sm:text-xl sm:leading-9 lg:mx-0 lg:text-left"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{
@@ -78,52 +77,45 @@ function HeroTitles() {
 function HeroCTA() {
   const t = useTranslations("hero");
   return (
-    <>
-      <motion.div
-        className="mx-auto mt-6 flex w-full max-w-2xl flex-col items-center justify-center space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.8, duration: 0.8, ease }}
+    <motion.div
+      className="mx-auto mt-6 flex w-full max-w-2xl flex-col items-center justify-center space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0 lg:mx-0 lg:justify-start"
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 0.8, duration: 0.8, ease }}
+    >
+      <a
+        href="https://app.cardynal.io/register"
+        className={cn(
+          buttonVariants({ variant: "default" }),
+          "w-full sm:w-auto text-background"
+        )}
       >
-        <a
-          href="https://app.cardynal.io/register"
-          className={cn(
-            buttonVariants({ variant: "default" }),
-            "w-full sm:w-auto text-background"
-          )}
-        >
-          {t("cta")}
-        </a>
-        <a
-          href="https://cal.com/cardynal.io/30min"
-          target="_blank"
-          rel="noopener noreferrer"
-          className={cn(
-            buttonVariants({ variant: "outline" }),
-            "w-full sm:w-auto"
-          )}
-        >
-          {t("ctaSecondary")}
-        </a>
-      </motion.div>
-    </>
+        {t("cta")}
+      </a>
+      <a
+        href="https://cal.com/cardynal.io/30min"
+        target="_blank"
+        rel="noopener noreferrer"
+        className={cn(
+          buttonVariants({ variant: "outline" }),
+          "w-full sm:w-auto"
+        )}
+      >
+        {t("ctaSecondary")}
+      </a>
+    </motion.div>
   );
 }
 
-function HeroImage() {
+function HeroDemo() {
   return (
     <motion.div
-      className="relative mx-auto flex w-full items-center justify-center"
+      className="relative mx-auto mt-10 flex w-full items-center justify-center lg:mt-0"
       initial={{ opacity: 0, y: 50 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 1.2, duration: 1, ease }}
     >
-      <ThemedSafari
-        url="https://app.cardynal.io"
-        lightSrc="/agent-builder-light.png"
-        darkSrc="/agent-builder-dark.png"
-        className="size-full max-w-screen-lg mt-10 sm:mt-12 drop-shadow-2xl"
-      />
+      <ChatFlowDemo />
     </motion.div>
   );
 }
@@ -131,11 +123,15 @@ function HeroImage() {
 export default function Hero2() {
   return (
     <section id="hero" className="overflow-x-hidden">
-      <div className="relative flex w-full flex-col items-center justify-start px-4 pt-16 sm:px-6 sm:pt-20 md:pt-24 lg:px-8">
-        <HeroPill />
-        <HeroTitles />
-        <HeroCTA />
-        <HeroImage />
+      <div className="relative w-full px-4 pt-16 sm:px-6 sm:pt-20 md:pt-24 lg:px-8">
+        <div className="mx-auto grid w-full max-w-7xl items-center gap-10 lg:grid-cols-[1.05fr_1fr] lg:gap-12">
+          <div className="flex flex-col items-center lg:items-start">
+            <HeroPill />
+            <HeroTitles />
+            <HeroCTA />
+          </div>
+          <HeroDemo />
+        </div>
         <div className="pointer-events-none absolute inset-x-0 -bottom-12 h-1/3 bg-gradient-to-t from-background via-background to-transparent lg:h-1/4"></div>
       </div>
     </section>

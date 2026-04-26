@@ -1,0 +1,252 @@
+"use client";
+
+import { cn } from "@/lib/utils";
+import { motion, AnimatePresence } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+
+type MessageType = "customer" | "ai" | "human" | "system" | "tool" | "note";
+
+interface Message {
+  id: string;
+  type: MessageType;
+  text: string;
+  label?: string;
+  glow?: boolean;
+  typing?: boolean;
+}
+
+interface FlowMessage {
+  type: MessageType;
+  text: string;
+  label?: string;
+  glow?: boolean;
+}
+
+interface Flow {
+  name: string;
+  messages: FlowMessage[];
+}
+
+const FLOWS: Flow[] = [
+  {
+    name: "Technical Support",
+    messages: [
+      { type: "customer", label: "Alex", text: "The API is throwing a 500 error on POST requests." },
+      { type: "ai", text: "Got it — let me check our system status." },
+      { type: "system", text: "Intent detected: technical_issue" },
+      { type: "tool", text: "GET /status/current", glow: true },
+      { type: "tool", text: "✓ All systems operational" },
+      { type: "ai", text: "Our systems are operational. Can you share your request body?" },
+      { type: "customer", label: "Alex", text: '{"user": "test", "action": "create"}' },
+      { type: "tool", text: "POST /validate/json", glow: true },
+      { type: "tool", text: "✗ Missing required field: api_key" },
+      { type: "ai", text: 'Found it! Your payload is missing the "api_key" field. Add it and you should be good.' },
+      { type: "customer", label: "Alex", text: "That fixed it! Thanks a lot." },
+      { type: "ai", text: "Perfect! Let me know if you need anything else." },
+    ],
+  },
+  {
+    name: "Order Tracking with Escalation",
+    messages: [
+      { type: "customer", label: "Noa", text: "Where is my order #4521? It's been 5 days." },
+      { type: "ai", text: "Let me look that up for you right away." },
+      { type: "system", text: "Intent: order_tracking" },
+      { type: "tool", text: "GET /orders/4521", glow: true },
+      { type: "tool", text: "Status: Stuck at sorting facility" },
+      { type: "ai", text: "I see your order is delayed — let me escalate to our logistics team." },
+      { type: "system", text: "Escalating to human agent" },
+      { type: "note", label: "Handoff Note", text: "Customer frustrated (5 days wait). Order #4521 stuck. Needs priority resolution." },
+      { type: "human", label: "Maya", text: "Hi Noa! I'm taking over. Let me contact the carrier directly." },
+      { type: "human", label: "Maya", text: "Good news — your package will arrive tomorrow by 6pm." },
+      { type: "customer", label: "Noa", text: "That's great, thank you so much!" },
+    ],
+  },
+  {
+    name: "Refund Request",
+    messages: [
+      { type: "customer", label: "Jordan", text: "I want a refund for order #8842. Product arrived damaged." },
+      { type: "ai", text: "I'm sorry to hear that. Let me pull up your order." },
+      { type: "system", text: "Intent: refund_request" },
+      { type: "tool", text: "GET /orders/8842", glow: true },
+      { type: "tool", text: "Order: $89.99 — Wireless Headphones" },
+      { type: "system", text: "Policy check: Eligible for full refund" },
+      { type: "ai", text: "You're eligible for a full refund. Want me to process it now?" },
+      { type: "customer", label: "Jordan", text: "Yes please." },
+      { type: "tool", text: "POST /refunds/create", glow: true },
+      { type: "tool", text: "✓ Refund initiated: $89.99" },
+      { type: "ai", text: "Done! $89.99 will be back in your account within 3-5 business days." },
+    ],
+  },
+];
+
+const MAX_VISIBLE = 6;
+const TYPING_MIN = 1100;
+const TYPING_MAX = 2000;
+const AFTER_MESSAGE = 350;
+const AFTER_SYSTEM = 600;
+const BETWEEN_FLOWS = 2200;
+
+const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
+const rand = (min: number, max: number) => Math.floor(Math.random() * (max - min + 1)) + min;
+const uid = () => `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
+
+function MessageBubble({ msg }: { msg: Message }) {
+  const isLeft = msg.type === "customer";
+  const isCenter = msg.type === "system" || msg.type === "tool";
+  const isRight = msg.type === "ai" || msg.type === "human" || msg.type === "note";
+
+  const align = isLeft ? "self-start" : isRight ? "self-end" : "self-center";
+  const labelAlign = isLeft ? "text-left" : "text-right";
+
+  const bubble: Record<MessageType, string> = {
+    customer: "bg-slate-100 text-slate-900 dark:bg-white/10 dark:text-slate-100",
+    ai: "bg-[#362595] text-white",
+    human: "bg-[#f95603] text-white",
+    system: "bg-slate-500/8 text-slate-500 text-xs italic ring-1 ring-slate-500/15 dark:bg-white/5 dark:text-slate-400 dark:ring-white/10",
+    tool: "bg-indigo-500/8 text-indigo-600 font-mono text-xs ring-1 ring-indigo-500/20 dark:bg-indigo-400/15 dark:text-indigo-300 dark:ring-indigo-400/30",
+    note: "bg-amber-500/8 text-amber-800 ring-1 ring-amber-500/30 dark:bg-amber-400/12 dark:text-amber-300",
+  };
+
+  return (
+    <motion.div
+      layout
+      initial={{ opacity: 0, y: 10, scale: 0.96 }}
+      animate={{ opacity: 1, y: 0, scale: 1 }}
+      exit={{ opacity: 0, scale: 0.96, transition: { duration: 0.2 } }}
+      transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+      className={cn("flex max-w-[85%] flex-col gap-1", align)}
+    >
+      {(msg.label && (msg.type === "customer" || msg.type === "ai" || msg.type === "human")) && (
+        <span className={cn("text-[11px] font-medium text-muted-foreground", labelAlign)}>
+          {msg.label}
+        </span>
+      )}
+      <div
+        className={cn(
+          "rounded-2xl px-3 py-2 text-sm leading-snug shadow-sm",
+          bubble[msg.type],
+          msg.glow && "animate-pulse",
+          isCenter && "px-2 py-1 rounded-full"
+        )}
+      >
+        {msg.type === "note" && msg.label && (
+          <div className="mb-1 text-[11px] font-semibold uppercase tracking-wider text-amber-700 dark:text-amber-400">
+            {msg.label}
+          </div>
+        )}
+        {msg.typing ? (
+          <div className="flex items-center gap-1 py-1">
+            <span className="h-1.5 w-1.5 animate-bounce rounded-full bg-current opacity-50 [animation-delay:0ms]" />
+            <span className="h-1.5 w-1.5 animate-bounce rounded-full bg-current opacity-50 [animation-delay:150ms]" />
+            <span className="h-1.5 w-1.5 animate-bounce rounded-full bg-current opacity-50 [animation-delay:300ms]" />
+          </div>
+        ) : (
+          msg.text
+        )}
+      </div>
+    </motion.div>
+  );
+}
+
+export default function ChatFlowDemo() {
+  const [messages, setMessages] = useState<Message[]>([]);
+  const runningRef = useRef(true);
+  const flowIndexRef = useRef(0);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    runningRef.current = true;
+
+    const trim = (msgs: Message[]) => msgs.slice(-MAX_VISIBLE);
+
+    const append = (msg: Message) =>
+      setMessages((prev) => trim([...prev, msg]));
+
+    const replace = (id: string, msg: Message) =>
+      setMessages((prev) => prev.map((m) => (m.id === id ? msg : m)));
+
+    const remove = (id: string) =>
+      setMessages((prev) => prev.filter((m) => m.id !== id));
+
+    const showTyping = async (type: MessageType, label?: string) => {
+      const id = uid();
+      append({ id, type, text: "", label, typing: true });
+      await sleep(rand(TYPING_MIN, TYPING_MAX));
+      remove(id);
+      return;
+    };
+
+    const runFlow = async (flow: Flow) => {
+      for (const msg of flow.messages) {
+        if (!runningRef.current) return;
+
+        const isHuman = msg.type === "customer" || msg.type === "ai" || msg.type === "human";
+        if (isHuman) {
+          await showTyping(msg.type, msg.label);
+          if (!runningRef.current) return;
+        }
+
+        append({
+          id: uid(),
+          type: msg.type,
+          text: msg.text,
+          label: msg.label,
+          glow: msg.glow,
+        });
+
+        await sleep(msg.type === "system" || msg.type === "tool" ? AFTER_SYSTEM : AFTER_MESSAGE);
+      }
+    };
+
+    const loop = async () => {
+      while (runningRef.current) {
+        const flow = FLOWS[flowIndexRef.current];
+        flowIndexRef.current = (flowIndexRef.current + 1) % FLOWS.length;
+        await runFlow(flow);
+        if (!runningRef.current) return;
+        await sleep(BETWEEN_FLOWS);
+      }
+    };
+
+    loop();
+
+    return () => {
+      runningRef.current = false;
+    };
+  }, []);
+
+  useEffect(() => {
+    if (containerRef.current) {
+      containerRef.current.scrollTop = containerRef.current.scrollHeight;
+    }
+  }, [messages]);
+
+  return (
+    <div className="mx-auto w-full max-w-2xl rounded-3xl border border-border/60 bg-background/80 shadow-2xl backdrop-blur-sm">
+      <div className="flex items-center gap-3 border-b border-border/50 px-5 py-3">
+        <div className="flex h-9 w-9 items-center justify-center rounded-full bg-primary/15">
+          <svg className="h-5 w-5 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
+          </svg>
+        </div>
+        <div className="flex-1">
+          <div className="text-sm font-semibold leading-tight">Cardynal</div>
+          <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
+            <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-500" />
+            AI + human, live
+          </div>
+        </div>
+      </div>
+      <div
+        ref={containerRef}
+        className="flex h-[420px] flex-col gap-2 overflow-y-auto px-5 py-4 [scrollbar-width:thin]"
+      >
+        <AnimatePresence initial={false}>
+          {messages.map((m) => (
+            <MessageBubble key={m.id} msg={m} />
+          ))}
+        </AnimatePresence>
+      </div>
+    </div>
+  );
+}

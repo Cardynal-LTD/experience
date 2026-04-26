@@ -7,6 +7,7 @@ import { Inter, Noto_Sans_Hebrew } from "next/font/google";
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
+import Script from "next/script";
 import { routing } from '@/i18n/routing';
 import "../globals.css";
 
@@ -75,6 +76,15 @@ export default async function LocaleLayout({
           <ThemeToggle />
           <TailwindIndicator />
         </ThemeProvider>
+        <Script
+          src="https://app.cardynal.io/widget/loader.js"
+          strategy="afterInteractive"
+          data-api-key="ab6006085320c7c0da744213cf0c957227f9393d71825836a2820e3d784853e3"
+          data-base-url="https://app.cardynal.io"
+          data-inbox-id="2e0c0f86-0e9a-4bc5-acd8-bddb43eba4c2"
+          data-color="#C6613F"
+          data-position="right"
+        />
       </body>
     </html>
   );

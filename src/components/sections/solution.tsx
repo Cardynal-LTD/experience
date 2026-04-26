@@ -108,6 +108,21 @@ export default function Component() {
       description={t("description")}
       className="bg-neutral-100 dark:bg-neutral-900"
     >
+      <motion.div
+        className="relative mx-auto mt-12 w-full max-w-5xl"
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+      >
+        <ThemedSafari
+          url="https://app.cardynal.io"
+          lightSrc="/agent-builder-light.png"
+          darkSrc="/agent-builder-dark.png"
+          className="size-full drop-shadow-2xl"
+        />
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[30%] bg-gradient-to-t from-neutral-100 via-neutral-100/70 to-transparent dark:from-neutral-900 dark:via-neutral-900/70" />
+      </motion.div>
       <div className="mx-auto mt-16 grid max-w-sm grid-cols-1 gap-6 text-gray-500 md:max-w-3xl md:grid-cols-2 xl:grid-rows-2 md:grid-rows-3 xl:max-w-6xl xl:auto-rows-fr xl:grid-cols-3">
         {features.map((feature, index) => (
           <motion.div
