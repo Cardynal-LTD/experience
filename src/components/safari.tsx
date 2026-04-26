@@ -133,7 +133,7 @@ export default function Safari({
           height="700"
           x="1"
           y="52"
-          preserveAspectRatio="xMidYMid meet"
+          preserveAspectRatio="xMidYMin slice"
           clipPath="url(#roundedBottom)"
         />
       </g>

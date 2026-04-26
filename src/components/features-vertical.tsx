@@ -288,7 +288,7 @@ export default function Features({
                   key={`${currentIndex}-${mounted ? resolvedTheme : "light"}`}
                   src={getImageSrc(data[currentIndex])}
                   alt="feature"
-                  className="aspect-auto h-full w-full rounded-xl border border-border/60 object-contain p-1 shadow-2xl ring-1 ring-black/5 dark:ring-white/10 bg-neutral-50 dark:bg-neutral-900"
+                  className="aspect-auto h-full w-full rounded-xl object-contain drop-shadow-2xl"
                   initial={{ opacity: 0, scale: 0.98 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.98 }}
@@ -298,13 +298,13 @@ export default function Features({
                 <video
                   preload="auto"
                   src={data[currentIndex].video}
-                  className="aspect-auto h-full w-full rounded-lg object-cover shadow-lg"
+                  className="aspect-auto h-full w-full rounded-lg object-cover drop-shadow-2xl"
                   autoPlay
                   loop
                   muted
                 />
               ) : (
-                <div className="aspect-auto h-full w-full rounded-xl border border-neutral-300/50 bg-gray-200 p-1"></div>
+                <div className="aspect-auto h-full w-full rounded-xl bg-gray-200/30"></div>
               )}
             </div>
 
