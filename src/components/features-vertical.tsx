@@ -284,27 +284,33 @@ export default function Features({
               }`}
             >
               {data[currentIndex]?.image ? (
-                <motion.img
+                <motion.div
                   key={`${currentIndex}-${mounted ? resolvedTheme : "light"}`}
-                  src={getImageSrc(data[currentIndex])}
-                  alt="feature"
-                  className="aspect-auto h-full w-full rounded-xl object-contain drop-shadow-2xl"
+                  className="h-full w-full overflow-hidden rounded-2xl bg-background shadow-2xl ring-1 ring-border/50"
                   initial={{ opacity: 0, scale: 0.98 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.98 }}
                   transition={{ duration: 0.25, ease: "easeOut" }}
-                />
+                >
+                  <img
+                    src={getImageSrc(data[currentIndex])}
+                    alt="feature"
+                    className="h-full w-full object-contain"
+                  />
+                </motion.div>
               ) : data[currentIndex]?.video ? (
-                <video
-                  preload="auto"
-                  src={data[currentIndex].video}
-                  className="aspect-auto h-full w-full rounded-lg object-cover drop-shadow-2xl"
-                  autoPlay
-                  loop
-                  muted
-                />
+                <div className="h-full w-full overflow-hidden rounded-2xl bg-background shadow-2xl ring-1 ring-border/50">
+                  <video
+                    preload="auto"
+                    src={data[currentIndex].video}
+                    className="h-full w-full object-contain"
+                    autoPlay
+                    loop
+                    muted
+                  />
+                </div>
               ) : (
-                <div className="aspect-auto h-full w-full rounded-xl bg-gray-200/30"></div>
+                <div className="aspect-auto h-full w-full rounded-2xl bg-background ring-1 ring-border/50"></div>
               )}
             </div>
 
