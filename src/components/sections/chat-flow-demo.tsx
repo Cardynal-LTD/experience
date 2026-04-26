@@ -80,11 +80,11 @@ const FLOWS: Flow[] = [
 ];
 
 const MAX_VISIBLE = 6;
-const TYPING_MIN = 1100;
-const TYPING_MAX = 2000;
-const AFTER_MESSAGE = 350;
-const AFTER_SYSTEM = 600;
-const BETWEEN_FLOWS = 2200;
+const TYPING_MIN = 1800;
+const TYPING_MAX = 3200;
+const AFTER_MESSAGE = 900;
+const AFTER_SYSTEM = 1200;
+const BETWEEN_FLOWS = 4500;
 
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 const rand = (min: number, max: number) => Math.floor(Math.random() * (max - min + 1)) + min;
