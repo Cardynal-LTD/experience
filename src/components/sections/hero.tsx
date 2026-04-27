@@ -125,7 +125,7 @@ function HeroDemo() {
 
 export default function Hero2() {
   return (
-    <section id="hero" className="overflow-x-hidden">
+    <section id="hero" className="overflow-hidden">
       <div className="relative w-full px-4 pt-16 sm:px-6 sm:pt-20 md:pt-24 lg:px-8">
         <div className="mx-auto grid w-full max-w-7xl items-center gap-10 lg:grid-cols-[minmax(0,1fr)_420px] lg:gap-16">
           <div className="flex flex-col items-center lg:items-start">
