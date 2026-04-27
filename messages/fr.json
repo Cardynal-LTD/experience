@@ -11,8 +11,8 @@
     },
     "featuresItems": [
       { "title": "Agents IA", "description": "Détection d'intention, exécution de playbooks, résolution autonome des conversations." },
-      { "title": "Inbox omnicanal", "description": "WhatsApp, web, email, Instagram — toutes les conversations dans une seule inbox." },
-      { "title": "Workflows visuels", "description": "Triggers, conditions, HTTP, prompts IA — construisez vos automatisations visuellement, sans code." }
+      { "title": "Inbox omnicanal", "description": "WhatsApp, web, email, Instagram. Toutes les conversations dans une seule inbox." },
+      { "title": "Workflows visuels", "description": "Triggers, conditions, HTTP, prompts IA. Construisez vos automatisations visuellement, sans code." }
     ],
     "solutions": "Cas d'usage",
     "solutionsItems": [
@@ -20,7 +20,7 @@
       { "title": "SaaS & Tech", "description": "Déflectez les tickets L1 avec l'IA, routez vers les humains, automatisez l'onboarding." },
       { "title": "Réservations & RDV", "description": "Automatisez la prise de rendez-vous, les confirmations et les rappels de bout en bout." },
       { "title": "Assurance & Finance", "description": "Gérez les réclamations, questions de contrat et demandes de compte avec précision." },
-      { "title": "Services", "description": "Ne ratez plus un lead. L'IA qualifie, route et crée des tickets — 24/7." },
+      { "title": "Services", "description": "Ne ratez plus un lead. L'IA qualifie, route et crée des tickets, 24/7." },
       { "title": "Agences", "description": "Déployez et gérez le support IA de plusieurs clients depuis une seule plateforme." }
     ],
     "pricing": "Tarifs",
@@ -35,7 +35,7 @@
       "plus jamais",
       "un client."
     ],
-    "description": "Les agents IA résolvent les conversations sur WhatsApp, web, email, Instagram et Messenger — et passent le reste à votre équipe avec tout le contexte. Opérationnel en cinq minutes.",
+    "description": "Les agents IA résolvent les conversations sur WhatsApp, web, email, Instagram et Messenger, et passent le reste à votre équipe avec tout le contexte. Opérationnel en cinq minutes.",
     "cta": "14 jours d'essai gratuit",
     "ctaSecondary": "Réserver une démo"
   },
@@ -51,13 +51,13 @@
   },
   "problem": {
     "tag": "Le constat",
-    "quote": "6 abonnements, 6 dashboards, zéro vue d'ensemble — Cardynal les remplace tous par une seule plateforme, pour que ni votre équipe ni vos clients ne sentent plus les coutures."
+    "quote": "6 abonnements, 6 dashboards, zéro vue d'ensemble. Cardynal les remplace tous par une seule plateforme, pour que ni votre équipe ni vos clients ne sentent plus les coutures."
   },
   "solution": {
     "tag": "LA SOLUTION",
     "title": "Une plateforme.",
     "titleAccent": "L'IA et vos équipes, en symbiose.",
-    "description": "L'IA résout ce qu'elle peut, puis transmet à votre équipe avec toute la conversation, le profil client et l'historique intacts — pas de redémarrage, pas de copier-coller, aucun contexte perdu. Le client ne sent jamais la couture entre l'IA et l'humain. Déployez-la pour vos clients ou en interne — opérationnel en minutes, pas en mois.",
+    "description": "L'IA résout ce qu'elle peut, puis transmet à votre équipe avec toute la conversation, le profil client et l'historique intacts. Pas de redémarrage, pas de copier-coller, aucun contexte perdu. Le client ne sent jamais la couture entre l'IA et l'humain. Déployez-la pour vos clients ou en interne. Opérationnel en minutes, pas en mois.",
     "cards": [
       {
         "title": "Des agents IA qui résolvent vraiment",
@@ -65,19 +65,19 @@
       },
       {
         "title": "Connectez tous les canaux",
-        "description": "WhatsApp Business, chat web, email, Instagram, Messenger — branchez-les tous. Les intégrations par manifeste permettent à vos agents de tirer des données en temps réel depuis Shopify, votre CRM, n'importe quoi avec une API. Sans code."
+        "description": "WhatsApp Business, chat web, email, Instagram, Messenger. Branchez-les tous. Les intégrations par manifeste permettent à vos agents de tirer des données en temps réel depuis Shopify, votre CRM, n'importe quoi avec une API. Sans code."
       },
       {
         "title": "Votre inbox d'équipe",
-        "description": "Toutes les conversations clients dans une seule file, peu importe le canal. Filtrez par statut, agent ou canal. Reprenez exactement où l'IA s'est arrêtée — aucun contexte perdu lors des transferts."
+        "description": "Toutes les conversations clients dans une seule file, peu importe le canal. Filtrez par statut, agent ou canal. Reprenez exactement où l'IA s'est arrêtée, sans aucun contexte perdu lors des transferts."
       },
       {
         "title": "Ticketing intégré avec suivi SLA",
-        "description": "Les conversations deviennent des tickets automatiquement. Kanban, priorités, SLA, champs personnalisés et vues multiples — tout est intégré."
+        "description": "Les conversations deviennent des tickets automatiquement. Kanban, priorités, SLA, champs personnalisés et vues multiples, tout est intégré."
       },
       {
         "title": "Base de connaissances avec RAG",
-        "description": "Importez des PDF, crawlez vos sites, ou rédigez directement. Découpé, indexé et récupéré via RAG — l'IA cite ses sources et se rafraîchit automatiquement."
+        "description": "Importez des PDF, crawlez vos sites, ou rédigez directement. Découpé, indexé et récupéré via RAG. L'IA cite ses sources et se rafraîchit automatiquement."
       }
     ]
   },
@@ -109,15 +109,15 @@
       },
       {
         "title": "Base de connaissances",
-        "description": "Importez des PDF, crawlez vos sites, ou rédigez manuellement. Découpé, indexé et restitué via RAG — avec rafraîchissement automatique."
+        "description": "Importez des PDF, crawlez vos sites, ou rédigez manuellement. Découpé, indexé et restitué via RAG, avec rafraîchissement automatique."
       },
       {
         "title": "Moteur de workflows visuel",
-        "description": "Automatisations en drag-and-drop : triggers, conditions, prompts IA, requêtes HTTP et code inline. Construisez une fois — ça tourne sur événements, horaires ou webhooks."
+        "description": "Automatisations en drag-and-drop : triggers, conditions, prompts IA, requêtes HTTP et code inline. Construisez une fois. Ça tourne sur événements, horaires ou webhooks."
       },
       {
         "title": "Intégrations",
-        "description": "Shopify, WooCommerce et plus. Des intégrations par manifeste donnent à vos agents un accès temps réel aux données — sans code."
+        "description": "Shopify, WooCommerce et plus. Des intégrations par manifeste donnent à vos agents un accès temps réel aux données, sans code."
       }
     ]
   },
@@ -207,7 +207,7 @@
     "items": [
       {
         "question": "Quelle différence avec Intercom ou Zendesk ?",
-        "answer": "Ce sont des helpdesks qui ont ajouté de l'IA après coup. Cardynal est AI-native — avec un moteur de workflows visuel (28+ nœuds), le support multi-LLM (OpenAI + Anthropic) et un marketplace d'intégrations zero-code. Le tout à une fraction du prix."
+        "answer": "Ce sont des helpdesks qui ont ajouté de l'IA après coup. Cardynal est AI-native, avec un moteur de workflows visuel (28+ nœuds), le support multi-LLM (OpenAI + Anthropic) et un marketplace d'intégrations zero-code. Le tout à une fraction du prix."
       },
       {
         "question": "C'est pour les agences ou les entreprises ?",
@@ -219,7 +219,7 @@
       },
       {
         "question": "Faut-il un développeur ?",
-        "answer": "Non. Tout est visuel — canvas drag-and-drop pour les agents, éditeur de workflows, marketplace d'intégrations. On propose aussi un onboarding accompagné."
+        "answer": "Non. Tout est visuel : canvas drag-and-drop pour les agents, éditeur de workflows, marketplace d'intégrations. On propose aussi un onboarding accompagné."
       },
       {
         "question": "Quels canaux sont inclus ?",
@@ -227,15 +227,15 @@
       },
       {
         "question": "Les agents vocaux / téléphoniques sont-ils supportés ? (Bientôt)",
-        "answer": "Les agents IA vocaux pour les appels entrants et sortants arrivent bientôt. Ils fonctionneront comme nos agents chat — détection d'intention, exécution du bon playbook, escalade à un humain avec tout le contexte si besoin — mais au téléphone. Vous voulez un accès anticipé ? Parlons-en."
+        "answer": "Les agents IA vocaux pour les appels entrants et sortants arrivent bientôt. Ils fonctionneront comme nos agents chat : détection d'intention, exécution du bon playbook, escalade à un humain avec tout le contexte si besoin, mais au téléphone. Vous voulez un accès anticipé ? Parlons-en."
       },
       {
         "question": "Comment fonctionne la tarification ?",
-        "answer": "Forfait mensuel avec des quotas clairs — sessions, agents, inboxes, sources, workflows. Aucun frais par résolution. 14 jours d'essai gratuit, résiliable à tout moment."
+        "answer": "Forfait mensuel avec des quotas clairs : sessions, agents, inboxes, sources, workflows. Aucun frais par résolution. 14 jours d'essai gratuit, résiliable à tout moment."
       },
       {
         "question": "Quels cas d'usage couvre Cardynal ?",
-        "answer": "Support SaaS, e-commerce (suivi commandes, retours), réservations et RDV, réclamations assurance, services — tout business qui gère des conversations client à l'échelle."
+        "answer": "Support SaaS, e-commerce (suivi commandes, retours), réservations et RDV, réclamations assurance, services. Tout business qui gère des conversations client à l'échelle."
       },
       {
         "question": "Quels modèles IA sont supportés ?",
@@ -250,7 +250,7 @@
   "comingSoon": {
     "badge": "Bientôt",
     "title": "Des agents IA vocaux pour vos appels entrants et sortants.",
-    "description": "Le même cerveau d'agent que vous construisez pour le chat — qui répond maintenant au téléphone. Détection d'intention en appel, exécution du bon playbook, transfert à un humain avec la transcription complète si besoin. Faible latence, multilingue, sur le canal qui génère encore le plus de revenu.",
+    "description": "Le même cerveau d'agent que vous construisez pour le chat, qui répond maintenant au téléphone. Détection d'intention en appel, exécution du bon playbook, transfert à un humain avec la transcription complète si besoin. Faible latence, multilingue, sur le canal qui génère encore le plus de revenu.",
     "cta": "Accès anticipé"
   },
   "cta": {

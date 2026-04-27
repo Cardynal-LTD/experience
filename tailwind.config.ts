@@ -83,9 +83,9 @@ const config = {
         250: "250ms",
       },
       fontSize: {
-        "display-sm": ["clamp(2rem, 6vw, 3.25rem)", { lineHeight: "1.05", letterSpacing: "-0.022em" }],
-        "display": ["clamp(2.5rem, 8vw, 5rem)", { lineHeight: "1.02", letterSpacing: "-0.028em" }],
-        "display-lg": ["clamp(3rem, 10vw, 6.5rem)", { lineHeight: "1.0", letterSpacing: "-0.032em" }],
+        "display-sm": ["clamp(1.75rem, 4.5vw, 2.5rem)", { lineHeight: "1.1", letterSpacing: "-0.022em" }],
+        "display": ["clamp(2rem, 5.5vw, 3.5rem)", { lineHeight: "1.05", letterSpacing: "-0.028em" }],
+        "display-lg": ["clamp(2.5rem, 7vw, 4.5rem)", { lineHeight: "1.02", letterSpacing: "-0.032em" }],
       },
       animation: {
         marquee: "marquee var(--duration) linear infinite",

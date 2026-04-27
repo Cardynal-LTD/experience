@@ -11,16 +11,16 @@
     },
     "featuresItems": [
       { "title": "AI Agents", "description": "Detect intent, run playbooks, resolve conversations autonomously." },
-      { "title": "Omnichannel Inbox", "description": "WhatsApp, web, email, Instagram — every conversation in one shared inbox." },
-      { "title": "Visual Workflows", "description": "Triggers, conditions, HTTP, AI prompts — build automation visually, no code." }
+      { "title": "Omnichannel Inbox", "description": "WhatsApp, web, email, Instagram. Every conversation in one shared inbox." },
+      { "title": "Visual Workflows", "description": "Triggers, conditions, HTTP, AI prompts. Build automation visually, no code." }
     ],
     "solutions": "Use Cases",
     "solutionsItems": [
       { "title": "E-commerce", "description": "AI agents that know your catalog, process returns, and track orders across channels." },
       { "title": "SaaS & Tech", "description": "Deflect L1 tickets with AI, route to humans seamlessly, automate onboarding." },
-      { "title": "Booking & Appointments", "description": "Automate scheduling, confirmations, and reminders — end to end." },
+      { "title": "Booking & Appointments", "description": "Automate scheduling, confirmations, and reminders, end to end." },
       { "title": "Insurance & Finance", "description": "Handle claims, policy questions, and account inquiries with AI precision." },
-      { "title": "Professional Services", "description": "Never miss a lead. AI qualifies, routes, and creates tickets — 24/7." },
+      { "title": "Professional Services", "description": "Never miss a lead. AI qualifies, routes, and creates tickets, 24/7." },
       { "title": "Agencies", "description": "Deploy and manage AI support for multiple clients from one platform." }
     ],
     "pricing": "Pricing",
@@ -35,8 +35,8 @@
       "miss a",
       "customer."
     ],
-    "description": "AI agents resolve conversations across WhatsApp, web, email, Instagram, and Messenger — and pass the rest to your team with full context. Live in five minutes.",
-    "cta": "Start free — 14 days",
+    "description": "AI agents resolve conversations across WhatsApp, web, email, Instagram, and Messenger, and pass the rest to your team with full context. Live in five minutes.",
+    "cta": "Start free for 14 days",
     "ctaSecondary": "Book a demo"
   },
   "trustStrip": {
@@ -51,33 +51,33 @@
   },
   "problem": {
     "tag": "The problem",
-    "quote": "Six tools, six dashboards, zero shared context — Cardynal replaces them with one platform, so your team and your customers never feel the seams again."
+    "quote": "Six tools, six dashboards, zero shared context. Cardynal replaces them with one platform, so your team and your customers never feel the seams again."
   },
   "solution": {
     "tag": "THE SOLUTION",
     "title": "One platform.",
     "titleAccent": "AI and your team, in sync.",
-    "description": "AI agents resolve what they can, then hand off to your team with the full conversation, customer profile, and history intact — no restart, no copy-paste, no lost context. The customer never feels the seam between AI and human. Deploy it for your clients or run it in-house — live in minutes, not months.",
+    "description": "AI agents resolve what they can, then hand off to your team with the full conversation, customer profile, and history intact. No restart, no copy-paste, no lost context. The customer never feels the seam between AI and human. Deploy it for your clients or run it in-house. Live in minutes, not months.",
     "cards": [
       {
         "title": "AI agents that actually resolve",
-        "description": "Detect intent, run the right playbook, call your APIs, resolve the conversation. When the AI can't handle it, it escalates to a human with full context — no gaps."
+        "description": "Detect intent, run the right playbook, call your APIs, resolve the conversation. When the AI can't handle it, it escalates to a human with full context. No gaps."
       },
       {
         "title": "Connect every channel",
-        "description": "WhatsApp Business, web chat, email, Instagram, Messenger — plug them all in. Manifest-driven integrations let your agents pull real-time data from Shopify, your CRM, anything with an API. No code."
+        "description": "WhatsApp Business, web chat, email, Instagram, Messenger. Plug them all in. Manifest-driven integrations let your agents pull real-time data from Shopify, your CRM, anything with an API. No code."
       },
       {
         "title": "Your shared team inbox",
-        "description": "Every customer conversation in one queue, regardless of channel. Filter by status, agent, or channel. Pick up exactly where the AI left off — no context lost between handoffs."
+        "description": "Every customer conversation in one queue, regardless of channel. Filter by status, agent, or channel. Pick up exactly where the AI left off, with no context lost between handoffs."
       },
       {
         "title": "Built-in ticketing with SLA tracking",
-        "description": "Conversations become tickets automatically. Kanban, priorities, SLA deadlines, custom fields, and multiple views — all built in."
+        "description": "Conversations become tickets automatically. Kanban, priorities, SLA deadlines, custom fields, and multiple views, all built in."
       },
       {
         "title": "Knowledge base with RAG retrieval",
-        "description": "Upload PDFs, crawl websites, or write content directly. Chunked, indexed, and retrieved through RAG — the AI cites sources and refreshes automatically."
+        "description": "Upload PDFs, crawl websites, or write content directly. Chunked, indexed, and retrieved through RAG. The AI cites sources and refreshes automatically."
       }
     ]
   },
@@ -109,15 +109,15 @@
       },
       {
         "title": "Knowledge Base",
-        "description": "Upload PDFs, crawl websites, or write manually. Chunked, indexed, and retrieved via RAG — with automatic refresh."
+        "description": "Upload PDFs, crawl websites, or write manually. Chunked, indexed, and retrieved via RAG, with automatic refresh."
       },
       {
         "title": "Visual Workflow Engine",
-        "description": "Drag-and-drop automation: triggers, conditions, AI prompts, HTTP requests, and inline code. Build once — runs on events, schedules, or webhooks."
+        "description": "Drag-and-drop automation: triggers, conditions, AI prompts, HTTP requests, and inline code. Build once. Runs on events, schedules, or webhooks."
       },
       {
         "title": "Integrations",
-        "description": "Shopify, WooCommerce, and more. Manifest-driven integrations give your agents real-time data access — no code."
+        "description": "Shopify, WooCommerce, and more. Manifest-driven integrations give your agents real-time data access, no code."
       }
     ]
   },
@@ -207,7 +207,7 @@
     "items": [
       {
         "question": "How is Cardynal different from Intercom or Zendesk?",
-        "answer": "They're helpdesks with AI bolted on. Cardynal is AI-native — built from the ground up with a visual workflow engine (28+ node types), multi-LLM support (OpenAI + Anthropic), and a zero-code integration marketplace. All at a fraction of the price."
+        "answer": "They're helpdesks with AI bolted on. Cardynal is AI-native, built from the ground up with a visual workflow engine (28+ node types), multi-LLM support (OpenAI + Anthropic), and a zero-code integration marketplace. All at a fraction of the price."
       },
       {
         "question": "Is this for agencies or end users?",
@@ -219,7 +219,7 @@
       },
       {
         "question": "Do I need a developer?",
-        "answer": "No. Everything is visual — drag-and-drop agent canvas, workflow builder, and integration marketplace. We also offer guided onboarding if you want help."
+        "answer": "No. Everything is visual: drag-and-drop agent canvas, workflow builder, and integration marketplace. We also offer guided onboarding if you want help."
       },
       {
         "question": "Which channels are included?",
@@ -227,15 +227,15 @@
       },
       {
         "question": "Do you support voice / phone agents? (Coming soon)",
-        "answer": "Voice AI agents for inbound and outbound phone calls are on the roadmap and coming soon. They'll work the same way as our chat agents — detect intent, run the right playbook, escalate to a human with full context when needed — but over the phone. Want early access? Talk to us."
+        "answer": "Voice AI agents for inbound and outbound phone calls are on the roadmap and coming soon. They'll work the same way as our chat agents: detect intent, run the right playbook, escalate to a human with full context when needed, but over the phone. Want early access? Talk to us."
       },
       {
         "question": "How does pricing work?",
-        "answer": "Flat monthly fee with clear quotas — sessions, agents, inboxes, sources, workflows. No per-resolution charges. Start with a 14-day free trial, upgrade when you're ready. Cancel anytime."
+        "answer": "Flat monthly fee with clear quotas: sessions, agents, inboxes, sources, workflows. No per-resolution charges. Start with a 14-day free trial, upgrade when you're ready. Cancel anytime."
       },
       {
         "question": "What use cases does Cardynal cover?",
-        "answer": "SaaS support, e-commerce (order tracking, returns), booking & appointments, insurance claims, professional services — any business that handles customer conversations at scale."
+        "answer": "SaaS support, e-commerce (order tracking, returns), booking & appointments, insurance claims, professional services. Any business that handles customer conversations at scale."
       },
       {
         "question": "What LLMs are supported?",
@@ -250,7 +250,7 @@
   "comingSoon": {
     "badge": "Coming soon",
     "title": "AI voice agents for inbound and outbound calls.",
-    "description": "The same agent brain you build for chat — now answering the phone. Detect intent on a live call, run the right playbook, transfer to a human with the full transcript when needed. Low-latency, multilingual, on the channel that still drives most revenue.",
+    "description": "The same agent brain you build for chat, now answering the phone. Detect intent on a live call, run the right playbook, transfer to a human with the full transcript when needed. Low-latency, multilingual, on the channel that still drives most revenue.",
     "cta": "Get early access"
   },
   "cta": {

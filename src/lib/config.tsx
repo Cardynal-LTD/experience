@@ -3,7 +3,7 @@ export const BLUR_FADE_DELAY = 0.15;
 export const siteConfig = {
   name: "Cardynal",
   description:
-    "AI customer operations platform — agents, workflows, omnichannel inbox, ticketing, and knowledge base, unified.",
+    "AI customer operations platform with agents, workflows, omnichannel inbox, ticketing, and knowledge base, unified.",
   url: process.env.NEXT_PUBLIC_APP_URL || "https://cardynal.io",
   keywords: [
     "AI customer support",
