@@ -242,7 +242,7 @@ export default function ChatFlowDemo() {
       </div>
       <div
         ref={containerRef}
-        className="flex h-[360px] sm:h-[460px] md:h-[520px] flex-col gap-2 overflow-y-auto overflow-x-hidden touch-pan-x overscroll-contain bg-slate-50 px-4 py-4 dark:bg-neutral-950 [scrollbar-width:thin]"
+        className="flex h-[360px] sm:h-[460px] md:h-[520px] flex-col gap-2 overflow-y-auto overflow-x-hidden touch-pan-x overscroll-contain bg-slate-50 px-4 py-4 dark:bg-neutral-950 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
       >
         <AnimatePresence initial={false}>
           {messages.map((m) => (

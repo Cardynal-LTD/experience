@@ -135,7 +135,7 @@ export default function Hero2() {
           </div>
           <HeroDemo />
         </div>
-        <div className="pointer-events-none absolute inset-x-0 -bottom-12 h-1/3 bg-gradient-to-t from-background via-background to-transparent lg:h-1/4"></div>
+        <div className="pointer-events-none absolute inset-x-0 -bottom-8 h-20 bg-gradient-to-t from-background to-transparent"></div>
       </div>
     </section>
   );
