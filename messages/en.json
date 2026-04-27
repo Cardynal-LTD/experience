@@ -31,22 +31,22 @@
     "pill": "AI + HUMAN SUPPORT",
     "pillSub": "Built for teams, not for replacing them.",
     "title": [
-      "Amplify",
-      "your support",
-      "team."
+      "Free your team",
+      "from the work that",
+      "doesn't deserve them."
     ],
     "description": "Cardynal handles the repetitive 80%: returns, status checks, FAQs, scheduling. Your team focuses on what needs a human brain: empathy, complex cases, revenue moments.",
     "cta": "Start free for 14 days",
     "ctaSecondary": "Book a demo"
   },
   "trustStrip": {
-    "title": "Built on what already runs the internet",
+    "title": "What you can take for granted",
     "items": [
-      "OpenAI GPT-4",
-      "Anthropic Claude",
-      "WhatsApp Business",
-      "EU-hosted infrastructure",
-      "Your data, your servers"
+      "Frontier-model AI",
+      "WhatsApp Business API",
+      "GDPR-ready, EU-hosted",
+      "Open-source connectors",
+      "Single-tenant isolation"
     ]
   },
   "problem": {
@@ -57,7 +57,7 @@
     "tag": "THE APPROACH",
     "title": "AI takes the volume.",
     "titleAccent": "Your team takes the moments that matter.",
-    "description": "Cardynal isn't here to replace your support team. It's here to make them faster, sharper, and free of the work that's been draining them. AI agents handle the repetitive volume. When something needs judgment, they hand off to a human with the entire conversation, customer history, and context already prepared. No restart. No copy-paste. No lost thread.",
+    "description": "AI agents handle the repetitive volume. When something needs judgment, they hand off to a human with the full conversation, customer history, and context already prepared. No restart. No copy-paste. No lost thread.",
     "cards": [
       {
         "title": "AI agents that actually act",
@@ -72,7 +72,7 @@
         "description": "When the AI escalates, your agent walks into a fully briefed conversation. Intent detected, history attached, customer profile open. They take over in seconds."
       },
       {
-        "title": "Built-in ticketing and mini-CRM",
+        "title": "Ticketing and CRM, native",
         "description": "Conversations become tickets, tickets carry customer profiles, profiles track history. Pipelines, SLAs, custom fields, kanban: all of it, all built in."
       },
       {
@@ -88,7 +88,7 @@
     "steps": {
       "customer": "My order is 5 days late!",
       "ai": "Detected: urgent · frustrated",
-      "blocked": "Refund policy: out of scope",
+      "blocked": "Refund policy: needs human approval",
       "priority": "Routed to Maya · Priority"
     }
   },
@@ -191,8 +191,8 @@
         "description": "Hosted on Railway in EU regions. GDPR-compliant by default, auditable on request, sovereign-friendly."
       },
       {
-        "title": "End-to-end encryption",
-        "description": "TLS in transit, AES-256 at rest. Per-tenant isolation. JWT auth. Connector source code is open and reviewable."
+        "title": "Single-tenant by default",
+        "description": "Your workspace runs in its own isolation. Open-source connectors, fully auditable. Encryption is a given."
       },
       {
         "title": "You own everything",
@@ -221,28 +221,6 @@
       }
     ]
   },
-  "features": {
-    "title": "Product",
-    "subtitle": "Everything you need to run customer operations",
-    "items": [
-      {
-        "title": "Omnichannel Inbox",
-        "description": "Every conversation across every channel, managed by AI. Your team can jump in at any point with a single click."
-      },
-      {
-        "title": "Knowledge Base",
-        "description": "Upload PDFs, crawl websites, or write manually. Chunked, indexed, and retrieved via RAG, with automatic refresh."
-      },
-      {
-        "title": "Visual Workflow Engine",
-        "description": "Drag-and-drop automation: triggers, conditions, AI prompts, HTTP requests, and inline code. Build once. Runs on events, schedules, or webhooks."
-      },
-      {
-        "title": "Integrations",
-        "description": "Shopify, WooCommerce, and more. Manifest-driven integrations give your agents real-time data access, no code."
-      }
-    ]
-  },
   "testimonials": {
     "title": "Testimonials",
     "subtitle": "What teams are saying"
@@ -262,7 +240,7 @@
         "price": "$29",
         "yearlyPrice": "$23",
         "period": "month",
-        "description": "For small teams getting started with AI support",
+        "description": "One team, one channel. Get the AI working before you scale.",
         "buttonText": "Try free for 14 days",
         "features": [
           "50 sessions/month",
@@ -276,7 +254,7 @@
         "price": "$99",
         "yearlyPrice": "$79",
         "period": "month",
-        "description": "For teams scaling their customer operations",
+        "description": "When one channel isn't enough. WhatsApp in, more agents, more knowledge.",
         "buttonText": "Try free for 14 days",
         "features": [
           "300 sessions/month",
@@ -291,7 +269,7 @@
         "price": "$299",
         "yearlyPrice": "$239",
         "period": "month",
-        "description": "For agencies and teams that need full control",
+        "description": "Unlimited everything. Bring your own LLM. API access for the rest.",
         "buttonText": "Try free for 14 days",
         "features": [
           "1,200 sessions/month",
@@ -380,8 +358,8 @@
     "error": "Something went wrong. Please try again."
   },
   "cta": {
-    "title": "Free your team from the work that doesn't deserve them.",
-    "subtitle": "Deploy your first AI agent in under 5 minutes.",
+    "title": "Deploy your first AI agent in under 5 minutes.",
+    "subtitle": "No code, no specialist, no contract.",
     "cta": "Start free"
   },
   "footer": {

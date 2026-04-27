@@ -7,12 +7,15 @@ import Section from "@/components/section";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
+import { Zap, Inbox, ArrowRightLeft, Ticket, BookOpen } from "lucide-react";
 
 export default function Component() {
   const t = useTranslations("solution");
 
+  const iconClass = "size-[18px]";
   const features = [
     {
+      icon: <Zap className={iconClass} />,
       title: t("cards.0.title"),
       description: t("cards.0.description"),
       className: "lg:hover:bg-brand/5 hover:shadow-elevated transition-all duration-250 ease-fluent",
@@ -26,6 +29,7 @@ export default function Component() {
       ),
     },
     {
+      icon: <Inbox className={iconClass} />,
       title: t("cards.1.title"),
       description: t("cards.1.description"),
       className: "lg:hover:bg-accent/5 hover:shadow-elevated transition-all duration-250 ease-fluent",
@@ -39,6 +43,7 @@ export default function Component() {
       ),
     },
     {
+      icon: <ArrowRightLeft className={iconClass} />,
       title: t("cards.2.title"),
       description: t("cards.2.description"),
       className:
@@ -65,6 +70,7 @@ export default function Component() {
       ),
     },
     {
+      icon: <Ticket className={iconClass} />,
       title: t("cards.3.title"),
       description: t("cards.3.description"),
       className: "lg:hover:bg-emerald-500/5 hover:shadow-elevated transition-all duration-250 ease-fluent",
@@ -81,6 +87,7 @@ export default function Component() {
       ),
     },
     {
+      icon: <BookOpen className={iconClass} />,
       title: t("cards.4.title"),
       description: t("cards.4.description"),
       className: "lg:hover:bg-violet-500/5 hover:shadow-elevated transition-all duration-250 ease-fluent",
@@ -142,6 +149,9 @@ export default function Component() {
             viewport={{ once: true }}
           >
             <div>
+              <div className="mb-3 inline-flex size-9 items-center justify-center rounded-lg bg-foreground/[0.05] text-foreground/70 transition-colors duration-fluent group-hover:bg-brand/10 group-hover:text-brand">
+                {feature.icon}
+              </div>
               <h3 className="text-lg sm:text-xl font-semibold tracking-tight mb-2 text-foreground">
                 {feature.title}
               </h3>

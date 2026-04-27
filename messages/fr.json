@@ -31,22 +31,22 @@
     "pill": "SUPPORT IA + HUMAIN",
     "pillSub": "Conçu pour votre équipe, pas pour la remplacer.",
     "title": [
-      "Boostez",
-      "votre équipe",
-      "support."
+      "Libérez votre équipe",
+      "du travail",
+      "qu'elle ne mérite pas."
     ],
     "description": "Cardynal traite les 80% répétitifs : retours, suivi de commande, FAQ, prises de RDV. Votre équipe se consacre à ce qui demande un cerveau humain : empathie, cas complexes, opportunités commerciales.",
     "cta": "Essai gratuit 14 jours",
     "ctaSecondary": "Réserver une démo"
   },
   "trustStrip": {
-    "title": "Bâti sur les fondations qui font tourner internet",
+    "title": "Ce que vous pouvez tenir pour acquis",
     "items": [
-      "OpenAI GPT-4",
-      "Anthropic Claude",
-      "WhatsApp Business",
-      "Infrastructure hébergée en Europe",
-      "Vos données, vos serveurs"
+      "IA de dernière génération",
+      "WhatsApp Business API",
+      "RGPD, hébergement UE",
+      "Connecteurs open-source",
+      "Isolation mono-tenant"
     ]
   },
   "problem": {
@@ -57,7 +57,7 @@
     "tag": "L'APPROCHE",
     "title": "L'IA prend le volume.",
     "titleAccent": "Votre équipe prend les moments qui comptent.",
-    "description": "Cardynal n'est pas là pour remplacer votre équipe support. Cardynal est là pour la rendre plus rapide, plus fine et libérée du travail qui la draine. L'IA gère le volume répétitif. Quand un cas demande du jugement, elle le passe à un humain avec toute la conversation, l'historique client et le contexte déjà préparés. Pas de redémarrage. Pas de copier-coller. Pas de fil perdu.",
+    "description": "L'IA gère le volume répétitif. Quand un cas demande du jugement, elle le passe à un humain avec toute la conversation, l'historique client et le contexte déjà préparés. Pas de redémarrage. Pas de copier-coller. Pas de fil perdu.",
     "cards": [
       {
         "title": "Des agents IA qui agissent vraiment",
@@ -72,7 +72,7 @@
         "description": "Quand l'IA escalade, votre agent arrive sur une conversation déjà préparée. Intention détectée, historique attaché, fiche client ouverte. Il prend la main en quelques secondes."
       },
       {
-        "title": "Ticketing et mini-CRM intégrés",
+        "title": "Ticketing et CRM, natifs",
         "description": "Les conversations deviennent des tickets, les tickets sont liés à des fiches clients, les fiches portent l'historique. Pipelines, SLA, champs personnalisés, kanban : tout est intégré."
       },
       {
@@ -88,7 +88,7 @@
     "steps": {
       "customer": "Ma commande a 5 jours de retard !",
       "ai": "Détecté : urgent · frustration",
-      "blocked": "Politique de remboursement : hors périmètre",
+      "blocked": "Politique de remboursement : approbation humaine requise",
       "priority": "Transmis à Maya · Priorité"
     }
   },
@@ -191,8 +191,8 @@
         "description": "Hébergement Railway en zones UE. RGPD-compliant par défaut, auditable sur demande, compatible souveraineté."
       },
       {
-        "title": "Chiffrement de bout en bout",
-        "description": "TLS en transit, AES-256 au repos. Isolation par tenant. Authentification JWT. Code source des connecteurs ouvert et auditable."
+        "title": "Mono-tenant par défaut",
+        "description": "Votre workspace tourne en isolation. Connecteurs open-source, entièrement auditables. Le chiffrement va de soi."
       },
       {
         "title": "Vous restez propriétaire de tout",
@@ -221,28 +221,6 @@
       }
     ]
   },
-  "features": {
-    "title": "Produit",
-    "subtitle": "Tout ce qu'il faut pour piloter vos opérations client",
-    "items": [
-      {
-        "title": "Inbox omnicanale",
-        "description": "Toutes les conversations, tous les canaux, gérées par l'IA. Votre équipe intervient à tout moment en un clic."
-      },
-      {
-        "title": "Base de connaissance",
-        "description": "Importez des PDF, crawlez vos sites, ou rédigez manuellement. Découpé, indexé et restitué via RAG, avec rafraîchissement automatique."
-      },
-      {
-        "title": "Moteur de workflows visuel",
-        "description": "Automatisations en drag-and-drop : triggers, conditions, prompts IA, requêtes HTTP et code inline. Construisez une fois. Lancez sur événements, planifications ou webhooks."
-      },
-      {
-        "title": "Intégrations",
-        "description": "Shopify, WooCommerce et plus. Des intégrations par manifeste donnent à vos agents un accès temps réel aux données, sans code."
-      }
-    ]
-  },
   "testimonials": {
     "title": "Témoignages",
     "subtitle": "Ce que les équipes en disent"
@@ -262,7 +240,7 @@
         "price": "$29",
         "yearlyPrice": "$23",
         "period": "mois",
-        "description": "Pour les petites équipes qui démarrent avec le support IA",
+        "description": "Une équipe, un canal. Mettez l'IA en marche avant de passer à l'échelle.",
         "buttonText": "Essai gratuit 14 jours",
         "features": [
           "50 sessions/mois",
@@ -276,7 +254,7 @@
         "price": "$99",
         "yearlyPrice": "$79",
         "period": "mois",
-        "description": "Pour les équipes qui montent en charge",
+        "description": "Quand un seul canal ne suffit plus. WhatsApp inclus, plus d'agents, plus de connaissance.",
         "buttonText": "Essai gratuit 14 jours",
         "features": [
           "300 sessions/mois",
@@ -291,7 +269,7 @@
         "price": "$299",
         "yearlyPrice": "$239",
         "period": "mois",
-        "description": "Pour les agences et équipes qui veulent un contrôle total",
+        "description": "Tout illimité. Votre propre LLM. Accès API pour le reste.",
         "buttonText": "Essai gratuit 14 jours",
         "features": [
           "1 200 sessions/mois",
@@ -380,8 +358,8 @@
     "error": "Une erreur s'est produite. Réessayez."
   },
   "cta": {
-    "title": "Libérez votre équipe du travail qu'elle ne mérite pas.",
-    "subtitle": "Déployez votre premier agent IA en moins de 5 minutes.",
+    "title": "Déployez votre premier agent IA en moins de 5 minutes.",
+    "subtitle": "Sans code, sans spécialiste, sans contrat.",
     "cta": "Essai gratuit"
   },
   "footer": {

@@ -2,7 +2,7 @@
 
 import Features from "@/components/features-vertical";
 import Section from "@/components/section";
-import { Link, Upload, Rocket } from "lucide-react";
+import { Plug, Brain, Activity } from "lucide-react";
 import { useTranslations } from "next-intl";
 
 export default function Component() {
@@ -15,7 +15,7 @@ export default function Component() {
       content: t("steps.0.description"),
       image: "/chat-inbox-light.png",
       imageDark: "/chat-inbox-dark.png",
-      icon: <Link className="w-6 h-6 text-primary" />,
+      icon: <Plug className="w-6 h-6 text-primary" />,
     },
     {
       id: 2,
@@ -23,7 +23,7 @@ export default function Component() {
       content: t("steps.1.description"),
       image: "/knowledge-base-light.png",
       imageDark: "/knowledge-base-dark.png",
-      icon: <Upload className="w-6 h-6 text-primary" />,
+      icon: <Brain className="w-6 h-6 text-primary" />,
     },
     {
       id: 3,
@@ -31,7 +31,7 @@ export default function Component() {
       content: t("steps.2.description"),
       image: "/agent-builder-light.png",
       imageDark: "/agent-builder-dark.png",
-      icon: <Rocket className="w-6 h-6 text-primary" />,
+      icon: <Activity className="w-6 h-6 text-primary" />,
     },
   ];
 
