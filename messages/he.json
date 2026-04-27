@@ -1,283 +1,409 @@
 {
   "header": {
-    "login": "\u05d4\u05ea\u05d7\u05d1\u05e8\u05d5\u05ea",
-    "getStarted": "\u05d4\u05ea\u05d7\u05d9\u05dc\u05d5 \u05d1\u05d7\u05d9\u05e0\u05dd"
+    "login": "התחברות",
+    "getStarted": "ניסיון חינם"
   },
   "nav": {
-    "features": "\u05de\u05d5\u05e6\u05e8",
+    "features": "מוצר",
     "featuresMain": {
-      "title": "\u05ea\u05de\u05d9\u05db\u05ea \u05dc\u05e7\u05d5\u05d7\u05d5\u05ea AI",
-      "description": "\u05e4\u05dc\u05d8\u05e4\u05d5\u05e8\u05de\u05d4 \u05d0\u05d7\u05ea \u05d1\u05de\u05e7\u05d5\u05dd \u05db\u05dc \u05d4\u05e1\u05d8\u05d0\u05e7."
+      "title": "תמיכה: AI + אנושי",
+      "description": "שחררו את הצוות שלכם מעבודה חוזרת."
     },
     "featuresItems": [
-      { "title": "\u05e1\u05d5\u05db\u05e0\u05d9 AI", "description": "\u05d6\u05d9\u05d4\u05d5\u05d9 \u05db\u05d5\u05d5\u05e0\u05d4, \u05d4\u05e8\u05e6\u05ea playbooks, \u05e4\u05ea\u05e8\u05d5\u05df \u05d0\u05d5\u05d8\u05d5\u05e0\u05d5\u05de\u05d9 \u05e9\u05dc \u05e9\u05d9\u05d7\u05d5\u05ea." },
-      { "title": "\u05ea\u05d9\u05d1\u05ea \u05d3\u05d5\u05d0\u05e8 \u05de\u05d0\u05d5\u05d7\u05d3\u05ea", "description": "WhatsApp, \u05d0\u05ea\u05e8, \u05de\u05d9\u05d9\u05dc, \u05d0\u05d9\u05e0\u05e1\u05d8\u05d2\u05e8\u05dd \u2014 \u05db\u05dc \u05d4\u05e9\u05d9\u05d7\u05d5\u05ea \u05d1\u05ea\u05d9\u05d1\u05d4 \u05d0\u05d7\u05ea." },
-      { "title": "\u05ea\u05d4\u05dc\u05d9\u05db\u05d9\u05dd \u05d5\u05d9\u05d6\u05d5\u05d0\u05dc\u05d9\u05d9\u05dd", "description": "\u05d8\u05e8\u05d9\u05d2\u05e8\u05d9\u05dd, \u05ea\u05e0\u05d0\u05d9\u05dd, HTTP, \u05e4\u05e8\u05d5\u05de\u05e4\u05d8\u05d9\u05dd AI \u2014 \u05d1\u05e0\u05d5 \u05d0\u05d5\u05d8\u05d5\u05de\u05e6\u05d9\u05d5\u05ea \u05d5\u05d9\u05d6\u05d5\u05d0\u05dc\u05d9\u05ea, \u05dc\u05dc\u05d0 \u05e7\u05d5\u05d3." }
+      { "title": "סוכני AI", "description": "זיהוי כוונה, פעולה על הכלים שלכם, העברה עם כל ההקשר." },
+      { "title": "תיבת דואר אומני-ערוצית", "description": "WhatsApp, אתר, אימייל, אינסטגרם. שיחה אחת, צוות אחד." },
+      { "title": "תהליכים ויזואליים", "description": "לוגיקה בגרירה. ללא קוד, ללא דבק, ללא צוואר בקבוק." }
     ],
-    "solutions": "\u05ea\u05e8\u05d7\u05d9\u05e9\u05d9 \u05e9\u05d9\u05de\u05d5\u05e9",
+    "solutions": "מקרי שימוש",
     "solutionsItems": [
-      { "title": "\u05d0\u05d9\u05e7\u05d5\u05de\u05e8\u05e1", "description": "\u05e1\u05d5\u05db\u05e0\u05d9 AI \u05e9\u05de\u05db\u05d9\u05e8\u05d9\u05dd \u05d0\u05ea \u05d4\u05e7\u05d8\u05dc\u05d5\u05d2, \u05de\u05e2\u05d1\u05d3\u05d9\u05dd \u05d4\u05d7\u05d6\u05e8\u05d5\u05ea \u05d5\u05e2\u05d5\u05e7\u05d1\u05d9\u05dd \u05d0\u05d7\u05e8\u05d9 \u05d4\u05d6\u05de\u05e0\u05d5\u05ea." },
-      { "title": "SaaS \u05d5\u05d8\u05db\u05e0\u05d5\u05dc\u05d5\u05d2\u05d9\u05d4", "description": "\u05d4\u05e1\u05d9\u05d8\u05d5 \u05db\u05e8\u05d8\u05d9\u05e1\u05d9 L1 \u05e2\u05dd AI, \u05d4\u05e2\u05d1\u05d9\u05e8\u05d5 \u05dc\u05d0\u05e0\u05e9\u05d9\u05dd \u05d1\u05e6\u05d5\u05e8\u05d4 \u05d7\u05dc\u05e7\u05d4, \u05d0\u05d5\u05d8\u05de\u05d8\u05d5 onboarding." },
-      { "title": "\u05ea\u05d5\u05e8\u05d9 \u05e4\u05d2\u05d9\u05e9\u05d5\u05ea", "description": "\u05d0\u05d5\u05d8\u05d5\u05de\u05e6\u05d9\u05d4 \u05e9\u05dc \u05ea\u05d9\u05d0\u05d5\u05dd, \u05d0\u05d9\u05e9\u05d5\u05e8\u05d9\u05dd \u05d5\u05ea\u05d6\u05db\u05d5\u05e8\u05d5\u05ea \u2014 \u05de\u05e7\u05e6\u05d4 \u05dc\u05e7\u05e6\u05d4." },
-      { "title": "\u05d1\u05d9\u05d8\u05d5\u05d7 \u05d5\u05e4\u05d9\u05e0\u05e0\u05e1\u05d9\u05dd", "description": "\u05d8\u05d9\u05e4\u05d5\u05dc \u05d1\u05ea\u05d1\u05d9\u05e2\u05d5\u05ea, \u05e9\u05d0\u05dc\u05d5\u05ea \u05e4\u05d5\u05dc\u05d9\u05e1\u05d4 \u05d5\u05e4\u05e0\u05d9\u05d5\u05ea \u05d7\u05e9\u05d1\u05d5\u05df \u2014 \u05d1\u05d3\u05d9\u05d5\u05e7 AI." },
-      { "title": "\u05e9\u05d9\u05e8\u05d5\u05ea\u05d9\u05dd \u05de\u05e7\u05e6\u05d5\u05e2\u05d9\u05d9\u05dd", "description": "\u05dc\u05d0 \u05de\u05e4\u05e1\u05e4\u05e1\u05d9\u05dd \u05dc\u05d9\u05d3. AI \u05de\u05e1\u05e0\u05df, \u05de\u05e0\u05ea\u05d1 \u05d5\u05d9\u05d5\u05e6\u05e8 \u05db\u05e8\u05d8\u05d9\u05e1\u05d9\u05dd \u2014 24/7." },
-      { "title": "\u05e1\u05d5\u05db\u05e0\u05d5\u05d9\u05d5\u05ea", "description": "\u05e4\u05e8\u05e1\u05d5 \u05d5\u05e0\u05d4\u05dc\u05d5 \u05ea\u05de\u05d9\u05db\u05ea AI \u05e2\u05d1\u05d5\u05e8 \u05de\u05e1\u05e4\u05e8 \u05dc\u05e7\u05d5\u05d7\u05d5\u05ea \u05de\u05e4\u05dc\u05d8\u05e4\u05d5\u05e8\u05de\u05d4 \u05d0\u05d7\u05ea." }
+      { "title": "מסחר אלקטרוני", "description": "החזרות, מעקב הזמנות, שאלות על קטלוג: מטופלים לפני שהצוות שלכם מתעורר." },
+      { "title": "SaaS וטכנולוגיה", "description": "סינון פניות L1, העברות עם הקשר, אונבורדינג בטייס אוטומטי." },
+      { "title": "הזמנות ופגישות", "description": "תיאום, אישור, תזכורות. הצוות שלכם מטפל במקרים החריגים." },
+      { "title": "ביטוח ופיננסים", "description": "תביעות, פוליסות, שאלות חשבון. דיוק AI, מוכן לביקורת." },
+      { "title": "שירותים מקצועיים", "description": "סינון לידים, ניתוב, יצירת פניות. 24/7." },
+      { "title": "סוכנויות", "description": "פריסת תמיכת AI עבור כל לקוח ממרחב עבודה אחד." }
     ],
-    "pricing": "\u05de\u05d7\u05d9\u05e8\u05d9\u05dd",
-    "blog": "\u05d1\u05dc\u05d5\u05d2",
-    "docs": "\u05ea\u05d9\u05e2\u05d5\u05d3"
+    "pricing": "מחירים",
+    "blog": "בלוג",
+    "docs": "תיעוד"
   },
   "hero": {
-    "pill": "\u05ea\u05de\u05d9\u05db\u05ea AI",
-    "pillSub": "\u05e4\u05dc\u05d8\u05e4\u05d5\u05e8\u05de\u05d4 \u05d0\u05d7\u05ea \u05dc\u05db\u05dc \u05d4\u05e2\u05e8\u05d5\u05e6\u05d9\u05dd",
+    "pill": "תמיכה: AI + אנושי",
+    "pillSub": "נבנה לצוות שלכם, לא להחליף אותו.",
     "title": [
-      "\u05d0\u05dc \u05ea\u05e4\u05e1\u05e4\u05e1\u05d5",
-      "\u05d0\u05e3",
-      "\u05dc\u05e7\u05d5\u05d7."
+      "העצימו",
+      "את צוות",
+      "התמיכה."
     ],
-    "description": "\u05e1\u05d5\u05db\u05e0\u05d9 AI \u05e4\u05d5\u05ea\u05e8\u05d9\u05dd \u05e9\u05d9\u05d7\u05d5\u05ea \u05d1-WhatsApp, \u05d0\u05ea\u05e8, \u05de\u05d9\u05d9\u05dc, \u05d0\u05d9\u05e0\u05e1\u05d8\u05d2\u05e8\u05dd \u05d5\u05de\u05e1\u05e0\u05d2'\u05e8 \u2014 \u05d5\u05de\u05e2\u05d1\u05d9\u05e8\u05d9\u05dd \u05d0\u05ea \u05d4\u05e9\u05d0\u05e8 \u05dc\u05e6\u05d5\u05d5\u05ea \u05e9\u05dc\u05db\u05dd \u05e2\u05dd \u05db\u05dc \u05d4\u05d4\u05e7\u05e9\u05e8. \u05d1\u05d0\u05d5\u05d5\u05d9\u05e8 \u05ea\u05d5\u05da \u05d7\u05de\u05e9 \u05d3\u05e7\u05d5\u05ea.",
-    "cta": "\u05d4\u05ea\u05d7\u05d9\u05dc\u05d5 \u05d1\u05d7\u05d9\u05e0\u05dd \u2014 14 \u05d9\u05d5\u05dd",
-    "ctaSecondary": "\u05e7\u05d1\u05e2\u05d5 \u05d4\u05d3\u05d2\u05de\u05d4"
+    "description": "Cardynal מטפל ב-80% החוזרים: החזרות, בדיקות סטטוס, שאלות נפוצות, תיאום פגישות. הצוות שלכם מתמקד במה שדורש מוח אנושי: אמפתיה, מקרים מורכבים, הזדמנויות עסקיות.",
+    "cta": "ניסיון חינם 14 יום",
+    "ctaSecondary": "הזמינו דמו"
   },
   "trustStrip": {
-    "title": "\u05d1\u05e0\u05d5\u05d9 \u05e2\u05dc \u05de\u05d4 \u05e9\u05d0\u05ea\u05dd \u05db\u05d1\u05e8 \u05de\u05db\u05d9\u05e8\u05d9\u05dd",
+    "title": "בנוי על התשתיות שמפעילות את האינטרנט",
     "items": [
       "OpenAI GPT-4",
       "Anthropic Claude",
       "WhatsApp Business",
-      "\u05de\u05d0\u05d5\u05d7\u05e1\u05df \u05d1\u05d0\u05d9\u05e8\u05d5\u05e4\u05d4",
-      "\u05dc\u05dc\u05d0 \u05e2\u05de\u05dc\u05d4 \u05dc\u05e4\u05ea\u05e8\u05d5\u05df"
+      "תשתית מאוחסנת באירופה",
+      "המידע שלכם, השרתים שלכם"
     ]
   },
   "problem": {
-    "tag": "\u05d4\u05d0\u05ea\u05d2\u05e8",
-    "quote": "\u05e9\u05d9\u05e9\u05d4 \u05db\u05dc\u05d9\u05dd, \u05e9\u05d9\u05e9\u05d4 \u05de\u05de\u05de\u05e9\u05e7\u05d9\u05dd, \u05d0\u05e4\u05e1 \u05d4\u05e7\u05e9\u05e8 \u05de\u05e9\u05d5\u05ea\u05e3 \u2014 Cardynal \u05de\u05d7\u05dc\u05d9\u05e4\u05d4 \u05d0\u05ea \u05db\u05d5\u05dc\u05dd \u05d1\u05e4\u05dc\u05d8\u05e4\u05d5\u05e8\u05de\u05d4 \u05d0\u05d7\u05ea, \u05db\u05da \u05e9\u05d2\u05dd \u05d4\u05e6\u05d5\u05d5\u05ea \u05d5\u05d2\u05dd \u05d4\u05dc\u05e7\u05d5\u05d7\u05d5\u05ea \u05dc\u05d0 \u05d9\u05e8\u05d2\u05d9\u05e9\u05d5 \u05d9\u05d5\u05ea\u05e8 \u05d0\u05ea \u05d4\u05ea\u05e4\u05e8\u05d9\u05dd."
+    "tag": "המציאות",
+    "quote": "הסוכנים הטובים ביותר שלכם מבלים את הימים בהעתקת מספרי מעקב ובאיפוס סיסמאות שכוחות. השיחות שבאמת זקוקות להם נענות אחרונות."
   },
   "solution": {
-    "tag": "\u05d4\u05e4\u05ea\u05e8\u05d5\u05df",
-    "title": "\u05e4\u05dc\u05d8\u05e4\u05d5\u05e8\u05de\u05d4 \u05d0\u05d7\u05ea.",
-    "titleAccent": "AI \u05d5\u05d4\u05e6\u05d5\u05d5\u05ea \u05e9\u05dc\u05db\u05dd, \u05d1\u05e1\u05e0\u05db\u05e8\u05d5\u05df.",
-    "description": "\u05e1\u05d5\u05db\u05e0\u05d9 AI \u05e4\u05d5\u05ea\u05e8\u05d9\u05dd \u05d0\u05ea \u05de\u05d4 \u05e9\u05d4\u05dd \u05d9\u05db\u05d5\u05dc\u05d9\u05dd, \u05d5\u05d0\u05d6 \u05de\u05e2\u05d1\u05d9\u05e8\u05d9\u05dd \u05dc\u05e6\u05d5\u05d5\u05ea \u05e9\u05dc\u05db\u05dd \u05e2\u05dd \u05db\u05dc \u05d4\u05e9\u05d9\u05d7\u05d4, \u05e4\u05e8\u05d5\u05e4\u05d9\u05dc \u05d4\u05dc\u05e7\u05d5\u05d7 \u05d5\u05d4\u05d4\u05d9\u05e1\u05d8\u05d5\u05e8\u05d9\u05d4 \u2014 \u05d1\u05dc\u05d9 \u05d0\u05d9\u05e4\u05d5\u05e1, \u05d1\u05dc\u05d9 \u05d4\u05e2\u05ea\u05e7-\u05d4\u05d3\u05d1\u05e7, \u05d1\u05dc\u05d9 \u05dc\u05d0\u05d1\u05d3 \u05d4\u05e7\u05e9\u05e8. \u05d4\u05dc\u05e7\u05d5\u05d7 \u05d0\u05e3 \u05e4\u05e2\u05dd \u05dc\u05d0 \u05de\u05e8\u05d2\u05d9\u05e9 \u05d0\u05ea \u05d4\u05ea\u05e4\u05e8 \u05d1\u05d9\u05df \u05d4-AI \u05dc\u05d0\u05d3\u05dd. \u05e4\u05e8\u05e1\u05d5 \u05dc\u05dc\u05e7\u05d5\u05d7\u05d5\u05ea \u05e9\u05dc\u05db\u05dd \u05d0\u05d5 \u05d4\u05e9\u05ea\u05de\u05e9\u05d5 \u05d1\u05e2\u05e6\u05de\u05db\u05dd \u2014 \u05d1\u05d0\u05d5\u05d5\u05d9\u05e8 \u05d1\u05d3\u05e7\u05d5\u05ea, \u05dc\u05d0 \u05d1\u05d7\u05d5\u05d3\u05e9\u05d9\u05dd.",
+    "tag": "הגישה",
+    "title": "ה-AI לוקח את הנפח.",
+    "titleAccent": "הצוות שלכם לוקח את הרגעים שחשובים.",
+    "description": "Cardynal לא נועד להחליף את צוות התמיכה שלכם. הוא נועד להפוך אותו למהיר יותר, חד יותר ומשוחרר מהעבודה שמרוקנת אותו. ה-AI מטפל בנפח החוזר. כשמשהו דורש שיקול דעת, הוא מעביר לאדם עם כל השיחה, היסטוריית הלקוח וההקשר כבר מוכנים. אין התחלה מחדש. אין העתק-הדבק. אין חוט שאבד.",
     "cards": [
       {
-        "title": "\u05e1\u05d5\u05db\u05e0\u05d9 AI \u05e9\u05d1\u05d0\u05de\u05ea \u05e4\u05d5\u05ea\u05e8\u05d9\u05dd",
-        "description": "\u05d6\u05d9\u05d4\u05d5\u05d9 \u05db\u05d5\u05d5\u05e0\u05d4, \u05d4\u05e8\u05e6\u05ea \u05d4-playbook \u05d4\u05e0\u05db\u05d5\u05df, \u05e7\u05e8\u05d9\u05d0\u05d5\u05ea API, \u05e4\u05ea\u05e8\u05d5\u05df. \u05db\u05e9\u05d4-AI \u05dc\u05d0 \u05de\u05e6\u05dc\u05d9\u05d7, \u05d4\u05d5\u05d0 \u05de\u05e2\u05d1\u05d9\u05e8 \u05dc\u05d0\u05d3\u05dd \u05e2\u05dd \u05db\u05dc \u05d4\u05d4\u05e7\u05e9\u05e8."
+        "title": "סוכני AI שבאמת פועלים",
+        "description": "לא צ׳אטבוטים שמקריאים תשובות. סוכני Cardynal קוראים ל-API שלכם, מעדכנים פניות, מקבלים תשלומים, מתאמים פגישות. הם משתמשים באותם כלים שהצוות שלכם משתמש בהם."
       },
       {
-        "title": "\u05d7\u05d1\u05e8\u05d5 \u05d0\u05ea \u05db\u05dc \u05d4\u05e2\u05e8\u05d5\u05e6\u05d9\u05dd",
-        "description": "WhatsApp Business, \u05e6'\u05d0\u05d8, \u05de\u05d9\u05d9\u05dc, \u05d0\u05d9\u05e0\u05e1\u05d8\u05d2\u05e8\u05dd, \u05de\u05e1\u05e0\u05d2'\u05e8 \u2014 \u05d7\u05d1\u05e8\u05d5 \u05d0\u05ea \u05db\u05d5\u05dc\u05dd. \u05d0\u05d9\u05e0\u05d8\u05d2\u05e8\u05e6\u05d9\u05d5\u05ea \u05de\u05d1\u05d5\u05e1\u05e1\u05d5\u05ea manifest \u05de\u05d0\u05e4\u05e9\u05e8\u05d5\u05ea \u05dc\u05e1\u05d5\u05db\u05e0\u05d9\u05dd \u05dc\u05e9\u05dc\u05d5\u05e3 \u05e0\u05ea\u05d5\u05e0\u05d9\u05dd \u05d1\u05d6\u05de\u05df \u05d0\u05de\u05ea \u05de-Shopify, \u05d4-CRM \u05e9\u05dc\u05db\u05dd, \u05db\u05dc \u05d3\u05d1\u05e8 \u05e2\u05dd API. \u05d1\u05dc\u05d9 \u05e7\u05d5\u05d3."
+        "title": "כל הערוצים בתיבת דואר אחת",
+        "description": "WhatsApp Business, צ׳אט אתר, אימייל, אינסטגרם, Messenger. הצוות שלכם עובד במקום אחד. הלקוחות שלכם פונים אליכם איפה שהם נמצאים."
       },
       {
-        "title": "\u05ea\u05d9\u05d1\u05ea \u05d4\u05d3\u05d5\u05d0\u05e8 \u05e9\u05dc \u05d4\u05e6\u05d5\u05d5\u05ea \u05e9\u05dc\u05db\u05dd",
-        "description": "\u05db\u05dc \u05e9\u05d9\u05d7\u05d5\u05ea \u05d4\u05dc\u05e7\u05d5\u05d7\u05d5\u05ea \u05d1\u05ea\u05d5\u05e8 \u05d0\u05d7\u05d3, \u05d1\u05dc\u05d9 \u05e7\u05e9\u05e8 \u05dc\u05e2\u05e8\u05d5\u05e5. \u05e1\u05e0\u05e0\u05d5 \u05dc\u05e4\u05d9 \u05e1\u05d8\u05d8\u05d5\u05e1, \u05e1\u05d5\u05db\u05df \u05d0\u05d5 \u05e2\u05e8\u05d5\u05e5. \u05d4\u05e8\u05d9\u05de\u05d5 \u05d1\u05d3\u05d9\u05d5\u05e7 \u05d1\u05de\u05e7\u05d5\u05dd \u05e9\u05d4-AI \u05e2\u05e6\u05e8 \u2014 \u05d1\u05dc\u05d9 \u05dc\u05d0\u05d1\u05d3 \u05d4\u05e7\u05e9\u05e8 \u05d1\u05de\u05e2\u05d1\u05e8."
+        "title": "העברות שמרגישות כמו ריצת שליחים, לא כמו התחלה מחדש",
+        "description": "כשה-AI מסלים, הסוכן שלכם נכנס לשיחה שכבר תודרכה. כוונה זוהתה, היסטוריה מצורפת, פרופיל לקוח פתוח. הוא לוקח את ההגה תוך שניות."
       },
       {
-        "title": "\u05db\u05e8\u05d8\u05d9\u05e1\u05d9\u05dd \u05de\u05d5\u05d1\u05e0\u05d9\u05dd \u05e2\u05dd \u05de\u05e2\u05e7\u05d1 SLA",
-        "description": "\u05e9\u05d9\u05d7\u05d5\u05ea \u05d4\u05d5\u05e4\u05db\u05d5\u05ea \u05dc\u05db\u05e8\u05d8\u05d9\u05e1\u05d9\u05dd \u05d0\u05d5\u05d8\u05d5\u05de\u05d8\u05d9\u05ea. \u05e7\u05e0\u05d1\u05df, \u05e2\u05d3\u05d9\u05e4\u05d5\u05d9\u05d5\u05ea, SLA, \u05e9\u05d3\u05d5\u05ea \u05de\u05d5\u05ea\u05d0\u05de\u05d9\u05dd \u05d5\u05ea\u05e6\u05d5\u05d2\u05d5\u05ea \u05de\u05e8\u05d5\u05d1\u05d5\u05ea \u2014 \u05d4\u05db\u05dc \u05de\u05d5\u05d1\u05e0\u05d4."
+        "title": "מערכת פניות ו-CRM מובנים",
+        "description": "שיחות הופכות לפניות, פניות מקושרות לפרופילי לקוח, פרופילים נושאים היסטוריה. צינורות מכירה, SLA, שדות מותאמים, קנבן: הכול מובנה."
       },
       {
-        "title": "\u05d1\u05e1\u05d9\u05e1 \u05d9\u05d3\u05e2 \u05e2\u05dd \u05e9\u05dc\u05d9\u05e4\u05ea RAG",
-        "description": "\u05d4\u05e2\u05dc\u05d5 PDF, \u05e1\u05e8\u05e7\u05d5 \u05d0\u05ea\u05e8\u05d9\u05dd, \u05d0\u05d5 \u05db\u05ea\u05d1\u05d5 \u05d9\u05e9\u05d9\u05e8\u05d5\u05ea. \u05de\u05d7\u05d5\u05dc\u05e7, \u05de\u05d0\u05d5\u05e0\u05d3\u05e7\u05e1 \u05d5\u05de\u05d5\u05d7\u05d6\u05e8 \u05d3\u05e8\u05da RAG \u2014 \u05d4-AI \u05de\u05e6\u05d8\u05d8 \u05de\u05e7\u05d5\u05e8\u05d5\u05ea \u05d5\u05de\u05ea\u05e8\u05e2\u05e0\u05df \u05d0\u05d5\u05d8\u05d5\u05de\u05d8\u05d9\u05ea."
+        "title": "מאגר ידע שהצוות שלכם באמת עורך",
+        "description": "עורך בסגנון Notion ישירות באפליקציה. סרקו אתרים, העלו קבצי PDF, או כתבו ישירות. ה-RAG מצטט מקורות. הידע שלכם נשאר חי, לא קבור בעץ מסמכים."
       }
     ]
   },
+  "tree": {
+    "tag": "ההעברה, באיור",
+    "title": "כשה-AI מגיע לגבול שלו, הצוות שלכם לוקח את ההגה.",
+    "subtitle": "עם כל ההקשר כבר מוכן.",
+    "steps": {
+      "customer": "ההזמנה שלי באיחור של 5 ימים!",
+      "ai": "זוהה: דחוף · מתוסכל",
+      "blocked": "מדיניות החזר: מחוץ להיקף",
+      "priority": "הועבר ל-Maya · עדיפות"
+    }
+  },
   "howItWorks": {
-    "title": "\u05d0\u05d9\u05da \u05d6\u05d4 \u05e2\u05d5\u05d1\u05d3",
-    "subtitle": "\u05de\u05d0\u05e4\u05e1 \u05dc\u05e1\u05d5\u05db\u05df \u05d7\u05d9. \u05e9\u05dc\u05d5\u05e9\u05d4 \u05e6\u05e2\u05d3\u05d9\u05dd, \u05d1\u05dc\u05d9 \u05de\u05e4\u05ea\u05d7.",
+    "title": "איך זה עובד",
+    "subtitle": "מאפס לסוכן בייצור. שלושה שלבים, ללא מפתח.",
     "steps": [
       {
-        "title": "1. \u05d7\u05d1\u05e8\u05d5 \u05d0\u05ea \u05d4\u05e2\u05e8\u05d5\u05e6\u05d9\u05dd",
-        "description": "\u05d4\u05d5\u05e1\u05d9\u05e4\u05d5 WhatsApp, \u05e6\u05f3\u05d0\u05d8, \u05de\u05d9\u05d9\u05dc \u05d0\u05d5 \u05d0\u05d9\u05e0\u05e1\u05d8\u05d2\u05e8\u05dd \u05d1\u05e9\u05e0\u05d9 \u05e7\u05dc\u05d9\u05e7\u05d9\u05dd. \u05d1\u05dc\u05d9 \u05e7\u05d5\u05d3, \u05d1\u05dc\u05d9 \u05e6\u05d5\u05d5\u05ea \u05de\u05d5\u05de\u05d7\u05d9\u05dd."
+        "title": "1. חברו את הערוצים שלכם",
+        "description": "WhatsApp, צ׳אט אתר, אימייל, אינסטגרם. שתי לחיצות. ללא קוד, ללא צוות מומחים."
       },
       {
-        "title": "2. \u05d4\u05d6\u05d9\u05e0\u05d5 \u05d0\u05ea \u05d1\u05e1\u05d9\u05e1 \u05d4\u05d9\u05d3\u05e2",
-        "description": "\u05d4\u05e2\u05dc\u05d5 \u05de\u05e1\u05de\u05db\u05d9\u05dd, \u05e1\u05e8\u05e7\u05d5 \u05d0\u05ea \u05d4\u05d0\u05ea\u05e8, \u05d0\u05d5 \u05db\u05ea\u05d1\u05d5 \u05ea\u05d5\u05db\u05df \u05d9\u05d3\u05e0\u05d9\u05ea. \u05d4\u05e1\u05d5\u05db\u05df \u05dc\u05d5\u05de\u05d3 \u05d0\u05ea \u05d4\u05e2\u05e1\u05e7 \u05d5\u05de\u05ea\u05d7\u05d9\u05dc \u05dc\u05e2\u05e0\u05d5\u05ea \u05de\u05d9\u05d9\u05d3."
+        "title": "2. הזינו את הידע שלכם",
+        "description": "העלו מסמכים, סרקו את האתר שלכם, או כתבו ישירות בעורך. ה-AI לומד את העסק שלכם ומתחיל לענות מיד."
       },
       {
-        "title": "3. \u05e4\u05e8\u05e1\u05d5 \u05d5\u05d0\u05d5\u05d8\u05de\u05d8\u05d5",
-        "description": "\u05d4\u05e1\u05d5\u05db\u05df \u05de\u05e0\u05d4\u05dc \u05e9\u05d9\u05d7\u05d5\u05ea, \u05de\u05e4\u05e2\u05d9\u05dc \u05ea\u05d4\u05dc\u05d9\u05db\u05d9\u05dd \u05d5\u05d9\u05d5\u05e6\u05e8 \u05db\u05e8\u05d8\u05d9\u05e1\u05d9\u05dd. \u05d0\u05ea\u05dd \u05de\u05d8\u05e4\u05dc\u05d9\u05dd \u05d1\u05d7\u05e8\u05d9\u05d2\u05d9\u05dd."
+        "title": "3. פרסו וצפו",
+        "description": "ה-AI מטפל בנפח. הצוות שלכם מטפל בשיקול הדעת. אתם צופים במדדים, לא בפניות."
+      }
+    ]
+  },
+  "featuresDeepDive": {
+    "tag": "בתוך CARDYNAL",
+    "title": "כל הכלים שצוות התמיכה שלכם צריך.",
+    "subtitle": "הכול מקורי. שום דבר מודבק מבחוץ.",
+    "items": [
+      {
+        "title": "מאגר ידע חי",
+        "description": "עורך בסגנון Notion עם תיקיות, בלוקים ועיצוב עשיר. העלו קבצי PDF, סרקו אתרים שלמים, או כתבו ישירות. ה-RAG מצטט מקורות ומתעדכן אוטומטית בעת פרסום.",
+        "highlights": [
+          "עורך טקסט מקורי",
+          "סורק אתרים עם בקרת עומק",
+          "קליטת PDF, Markdown, HTML",
+          "ציטוטים על כל תשובת AI"
+        ]
+      },
+      {
+        "title": "מערכת פניות עם CRM מובנה",
+        "description": "שיחות הופכות לפניות, פניות מקושרות לפרופילי לקוח, פרופילים נושאים היסטוריה והערות. תאמו פגישות, רשמו שיחות, עקבו אחר צינור המכירה, מבלי לעזוב את תיבת הדואר.",
+        "highlights": [
+          "פרופילי לקוח עם היסטוריה מלאה",
+          "תיאום פגישות מובנה",
+          "צינורות מכירה, SLA, תצוגות קנבן",
+          "שדות מותאמים לכל מרחב עבודה"
+        ]
+      },
+      {
+        "title": "סוכנים שמשתמשים בכלים שלכם",
+        "description": "סוכני Cardynal לא רק עונים. הם קוראים ל-API שלכם, מעדכנים את ה-CRM, מקבלים תשלומים, מתאמים פגישות. אותם כלים שהצוות משתמש בהם, נגישים בבטחה דרך מניפסטים.",
+        "highlights": [
+          "גישה לכלים דרך מניפסט",
+          "אימות OAuth + מפתח API",
+          "יומן ביקורת על כל פעולה",
+          "בדיקה בקנבס לפני ייצור"
+        ]
+      },
+      {
+        "title": "בונה סוכנים ויזואלי",
+        "description": "קנבס בגרירה לבניית התנהגות הסוכן שלכם. חברו כוונות, כלים, מקורות ידע וכללי הסלמה. בדקו בזמן אמת. ללא קוד.",
+        "highlights": [
+          "בדיקה בזמן אמת על הקנבס",
+          "תמיכת מולטי-LLM (GPT-4, Claude)",
+          "לוגיקת הסלמה מסועפת",
+          "ניהול גרסאות מובנה"
+        ]
+      },
+      {
+        "title": "מנוע תהליכים",
+        "description": "28+ סוגי צמתים: טריגרים, תנאים, בקשות HTTP, פרומפטי AI, שאילתות מסד נתונים, קוד מוטמע. בנו פעם אחת. הריצו על אירועים, לוחות זמנים או webhooks.",
+        "highlights": [
+          "בונה בגרירה",
+          "הרצה על אירועים או לוחות זמנים",
+          "JavaScript מוטמע במידת הצורך",
+          "שימוש חוזר בין מרחבי עבודה"
+        ]
+      },
+      {
+        "title": "ערוצים ואינטגרציות",
+        "description": "WhatsApp Business, אימייל, אינסטגרם, Messenger, צ׳אט אתר, API. חברו את Shopify, את ה-CRM שלכם, יומנים, ספקי תשלום. מבוסס מניפסט, ללא קוד.",
+        "highlights": [
+          "כל ערוצי המסרים המובילים",
+          "אינטגרציות מסחר אלקטרוני מקוריות",
+          "סנכרון יומנים + תשלומים",
+          "מחברים בקוד פתוח"
+        ]
+      }
+    ]
+  },
+  "security": {
+    "tag": "אבטחה כברירת מחדל",
+    "title": "המידע שלכם נשאר אצלכם. תמיד.",
+    "subtitle": "Cardynal פועל ללא אף כלי צד שלישי בצינור הנתונים. אנו מארחים בתשתית אירופית, מצפינים מקצה לקצה, ונותנים לכם את המפתחות.",
+    "pillars": [
+      {
+        "title": "אפס מעבדים חיצוניים",
+        "description": "השיחות שלכם, הידע שלכם, נתוני הלקוחות שלכם: הם לעולם לא נוגעים ב-SaaS חיצוני. Cardynal הוא כל המחסנית."
+      },
+      {
+        "title": "תשתית מאוחסנת באירופה",
+        "description": "אירוח על Railway באזורי אירופה. תואם GDPR כברירת מחדל, ניתן לביקורת לפי דרישה, ידידותי לריבונות."
+      },
+      {
+        "title": "הצפנה מקצה לקצה",
+        "description": "TLS בתעבורה, AES-256 במנוחה. בידוד לפי דייר. אימות JWT. קוד המקור של המחברים פתוח וניתן לסקירה."
+      },
+      {
+        "title": "אתם הבעלים של הכול",
+        "description": "ייצאו את הנתונים שלכם בכל עת, בפורמטים סטנדרטיים. אין נעילה, אין בלוב קנייני. אם אתם עוזבים, אתם עוזבים עם הכול."
+      }
+    ]
+  },
+  "founders": {
+    "tag": "נבנה על ידי 2 אנשים",
+    "title": "Cardynal קטן, ממוקד וזמין.",
+    "subtitle": "אנחנו עונים על המיילים שלנו. אנחנו משחררים את המוצר בעצמנו. אם יש לכם משוב, הוא מגיע ישירות אלינו.",
+    "members": [
+      {
+        "name": "Aaron Attias",
+        "role": "מייסד · CTO",
+        "bio": "בונה את המוצר מקצה לקצה: זמן ריצה של סוכנים, מנוע תהליכים, מאגר ידע, תשתית. מאמין שכלי תמיכה טובים צריכים להיעלם בתוך העבודה.",
+        "linkedin": "https://www.linkedin.com/in/aaronattias",
+        "image": "/founders/aaron-attias.jpg"
+      },
+      {
+        "name": "Dan Sitbon",
+        "role": "שותף-מייסד · אסטרטגיה ועסקים",
+        "bio": "מוביל את ה-go-to-market, השותפויות והקשר עם הלקוח. מתרגם את הצרכים האמיתיים של הצוותים למה שאנחנו בונים בהמשך.",
+        "linkedin": "https://www.linkedin.com/in/dan-sitbon-7b7316262",
+        "image": "/founders/dan-sitbon.jpg"
       }
     ]
   },
   "features": {
-    "title": "\u05de\u05d5\u05e6\u05e8",
-    "subtitle": "\u05db\u05dc \u05de\u05d4 \u05e9\u05e6\u05e8\u05d9\u05da \u05db\u05d3\u05d9 \u05dc\u05e0\u05d4\u05dc operations \u05dc\u05e7\u05d5\u05d7\u05d5\u05ea",
+    "title": "מוצר",
+    "subtitle": "כל מה שצריך כדי להפעיל את התפעול הלקוחותי",
     "items": [
       {
-        "title": "\u05ea\u05d9\u05d1\u05ea \u05d3\u05d5\u05d0\u05e8 \u05e8\u05d1-\u05e2\u05e8\u05d5\u05e6\u05d9\u05ea",
-        "description": "\u05db\u05dc \u05d4\u05e9\u05d9\u05d7\u05d5\u05ea \u05de\u05db\u05dc \u05d4\u05e2\u05e8\u05d5\u05e6\u05d9\u05dd, \u05de\u05e0\u05d5\u05d4\u05dc\u05d5\u05ea \u05e2\u05f4\u05d9 AI. \u05d4\u05e6\u05d5\u05d5\u05ea \u05d9\u05db\u05d5\u05dc \u05dc\u05d4\u05d9\u05db\u05e0\u05e1 \u05d1\u05db\u05dc \u05e8\u05d2\u05e2 \u05d1\u05dc\u05d7\u05d9\u05e6\u05d4."
+        "title": "תיבת דואר אומני-ערוצית",
+        "description": "כל השיחות בכל הערוצים, מנוהלות על ידי AI. הצוות שלכם יכול להיכנס בכל נקודה בלחיצה אחת."
       },
       {
-        "title": "\u05d1\u05e1\u05d9\u05e1 \u05d9\u05d3\u05e2",
-        "description": "\u05d4\u05e2\u05dc\u05d5 PDF, \u05e1\u05e8\u05e7\u05d5 \u05d0\u05ea\u05e8\u05d9\u05dd, \u05d0\u05d5 \u05db\u05ea\u05d1\u05d5 \u05d9\u05d3\u05e0\u05d9\u05ea. \u05de\u05d7\u05d5\u05dc\u05e7, \u05de\u05d0\u05d5\u05e0\u05d3\u05e7\u05e1 \u05d5\u05de\u05d5\u05d7\u05d6\u05e8 \u05d3\u05e8\u05da RAG \u2014 \u05e2\u05dd \u05e8\u05e2\u05e0\u05d5\u05df \u05d0\u05d5\u05d8\u05d5\u05de\u05d8\u05d9."
+        "title": "מאגר ידע",
+        "description": "העלו קבצי PDF, סרקו אתרים, או כתבו ידנית. מחולק לחתיכות, מאוסף ומשולף דרך RAG, עם רענון אוטומטי."
       },
       {
-        "title": "\u05de\u05e0\u05d5\u05e2 \u05ea\u05d4\u05dc\u05d9\u05db\u05d9\u05dd \u05d5\u05d9\u05d6\u05d5\u05d0\u05dc\u05d9",
-        "description": "\u05d0\u05d5\u05d8\u05d5\u05de\u05e6\u05d9\u05d4 \u05d1-drag-and-drop: \u05d8\u05e8\u05d9\u05d2\u05e8\u05d9\u05dd, \u05ea\u05e0\u05d0\u05d9\u05dd, \u05e4\u05e8\u05d5\u05de\u05e4\u05d8\u05d9\u05dd AI, \u05d1\u05e7\u05e9\u05d5\u05ea HTTP \u05d5\u05e7\u05d5\u05d3 inline. \u05d1\u05e0\u05d5 \u05e4\u05e2\u05dd \u05d0\u05d7\u05ea \u2014 \u05e8\u05e5 \u05e2\u05dc \u05d0\u05d9\u05e8\u05d5\u05e2\u05d9\u05dd, \u05ea\u05d6\u05de\u05d5\u05e0\u05d9\u05dd \u05d0\u05d5 webhooks."
+        "title": "מנוע תהליכים ויזואלי",
+        "description": "אוטומציה בגרירה: טריגרים, תנאים, פרומפטי AI, בקשות HTTP וקוד מוטמע. בנו פעם אחת. רץ על אירועים, לוחות זמנים או webhooks."
       },
       {
-        "title": "\u05d0\u05d9\u05e0\u05d8\u05d2\u05e8\u05e6\u05d9\u05d5\u05ea",
-        "description": "Shopify, WooCommerce \u05d5\u05e2\u05d5\u05d3. \u05d0\u05d9\u05e0\u05d8\u05d2\u05e8\u05e6\u05d9\u05d5\u05ea \u05de\u05d1\u05d5\u05e1\u05e1\u05d5\u05ea \u05de\u05e0\u05d9\u05e4\u05e1\u05d8 \u05e0\u05d5\u05ea\u05e0\u05d5\u05ea \u05dc\u05e1\u05d5\u05db\u05e0\u05d9\u05dd \u05d2\u05d9\u05e9\u05d4 \u05dc\u05e0\u05ea\u05d5\u05e0\u05d9\u05dd \u05d1\u05d6\u05de\u05df \u05d0\u05de\u05ea \u2014 \u05d1\u05dc\u05d9 \u05e7\u05d5\u05d3."
+        "title": "אינטגרציות",
+        "description": "Shopify, WooCommerce ועוד. אינטגרציות מבוססות מניפסט נותנות לסוכנים שלכם גישה לנתונים בזמן אמת, ללא קוד."
       }
     ]
   },
   "testimonials": {
-    "title": "\u05de\u05d4 \u05d0\u05d5\u05de\u05e8\u05d9\u05dd \u05e2\u05dc\u05d9\u05e0\u05d5",
-    "subtitle": "\u05d4\u05e0\u05d4 \u05de\u05d4 \u05e9\u05e6\u05d5\u05d5\u05ea\u05d5\u05ea \u05db\u05de\u05d5\u05db\u05dd \u05d7\u05d5\u05e9\u05d1\u05d9\u05dd"
+    "title": "המלצות",
+    "subtitle": "מה צוותים אומרים"
   },
   "pricing": {
-    "title": "\u05de\u05d7\u05d9\u05e8\u05d9\u05dd",
-    "subtitle": "\u05ea\u05de\u05d7\u05d5\u05e8 \u05e9\u05e7\u05d5\u05e3. \u05d1\u05dc\u05d9 \u05e2\u05de\u05dc\u05d5\u05ea \u05dc\u05e4\u05ea\u05e8\u05d5\u05df.",
-    "monthly": "\u05d7\u05d5\u05d3\u05e9\u05d9",
-    "yearly": "\u05e9\u05e0\u05ea\u05d9",
-    "billedMonthly": "\u05d7\u05d9\u05d5\u05d1 \u05d7\u05d5\u05d3\u05e9\u05d9",
-    "billedAnnually": "\u05d7\u05d9\u05d5\u05d1 \u05e9\u05e0\u05ea\u05d9",
-    "popular": "\u05d4\u05db\u05d9 \u05e0\u05d1\u05d7\u05e8",
-    "contactUs": "\u05d3\u05d1\u05e8\u05d5 \u05d0\u05d9\u05ea\u05e0\u05d5",
+    "title": "מחירים",
+    "subtitle": "תמחור שקוף. ללא דמי-רזולוציה.",
+    "monthly": "חודשי",
+    "yearly": "שנתי",
+    "billedMonthly": "חיוב חודשי",
+    "billedAnnually": "חיוב שנתי",
+    "popular": "הפופולרי ביותר",
+    "contactUs": "דברו איתנו",
     "plans": [
       {
         "name": "STARTER",
         "price": "$29",
         "yearlyPrice": "$23",
-        "period": "\u05d7\u05d5\u05d3\u05e9",
-        "description": "\u05dc\u05e6\u05d5\u05d5\u05ea\u05d5\u05ea \u05e7\u05d8\u05e0\u05d9\u05dd \u05e9\u05de\u05ea\u05d7\u05d9\u05dc\u05d9\u05dd \u05e2\u05dd \u05ea\u05de\u05d9\u05db\u05ea AI",
-        "buttonText": "14 \u05d9\u05d5\u05dd \u05e0\u05e1\u05d9\u05d5\u05df \u05d7\u05d9\u05e0\u05dd",
+        "period": "חודש",
+        "description": "לצוותים קטנים שמתחילים עם תמיכת AI",
+        "buttonText": "ניסיון חינם 14 יום",
         "features": [
-          "50 \u05e9\u05d9\u05d7\u05d5\u05ea/\u05d7\u05d5\u05d3\u05e9",
-          "\u05e1\u05d5\u05db\u05df AI \u05d0\u05d7\u05d3",
-          "\u05ea\u05d9\u05d1\u05ea \u05d3\u05d5\u05d0\u05e8 \u05d0\u05d7\u05ea",
-          "20 \u05de\u05e7\u05d5\u05e8\u05d5\u05ea \u05d9\u05d3\u05e2"
+          "50 שיחות לחודש",
+          "סוכן AI אחד",
+          "תיבת דואר אחת",
+          "20 מקורות ידע"
         ]
       },
       {
         "name": "GROWTH",
         "price": "$99",
         "yearlyPrice": "$79",
-        "period": "\u05d7\u05d5\u05d3\u05e9",
-        "description": "\u05dc\u05e6\u05d5\u05d5\u05ea\u05d5\u05ea \u05e9\u05de\u05e8\u05d7\u05d9\u05d1\u05d9\u05dd \u05d0\u05ea \u05d4-operations",
-        "buttonText": "14 \u05d9\u05d5\u05dd \u05e0\u05e1\u05d9\u05d5\u05df \u05d7\u05d9\u05e0\u05dd",
+        "period": "חודש",
+        "description": "לצוותים שמרחיבים את התפעול שלהם",
+        "buttonText": "ניסיון חינם 14 יום",
         "features": [
-          "300 \u05e9\u05d9\u05d7\u05d5\u05ea/\u05d7\u05d5\u05d3\u05e9",
-          "3 \u05e1\u05d5\u05db\u05e0\u05d9 AI",
-          "3 \u05ea\u05d9\u05d1\u05d5\u05ea \u05d3\u05d5\u05d0\u05e8",
-          "100 \u05de\u05e7\u05d5\u05e8\u05d5\u05ea \u05d9\u05d3\u05e2",
-          "WhatsApp \u05db\u05dc\u05d5\u05dc"
+          "300 שיחות לחודש",
+          "3 סוכני AI",
+          "3 תיבות דואר",
+          "100 מקורות ידע",
+          "WhatsApp כלול"
         ]
       },
       {
         "name": "PROFESSIONAL",
         "price": "$299",
         "yearlyPrice": "$239",
-        "period": "\u05d7\u05d5\u05d3\u05e9",
-        "description": "\u05dc\u05e1\u05d5\u05db\u05e0\u05d5\u05d9\u05d5\u05ea \u05d5\u05e6\u05d5\u05d5\u05ea\u05d5\u05ea \u05e9\u05e8\u05d5\u05e6\u05d9\u05dd \u05e9\u05dc\u05d9\u05d8\u05d4 \u05de\u05dc\u05d0\u05d4",
-        "buttonText": "14 \u05d9\u05d5\u05dd \u05e0\u05e1\u05d9\u05d5\u05df \u05d7\u05d9\u05e0\u05dd",
+        "period": "חודש",
+        "description": "לסוכנויות וצוותים שצריכים שליטה מלאה",
+        "buttonText": "ניסיון חינם 14 יום",
         "features": [
-          "1,200 \u05e9\u05d9\u05d7\u05d5\u05ea/\u05d7\u05d5\u05d3\u05e9",
-          "\u05e1\u05d5\u05db\u05e0\u05d9 AI \u05dc\u05dc\u05d0 \u05d4\u05d2\u05d1\u05dc\u05d4",
-          "\u05ea\u05d9\u05d1\u05d5\u05ea \u05d3\u05d5\u05d0\u05e8 \u05dc\u05dc\u05d0 \u05d4\u05d2\u05d1\u05dc\u05d4",
-          "\u05de\u05e7\u05d5\u05e8\u05d5\u05ea \u05d9\u05d3\u05e2 \u05dc\u05dc\u05d0 \u05d4\u05d2\u05d1\u05dc\u05d4",
-          "WhatsApp \u05db\u05dc\u05d5\u05dc",
-          "\u05d2\u05d9\u05e9\u05ea API",
-          "LLM \u05de\u05d5\u05ea\u05d0\u05dd"
+          "1,200 שיחות לחודש",
+          "סוכני AI ללא הגבלה",
+          "תיבות דואר ללא הגבלה",
+          "מקורות ידע ללא הגבלה",
+          "WhatsApp כלול",
+          "גישת API",
+          "LLM מותאם"
         ]
       },
       {
-        "name": "\u05de\u05d5\u05ea\u05d0\u05dd \u05d0\u05d9\u05e9\u05d9\u05ea",
-        "price": "\u05d1\u05d4\u05ea\u05d0\u05de\u05d4",
-        "yearlyPrice": "\u05d1\u05d4\u05ea\u05d0\u05de\u05d4",
+        "name": "CUSTOM",
+        "price": "הצעת מחיר",
+        "yearlyPrice": "הצעת מחיר",
         "period": "",
-        "description": "\u05d4\u05ea\u05e7\u05e0\u05d4 \u05de\u05dc\u05d0\u05d4, \u05dc\u05d9\u05d5\u05d5\u05d9 \u05de\u05e7\u05e6\u05d4 \u05dc\u05e7\u05e6\u05d4. \u05d0\u05e0\u05d7\u05e0\u05d5 \u05d1\u05d5\u05e0\u05d9\u05dd \u05d0\u05d9\u05ea\u05db\u05dd, \u05de\u05e2\u05d1\u05d9\u05e8\u05d9\u05dd \u05e0\u05ea\u05d5\u05e0\u05d9\u05dd, \u05de\u05d0\u05de\u05e0\u05d9\u05dd \u05d0\u05ea \u05d4\u05e6\u05d5\u05d5\u05ea \u05d5\u05e0\u05e9\u05d0\u05e8\u05d9\u05dd \u05dc\u05e6\u05d9\u05d3\u05db\u05dd.",
-        "buttonText": "\u05d3\u05d1\u05e8\u05d5 \u05d0\u05d9\u05ea\u05e0\u05d5",
+        "description": "יישום מקצה לקצה, הדרכה ופיתוח מותאם. אנחנו לא מספקים רישיון, אנחנו שותפים אתכם עד שהמערכת רצה כמו שהעסק שלכם רץ.",
+        "buttonText": "דברו איתנו",
         "features": [
-          "\u05d4\u05e7\u05de\u05d4, \u05d4\u05d2\u05d3\u05e8\u05d4 \u05d5\u05d4\u05d2\u05d9\u05e8\u05d4 \u2014 \u05d0\u05e0\u05d7\u05e0\u05d5 \u05e2\u05d5\u05e9\u05d9\u05dd \u05d4\u05db\u05dc",
-          "\u05d0\u05d5\u05e0\u05d1\u05d5\u05e8\u05d3\u05d9\u05e0\u05d2 \u05d5\u05d4\u05d3\u05e8\u05db\u05d4 \u05de\u05e2\u05e9\u05d9\u05ea \u05dc\u05e6\u05d5\u05d5\u05ea",
-          "\u05de\u05e0\u05d4\u05dc \u05d4\u05e6\u05dc\u05d7\u05d4 \u05d9\u05d9\u05e2\u05d5\u05d3\u05d9 \u05dc\u05d0\u05d5\u05e8\u05da \u05d4\u05d3\u05e8\u05da",
-          "\u05d0\u05d9\u05e0\u05d8\u05d2\u05e8\u05e6\u05d9\u05d5\u05ea \u05de\u05d5\u05ea\u05d0\u05de\u05d5\u05ea \u05e9\u05e0\u05d1\u05e0\u05d5\u05ea \u05e2\u05d1\u05d5\u05e8\u05db\u05dd",
-          "\u05de\u05e6\u05d1 \u05e1\u05d5\u05db\u05e0\u05d5\u05ea \u05e2\u05dd \u05de\u05e1\u05e4\u05e8 workspaces",
-          "\u05d4\u05ea\u05d7\u05d9\u05d9\u05d1\u05d5\u05ea SLA + \u05ea\u05de\u05d9\u05db\u05d4 \u05d1\u05e2\u05d3\u05d9\u05e4\u05d5\u05ea",
-          "\u05d4\u05db\u05dc \u05dc\u05dc\u05d0 \u05d4\u05d2\u05d1\u05dc\u05d4"
+          "ביקורת מלאה ומפת דרכים ליישום",
+          "אינטגרציות ופיתוחים מותאמים",
+          "הדרכה פרקטית של הצוות (מספר ימים)",
+          "מנהל הצלחת לקוח ייעודי",
+          "מצב סוכנות מולטי-מרחב",
+          "תמיכה בעדיפות ו-SLA",
+          "הכול ללא הגבלה"
         ]
       }
     ]
   },
   "faq": {
-    "title": "\u05e9\u05d0\u05dc\u05d5\u05ea \u05e0\u05e4\u05d5\u05e6\u05d5\u05ea",
-    "subtitle": "\u05e9\u05d0\u05dc\u05d5\u05ea? \u05ea\u05e9\u05d5\u05d1\u05d5\u05ea \u05d9\u05e9\u05d9\u05e8\u05d5\u05ea.",
-    "stillHaveQuestions": "\u05e2\u05d5\u05d3 \u05e9\u05d0\u05dc\u05d5\u05ea? \u05db\u05ea\u05d1\u05d5 \u05dc\u05e0\u05d5",
+    "title": "שאלות נפוצות",
+    "subtitle": "יש שאלות? תשובות ישירות.",
+    "stillHaveQuestions": "עדיין יש שאלות? כתבו לנו ל-",
     "items": [
       {
-        "question": "\u05de\u05d4 \u05d4\u05d4\u05d1\u05d3\u05dc \u05de-Intercom \u05d0\u05d5 Zendesk?",
-        "answer": "\u05d4\u05dd Help Desks \u05e9\u05d4\u05d3\u05d1\u05d9\u05e7\u05d5 AI \u05d1\u05d3\u05d9\u05e2\u05d1\u05d3. Cardynal \u05e0\u05d1\u05e0\u05ea\u05d4 AI-first \u05e2\u05dd \u05de\u05e0\u05d5\u05e2 \u05ea\u05d4\u05dc\u05d9\u05db\u05d9\u05dd \u05d5\u05d9\u05d6\u05d5\u05d0\u05dc\u05d9 (28+ \u05e6\u05de\u05ea\u05d9\u05dd), \u05ea\u05de\u05d9\u05db\u05d4 \u05d1-Multi-LLM (OpenAI + Anthropic), \u05d5\u05e9\u05d5\u05e7 \u05d0\u05d9\u05e0\u05d8\u05d2\u05e8\u05e6\u05d9\u05d5\u05ea zero-code \u2014 \u05d1\u05e9\u05d1\u05e8\u05d9\u05e8 \u05de\u05d4\u05de\u05d7\u05d9\u05e8."
+        "question": "האם Cardynal יחליף את צוות התמיכה שלי?",
+        "answer": "לא. Cardynal מטפל ב-80% החוזרים (החזרות, בדיקות סטטוס, שאלות נפוצות) כדי שהצוות שלכם יוכל להתמקד בשיחות שדורשות אדם אמיתי: מקרים מורכבים, אמפתיה, הזדמנויות עסקיות. הסוכנים הטובים ביותר שלכם סוף סוף עושים את העבודה הטובה ביותר שלהם."
       },
       {
-        "question": "\u05d6\u05d4 \u05dc\u05e1\u05d5\u05db\u05e0\u05d5\u05d9\u05d5\u05ea \u05d0\u05d5 \u05dc\u05e2\u05e1\u05e7\u05d9\u05dd?",
-        "answer": "\u05dc\u05e9\u05e0\u05d9\u05d4\u05dd. \u05e1\u05d5\u05db\u05e0\u05d5\u05d9\u05d5\u05ea \u05d5\u05e4\u05e8\u05d9\u05dc\u05e0\u05e1\u05e8\u05d9\u05dd \u05e4\u05d5\u05e8\u05e1\u05d9\u05dd \u05ea\u05de\u05d9\u05db\u05ea AI \u05dc\u05dc\u05e7\u05d5\u05d7\u05d5\u05ea \u05de-workspace \u05d0\u05d7\u05d3. \u05e2\u05e1\u05e7\u05d9\u05dd \u05e2\u05dd 20+ \u05e2\u05d5\u05d1\u05d3\u05d9\u05dd \u05de\u05e9\u05ea\u05de\u05e9\u05d9\u05dd \u05d9\u05e9\u05d9\u05e8\u05d5\u05ea. \u05e0\u05d9\u05d4\u05d5\u05dc multi-workspace \u05de\u05d5\u05d1\u05e0\u05d4."
+        "question": "זה לסוכנויות או לצוותים פנימיים?",
+        "answer": "שניהם. סוכנויות ופרילנסרים מפעילים תמיכת AI עבור מספר לקוחות ממרחב עבודה אחד. צוותים פנימיים (20+ אנשים) פורסים אותו עבור הלקוחות שלהם. מצב מולטי-מרחב מובנה."
       },
       {
-        "question": "\u05de\u05d4 \u05e7\u05d5\u05e8\u05d4 \u05db\u05e9\u05d4-AI \u05dc\u05d0 \u05d9\u05d5\u05d3\u05e2 \u05dc\u05e2\u05e0\u05d5\u05ea?",
-        "answer": "\u05d4\u05d5\u05d0 \u05de\u05e2\u05d1\u05d9\u05e8 \u05d0\u05ea \u05d4\u05e9\u05d9\u05d7\u05d4 \u05dc\u05d0\u05d3\u05dd \u05e2\u05dd \u05db\u05dc \u05d4\u05d4\u05e7\u05e9\u05e8. \u05d4\u05e6\u05d5\u05d5\u05ea \u05de\u05e7\u05d1\u05dc \u05d4\u05ea\u05e8\u05d0\u05d4 \u05d5\u05ea\u05d5\u05e4\u05e1 \u05d1\u05d3\u05d9\u05d5\u05e7 \u05de\u05d0\u05d9\u05e4\u05d4 \u05e9\u05d4-AI \u05e2\u05e6\u05e8 \u2014 \u05d1\u05d0\u05d5\u05ea\u05d4 \u05ea\u05d9\u05d1\u05d4. \u05d4\u05dc\u05e7\u05d5\u05d7 \u05dc\u05d0 \u05de\u05e8\u05d2\u05d9\u05e9 \u05e9\u05d5\u05dd \u05d4\u05e4\u05e1\u05e7\u05d4."
+        "question": "מה קורה כשה-AI לא יכול לענות?",
+        "answer": "הוא מסלים לאדם עם כל השיחה, זיהוי הכוונה והיסטוריית הלקוח כבר מוכנים. הסוכן שלכם נכנס בלי שום התחלה מחדש. הלקוח לעולם לא מרגיש את התפר."
       },
       {
-        "question": "\u05e6\u05e8\u05d9\u05da \u05de\u05e4\u05ea\u05d7?",
-        "answer": "\u05dc\u05d0. \u05d4\u05db\u05dc \u05d5\u05d9\u05d6\u05d5\u05d0\u05dc\u05d9 \u2014 \u05e7\u05e0\u05d1\u05e1 drag-and-drop \u05dc\u05e1\u05d5\u05db\u05e0\u05d9\u05dd, \u05d1\u05d5\u05e0\u05d4 \u05ea\u05d4\u05dc\u05d9\u05db\u05d9\u05dd, \u05e9\u05d5\u05e7 \u05d0\u05d9\u05e0\u05d8\u05d2\u05e8\u05e6\u05d9\u05d5\u05ea. \u05d9\u05e9 \u05d2\u05dd onboarding \u05de\u05dc\u05d5\u05d5\u05d4."
+        "question": "צריך מפתח?",
+        "answer": "לא. הכול ויזואלי: קנבס סוכן, בונה תהליכים, שוק אינטגרציות, עורך ידע. אנחנו גם מספקים אונבורדינג מודרך לצוותים שרוצים שותף, לא רק תוכנה."
       },
       {
-        "question": "\u05d0\u05d9\u05dc\u05d5 \u05e2\u05e8\u05d5\u05e6\u05d9\u05dd \u05db\u05dc\u05d5\u05dc\u05d9\u05dd?",
-        "answer": "\u05e6\u05f3\u05d0\u05d8, \u05de\u05d9\u05d9\u05dc (Gmail), \u05d0\u05d9\u05e0\u05e1\u05d8\u05d2\u05e8\u05dd, \u05de\u05e1\u05e0\u05d2\u05f3\u05e8 \u05d5-API \u05db\u05dc\u05d5\u05dc\u05d9\u05dd \u05d1\u05db\u05dc \u05ea\u05d5\u05db\u05e0\u05d9\u05ea. WhatsApp (Meta Cloud API \u05d0\u05d5 QR) \u05db\u05dc\u05d5\u05dc \u05de\u05ea\u05d5\u05db\u05e0\u05d9\u05ea Growth \u05d5\u05de\u05e2\u05dc\u05d4. \u05dc\u05dc\u05d0 \u05ea\u05d5\u05e1\u05e4\u05ea \u05ea\u05e9\u05dc\u05d5\u05dd \u05dc\u05d4\u05d5\u05d3\u05e2\u05d4 \u05e2\u05dc \u05d0\u05e3 \u05e2\u05e8\u05d5\u05e5."
+        "question": "איפה הנתונים שלי?",
+        "answer": "על תשתית אירופית, במחסנית שלנו. Cardynal לא מעביר את השיחות שלכם דרך SaaS צד שלישי. אתם הבעלים של הנתונים, אתם יכולים לייצא אותם בכל עת, ואנחנו מצפינים אותם מקצה לקצה."
       },
       {
-        "question": "\u05d4\u05d0\u05dd \u05e0\u05ea\u05de\u05db\u05d9\u05dd \u05e1\u05d5\u05db\u05e0\u05d9\u05dd \u05e7\u05d5\u05dc\u05d9\u05d9\u05dd / \u05d8\u05dc\u05e4\u05d5\u05e0\u05d9\u05d9\u05dd? (\u05d1\u05e7\u05e8\u05d5\u05d1)",
-        "answer": "\u05e1\u05d5\u05db\u05e0\u05d9 AI \u05e7\u05d5\u05dc\u05d9\u05d9\u05dd \u05dc\u05e9\u05d9\u05d7\u05d5\u05ea \u05d8\u05dc\u05e4\u05d5\u05df \u05e0\u05db\u05e0\u05e1\u05d5\u05ea \u05d5\u05d9\u05d5\u05e6\u05d0\u05d5\u05ea \u05d1\u05d3\u05e8\u05da \u05d0\u05dc\u05d9\u05e0\u05d5. \u05d4\u05dd \u05d9\u05e2\u05d1\u05d3\u05d5 \u05db\u05de\u05d5 \u05e1\u05d5\u05db\u05e0\u05d9 \u05d4\u05e6'\u05d0\u05d8 \u05e9\u05dc\u05e0\u05d5 \u2014 \u05d6\u05d9\u05d4\u05d5\u05d9 \u05db\u05d5\u05d5\u05e0\u05d4, \u05d4\u05e8\u05e6\u05ea \u05d4-playbook \u05d4\u05e0\u05db\u05d5\u05df, \u05d4\u05e2\u05d1\u05e8\u05d4 \u05dc\u05d0\u05d3\u05dd \u05e2\u05dd \u05db\u05dc \u05d4\u05d4\u05e7\u05e9\u05e8 \u05db\u05e9\u05e6\u05e8\u05d9\u05da \u2014 \u05e8\u05e7 \u05e9\u05d6\u05d4 \u05d1\u05d8\u05dc\u05e4\u05d5\u05df. \u05e8\u05d5\u05e6\u05d9\u05dd \u05d2\u05d9\u05e9\u05d4 \u05de\u05d5\u05e7\u05d3\u05de\u05ea? \u05d3\u05d1\u05e8\u05d5 \u05d0\u05d9\u05ea\u05e0\u05d5."
+        "question": "אילו ערוצים נתמכים?",
+        "answer": "צ׳אט אתר, אימייל (Gmail), אינסטגרם, Messenger ו-API בכל מסלול. WhatsApp (Meta Cloud API או QR) ממסלול Growth ומעלה. ללא דמי-מסר בשום ערוץ."
       },
       {
-        "question": "\u05d0\u05d9\u05da \u05e2\u05d5\u05d1\u05d3 \u05d4\u05ea\u05de\u05d7\u05d5\u05e8?",
-        "answer": "\u05de\u05e0\u05d5\u05d9 \u05d7\u05d5\u05d3\u05e9\u05d9 \u05e2\u05dd \u05de\u05db\u05e1\u05d5\u05ea \u05d1\u05e8\u05d5\u05e8\u05d5\u05ea \u2014 \u05e1\u05e9\u05e0\u05d9\u05dd, \u05e1\u05d5\u05db\u05e0\u05d9\u05dd, \u05ea\u05d9\u05d1\u05d5\u05ea \u05d3\u05d5\u05d0\u05e8, \u05de\u05e7\u05d5\u05e8\u05d5\u05ea, \u05ea\u05d4\u05dc\u05d9\u05db\u05d9\u05dd. \u05d1\u05dc\u05d9 \u05e2\u05de\u05dc\u05d4 \u05dc\u05e4\u05ea\u05e8\u05d5\u05df. 14 \u05d9\u05de\u05d9 \u05e0\u05e1\u05d9\u05d5\u05df \u05d7\u05d9\u05e0\u05dd, \u05d1\u05d9\u05d8\u05d5\u05dc \u05d1\u05db\u05dc \u05e8\u05d2\u05e2."
+        "question": "אתם תומכים בסוכני קול ובסוכני טלפון?",
+        "answer": "בקרוב. אותו מוח סוכן כמו לצ׳אט, עונה לשיחות חיות. זיהוי, הסלמה, העברת תמלול מלא. הצטרפו לרשימת ההמתנה למטה לגישה מוקדמת."
       },
       {
-        "question": "\u05d0\u05d9\u05dc\u05d5 \u05ea\u05e8\u05d7\u05d9\u05e9\u05d9 \u05e9\u05d9\u05de\u05d5\u05e9 Cardynal \u05de\u05db\u05e1\u05d4?",
-        "answer": "\u05ea\u05de\u05d9\u05db\u05ea SaaS, \u05d0\u05d9\u05e7\u05d5\u05de\u05e8\u05e1 (\u05de\u05e2\u05e7\u05d1 \u05d4\u05d6\u05de\u05e0\u05d5\u05ea, \u05d4\u05d7\u05d6\u05e8\u05d5\u05ea), \u05ea\u05d5\u05e8\u05d9 \u05e4\u05d2\u05d9\u05e9\u05d5\u05ea, \u05d1\u05d9\u05d8\u05d5\u05d7, \u05e9\u05d9\u05e8\u05d5\u05ea\u05d9\u05dd \u05de\u05e7\u05e6\u05d5\u05e2\u05d9\u05d9\u05dd \u2014 \u05db\u05dc \u05e2\u05e1\u05e7 \u05e9\u05de\u05e0\u05d4\u05dc \u05e9\u05d9\u05d7\u05d5\u05ea \u05dc\u05e7\u05d5\u05d7\u05d5\u05ea \u05d1\u05e1\u05e7\u05d9\u05d9\u05dc."
+        "question": "איך התמחור עובד?",
+        "answer": "תשלום חודשי קבוע עם מכסות ברורות: שיחות, סוכנים, תיבות דואר, מקורות ידע, תהליכים. ללא חיובים על רזולוציית AI. ניסיון חינם 14 יום. ביטול בכל עת."
       },
       {
-        "question": "\u05d0\u05d9\u05dc\u05d5 \u05de\u05d5\u05d3\u05dc\u05d9 AI \u05e0\u05ea\u05de\u05db\u05d9\u05dd?",
-        "answer": "OpenAI (GPT-4) \u05d5-Anthropic (Claude). \u05d1\u05d7\u05d9\u05e8\u05d4 \u05dc\u05db\u05dc \u05e1\u05d5\u05db\u05df, \u05d4\u05d7\u05dc\u05e4\u05d4 \u05d1\u05db\u05dc \u05e8\u05d2\u05e2. \u05d4-Embeddings \u05de\u05e9\u05ea\u05de\u05e9\u05d9\u05dd \u05d1-OpenAI \u05dc\u05d7\u05d9\u05e4\u05d5\u05e9 \u05d5\u05e7\u05d8\u05d5\u05e8\u05d9 \u05e2\u05e7\u05d1\u05d9."
+        "question": "אילו מודלי AI נתמכים?",
+        "answer": "OpenAI (GPT-4) ו-Anthropic (Claude). בחירה לפי סוכן, החלפה בכל עת. ה-embeddings משתמשים ב-OpenAI לחיפוש וקטורי עקבי בכל מאגר הידע שלכם."
       }
     ]
   },
   "blog": {
-    "title": "\u05d1\u05dc\u05d5\u05d2",
-    "subtitle": "\u05d4\u05de\u05d0\u05de\u05e8\u05d9\u05dd \u05d4\u05d0\u05d7\u05e8\u05d5\u05e0\u05d9\u05dd"
+    "title": "בלוג",
+    "subtitle": "המאמרים האחרונים"
   },
   "comingSoon": {
-    "badge": "\u05d1\u05e7\u05e8\u05d5\u05d1",
-    "title": "\u05e1\u05d5\u05db\u05e0\u05d9 AI \u05e7\u05d5\u05dc\u05d9\u05d9\u05dd \u05dc\u05e9\u05d9\u05d7\u05d5\u05ea \u05e0\u05db\u05e0\u05e1\u05d5\u05ea \u05d5\u05d9\u05d5\u05e6\u05d0\u05d5\u05ea.",
-    "description": "\u05d0\u05d5\u05ea\u05d5 \u05de\u05d5\u05d7 \u05e9\u05dc \u05e1\u05d5\u05db\u05df \u05e9\u05d0\u05ea\u05dd \u05d1\u05d5\u05e0\u05d9\u05dd \u05dc\u05e6'\u05d0\u05d8 \u2014 \u05e2\u05db\u05e9\u05d9\u05d5 \u05e2\u05d5\u05e0\u05d4 \u05dc\u05d8\u05dc\u05e4\u05d5\u05df. \u05d6\u05d9\u05d4\u05d5\u05d9 \u05db\u05d5\u05d5\u05e0\u05d4 \u05d1\u05e9\u05d9\u05d7\u05d4 \u05d7\u05d9\u05d4, \u05d4\u05e8\u05e6\u05ea \u05d4-playbook \u05d4\u05e0\u05db\u05d5\u05df, \u05d4\u05e2\u05d1\u05e8\u05d4 \u05dc\u05d0\u05d3\u05dd \u05e2\u05dd \u05ea\u05de\u05dc\u05d5\u05dc \u05de\u05dc\u05d0 \u05db\u05e9\u05e6\u05e8\u05d9\u05da. \u05d4\u05e9\u05d4\u05d9\u05d4 \u05e0\u05de\u05d5\u05db\u05d4, \u05e8\u05d1-\u05dc\u05e9\u05d5\u05e0\u05d9, \u05e2\u05dc \u05d4\u05e2\u05e8\u05d5\u05e5 \u05e9\u05e2\u05d3\u05d9\u05d9\u05df \u05de\u05d9\u05d9\u05e6\u05e8 \u05d0\u05ea \u05e8\u05d5\u05d1 \u05d4\u05d4\u05db\u05e0\u05e1\u05d5\u05ea.",
-    "cta": "\u05d2\u05d9\u05e9\u05d4 \u05de\u05d5\u05e7\u05d3\u05de\u05ea"
+    "badge": "בקרוב",
+    "title": "סוכני קול שעונים לטלפון.",
+    "description": "אותו מוח סוכן שאתם בונים לצ׳אט, עכשיו עונה לשיחות חיות. זיהוי כוונה, הרצת הפלייבוק הנכון, העברה לאדם עם התמלול המלא כשזה משנה. רב-לשוני, השהיה נמוכה, על הערוץ שעדיין מייצר את רוב ההכנסה.",
+    "formLabel": "כתובת אימייל",
+    "formPlaceholder": "you@company.com",
+    "cta": "הצטרפו לרשימת ההמתנה",
+    "success": "אתם ברשימה. נצור קשר ברגע שהקול עולה לאוויר.",
+    "error": "משהו השתבש. נסו שוב."
   },
   "cta": {
-    "title": "\u05ea\u05e4\u05e1\u05d9\u05e7\u05d5 \u05dc\u05e9\u05dc\u05dd \u05e2\u05dc \u05db\u05dc\u05d9\u05dd \u05e9\u05dc\u05d0 \u05e2\u05d5\u05d1\u05d3\u05d9\u05dd \u05d9\u05d7\u05d3.",
-    "subtitle": "\u05e4\u05e8\u05e1\u05d5 \u05d0\u05ea \u05e1\u05d5\u05db\u05df \u05d4-AI \u05d4\u05e8\u05d0\u05e9\u05d5\u05df \u05e9\u05dc\u05db\u05dd \u05d1\u05e4\u05d7\u05d5\u05ea \u05de-5 \u05d3\u05e7\u05d5\u05ea.",
-    "cta": "\u05d4\u05ea\u05d7\u05d9\u05dc\u05d5 \u05d1\u05d7\u05d9\u05e0\u05dd"
+    "title": "שחררו את הצוות שלכם מהעבודה שהוא לא מגיע לה.",
+    "subtitle": "פרסו את סוכן ה-AI הראשון שלכם בפחות מ-5 דקות.",
+    "cta": "ניסיון חינם"
   },
   "footer": {
-    "product": "\u05de\u05d5\u05e6\u05e8",
-    "company": "\u05d7\u05d1\u05e8\u05d4",
-    "legal": "\u05de\u05e9\u05e4\u05d8\u05d9",
-    "social": "\u05e8\u05e9\u05ea\u05d5\u05ea",
+    "product": "מוצר",
+    "company": "חברה",
+    "legal": "משפטי",
+    "social": "רשתות",
     "links": {
-      "features": "\u05de\u05d5\u05e6\u05e8",
-      "pricing": "\u05de\u05d7\u05d9\u05e8\u05d9\u05dd",
-      "howItWorks": "\u05d0\u05d9\u05da \u05d6\u05d4 \u05e2\u05d5\u05d1\u05d3",
-      "faq": "\u05e9\u05d0\u05dc\u05d5\u05ea \u05e0\u05e4\u05d5\u05e6\u05d5\u05ea",
-      "ourStory": "\u05de\u05d9 \u05d0\u05e0\u05d7\u05e0\u05d5",
-      "blog": "\u05d1\u05dc\u05d5\u05d2",
-      "docs": "\u05ea\u05d9\u05e2\u05d5\u05d3",
-      "contact": "\u05e6\u05d5\u05e8 \u05e7\u05e9\u05e8",
-      "privacy": "\u05de\u05d3\u05d9\u05e0\u05d9\u05d5\u05ea \u05e4\u05e8\u05d8\u05d9\u05d5\u05ea",
-      "terms": "\u05ea\u05e0\u05d0\u05d9 \u05e9\u05d9\u05de\u05d5\u05e9",
-      "aiTransparency": "\u05e9\u05e7\u05d9\u05e4\u05d5\u05ea AI",
-      "security": "\u05d0\u05d1\u05d8\u05d7\u05d4",
-      "refund": "\u05de\u05d3\u05d9\u05e0\u05d9\u05d5\u05ea \u05d4\u05d7\u05d6\u05e8\u05d9\u05dd"
+      "features": "מוצר",
+      "pricing": "מחירים",
+      "howItWorks": "איך זה עובד",
+      "faq": "שאלות נפוצות",
+      "ourStory": "אודות",
+      "blog": "בלוג",
+      "docs": "תיעוד",
+      "contact": "צור קשר",
+      "privacy": "מדיניות פרטיות",
+      "terms": "תנאי שימוש",
+      "aiTransparency": "שקיפות AI",
+      "security": "אבטחה",
+      "refund": "מדיניות החזרים"
     },
-    "email": "\u05db\u05ea\u05d1\u05d5 \u05dc\u05e0\u05d5"
+    "email": "כתבו לנו ל-"
   }
 }
