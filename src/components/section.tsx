@@ -22,7 +22,7 @@ export default function Section({
         <div className="relative container mx-auto px-4 py-16 max-w-7xl">
           <div className="text-center space-y-4 pb-6 mx-auto">
             {title && (
-              <h2 className="text-sm text-primary font-mono font-medium tracking-wider uppercase text-balance">
+              <h2 className="text-sm text-brand font-mono font-semibold tracking-[0.18em] uppercase text-balance">
                 {title}
               </h2>
             )}

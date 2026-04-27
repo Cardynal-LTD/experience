@@ -65,10 +65,7 @@ export default function Header() {
               </a>
               <a
                 href="https://app.cardynal.io/register"
-                className={cn(
-                  buttonVariants({ variant: "default" }),
-                  "text-background"
-                )}
+                className={cn(buttonVariants({ variant: "brand", size: "pill" }))}
               >
                 {t("getStarted")}
               </a>

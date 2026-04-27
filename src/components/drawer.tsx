@@ -77,8 +77,8 @@ export default function drawerDemo() {
             <a
               href="https://app.cardynal.io/register"
               className={cn(
-                buttonVariants({ variant: "default" }),
-                "gap-2 text-background"
+                buttonVariants({ variant: "brand" }),
+                "gap-2"
               )}
             >
               <Icons.logo className="h-5 w-5" />

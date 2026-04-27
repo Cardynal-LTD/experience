@@ -222,13 +222,9 @@ export default function PricingSection() {
                 href="https://app.cardynal.io/register"
                 className={cn(
                   buttonVariants({
-                    variant: "outline",
+                    variant: index === 1 ? "brand" : "outline",
                   }),
-                  "group relative w-full gap-2 overflow-hidden text-lg font-semibold tracking-tighter",
-                  "transform-gpu ring-offset-current transition-all duration-300 ease-out hover:ring-2 hover:ring-primary hover:ring-offset-1 hover:bg-primary hover:text-primary-foreground",
-                  index === 1
-                    ? "bg-primary text-primary-foreground"
-                    : "bg-background text-foreground"
+                  "w-full gap-2 text-base font-semibold"
                 )}
               >
                 {plan.buttonText}
@@ -249,15 +245,15 @@ export default function PricingSection() {
           whileInView={{ y: 0, opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="mt-6 rounded-2xl border border-border/60 bg-gradient-to-br from-primary/5 via-background to-background p-5 sm:p-6 md:p-10 shadow-soft hover:shadow-elevated transition-all duration-250 ease-fluent"
+          className="mt-6 overflow-hidden rounded-2xl border border-border/60 bg-gradient-to-br from-brand/5 via-background to-background p-5 sm:p-6 md:p-10 shadow-soft hover:shadow-elevated transition-all duration-250 ease-fluent"
         >
           <div className="grid grid-cols-1 gap-8 lg:grid-cols-[1fr_1.2fr] lg:gap-12 lg:items-center">
-            <div className="text-start">
-              <div className="inline-flex items-center gap-2 rounded-full bg-primary/15 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-primary">
+            <div className="text-start min-w-0">
+              <div className="inline-flex items-center gap-2 rounded-full bg-brand/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-brand">
                 <FaStar className="h-3 w-3" />
                 {customPlan.name}
               </div>
-              <h3 className="mt-4 text-display-sm font-semibold tracking-tight text-balance">
+              <h3 className="mt-4 text-xl sm:text-2xl md:text-display-sm font-semibold tracking-tight text-balance">
                 {customPlan.description}
               </h3>
               <p className="mt-4 text-base text-muted-foreground text-pretty md:text-lg">
@@ -265,19 +261,16 @@ export default function PricingSection() {
               </p>
               <a
                 href="mailto:support@cardynal.io"
-                className={cn(
-                  buttonVariants({ variant: "default" }),
-                  "mt-6 text-background"
-                )}
+                className={cn(buttonVariants({ variant: "brand" }), "mt-6")}
               >
                 {customPlan.buttonText}
               </a>
             </div>
-            <ul className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+            <ul className="grid min-w-0 grid-cols-1 gap-3 sm:grid-cols-2">
               {customPlan.features.map((feature, idx) => (
-                <li key={idx} className="flex items-start gap-2 text-sm md:text-base">
-                  <Check className="mt-0.5 h-5 w-5 shrink-0 text-primary" />
-                  <span>{feature}</span>
+                <li key={idx} className="flex items-start gap-2 text-sm md:text-base min-w-0">
+                  <Check className="mt-0.5 h-5 w-5 shrink-0 text-brand" />
+                  <span className="break-words">{feature}</span>
                 </li>
               ))}
             </ul>

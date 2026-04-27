@@ -223,7 +223,7 @@ export default function ChatFlowDemo() {
 
   return (
     <div className="mx-auto flex w-full max-w-[90vw] sm:max-w-[380px] flex-col overflow-hidden rounded-[28px] border border-border/60 bg-background shadow-[0_25px_60px_-15px_rgba(0,0,0,0.25)] dark:shadow-[0_25px_60px_-15px_rgba(0,0,0,0.6)]">
-      <div className="flex items-center gap-3 bg-accent px-4 py-3 text-accent-foreground">
+      <div className="flex items-center gap-3 bg-foreground px-4 py-3 text-background">
         <div className="flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-full bg-white p-1 ring-1 ring-white/40">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
@@ -234,7 +234,7 @@ export default function ChatFlowDemo() {
         </div>
         <div className="flex-1">
           <div className="text-sm font-semibold leading-tight">Cardynal Support</div>
-          <div className="flex items-center gap-1.5 text-[11px] text-accent-foreground/80">
+          <div className="flex items-center gap-1.5 text-[11px] text-background/70">
             <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-300" />
             AI + human, live
           </div>
@@ -242,7 +242,7 @@ export default function ChatFlowDemo() {
       </div>
       <div
         ref={containerRef}
-        className="flex h-[420px] sm:h-[480px] md:h-[520px] flex-col gap-2 overflow-y-auto bg-slate-50 px-4 py-4 dark:bg-neutral-950 [scrollbar-width:thin]"
+        className="flex h-[360px] sm:h-[460px] md:h-[520px] flex-col gap-2 overflow-y-auto overflow-x-hidden touch-pan-x overscroll-contain bg-slate-50 px-4 py-4 dark:bg-neutral-950 [scrollbar-width:thin]"
       >
         <AnimatePresence initial={false}>
           {messages.map((m) => (
@@ -254,7 +254,7 @@ export default function ChatFlowDemo() {
         <div className="flex-1 rounded-full bg-muted/60 px-3 py-2 text-xs text-muted-foreground">
           Type a message...
         </div>
-        <div className="flex h-8 w-8 items-center justify-center rounded-full bg-accent text-accent-foreground">
+        <div className="flex h-8 w-8 items-center justify-center rounded-full bg-foreground text-background">
           <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
             <path d="M22 2 11 13" />
             <path d="m22 2-7 20-4-9-9-4 20-7z" />

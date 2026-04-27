@@ -14,15 +14,12 @@ export default function CtaSection() {
       id="cta"
       title={t("title")}
       subtitle={t("subtitle")}
-      className="bg-primary/10 rounded-xl py-16"
+      className="bg-gradient-to-br from-brand/10 via-secondary/40 to-background rounded-2xl py-16"
     >
       <div className="flex flex-col w-full sm:flex-row items-center justify-center gap-3 sm:gap-4 pt-4">
         <a
           href="https://app.cardynal.io/register"
-          className={cn(
-            buttonVariants({ variant: "default" }),
-            "text-background"
-          )}
+          className={cn(buttonVariants({ variant: "brand" }))}
         >
           {t("cta")}
         </a>

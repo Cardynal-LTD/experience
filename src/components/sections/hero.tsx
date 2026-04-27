@@ -12,15 +12,15 @@ function HeroPill() {
   const t = useTranslations("hero");
   return (
     <motion.div
-      className="flex w-fit max-w-full items-center gap-2 rounded-full bg-primary/20 px-2 py-1 ring-1 ring-accent"
+      className="flex w-fit max-w-full items-center gap-2 rounded-full bg-secondary px-2 py-1 ring-1 ring-brand/30"
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, ease }}
     >
-      <div className="shrink-0 rounded-full bg-accent px-2 py-0.5 text-xs font-medium text-primary sm:text-sm">
+      <div className="shrink-0 rounded-full bg-brand-gradient px-2 py-0.5 text-xs font-semibold text-brand-foreground sm:text-sm">
         {t("pill")}
       </div>
-      <p className="hidden text-xs font-medium text-primary sm:block sm:text-sm">
+      <p className="hidden text-xs font-medium text-foreground sm:block sm:text-sm">
         {t("pillSub")}
       </p>
     </motion.div>
@@ -45,7 +45,10 @@ function HeroTitles() {
         {titleWords.map((text: string, index: number) => (
           <motion.span
             key={index}
-            className="inline-block px-0.5 sm:px-1 md:px-2 text-balance font-semibold"
+            className={cn(
+              "inline-block px-0.5 sm:px-1 md:px-2 text-balance font-semibold",
+              index === titleWords.length - 1 && "text-brand-gradient"
+            )}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{
@@ -85,10 +88,7 @@ function HeroCTA() {
     >
       <a
         href="https://app.cardynal.io/register"
-        className={cn(
-          buttonVariants({ variant: "default" }),
-          "text-background"
-        )}
+        className={cn(buttonVariants({ variant: "brand" }))}
       >
         {t("cta")}
       </a>

@@ -15,7 +15,7 @@ export default function Component() {
     {
       title: t("cards.0.title"),
       description: t("cards.0.description"),
-      className: "hover:bg-red-500/10 hover:shadow-elevated transition-all duration-250 ease-fluent",
+      className: "lg:hover:bg-brand/5 hover:shadow-elevated transition-all duration-250 ease-fluent",
       content: (
         <ThemedSafari
           lightSrc="/agent-builder-light.png"
@@ -28,7 +28,7 @@ export default function Component() {
     {
       title: t("cards.1.title"),
       description: t("cards.1.description"),
-      className: "hover:bg-blue-500/10 hover:shadow-elevated transition-all duration-250 ease-fluent",
+      className: "lg:hover:bg-accent/5 hover:shadow-elevated transition-all duration-250 ease-fluent",
       content: (
         <ThemedSafari
           lightSrc="/chat-inbox-light.png"
@@ -42,7 +42,7 @@ export default function Component() {
       title: t("cards.2.title"),
       description: t("cards.2.description"),
       className:
-        "md:row-span-2 hover:bg-accent/10 hover:shadow-elevated transition-all duration-250 ease-fluent",
+        "md:row-span-2 lg:hover:bg-foreground/5 hover:shadow-elevated transition-all duration-250 ease-fluent",
       content: (
         <>
           <FlickeringGrid
@@ -67,7 +67,7 @@ export default function Component() {
     {
       title: t("cards.3.title"),
       description: t("cards.3.description"),
-      className: "hover:bg-green-500/10 hover:shadow-elevated transition-all duration-250 ease-fluent",
+      className: "lg:hover:bg-emerald-500/5 hover:shadow-elevated transition-all duration-250 ease-fluent",
       content: (
         <>
           <Ripple className="absolute -bottom-full" />
@@ -83,7 +83,7 @@ export default function Component() {
     {
       title: t("cards.4.title"),
       description: t("cards.4.description"),
-      className: "hover:bg-purple-500/10 hover:shadow-elevated transition-all duration-250 ease-fluent",
+      className: "lg:hover:bg-violet-500/5 hover:shadow-elevated transition-all duration-250 ease-fluent",
       content: (
         <ThemedSafari
           lightSrc="/knowledge-base-light.png"
@@ -102,7 +102,7 @@ export default function Component() {
         <>
           {t("title")}
           <br />
-          <span className="text-primary">{t("titleAccent")}</span>
+          <span className="text-brand-gradient">{t("titleAccent")}</span>
         </>
       }
       description={t("description")}
@@ -142,13 +142,13 @@ export default function Component() {
             viewport={{ once: true }}
           >
             <div>
-              <h3 className="font-semibold tracking-tight mb-2 text-primary">
+              <h3 className="text-lg sm:text-xl font-semibold tracking-tight mb-2 text-foreground">
                 {feature.title}
               </h3>
-              <p className="text-foreground text-pretty">{feature.description}</p>
+              <p className="text-muted-foreground text-pretty leading-relaxed">{feature.description}</p>
             </div>
             {feature.content}
-            <div className="absolute bottom-0 start-0 h-32 w-full bg-gradient-to-t from-neutral-50 dark:from-neutral-900 pointer-events-none"></div>
+            <div className="absolute bottom-0 start-0 h-32 w-full bg-gradient-to-t from-neutral-50 dark:from-neutral-800 pointer-events-none"></div>
           </motion.div>
         ))}
       </div>

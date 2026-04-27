@@ -23,6 +23,9 @@
     --border: 220 13% 91%;
     --input: 220 13% 91%;
     --ring: 211 100% 47%;
+    --brand: 18 88% 55%;
+    --brand-foreground: 0 0% 100%;
+    --brand-2: 28 96% 60%;
     --radius: 0.875rem;
     --chart-1: 12 76% 61%;
     --chart-2: 173 58% 39%;
@@ -51,6 +54,9 @@
     --border: 0 0% 14%;
     --input: 0 0% 14%;
     --ring: 211 100% 60%;
+    --brand: 22 92% 60%;
+    --brand-foreground: 0 0% 100%;
+    --brand-2: 32 96% 64%;
     --chart-1: 220 70% 50%;
     --chart-2: 160 60% 45%;
     --chart-3: 30 80% 55%;
@@ -141,5 +147,23 @@
     input, textarea, select {
       font-size: 16px;
     }
+  }
+}
+
+@layer utilities {
+  .text-brand-gradient {
+    background-image: linear-gradient(135deg, hsl(var(--brand)) 0%, hsl(var(--brand-2)) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
+
+  .bg-brand-gradient {
+    background-image: linear-gradient(135deg, hsl(var(--brand)) 0%, hsl(var(--brand-2)) 100%);
+  }
+
+  .touch-pan-x {
+    touch-action: pan-x;
   }
 }
