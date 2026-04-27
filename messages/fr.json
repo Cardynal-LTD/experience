@@ -28,7 +28,7 @@
     "docs": "Docs"
   },
   "hero": {
-    "pill": "SUPPORT IA + HUMAIN",
+    "pill": "IA + HUMAIN",
     "pillSub": "Conçu pour votre équipe, pas pour la remplacer.",
     "title": [
       "Libérez votre équipe",
@@ -112,39 +112,9 @@
   },
   "featuresDeepDive": {
     "tag": "À L'INTÉRIEUR DE CARDYNAL",
-    "title": "Tous les outils dont votre équipe support a besoin.",
-    "subtitle": "Tout natif. Rien rajouté.",
+    "title": "Sous le capot.",
+    "subtitle": "Les pièces qui font tourner la machine.",
     "items": [
-      {
-        "title": "Une base de connaissance vivante",
-        "description": "Éditeur façon Notion avec dossiers, blocs et mise en forme riche. Importez vos PDF, crawlez des sites entiers, ou rédigez en direct. Le RAG cite ses sources et se met à jour automatiquement à la publication.",
-        "highlights": [
-          "Éditeur de texte natif",
-          "Crawler de site avec contrôle de profondeur",
-          "Ingestion PDF, Markdown, HTML",
-          "Citations sur chaque réponse IA"
-        ]
-      },
-      {
-        "title": "Ticketing avec mini-CRM intégré",
-        "description": "Les conversations deviennent des tickets, les tickets sont liés à des fiches clients, les fiches portent l'historique et les notes. Prenez des RDV, loguez les appels, suivez votre pipeline, sans jamais quitter l'inbox.",
-        "highlights": [
-          "Fiches clients avec historique complet",
-          "Prise de rendez-vous intégrée",
-          "Pipelines, SLA, vues kanban",
-          "Champs personnalisés par workspace"
-        ]
-      },
-      {
-        "title": "Des agents qui utilisent vos outils",
-        "description": "Les agents Cardynal ne se contentent pas de répondre. Ils appellent vos API, mettent à jour votre CRM, encaissent les paiements, planifient les rendez-vous. Les mêmes outils que votre équipe, accessibles via des manifestes.",
-        "highlights": [
-          "Accès aux outils par manifeste",
-          "Authentification OAuth + clé API",
-          "Journal d'audit sur chaque action",
-          "Test en canvas avant production"
-        ]
-      },
       {
         "title": "Builder d'agent visuel",
         "description": "Canvas drag-and-drop pour construire le comportement de votre agent. Reliez intentions, outils, sources de connaissance et règles d'escalade. Testez en temps réel. Sans code.",
@@ -201,9 +171,9 @@
     ]
   },
   "founders": {
-    "tag": "CONSTRUIT PAR 2 PERSONNES",
-    "title": "Cardynal est petit, concentré, joignable.",
-    "subtitle": "On répond à nos propres emails. On code le produit nous-mêmes. Si vous avez un retour, il arrive directement chez nous.",
+    "tag": "EN DIRECT AVEC LES FONDATEURS",
+    "title": "Les deux personnes qui ont construit Cardynal sont celles à qui vous parlerez.",
+    "subtitle": "Vos messages atterrissent directement chez nous. Pas de support de niveau 1, pas de file d'attente, pas de customer success. Vous coincez, on change le produit.",
     "members": [
       {
         "name": "Aaron Attias",

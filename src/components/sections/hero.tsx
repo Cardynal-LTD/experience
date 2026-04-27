@@ -47,7 +47,7 @@ function HeroTitles() {
             key={index}
             className={cn(
               "inline-block px-0.5 sm:px-1 md:px-2 text-balance font-semibold",
-              index === titleWords.length - 1 && "text-brand-gradient"
+              index === 0 && "text-brand-gradient"
             )}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
