@@ -152,7 +152,7 @@ export default function PricingSection() {
         {regularPlans.map((plan, index) => (
           <motion.div
             key={index}
-            initial={{ y: 50, opacity: 1 }}
+            initial={{ y: 50, opacity: 0 }}
             whileInView={
               isDesktop
                 ? {
@@ -166,7 +166,7 @@ export default function PricingSection() {
                         : 0,
                     scale: index === 1 ? 1.0 : 0.96,
                   }
-                : {}
+                : { y: 0, opacity: 1 }
             }
             viewport={{ once: true }}
             transition={{
@@ -245,7 +245,7 @@ export default function PricingSection() {
           whileInView={{ y: 0, opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="mt-6 overflow-hidden rounded-2xl border border-border/60 bg-gradient-to-br from-brand/5 via-background to-background p-5 sm:p-6 md:p-10 shadow-soft hover:shadow-elevated transition-all duration-250 ease-fluent"
+          className="mt-10 sm:mt-12 overflow-hidden rounded-2xl border border-border/60 bg-gradient-to-br from-brand/5 via-background to-background p-5 sm:p-6 md:p-10 shadow-soft hover:shadow-elevated transition-all duration-250 ease-fluent"
         >
           <div className="grid grid-cols-1 gap-8 lg:grid-cols-[1fr_1.2fr] lg:gap-12 lg:items-center">
             <div className="text-start min-w-0">
