@@ -178,8 +178,8 @@ export default function PricingSection() {
               opacity: { duration: 0.5 },
             }}
             className={cn(
-              `rounded-2xl border-[1px] p-6 bg-background text-center lg:flex lg:flex-col lg:justify-center relative`,
-              index === 1 ? "border-primary border-[2px] z-10" : "border-border z-0"
+              `rounded-2xl border border-border/60 p-5 sm:p-6 bg-background text-center lg:flex lg:flex-col lg:justify-center relative shadow-soft hover:shadow-elevated transition-all duration-250 ease-fluent`,
+              index === 1 ? "border-primary border-[2px] z-10" : "z-0"
             )}
           >
             {index === 1 && (
@@ -191,11 +191,11 @@ export default function PricingSection() {
               </div>
             )}
             <div>
-              <p className="text-base font-semibold text-muted-foreground">
+              <p className="text-base font-semibold tracking-tight text-muted-foreground">
                 {plan.name}
               </p>
               <p className="mt-6 flex items-center justify-center gap-x-2">
-                <span className="text-5xl font-bold tracking-tight text-foreground">
+                <span className="text-5xl font-semibold tracking-tight text-foreground">
                   {isMonthly ? plan.price : plan.yearlyPrice}
                 </span>
                 <span className="text-sm font-semibold leading-6 tracking-wide text-muted-foreground">
@@ -249,7 +249,7 @@ export default function PricingSection() {
           whileInView={{ y: 0, opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="mt-6 rounded-2xl border border-primary/30 bg-gradient-to-br from-primary/5 via-background to-background p-6 md:p-10"
+          className="mt-6 rounded-2xl border border-border/60 bg-gradient-to-br from-primary/5 via-background to-background p-5 sm:p-6 md:p-10 shadow-soft hover:shadow-elevated transition-all duration-250 ease-fluent"
         >
           <div className="grid grid-cols-1 gap-8 lg:grid-cols-[1fr_1.2fr] lg:gap-12 lg:items-center">
             <div className="text-start">
@@ -257,17 +257,17 @@ export default function PricingSection() {
                 <FaStar className="h-3 w-3" />
                 {customPlan.name}
               </div>
-              <h3 className="mt-4 text-3xl font-bold tracking-tight md:text-4xl">
+              <h3 className="mt-4 text-display-sm font-semibold tracking-tight text-balance">
                 {customPlan.description}
               </h3>
-              <p className="mt-4 text-base text-muted-foreground md:text-lg">
+              <p className="mt-4 text-base text-muted-foreground text-pretty md:text-lg">
                 {isMonthly ? customPlan.price : customPlan.yearlyPrice}
               </p>
               <a
                 href="mailto:support@cardynal.io"
                 className={cn(
                   buttonVariants({ variant: "default" }),
-                  "mt-6 w-full sm:w-auto text-background"
+                  "mt-6 text-background"
                 )}
               >
                 {customPlan.buttonText}

@@ -50,13 +50,13 @@ export default function Footer() {
           className="relative me-6 flex items-center space-x-2"
         >
           <Icons.logo className="w-auto h-[40px]" />
-          <span className="font-bold text-xl">{siteConfig.name}</span>
+          <span className="font-bold text-xl tracking-tight">{siteConfig.name}</span>
         </a>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-8 gap-6 md:gap-8">
           {footerConfig.map((section, index) => (
             <div key={index} className="mb-5">
-              <h2 className="font-semibold">{section.title}</h2>
+              <h2 className="font-semibold tracking-tight">{section.title}</h2>
               <ul>
                 {section.links.map((link, linkIndex) => {
                   const isExternal =

@@ -27,12 +27,14 @@ export default function FAQ() {
             <AccordionItem
               key={idx}
               value={faq.question}
-              className="w-full border rounded-lg overflow-hidden"
+              className="w-full border border-border/60 rounded-lg overflow-hidden shadow-soft hover:shadow-elevated transition-all duration-250 ease-fluent"
             >
-              <AccordionTrigger className="px-4 py-4 text-start">
+              <AccordionTrigger className="px-4 py-4 text-start font-semibold tracking-tight">
                 {faq.question}
               </AccordionTrigger>
-              <AccordionContent className="px-4 text-start">{faq.answer}</AccordionContent>
+              <AccordionContent className="px-4 text-start text-pretty text-muted-foreground">
+                {faq.answer}
+              </AccordionContent>
             </AccordionItem>
           ))}
         </Accordion>

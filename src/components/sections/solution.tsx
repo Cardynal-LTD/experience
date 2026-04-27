@@ -15,7 +15,7 @@ export default function Component() {
     {
       title: t("cards.0.title"),
       description: t("cards.0.description"),
-      className: "hover:bg-red-500/10 transition-all duration-500 ease-out",
+      className: "hover:bg-red-500/10 hover:shadow-elevated transition-all duration-250 ease-fluent",
       content: (
         <ThemedSafari
           lightSrc="/agent-builder-light.png"
@@ -28,7 +28,7 @@ export default function Component() {
     {
       title: t("cards.1.title"),
       description: t("cards.1.description"),
-      className: "hover:bg-blue-500/10 transition-all duration-500 ease-out",
+      className: "hover:bg-blue-500/10 hover:shadow-elevated transition-all duration-250 ease-fluent",
       content: (
         <ThemedSafari
           lightSrc="/chat-inbox-light.png"
@@ -42,7 +42,7 @@ export default function Component() {
       title: t("cards.2.title"),
       description: t("cards.2.description"),
       className:
-        "md:row-span-2 hover:bg-accent/10 transition-all duration-500 ease-out",
+        "md:row-span-2 hover:bg-accent/10 hover:shadow-elevated transition-all duration-250 ease-fluent",
       content: (
         <>
           <FlickeringGrid
@@ -67,7 +67,7 @@ export default function Component() {
     {
       title: t("cards.3.title"),
       description: t("cards.3.description"),
-      className: "hover:bg-green-500/10 transition-all duration-500 ease-out",
+      className: "hover:bg-green-500/10 hover:shadow-elevated transition-all duration-250 ease-fluent",
       content: (
         <>
           <Ripple className="absolute -bottom-full" />
@@ -83,7 +83,7 @@ export default function Component() {
     {
       title: t("cards.4.title"),
       description: t("cards.4.description"),
-      className: "hover:bg-purple-500/10 transition-all duration-500 ease-out",
+      className: "hover:bg-purple-500/10 hover:shadow-elevated transition-all duration-250 ease-fluent",
       content: (
         <ThemedSafari
           lightSrc="/knowledge-base-light.png"
@@ -127,7 +127,7 @@ export default function Component() {
           <motion.div
             key={index}
             className={cn(
-              "group relative items-start overflow-hidden bg-neutral-50 dark:bg-neutral-800 p-6 rounded-2xl",
+              "group relative items-start overflow-hidden bg-neutral-50 dark:bg-neutral-800 p-5 sm:p-6 rounded-2xl border border-border/60 shadow-soft",
               feature.className
             )}
             initial={{ opacity: 0, y: 50 }}
@@ -142,10 +142,10 @@ export default function Component() {
             viewport={{ once: true }}
           >
             <div>
-              <h3 className="font-semibold mb-2 text-primary">
+              <h3 className="font-semibold tracking-tight mb-2 text-primary">
                 {feature.title}
               </h3>
-              <p className="text-foreground">{feature.description}</p>
+              <p className="text-foreground text-pretty">{feature.description}</p>
             </div>
             {feature.content}
             <div className="absolute bottom-0 start-0 h-32 w-full bg-gradient-to-t from-neutral-50 dark:from-neutral-900 pointer-events-none"></div>

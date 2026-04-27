@@ -30,7 +30,7 @@ export default function Problem() {
           >
             &rdquo;
           </span>
-          <blockquote className="relative px-4 text-center text-lg font-bold leading-snug text-foreground text-balance md:px-12 md:text-2xl lg:text-3xl">
+          <blockquote className="relative px-4 text-center text-display-sm md:text-display font-semibold tracking-tight leading-snug text-foreground text-balance md:px-12">
             <span className="text-primary">{highlight}</span>
             {remainder && (
               <>

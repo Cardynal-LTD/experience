@@ -66,6 +66,22 @@ const config = {
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
+      boxShadow: {
+        soft: "var(--shadow-soft)",
+        elevated: "var(--shadow-elevated)",
+      },
+      transitionTimingFunction: {
+        fluent: "cubic-bezier(0.16, 1, 0.3, 1)",
+        "fluent-press": "cubic-bezier(0.4, 0, 0.6, 1)",
+      },
+      transitionDuration: {
+        250: "250ms",
+      },
+      fontSize: {
+        "display-sm": ["clamp(2rem, 6vw, 3.25rem)", { lineHeight: "1.05", letterSpacing: "-0.022em" }],
+        "display": ["clamp(2.5rem, 8vw, 5rem)", { lineHeight: "1.02", letterSpacing: "-0.028em" }],
+        "display-lg": ["clamp(3rem, 10vw, 6.5rem)", { lineHeight: "1.0", letterSpacing: "-0.032em" }],
+      },
       animation: {
         marquee: "marquee var(--duration) linear infinite",
         "marquee-vertical": "marquee-vertical var(--duration) linear infinite",

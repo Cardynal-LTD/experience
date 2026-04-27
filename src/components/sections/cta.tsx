@@ -16,12 +16,12 @@ export default function CtaSection() {
       subtitle={t("subtitle")}
       className="bg-primary/10 rounded-xl py-16"
     >
-      <div className="flex flex-col w-full sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-4 pt-4">
+      <div className="flex flex-col w-full sm:flex-row items-center justify-center gap-3 sm:gap-4 pt-4">
         <a
           href="https://app.cardynal.io/register"
           className={cn(
             buttonVariants({ variant: "default" }),
-            "w-full sm:w-auto text-background"
+            "text-background"
           )}
         >
           {t("cta")}
@@ -30,10 +30,7 @@ export default function CtaSection() {
           href="https://cal.com/cardynal.io/30min"
           target="_blank"
           rel="noopener noreferrer"
-          className={cn(
-            buttonVariants({ variant: "outline" }),
-            "w-full sm:w-auto"
-          )}
+          className={cn(buttonVariants({ variant: "outline" }))}
         >
           {tHero("ctaSecondary")}
         </a>

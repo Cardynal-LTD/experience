@@ -33,7 +33,7 @@ function HeroTitles() {
   return (
     <div className="flex w-full flex-col space-y-4 overflow-hidden pt-6">
       <motion.h1
-        className="text-center text-3xl font-medium leading-tight text-foreground text-balance sm:text-4xl md:text-5xl lg:text-6xl lg:text-start"
+        className="text-center text-display lg:text-display-lg font-semibold tracking-tight leading-tight text-foreground text-balance lg:text-start"
         initial={{ filter: "blur(10px)", opacity: 0, y: 50 }}
         animate={{ filter: "blur(0px)", opacity: 1, y: 0 }}
         transition={{
@@ -59,7 +59,7 @@ function HeroTitles() {
         ))}
       </motion.h1>
       <motion.p
-        className="mx-auto max-w-xl text-center text-base leading-6 text-muted-foreground text-balance sm:text-xl sm:leading-9 lg:mx-0 lg:text-start"
+        className="mx-auto max-w-xl text-center text-base leading-6 text-muted-foreground text-balance text-pretty sm:text-xl sm:leading-9 lg:mx-0 lg:text-start"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{
@@ -78,7 +78,7 @@ function HeroCTA() {
   const t = useTranslations("hero");
   return (
     <motion.div
-      className="mx-auto mt-6 flex w-full max-w-2xl flex-col items-center justify-center space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0 lg:mx-0 lg:justify-start"
+      className="mx-auto mt-6 flex w-full max-w-2xl flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4 lg:mx-0 lg:justify-start"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.8, duration: 0.8, ease }}
@@ -87,7 +87,7 @@ function HeroCTA() {
         href="https://app.cardynal.io/register"
         className={cn(
           buttonVariants({ variant: "default" }),
-          "w-full sm:w-auto text-background"
+          "text-background"
         )}
       >
         {t("cta")}
@@ -96,10 +96,7 @@ function HeroCTA() {
         href="https://cal.com/cardynal.io/30min"
         target="_blank"
         rel="noopener noreferrer"
-        className={cn(
-          buttonVariants({ variant: "outline" }),
-          "w-full sm:w-auto"
-        )}
+        className={cn(buttonVariants({ variant: "outline" }))}
       >
         {t("ctaSecondary")}
       </a>

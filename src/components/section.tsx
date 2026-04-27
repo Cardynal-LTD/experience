@@ -27,12 +27,12 @@ export default function Section({
               </h2>
             )}
             {subtitle && (
-              <h3 className="mx-auto mt-4 max-w-xs sm:max-w-2xl text-3xl font-semibold sm:text-4xl md:text-5xl text-balance">
+              <h3 className="mx-auto mt-4 max-w-xs sm:max-w-2xl text-display-sm md:text-display font-semibold tracking-tight text-balance">
                 {subtitle}
               </h3>
             )}
             {description && (
-              <p className="mt-6 text-lg leading-8 text-slate-600 max-w-2xl mx-auto text-balance">
+              <p className="mt-6 text-lg leading-8 text-muted-foreground max-w-2xl mx-auto text-balance text-pretty">
                 {description}
               </p>
             )}
