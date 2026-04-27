@@ -1,101 +1,223 @@
 {
   "header": {
     "login": "Log in",
-    "getStarted": "Start Free"
+    "getStarted": "Start free"
   },
   "nav": {
     "features": "Product",
     "featuresMain": {
-      "title": "AI Customer Support",
-      "description": "One platform to replace your support stack."
+      "title": "AI + Human Support",
+      "description": "Free your team from repetitive work."
     },
     "featuresItems": [
-      { "title": "AI Agents", "description": "Detect intent, run playbooks, resolve conversations autonomously." },
-      { "title": "Omnichannel Inbox", "description": "WhatsApp, web, email, Instagram. Every conversation in one shared inbox." },
-      { "title": "Visual Workflows", "description": "Triggers, conditions, HTTP, AI prompts. Build automation visually, no code." }
+      { "title": "AI Agents", "description": "Detect intent, act on your tools, escalate with full context." },
+      { "title": "Omnichannel Inbox", "description": "WhatsApp, web, email, Instagram. One thread, one team." },
+      { "title": "Visual Workflows", "description": "Drag-and-drop logic. No code, no glue, no bottleneck." }
     ],
-    "solutions": "Use Cases",
+    "solutions": "Use cases",
     "solutionsItems": [
-      { "title": "E-commerce", "description": "AI agents that know your catalog, process returns, and track orders across channels." },
-      { "title": "SaaS & Tech", "description": "Deflect L1 tickets with AI, route to humans seamlessly, automate onboarding." },
-      { "title": "Booking & Appointments", "description": "Automate scheduling, confirmations, and reminders, end to end." },
-      { "title": "Insurance & Finance", "description": "Handle claims, policy questions, and account inquiries with AI precision." },
-      { "title": "Professional Services", "description": "Never miss a lead. AI qualifies, routes, and creates tickets, 24/7." },
-      { "title": "Agencies", "description": "Deploy and manage AI support for multiple clients from one platform." }
+      { "title": "E-commerce", "description": "Returns, order tracking, catalog questions handled before your team wakes up." },
+      { "title": "SaaS & Tech", "description": "L1 deflection, contextual handoffs, onboarding on autopilot." },
+      { "title": "Booking & appointments", "description": "Schedule, confirm, remind. Your team handles the edge cases." },
+      { "title": "Insurance & finance", "description": "Claims, policies, account questions. AI-precision, audit-ready." },
+      { "title": "Professional services", "description": "Qualify leads, route them, create tickets. 24/7." },
+      { "title": "Agencies", "description": "Deploy AI support for every client from one workspace." }
     ],
     "pricing": "Pricing",
     "blog": "Blog",
     "docs": "Docs"
   },
   "hero": {
-    "pill": "AI SUPPORT",
-    "pillSub": "One platform for every channel",
+    "pill": "AI + HUMAN SUPPORT",
+    "pillSub": "Built for teams, not for replacing them.",
     "title": [
-      "Never",
-      "miss a",
-      "customer."
+      "Amplify",
+      "your support",
+      "team."
     ],
-    "description": "AI agents resolve conversations across WhatsApp, web, email, Instagram, and Messenger, and pass the rest to your team with full context. Live in five minutes.",
+    "description": "Cardynal handles the repetitive 80%: returns, status checks, FAQs, scheduling. Your team focuses on what needs a human brain: empathy, complex cases, revenue moments.",
     "cta": "Start free for 14 days",
     "ctaSecondary": "Book a demo"
   },
   "trustStrip": {
-    "title": "Built on what you already trust",
+    "title": "Built on what already runs the internet",
     "items": [
       "OpenAI GPT-4",
       "Anthropic Claude",
       "WhatsApp Business",
-      "EU-hosted",
-      "No per-resolution fees"
+      "EU-hosted infrastructure",
+      "Your data, your servers"
     ]
   },
   "problem": {
-    "tag": "The problem",
-    "quote": "Six tools, six dashboards, zero shared context. Cardynal replaces them with one platform, so your team and your customers never feel the seams again."
+    "tag": "The reality",
+    "quote": "Your best agents spend their days copying tracking numbers and resending password resets. The conversations that actually need them get answered last."
   },
   "solution": {
-    "tag": "THE SOLUTION",
-    "title": "One platform.",
-    "titleAccent": "AI and your team, in sync.",
-    "description": "AI agents resolve what they can, then hand off to your team with the full conversation, customer profile, and history intact. No restart, no copy-paste, no lost context. The customer never feels the seam between AI and human. Deploy it for your clients or run it in-house. Live in minutes, not months.",
+    "tag": "THE APPROACH",
+    "title": "AI takes the volume.",
+    "titleAccent": "Your team takes the moments that matter.",
+    "description": "Cardynal isn't here to replace your support team. It's here to make them faster, sharper, and free of the work that's been draining them. AI agents handle the repetitive volume. When something needs judgment, they hand off to a human with the entire conversation, customer history, and context already prepared. No restart. No copy-paste. No lost thread.",
     "cards": [
       {
-        "title": "AI agents that actually resolve",
-        "description": "Detect intent, run the right playbook, call your APIs, resolve the conversation. When the AI can't handle it, it escalates to a human with full context. No gaps."
+        "title": "AI agents that actually act",
+        "description": "Not chatbots that parrot answers. Cardynal agents call your APIs, update tickets, take payments, schedule meetings. They use the same tools your team uses."
       },
       {
-        "title": "Connect every channel",
-        "description": "WhatsApp Business, web chat, email, Instagram, Messenger. Plug them all in. Manifest-driven integrations let your agents pull real-time data from Shopify, your CRM, anything with an API. No code."
+        "title": "Every channel in one inbox",
+        "description": "WhatsApp Business, web chat, email, Instagram, Messenger. Your team works in one place. Customers reach you wherever they live."
       },
       {
-        "title": "Your shared team inbox",
-        "description": "Every customer conversation in one queue, regardless of channel. Filter by status, agent, or channel. Pick up exactly where the AI left off, with no context lost between handoffs."
+        "title": "Handoffs that feel like a relay, not a restart",
+        "description": "When the AI escalates, your agent walks into a fully briefed conversation. Intent detected, history attached, customer profile open. They take over in seconds."
       },
       {
-        "title": "Built-in ticketing with SLA tracking",
-        "description": "Conversations become tickets automatically. Kanban, priorities, SLA deadlines, custom fields, and multiple views, all built in."
+        "title": "Built-in ticketing and mini-CRM",
+        "description": "Conversations become tickets, tickets carry customer profiles, profiles track history. Pipelines, SLAs, custom fields, kanban: all of it, all built in."
       },
       {
-        "title": "Knowledge base with RAG retrieval",
-        "description": "Upload PDFs, crawl websites, or write content directly. Chunked, indexed, and retrieved through RAG. The AI cites sources and refreshes automatically."
+        "title": "A knowledge base your team actually edits",
+        "description": "Notion-style editor inside the app. Crawl websites, upload PDFs, or write directly. RAG retrieval cites sources. Your knowledge stays alive, not buried in a doc tree."
       }
     ]
   },
+  "tree": {
+    "tag": "THE HANDOFF, ILLUSTRATED",
+    "title": "When the AI hits its limit, your team takes over.",
+    "subtitle": "With every piece of context already lined up.",
+    "steps": {
+      "customer": "My order is 5 days late!",
+      "ai": "Detected: urgent · frustrated",
+      "blocked": "Refund policy: out of scope",
+      "priority": "Routed to Maya · Priority"
+    }
+  },
   "howItWorks": {
     "title": "How it works",
-    "subtitle": "From zero to live agent. Three steps, no developer needed.",
+    "subtitle": "From zero to live agent. Three steps, no developer required.",
     "steps": [
       {
         "title": "1. Connect your channels",
-        "description": "Add WhatsApp, web chat, email, or Instagram in two clicks. No code, no specialized team."
+        "description": "WhatsApp, web chat, email, Instagram. Two clicks. No code, no specialists."
       },
       {
-        "title": "2. Train with your data",
-        "description": "Upload docs, crawl your website, or write content manually. The AI learns your business and starts answering instantly."
+        "title": "2. Train on your knowledge",
+        "description": "Upload docs, crawl your site, or write directly in the editor. Your AI learns your business and starts answering immediately."
       },
       {
-        "title": "3. Deploy and automate",
-        "description": "Your agent handles conversations, triggers workflows, and creates tickets. You handle the exceptions."
+        "title": "3. Deploy and watch",
+        "description": "AI handles volume. Your team handles judgment. You watch metrics, not tickets."
+      }
+    ]
+  },
+  "featuresDeepDive": {
+    "tag": "INSIDE CARDYNAL",
+    "title": "Every tool your support team needs.",
+    "subtitle": "All native. Nothing bolted on.",
+    "items": [
+      {
+        "title": "A living knowledge base",
+        "description": "Notion-style editor with folders, blocks, and rich formatting. Upload PDFs, crawl entire websites, or write directly. RAG retrieval cites sources and refreshes automatically when you publish.",
+        "highlights": [
+          "Native rich-text editor",
+          "Website crawler with depth control",
+          "PDF, Markdown, HTML ingestion",
+          "Citations on every AI answer"
+        ]
+      },
+      {
+        "title": "Ticketing with a built-in mini-CRM",
+        "description": "Conversations turn into tickets, tickets are tied to customer profiles, profiles carry history and notes. Schedule appointments, log calls, track pipeline, without leaving the inbox.",
+        "highlights": [
+          "Customer profiles with full history",
+          "Built-in appointment booking",
+          "Pipelines, SLAs, kanban views",
+          "Custom fields per workspace"
+        ]
+      },
+      {
+        "title": "Agents that use your tools",
+        "description": "Cardynal agents don't just answer. They call your APIs, update your CRM, take payments, schedule meetings. Same tools your team uses, accessed safely through manifests.",
+        "highlights": [
+          "Manifest-driven tool access",
+          "OAuth + API key authentication",
+          "Audit log on every action",
+          "Test in canvas before production"
+        ]
+      },
+      {
+        "title": "Visual agent builder",
+        "description": "Drag-and-drop canvas to build your agent's behaviour. Connect intents, tools, knowledge sources, and escalation rules. Test in real time. No code.",
+        "highlights": [
+          "Real-time canvas testing",
+          "Multi-LLM support (GPT-4, Claude)",
+          "Branching escalation logic",
+          "Version control built in"
+        ]
+      },
+      {
+        "title": "Workflow engine",
+        "description": "28+ node types: triggers, conditions, HTTP requests, AI prompts, database queries, inline code. Build automations once. Run them on events, schedules, or webhooks.",
+        "highlights": [
+          "Drag-and-drop builder",
+          "Run on events or schedules",
+          "Inline JavaScript when needed",
+          "Reusable across workspaces"
+        ]
+      },
+      {
+        "title": "Channels and integrations",
+        "description": "WhatsApp Business, email, Instagram, Messenger, web chat, API. Plug Shopify, your CRM, calendars, payment processors. Manifest-based, no code required.",
+        "highlights": [
+          "All major messaging channels",
+          "Native commerce integrations",
+          "Calendar + payment sync",
+          "Open source connectors"
+        ]
+      }
+    ]
+  },
+  "security": {
+    "tag": "SECURITY BY DESIGN",
+    "title": "Your data stays in your stack. Always.",
+    "subtitle": "Cardynal runs without a single third-party tool in the data pipeline. We host on EU infrastructure, encrypt end-to-end, and give you the keys.",
+    "pillars": [
+      {
+        "title": "Zero third-party processors",
+        "description": "Your conversations, your knowledge, your customer data: they never touch external SaaS. Cardynal is the entire stack."
+      },
+      {
+        "title": "EU-hosted infrastructure",
+        "description": "Hosted on Railway in EU regions. GDPR-compliant by default, auditable on request, sovereign-friendly."
+      },
+      {
+        "title": "End-to-end encryption",
+        "description": "TLS in transit, AES-256 at rest. Per-tenant isolation. JWT auth. Connector source code is open and reviewable."
+      },
+      {
+        "title": "You own everything",
+        "description": "Export your data anytime, in standard formats. No lock-in, no proprietary blob. If you leave, you leave with everything."
+      }
+    ]
+  },
+  "founders": {
+    "tag": "BUILT BY 2 PEOPLE",
+    "title": "Cardynal is small, focused, and reachable.",
+    "subtitle": "We answer our own emails. We ship the product ourselves. If you have feedback, it goes straight to us.",
+    "members": [
+      {
+        "name": "Aaron Attias",
+        "role": "Founder & CTO",
+        "bio": "Builds the product end to end: agent runtime, workflow engine, knowledge base, infrastructure. Believes good support tools should disappear into the work.",
+        "linkedin": "https://www.linkedin.com/in/aaronattias",
+        "image": "/founders/aaron-attias.jpg"
+      },
+      {
+        "name": "Dan Sitbon",
+        "role": "Co-founder, Strategy & Business",
+        "bio": "Drives go-to-market, partnerships, and the customer relationship. Translates what teams really need into what we build next.",
+        "linkedin": "https://www.linkedin.com/in/dan-sitbon-7b7316262",
+        "image": "/founders/dan-sitbon.jpg"
       }
     ]
   },
@@ -183,18 +305,18 @@
       },
       {
         "name": "CUSTOM",
-        "price": "Custom",
-        "yearlyPrice": "Custom",
+        "price": "Quote",
+        "yearlyPrice": "Quote",
         "period": "",
-        "description": "Full setup, end-to-end accompaniment. We build it with you, migrate your data, train your team, and stay on call.",
+        "description": "End-to-end implementation, training, and custom development. We don't ship a license, we partner with you until the system runs the way your business runs.",
         "buttonText": "Talk to us",
         "features": [
-          "Done-for-you setup, config & migration",
-          "Hands-on onboarding & team training",
-          "Dedicated success manager throughout",
-          "Custom integrations built for you",
+          "Full audit and implementation roadmap",
+          "Custom integrations and development",
+          "Hands-on team training (multi-day)",
+          "Dedicated success manager",
           "Multi-workspace agency mode",
-          "SLA guarantee + priority support",
+          "Priority support and SLA",
           "Unlimited everything"
         ]
       }
@@ -206,36 +328,36 @@
     "stillHaveQuestions": "Still have questions? Email us at",
     "items": [
       {
-        "question": "How is Cardynal different from Intercom or Zendesk?",
-        "answer": "They're helpdesks with AI bolted on. Cardynal is AI-native, built from the ground up with a visual workflow engine (28+ node types), multi-LLM support (OpenAI + Anthropic), and a zero-code integration marketplace. All at a fraction of the price."
+        "question": "Will Cardynal replace my support team?",
+        "answer": "No. Cardynal handles the repetitive 80% (returns, status checks, FAQs) so your team can focus on the conversations that need a real human: complex cases, empathy, revenue moments. Your best agents finally get to do their best work."
       },
       {
-        "question": "Is this for agencies or end users?",
-        "answer": "Both. Agencies and freelancers deploy AI support for their clients from a single workspace. SMBs with 20+ employees use it directly. Multi-workspace management is built in."
+        "question": "Is this for agencies or for in-house teams?",
+        "answer": "Both. Agencies and freelancers run AI support for multiple clients from a single workspace. In-house teams (20+ people) deploy it for their own customers. Multi-workspace mode is built in."
       },
       {
         "question": "What happens when the AI can't answer?",
-        "answer": "It escalates to a human with full context. Your team gets a notification and picks up the conversation in the same inbox. The customer sees no interruption."
+        "answer": "It escalates to a human with the entire conversation, intent detection, and customer history already prepared. Your agent picks up without a single restart. The customer never feels the seam."
       },
       {
         "question": "Do I need a developer?",
-        "answer": "No. Everything is visual: drag-and-drop agent canvas, workflow builder, and integration marketplace. We also offer guided onboarding if you want help."
+        "answer": "No. Everything is visual: agent canvas, workflow builder, integration marketplace, knowledge editor. We also provide guided onboarding for teams that want a partner, not just software."
       },
       {
-        "question": "Which channels are included?",
-        "answer": "Web chat, email (Gmail), Instagram, Messenger, and API are included in every plan. WhatsApp (Meta Cloud API or QR code) is included from the Growth plan upwards. No per-message fees on any channel."
+        "question": "Where does my data live?",
+        "answer": "On EU infrastructure, in our own stack. Cardynal does not pipe your conversations through third-party SaaS. You own your data, you can export it anytime, and we encrypt it end-to-end."
       },
       {
-        "question": "Do you support voice / phone agents? (Coming soon)",
-        "answer": "Voice AI agents for inbound and outbound phone calls are on the roadmap and coming soon. They'll work the same way as our chat agents: detect intent, run the right playbook, escalate to a human with full context when needed, but over the phone. Want early access? Talk to us."
+        "question": "Which channels are supported?",
+        "answer": "Web chat, email (Gmail), Instagram, Messenger, and API on every plan. WhatsApp (Meta Cloud API or QR) from Growth upward. No per-message fees on any channel."
+      },
+      {
+        "question": "Do you support voice and phone agents?",
+        "answer": "Coming soon. Same agent brain as our chat agents, answering live calls. Detection, escalation, full transcript handoff. Join the waitlist below for early access."
       },
       {
         "question": "How does pricing work?",
-        "answer": "Flat monthly fee with clear quotas: sessions, agents, inboxes, sources, workflows. No per-resolution charges. Start with a 14-day free trial, upgrade when you're ready. Cancel anytime."
-      },
-      {
-        "question": "What use cases does Cardynal cover?",
-        "answer": "SaaS support, e-commerce (order tracking, returns), booking & appointments, insurance claims, professional services. Any business that handles customer conversations at scale."
+        "answer": "Flat monthly fee with clear quotas: sessions, agents, inboxes, knowledge sources, workflows. No charges per AI resolution. 14-day free trial. Cancel anytime."
       },
       {
         "question": "What LLMs are supported?",
@@ -245,18 +367,22 @@
   },
   "blog": {
     "title": "Blog",
-    "subtitle": "Latest Articles"
+    "subtitle": "Latest articles"
   },
   "comingSoon": {
     "badge": "Coming soon",
-    "title": "AI voice agents for inbound and outbound calls.",
-    "description": "The same agent brain you build for chat, now answering the phone. Detect intent on a live call, run the right playbook, transfer to a human with the full transcript when needed. Low-latency, multilingual, on the channel that still drives most revenue.",
-    "cta": "Get early access"
+    "title": "Voice agents that pick up the phone.",
+    "description": "The same agent brain you build for chat, now answering live calls. Detect intent, run the right playbook, transfer to a human with the full transcript when it matters. Multilingual, low latency, on the channel that still drives most revenue.",
+    "formLabel": "Email address",
+    "formPlaceholder": "you@company.com",
+    "cta": "Join the waitlist",
+    "success": "You're on the list. We'll reach out when voice goes live.",
+    "error": "Something went wrong. Please try again."
   },
   "cta": {
-    "title": "Stop paying for tools that don't work together.",
+    "title": "Free your team from the work that doesn't deserve them.",
     "subtitle": "Deploy your first AI agent in under 5 minutes.",
-    "cta": "Start Free"
+    "cta": "Start free"
   },
   "footer": {
     "product": "Product",
@@ -266,9 +392,9 @@
     "links": {
       "features": "Product",
       "pricing": "Pricing",
-      "howItWorks": "How It Works",
+      "howItWorks": "How it works",
       "faq": "FAQ",
-      "ourStory": "About Us",
+      "ourStory": "About us",
       "blog": "Blog",
       "docs": "Docs",
       "contact": "Contact",
