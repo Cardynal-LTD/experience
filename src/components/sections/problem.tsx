@@ -20,17 +20,17 @@ export default function Problem() {
         <figure className="relative mx-auto mt-8 max-w-3xl">
           <span
             aria-hidden
-            className="pointer-events-none absolute -top-6 start-0 select-none font-serif text-4xl leading-none text-primary/15 sm:text-6xl md:-top-10 md:text-7xl lg:text-8xl"
+            className="pointer-events-none absolute -top-4 start-0 select-none font-serif text-3xl leading-none text-primary/15 sm:text-4xl md:-top-6 md:text-5xl lg:text-6xl"
           >
             &ldquo;
           </span>
           <span
             aria-hidden
-            className="pointer-events-none absolute -bottom-16 end-0 select-none font-serif text-4xl leading-none text-primary/15 sm:text-6xl md:-bottom-20 md:text-7xl lg:text-8xl"
+            className="pointer-events-none absolute -bottom-10 end-0 select-none font-serif text-3xl leading-none text-primary/15 sm:text-4xl md:-bottom-12 md:text-5xl lg:text-6xl"
           >
             &rdquo;
           </span>
-          <blockquote className="relative px-4 text-center text-display-sm md:text-display font-semibold tracking-tight leading-snug text-foreground text-balance md:px-12">
+          <blockquote className="relative px-4 text-center text-xl md:text-2xl lg:text-3xl font-semibold tracking-tight leading-snug text-foreground text-balance md:px-12">
             <span className="text-primary">{highlight}.</span>
             {remainder && (
               <>
