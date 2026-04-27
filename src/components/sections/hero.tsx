@@ -86,20 +86,26 @@ function HeroCTA() {
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.8, duration: 0.8, ease }}
     >
-      <a
+      <motion.a
         href="https://app.cardynal.io/register"
         className={cn(buttonVariants({ variant: "brand" }))}
+        whileHover={{ y: -2 }}
+        whileTap={{ scale: 0.97 }}
+        transition={{ duration: 0.25, ease }}
       >
         {t("cta")}
-      </a>
-      <a
+      </motion.a>
+      <motion.a
         href="https://cal.com/cardynal.io/30min"
         target="_blank"
         rel="noopener noreferrer"
         className={cn(buttonVariants({ variant: "outline" }))}
+        whileHover={{ y: -2 }}
+        whileTap={{ scale: 0.97 }}
+        transition={{ duration: 0.25, ease }}
       >
         {t("ctaSecondary")}
-      </a>
+      </motion.a>
     </motion.div>
   );
 }

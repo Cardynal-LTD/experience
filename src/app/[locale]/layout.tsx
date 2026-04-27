@@ -1,3 +1,4 @@
+import { MotionProvider } from "@/components/motion-provider";
 import { TailwindIndicator } from "@/components/tailwind-indicator";
 import { ThemeProvider } from "@/components/theme-provider";
 import { ThemeToggle } from "@/components/theme-toggle";
@@ -71,7 +72,9 @@ export default async function LocaleLayout({
           enableSystem={false}
         >
           <NextIntlClientProvider messages={messages}>
-            {children}
+            <MotionProvider>
+              {children}
+            </MotionProvider>
           </NextIntlClientProvider>
           <ThemeToggle />
           <TailwindIndicator />
