@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cardynal — Onboarding Alu Center</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --red:#D92B2B;--red2:#B82222;
+  --navy:#0F1923;--navy2:#1A3A5C;
+  --green:#1A7A4A;--green-bg:#EAF7EF;
+  --blue-bg:#EBF4FB;--blue-txt:#1A5276;
+  --line:#E4E8EF;--txt:#1A2332;--muted:#6B7896;
+  --sb:#F7F8FA;--white:#fff;
+}
+body{font-family:'DM Sans',sans-serif;background:#EDEEF1;min-height:100vh;color:var(--txt)}
+.shell{min-height:100vh;display:grid;grid-template-columns:260px 1fr}
+@media(max-width:720px){.shell{grid-template-columns:1fr}.sidebar{display:none}}
+.sidebar{background:var(--sb);border-right:1px solid var(--line);padding:32px 24px;display:flex;flex-direction:column;position:sticky;top:0;height:100vh}
+
+.wordmark{
+  font-family:'Syne',sans-serif;
+  font-weight:700;
+  font-size:22px;
+  color:var(--navy);
+  letter-spacing:-0.03em;
+}
+.wordmark::before{
+  content:'';
+  display:inline-block;
+  width:10px;
+  height:10px;
+  background:var(--red);
+  border-radius:50%;
+  margin-right:6px;
+  vertical-align:middle;
+  margin-bottom:2px;
+}
+
+.sb-logo{margin-bottom:32px;padding-bottom:24px;border-bottom:1px solid var(--line)}
+.sb-logo img{height:28px;width:auto}
+.sb-steps{display:flex;flex-direction:column;gap:2px;flex:1}
+.sb-item{display:flex;align-items:center;gap:10px;padding:9px 10px;border-radius:8px;transition:background .15s}
+.sb-item.active{background:#fff;box-shadow:0 1px 4px rgba(0,0,0,.07)}
+.sb-dot{width:22px;height:22px;border-radius:50%;flex-shrink:0;border:1.5px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:600;color:#B8C2D0;transition:all .25s}
+.sb-item.active .sb-dot{border-color:var(--red);background:var(--red);color:#fff}
+.sb-item.done .sb-dot{border-color:var(--green);background:var(--green);color:#fff}
+.sb-lbl{font-size:13px;color:#B0BBC8;transition:color .15s;line-height:1.3}
+.sb-item.active .sb-lbl{color:var(--navy);font-weight:500}
+.sb-item.done .sb-lbl{color:var(--green)}
+.sb-foot{font-size:11px;color:#B8C4D0;margin-top:auto;padding-top:20px;border-top:1px solid var(--line);line-height:1.6}
+.main{background:#fff;padding:52px 60px;max-width:700px}
+@media(max-width:960px){.main{padding:36px 28px}}
+.mob-bar{display:none;background:#fff;border-bottom:1px solid var(--line);padding:14px 20px;align-items:center;justify-content:space-between}
+@media(max-width:720px){.mob-bar{display:flex}.main{padding:28px 20px}}
+.mob-logo img{height:24px}
+.mob-badge{font-size:11px;color:var(--muted);background:var(--sb);border:1px solid var(--line);border-radius:99px;padding:3px 10px}
+.prog-wrap{height:3px;background:var(--line)}
+.prog-fill{height:100%;background:var(--red);transition:width .45s cubic-bezier(.4,0,.2,1)}
+.step{display:none}
+.step.active{display:block;animation:fadeUp .3s cubic-bezier(.4,0,.2,1)}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.eyebrow{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--red);margin-bottom:8px}
+.s-title{font-family:'Syne',sans-serif;font-size:26px;font-weight:700;color:var(--navy);letter-spacing:-.02em;line-height:1.2;margin-bottom:10px}
+.s-desc{font-size:14px;color:var(--muted);line-height:1.65;margin-bottom:32px}
+.field{margin-bottom:20px}
+.flabel{display:block;font-size:13px;font-weight:500;color:var(--navy2);margin-bottom:7px}
+.req{color:var(--red);margin-left:2px}
+input[type=text],input[type=email],input[type=tel],textarea{width:100%;padding:11px 14px;font-family:'DM Sans',sans-serif;font-size:14px;color:var(--txt);background:var(--sb);border:1.5px solid var(--line);border-radius:10px;outline:none;transition:border-color .18s,background .18s}
+input:focus,textarea:focus{border-color:var(--navy2);background:#fff}
+input::placeholder,textarea::placeholder{color:#C0C8D4}
+textarea{resize:vertical;min-height:76px;line-height:1.55}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:500px){.two-col{grid-template-columns:1fr}}
+.cg{display:grid;gap:8px}
+.c2{grid-template-columns:1fr 1fr}
+.c3{grid-template-columns:1fr 1fr 1fr}
+@media(max-width:500px){.c3{grid-template-columns:1fr 1fr}}
+.cb{display:flex;align-items:flex-start;gap:10px;padding:11px 14px;border:1.5px solid var(--line);border-radius:10px;cursor:pointer;user-select:none;transition:border-color .15s,background .15s}
+.cb:hover{border-color:#C0C8D4;background:var(--sb)}
+.cb.on{border-color:var(--green);background:var(--green-bg)}
+.cb-box{width:18px;height:18px;border:1.5px solid var(--line);border-radius:5px;flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center;transition:all .15s}
+.cb.on .cb-box{background:var(--green);border-color:var(--green)}
+.cb-tick{display:none}
+.cb.on .cb-tick{display:block}
+.cb-main{font-size:13px;color:var(--muted);line-height:1.35}
+.cb.on .cb-main{color:var(--navy);font-weight:500}
+.cb-hint{font-size:11.5px;color:#A8B4C4;margin-top:3px;line-height:1.4}
+.cb.on .cb-hint{color:#3A9E6A}
+.ibox{display:flex;gap:10px;align-items:flex-start;padding:12px 14px;background:var(--blue-bg);border:1px solid #C5DDF2;border-radius:10px;margin-bottom:20px;font-size:13px;color:var(--blue-txt);line-height:1.55}
+.sv-row{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.sv-n{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;color:var(--navy2);width:18px;text-align:right;flex-shrink:0}
+hr.dv{border:none;border-top:1px solid var(--line);margin:22px 0}
+.nav{display:flex;align-items:center;justify-content:space-between;margin-top:36px;gap:12px}
+.btn{font-family:'DM Sans',sans-serif;font-size:14px;font-weight:500;padding:11px 26px;border-radius:10px;border:none;cursor:pointer;transition:all .18s}
+.btn-prev{background:transparent;color:var(--muted);border:1.5px solid var(--line)}
+.btn-prev:hover{background:var(--sb)}
+.btn-prev.hidden{visibility:hidden}
+.btn-next{background:var(--red);color:#fff;margin-left:auto}
+.btn-next:hover{background:var(--red2)}
+.btn-ok{background:var(--green);color:#fff;margin-left:auto}
+.btn-ok:hover{background:#145e38}
+.rg{margin-bottom:20px}
+.re{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+.rr{display:flex;justify-content:space-between;align-items:flex-start;font-size:13.5px;padding:8px 0;border-bottom:1px solid var(--line);gap:16px}
+.rr:last-child{border-bottom:none}
+.rk{color:var(--muted);flex-shrink:0}
+.rv{color:var(--navy);font-weight:500;text-align:right}
+.rtag{display:inline-block;font-size:11px;padding:2px 8px;border-radius:99px;background:var(--green-bg);color:var(--green);font-weight:500;margin:2px}
+.suc{display:none;text-align:center;padding:60px 20px}
+.suc-ring{width:64px;height:64px;background:var(--green-bg);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 20px}
+.suc-title{font-family:'Syne',sans-serif;font-size:26px;font-weight:700;color:var(--navy);margin-bottom:10px}
+.suc-desc{font-size:14px;color:var(--muted);line-height:1.7;max-width:360px;margin:0 auto 24px}
+.btn-dl{display:inline-flex;align-items:center;gap:8px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:500;padding:12px 28px;border-radius:10px;border:none;cursor:pointer;background:var(--navy);color:#fff;transition:background .18s}
+.btn-dl:hover{background:var(--navy2)}
+</style>
+</head>
+<body>
+
+<div class="mob-bar">
+  <div class="mob-logo"><span class="wordmark" style="font-size:18px">cardynal</span></div>
+  <span class="mob-badge">Alu Center</span>
+</div>
+<div class="prog-wrap"><div class="prog-fill" id="prog" style="width:16.6%"></div></div>
+
+<div class="shell">
+  <aside class="sidebar">
+    <div class="sb-logo"><span class="wordmark">cardynal</span></div>
+    <div class="sb-steps">
+      <div class="sb-item active" data-s="1"><div class="sb-dot">1</div><div class="sb-lbl">Infos générales</div></div>
+      <div class="sb-item" data-s="2"><div class="sb-dot">2</div><div class="sb-lbl">Services & clientèle</div></div>
+      <div class="sb-item" data-s="3"><div class="sb-dot">3</div><div class="sb-lbl">Prise de rendez-vous</div></div>
+      <div class="sb-item" data-s="4"><div class="sb-dot">4</div><div class="sb-lbl">Escalade</div></div>
+      <div class="sb-item" data-s="5"><div class="sb-dot">5</div><div class="sb-lbl">Automatisations</div></div>
+      <div class="sb-item" data-s="6"><div class="sb-dot">6</div><div class="sb-lbl">Validation</div></div>
+    </div>
+    <div class="sb-foot">Cardynal © 2025<br>app.cardynal.io</div>
+  </aside>
+
+  <main class="main">
+
+    <!-- S1 -->
+    <div class="step active" id="s1">
+      <div class="eyebrow">Section 0</div>
+      <div class="s-title">Informations générales</div>
+      <div class="s-desc">Personnalisez votre agent et configurez vos canaux de communication.</div>
+      <div class="field"><label class="flabel">Nom de l'agent <span class="req">*</span></label><input type="text" id="f_agent" placeholder="ex : Alex d'Alu Center"></div>
+      <div class="field"><label class="flabel">Ton souhaité</label>
+        <div class="cg c3" data-key="ton" data-multi="false">
+          <div class="cb" data-val="Professionnel"><div class="cb-box"><svg class="cb-tick" width="10" height="10" viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="cb-main">Professionnel</div></div></div><div class="cb" data-val="Chaleureux"><div class="cb-box"><svg class="cb-tick" width="10" height="10" viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="cb-main">Chaleureux</div></div></div><div class="cb" data-val="Neutre"><div class="cb-box"><svg class="cb-tick" width="10" height="10" viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="cb-main">Neutre</div></div></div>
+        </div>
+      </div>
+      <div class="field"><label class="flabel">Site web</label><input type="text" id="f_url" value="https://alu-center.net" placeholder="https://..."></div>
+      <div class="field"><label class="flabel">Canal de déploiement <span class="req">*</span></label>
+        <div class="cg c3" data-key="canal" data-multi="false">
+          <div class="cb" data-val="Site web"><div class="cb-box"><svg class="cb-tick" width="10" height="10" viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="cb-main">Site web</div></div></div><div class="cb on" data-val="WhatsApp"><div class="cb-box"><svg class="cb-tick" width="10" height="10" viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="cb-main">WhatsApp</div></div></div><div class="cb" data-val="Les deux"><div class="cb-box"><svg class="cb-tick" width="10" height="10" viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="cb-main">Les deux</div></div></div>
+        </div>
+      </div>
+      <hr class="dv">
+      <div class="field"><label class="flabel">Contact interne — leads & alertes</label>
+        <div class="two-col" style="margin-bottom:10px">
+          <input type="text" id="f_nom" placeholder="Nom" value="Sébastien Benitah">
+          <input type="tel" id="f_tel" placeholder="WhatsApp" value="+596 696 230 240">
+        </div>
+        <input type="email" id="f_email" placeholder="Email" value="alucenter2@gmail.com">
+      </div>
+      <div class="nav">
+        <button class="btn btn-prev hidden" onclick="prevStep()">← Retour</button>
+        <button class="btn btn-next" onclick="nextStep()">Continuer →</button>
+      </div>
+    </div>
+
+    <!-- S2 -->
+    <div class="step" id="s2">
+      <div class="eyebrow">Section 1 — Scénario 1</div>
+      <div class="s-title">Services & clientèle</div>
+      <div class="s-desc">Permettez à l'agent de présenter vos offres et qualifier les prospects.</div>
+      <div class="field"><label class="flabel">Services par ordre de priorité <span class="req">*</span></label>
+        <div class="sv-row"><span class="sv-n">1</span><input type="text" id="sv1" placeholder="ex : Fenêtres aluminium"></div>
+        <div class="sv-row"><span class="sv-n">2</span><input type="text" id="sv2" placeholder="ex : Portails & barrières"></div>
+        <div class="sv-row"><span class="sv-n">3</span><input type="text" id="sv3" placeholder="ex : Volets roulants"></div>
+        <div class="sv-row"><span class="sv-n">4</span><input type="text" id="sv4" placeholder="ex : Vérandas"></div>
+        <div class="sv-row"><span class="sv-n">5</span><input type="text" id="sv5" placeholder="Autre…"></div>
+      </div>
+      <div class="field"><label class="flabel">Messages clés (optionnel)</label><textarea id="f_msgcles" placeholder="ex : Pose en 15 jours, sur-mesure, certifiés…"></textarea></div>
+      <div class="field"><label class="flabel">Type de clientèle</label>
+        <div class="cg c3" data-key="clientele" data-multi="false">
+          <div class="cb" data-val="Particuliers"><div class="cb-box"><svg class="cb-tick" width="10" height="10" viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="cb-main">Particuliers</div></div></div><div class="cb" data-val="Professionnels"><div class="cb-box"><svg class="cb-tick" width="10" height="10" viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="cb-main">Professionnels</div></div></div><div class="cb" data-val="Les deux"><div class="cb-box"><svg class="cb-tick" width="10" height="10" viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="cb-main">Les deux</div></div></div>
+        </div>
+      </div>
+      <div class="field"><label class="flabel">Zones géographiques</label><input type="text" id="f_zones" placeholder="ex : Martinique entière"></div>
+      <div class="field"><label class="flabel">Questions de qualification (optionnel)</label><textarea id="f_qualif" placeholder="ex : Rénovation ou neuf ? Propriétaire ?"></textarea></div>
+      <div class="nav">
+        <button class="btn btn-prev" onclick="prevStep()">← Retour</button>
+        <button class="btn btn-next" onclick="nextStep()">Continuer →</button>
+      </div>
+    </div>
+
+    <!-- S3 -->
+    <div class="step" id="s3">
+      <div class="eyebrow">Section 2 — Scénario 2</div>
+      <div class="s-title">Prise de rendez-vous</div>
+      <div class="s-desc">Comment organisez-vous vos déplacements chez les clients ?</div>
+      <div class="ibox"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" style="flex-shrink:0;margin-top:1px"><circle cx="8" cy="8" r="7.5" stroke="#2980B9"/><path d="M8 7v5" stroke="#2980B9" stroke-width="1.5" stroke-linecap="round"/><circle cx="8" cy="5" r=".8" fill="#2980B9"/></svg><span>Le lead est automatiquement transmis à l'agenda Cardynal dès sa capture — aucune action manuelle.</span></div>
+      <div class="field"><label class="flabel">Agenda utilisé</label>
+        <div class="cg c2" data-key="agenda" data-multi="false">
+          <div class="cb" data-val="Aucun"><div class="cb-box"><svg class="cb-tick" width="10" height="10" viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="cb-main">Aucun agenda</div></div></div><div class="cb" data-val="Google Calendar"><div class="cb-box"><svg class="cb-tick" width="10" height="10" viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="cb-main">Google Calendar</div></div></div><div class="cb" data-val="Calendly"><div class="cb-box"><svg class="cb-tick" width="10" height="10" viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="cb-main">Calendly</div></div></div><div class="cb" data-val="Autre"><div class="cb-box"><svg class="cb-tick" width="10" height="10" viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="cb-main">Autre</div></div></div>
+        </div>
+      </div>
+      <div class="field"><label class="flabel">Disponibilités</label>
+        <div class="two-col">
+          <input type="text" id="f_jours" placeholder="Jours (ex : Lun–Sam)">
+          <input type="text" id="f_horaires" placeholder="Horaires (ex : 8h–18h)">
+        </div>
+      </div>
+      <div class="field"><label class="flabel">Organisation</label>
+        <div class="two-col">
+          <input type="text" id="f_duree" placeholder="Durée moyenne d'un RDV">
+          <input type="text" id="f_delai" placeholder="Délai avant 1er créneau">
+        </div>
+      </div>
+      <div class="field"><label class="flabel">Qui se déplace ?</label>
+        <div class="cg c2" data-key="qui" data-multi="false">
+          <div class="cb" data-val="Dirigeant"><div class="cb-box"><svg class="cb-tick" width="10" height="10" viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="cb-main">Dirigeant</div></div></div><div class="cb" data-val="Technicien"><div class="cb-box"><svg class="cb-tick" width="10" height="10" viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="cb-main">Technicien</div></div></div><div class="cb" data-val="Commercial"><div class="cb-box"><svg class="cb-tick" width="10" height="10" viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="cb-main">Commercial</div></div></div><div class="cb" data-val="Plusieurs"><div class="cb-box"><svg class="cb-tick" width="10" height="10" viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="cb-main">Plusieurs personnes</div></div></div>
+        </div>
+      </div>
+      <div class="field"><label class="flabel">Informations à collecter avant le RDV</label>
+        <div class="cg c2" data-key="infosrdv" data-multi="true">
+          <div class="cb on" data-val="Adresse exacte"><div class="cb-box"><svg class="cb-tick" width="10" height="10" viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="cb-main">Adresse exacte</div></div></div><div class="cb on" data-val="Type de projet"><div class="cb-box"><svg class="cb-tick" width="10" height="10" viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="cb-main">Type de projet</div></div></div><div class="cb" data-val="Budget estimatif"><div class="cb-box"><svg class="cb-tick" width="10" height="10" viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="cb-main">Budget estimatif</div></div></div><div class="cb" data-val="Autre"><div class="cb-box"><svg class="cb-tick" width="10" height="10" viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="cb-main">Autre</div></div></div>
+        </div>
+      </div>
+      <div class="field"><label class="flabel">Message si aucun créneau dispo (optionnel)</label><textarea id="f_noslot" placeholder="ex : Un conseiller vous recontacte sous 24h."></textarea></div>
+      <div class="nav">
+        <button class="btn btn-prev" onclick="prevStep()">← Retour</button>
+        <button class="btn btn-next" onclick="nextStep()">Continuer →</button>
+      </div>
+    </div>
+
+    <!-- S4 -->
+    <div class="step" id="s4">
+      <div class="eyebrow">Section 3 — Escalade</div>
+      <div class="s-title">Gestion des insatisfactions</div>
+      <div class="s-desc">Quand et comment l'agent doit-il passer la main à un humain ?</div>
+      <div class="field"><label class="flabel">Cas déclenchants <span class="req">*</span></label>
+        <div class="cg c2" data-key="cas" data-multi="true">
+          <div class="cb" data-val="Retard livraison"><div class="cb-box"><svg class="cb-tick" width="10" height="10" viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="cb-main">Retard de livraison</div></div></div><div class="cb" data-val="Problème installation"><div class="cb-box"><svg class="cb-tick" width="10" height="10" viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="cb-main">Problème d'installation</div></div></div><div class="cb" data-val="Produit défectueux"><div class="cb-box"><svg class="cb-tick" width="10" height="10" viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="cb-main">Produit défectueux</div></div></div><div class="cb" data-val="Autre réclamation"><div class="cb-box"><svg class="cb-tick" width="10" height="10" viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="cb-main">Autre réclamation</div></div></div>
+        </div>
+      </div>
+      <div class="field"><label class="flabel">Contact escalade (si différent)</label>
+        <div class="two-col" style="margin-bottom:10px">
+          <input type="text" id="f_escnom" placeholder="Nom">
+          <input type="tel" id="f_esctel" placeholder="WhatsApp">
+        </div>
+        <input type="email" id="f_escemail" placeholder="Email">
+      </div>
+      <div class="field"><label class="flabel">Délai de notification</label>
+        <div class="cg c3" data-key="delai_notif" data-multi="false">
+          <div class="cb" data-val="Immédiat"><div class="cb-box"><svg class="cb-tick" width="10" height="10" viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="cb-main">Immédiat</div></div></div><div class="cb" data-val="< 1 heure"><div class="cb-box"><svg class="cb-tick" width="10" height="10" viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="cb-main">Moins d'1h</div></div></div><div class="cb" data-val="Autre"><div class="cb-box"><svg class="cb-tick" width="10" height="10" viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="cb-main">Autre</div></div></div>
+        </div>
+      </div>
+      <div class="field"><label class="flabel">Logique d'escalade</label>
+        <div class="cg c2" data-key="logique" data-multi="false">
+          <div class="cb" data-val="Immédiatement"><div class="cb-box"><svg class="cb-tick" width="10" height="10" viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="cb-main">Immédiatement</div></div></div><div class="cb on" data-val="Après message agent"><div class="cb-box"><svg class="cb-tick" width="10" height="10" viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="cb-main">Après message de l'agent</div></div></div>
+        </div>
+      </div>
+      <div class="field"><label class="flabel">Message avant passage de relais (optionnel)</label><textarea id="f_escmsg" placeholder="ex : Je comprends votre situation, un responsable vous recontacte rapidement."></textarea></div>
+      <div class="ibox"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" style="flex-shrink:0;margin-top:1px"><circle cx="8" cy="8" r="7.5" stroke="#2980B9"/><path d="M8 7v5" stroke="#2980B9" stroke-width="1.5" stroke-linecap="round"/><circle cx="8" cy="5" r=".8" fill="#2980B9"/></svg><span>En cas d'indisponibilité, le bot propose automatiquement les prochaines disponibilités.</span></div>
+      <div class="nav">
+        <button class="btn btn-prev" onclick="prevStep()">← Retour</button>
+        <button class="btn btn-next" onclick="nextStep()">Continuer →</button>
+      </div>
+    </div>
+
+    <!-- S5 -->
+    <div class="step" id="s5">
+      <div class="eyebrow">Options — Hors périmètre initial</div>
+      <div class="s-title">Automatisations souhaitées</div>
+      <div class="s-desc">Cochez ce qui vous intéresse — nous préparerons un devis sur-mesure.</div>
+      <div class="cg" data-key="auto" data-multi="true" style="gap:10px">
+        <div class="cb" data-val="Rappel RDV WhatsApp J-1 & J-0"><div class="cb-box"><svg class="cb-tick" width="10" height="10" viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="cb-main">Rappel RDV automatique — WhatsApp J-1 &amp; J-0</div><div class="cb-hint">Message la veille et le matin de chaque visite technicien</div></div></div>
+        <div class="cb" data-val="Enquête satisfaction post-installation"><div class="cb-box"><svg class="cb-tick" width="10" height="10" viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="cb-main">Enquête satisfaction post-installation</div><div class="cb-hint">48h après la pose → WhatsApp automatique pour générer des avis Google</div></div></div>
+        <div class="cb" data-val="Campagne réactivation clients"><div class="cb-box"><svg class="cb-tick" width="10" height="10" viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="cb-main">Campagne réactivation — base clients existante</div><div class="cb-hint">WhatsApp ciblé pour proposer un nouveau produit ou une promo saisonnière</div></div></div>
+        <div class="cb" data-val="Remontée terrain poseurs"><div class="cb-box"><svg class="cb-tick" width="10" height="10" viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="cb-main">Remontée terrain en temps réel</div><div class="cb-hint">Poseurs signalent fin de chantier ou problème via WhatsApp → remonte au bureau</div></div></div>
+      </div>
+      <div class="nav">
+        <button class="btn btn-prev" onclick="prevStep()">← Retour</button>
+        <button class="btn btn-next" onclick="nextStep()">Continuer →</button>
+      </div>
+    </div>
+
+    <!-- S6 -->
+    <div class="step" id="s6">
+      <div class="eyebrow">Validation finale</div>
+      <div class="s-title">Récapitulatif</div>
+      <div class="s-desc">Vérifiez vos informations avant d'envoyer.</div>
+      <div id="recap"></div>
+      <div class="nav">
+        <button class="btn btn-prev" onclick="prevStep()">← Retour</button>
+        <button class="btn btn-ok" onclick="submit()">Envoyer →</button>
+      </div>
+    </div>
+
+    <!-- Success -->
+    <div class="suc" id="suc">
+      <div class="suc-ring"><svg width="28" height="28" viewBox="0 0 28 28" fill="none"><polyline points="5,14 11,20 23,8" stroke="#1A7A4A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="suc-title">Merci Sébastien !</div>
+      <p class="suc-desc">Vos informations sont prêtes. Téléchargez le récapitulatif PDF et transmettez-le à votre contact Cardynal.</p>
+      <button class="btn-dl" onclick="dlPDF()">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 1v9M4 6l4 4 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M2 13h12" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>
+        Télécharger le PDF
+      </button>
+    </div>
+
+  </main>
+</div>
+
+<script>
+const TOTAL = 6;
+let cur = 1;
+const D = {};
+
+function v(id) {
+  var el = document.getElementById(id);
+  return el ? el.value : '';
+}
+
+function collect() {
+  D.agent   = v('f_agent');
+  D.url     = v('f_url');
+  D.contact = { nom: v('f_nom'), tel: v('f_tel'), email: v('f_email') };
+  D.services = [1,2,3,4,5].map(function(i){ return v('sv'+i); }).filter(Boolean);
+  D.msgcles  = v('f_msgcles');
+  D.zones    = v('f_zones');
+  D.qualif   = v('f_qualif');
+  D.jours    = v('f_jours');
+  D.horaires = v('f_horaires');
+  D.duree    = v('f_duree');
+  D.delai    = v('f_delai');
+  D.noslot   = v('f_noslot');
+  D.esc      = { nom: v('f_escnom'), tel: v('f_esctel'), email: v('f_escemail') };
+  D.escmsg   = v('f_escmsg');
+
+  document.querySelectorAll('[data-key]').forEach(function(g) {
+    var k     = g.dataset.key;
+    var multi = g.dataset.multi === 'true';
+    var sel   = Array.from(g.querySelectorAll('.cb.on')).map(function(e){ return e.dataset.val; });
+    D[k]      = multi ? sel : (sel[0] || '');
+  });
+}
+
+function buildRecap() {
+  collect();
+  var h = [];
+
+  function sec(t) { h.push('<div class="rg"><div class="re">' + t + '</div>'); }
+  function row(k, val) {
+    if (!val || (Array.isArray(val) && !val.length)) return;
+    var v2 = Array.isArray(val)
+      ? val.map(function(a){ return '<span class="rtag">' + a + '</span>'; }).join('')
+      : val;
+    h.push('<div class="rr"><span class="rk">' + k + '</span><span class="rv">' + v2 + '</span></div>');
+  }
+
+  sec('Informations générales');
+  row('Agent', D.agent); row('Ton', D.ton); row('Canal', D.canal);
+  row('Contact', D.contact.nom + (D.contact.tel ? ' · ' + D.contact.tel : ''));
+  row('Email', D.contact.email); h.push('</div>');
+
+  if (D.services.length) {
+    sec('Services & clientèle');
+    row('Services', D.services.join(', ')); row('Clientèle', D.clientele); row('Zones', D.zones);
+    h.push('</div>');
+  }
+
+  sec('Rendez-vous');
+  row('Agenda', D.agenda);
+  row('Disponibilités', [D.jours, D.horaires].filter(Boolean).join(' · '));
+  row('Organisation', [D.duree, D.delai].filter(Boolean).join(' · '));
+  row('Se déplace', D.qui); row('Infos RDV', D.infosrdv); h.push('</div>');
+
+  sec('Escalade');
+  row('Cas', D.cas); row('Délai notif.', D.delai_notif); row('Logique', D.logique); h.push('</div>');
+
+  if (D.auto && D.auto.length) {
+    sec('Automatisations souhaitées'); row('Options', D.auto); h.push('</div>');
+  }
+
+  document.getElementById('recap').innerHTML = h.join('');
+}
+
+function updateSB() {
+  document.querySelectorAll('.sb-item').forEach(function(el) {
+    var n = parseInt(el.dataset.s);
+    el.className = 'sb-item' + (n === cur ? ' active' : n < cur ? ' done' : '');
+    var dot = el.querySelector('.sb-dot');
+    dot.textContent = n < cur ? '✓' : String(n);
+  });
+  document.getElementById('prog').style.width = (cur / TOTAL * 100) + '%';
+}
+
+function showStep(n) {
+  document.querySelectorAll('.step').forEach(function(s){ s.classList.remove('active'); });
+  document.getElementById('s' + n).classList.add('active');
+  if (n === TOTAL) buildRecap();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function nextStep() {
+  if (cur < TOTAL) { cur++; showStep(cur); updateSB(); }
+}
+function prevStep() {
+  if (cur > 1) { cur--; showStep(cur); updateSB(); }
+}
+
+function submit() {
+  collect();
+  document.querySelectorAll('.step').forEach(function(s){ s.style.display = 'none'; });
+  document.getElementById('suc').style.display = 'block';
+  document.getElementById('prog').style.width = '100%';
+  document.querySelectorAll('.sb-item').forEach(function(el) {
+    el.className = 'sb-item done';
+    el.querySelector('.sb-dot').textContent = '✓';
+  });
+}
+
+function dlPDF() {
+  var jsPDF = window.jspdf.jsPDF;
+  var doc   = new jsPDF({ unit: 'mm', format: 'a4' });
+  var PW=210, PH=297, LM=18, RM=18, CW=PW-LM-RM;
+  var y = 18;
+  var NAVY=[15,25,35], RED=[217,43,43], GREEN=[26,122,74], GREY=[90,100,120], LINE=[220,226,237];
+
+  function chk(n) { if (y+n > PH-20) { doc.addPage(); y=18; } }
+
+  doc.setFillColor(NAVY[0],NAVY[1],NAVY[2]);
+  doc.rect(0, 0, PW, 22, 'F');
+  doc.setFont('helvetica','bold'); doc.setFontSize(13); doc.setTextColor(255,255,255);
+  doc.text('cardynal', LM, 14);
+  doc.setFont('helvetica','normal'); doc.setFontSize(8.5); doc.setTextColor(160,180,210);
+  doc.text("Protocole d'onboarding — Alu Center", LM+28, 14);
+  var date = new Date().toLocaleDateString('fr-FR',{day:'2-digit',month:'long',year:'numeric'});
+  doc.setFontSize(8); doc.setTextColor(140,160,190);
+  doc.text(date, PW-RM, 14, { align: 'right' });
+  y = 32;
+
+  function section(title, rows) {
+    chk(14 + rows.length * 9);
+    doc.setFont('helvetica','bold'); doc.setFontSize(7.5); doc.setTextColor(RED[0],RED[1],RED[2]);
+    doc.text(title.toUpperCase(), LM, y); y += 4;
+    doc.setDrawColor(LINE[0],LINE[1],LINE[2]); doc.setLineWidth(0.3);
+    doc.line(LM, y, LM+CW, y); y += 5;
+    rows.forEach(function(pair) {
+      var k = pair[0]; var val = pair[1];
+      if (!val || (Array.isArray(val) && !val.length)) return;
+      var str = Array.isArray(val) ? val.join(', ') : String(val);
+      chk(9);
+      doc.setFont('helvetica','normal'); doc.setFontSize(8.5); doc.setTextColor(GREY[0],GREY[1],GREY[2]);
+      doc.text(k, LM, y);
+      doc.setFont('helvetica','bold'); doc.setTextColor(NAVY[0],NAVY[1],NAVY[2]);
+      var lines = doc.splitTextToSize(str, CW-52);
+      doc.text(lines, LM+52, y);
+      y += lines.length > 1 ? lines.length * 5 : 6;
+      doc.setDrawColor(LINE[0],LINE[1],LINE[2]); doc.setLineWidth(0.2);
+      doc.line(LM, y, LM+CW, y); y += 4;
+    });
+    y += 4;
+  }
+
+  section('Informations générales', [
+    ['Agent', D.agent], ['Ton', D.ton], ['Canal', D.canal],
+    ['Contact', D.contact.nom + (D.contact.tel ? ' · ' + D.contact.tel : '')],
+    ['Email', D.contact.email]
+  ]);
+  section('Services & clientèle', [
+    ['Services', D.services], ['Messages clés', D.msgcles],
+    ['Clientèle', D.clientele], ['Zones', D.zones], ['Qualification', D.qualif]
+  ]);
+  section('Prise de rendez-vous', [
+    ['Agenda', D.agenda], ['Jours', D.jours], ['Horaires', D.horaires],
+    ['Durée RDV', D.duree], ['Délai créneau', D.delai],
+    ['Se déplace', D.qui], ['Infos RDV', D.infosrdv], ['Si pas de créneau', D.noslot]
+  ]);
+  section('Escalade', [
+    ['Cas', D.cas],
+    ['Contact', D.esc.nom + (D.esc.tel ? ' · ' + D.esc.tel : '')],
+    ['Email escalade', D.esc.email], ['Délai notif.', D.delai_notif],
+    ['Logique', D.logique], ['Message relais', D.escmsg]
+  ]);
+  if (D.auto && D.auto.length) {
+    section('Automatisations souhaitées', [['Options', D.auto]]);
+  }
+
+  var pc = doc.getNumberOfPages();
+  for (var i = 1; i <= pc; i++) {
+    doc.setPage(i);
+    doc.setFillColor(NAVY[0],NAVY[1],NAVY[2]);
+    doc.rect(0, PH-12, PW, 12, 'F');
+    doc.setFont('helvetica','normal'); doc.setFontSize(7); doc.setTextColor(120,140,170);
+    doc.text('Document confidentiel — Cardynal © 2025  |  app.cardynal.io', LM, PH-5);
+    doc.text('Page ' + i + ' / ' + pc, PW-RM, PH-5, { align: 'right' });
+  }
+
+  doc.save('Cardynal_Onboarding_AluCenter.pdf');
+}
+
+document.querySelectorAll('[data-key]').forEach(function(g) {
+  var multi = g.dataset.multi === 'true';
+  g.querySelectorAll('.cb').forEach(function(item) {
+    item.addEventListener('click', function() {
+      if (!multi) g.querySelectorAll('.cb').forEach(function(i){ i.classList.remove('on'); });
+      item.classList.toggle('on');
+    });
+  });
+});
+
+updateSB();
+</script>
+
+</body>
+</html>
