@@ -55,9 +55,9 @@ body{font-family:'DM Sans',sans-serif;background:#EDEEF1;min-height:100vh;color:
 .main{background:#fff;padding:52px 60px;max-width:700px}
 @media(max-width:960px){.main{padding:36px 28px}}
 .mob-bar{display:none;background:#fff;border-bottom:1px solid var(--line);padding:14px 20px;align-items:center;justify-content:space-between}
-@media(max-width:720px){.mob-bar{display:flex}.main{padding:28px 20px}}
 .mob-logo img{height:24px}
-.mob-badge{font-size:11px;color:var(--muted);background:var(--sb);border:1px solid var(--line);border-radius:99px;padding:3px 10px}
+.mob-badge{font-size:11px;color:var(--muted);background:var(--sb);border:1px solid var(--line);border-radius:99px;padding:3px 10px;font-variant-numeric:tabular-nums}
+.mob-head{position:sticky;top:0;z-index:20;background:#fff}
 .prog-wrap{height:3px;background:var(--line)}
 .prog-fill{height:100%;background:var(--red);transition:width .45s cubic-bezier(.4,0,.2,1)}
 .step{display:none}
@@ -116,15 +116,59 @@ hr.dv{border:none;border-top:1px solid var(--line);margin:22px 0}
 .suc-desc{font-size:14px;color:var(--muted);line-height:1.7;max-width:360px;margin:0 auto 24px}
 .btn-dl{display:inline-flex;align-items:center;gap:8px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:500;padding:12px 28px;border-radius:10px;border:none;cursor:pointer;background:var(--navy);color:#fff;transition:background .18s}
 .btn-dl:hover{background:var(--navy2)}
+
+/* ---------- Mobile ---------- */
+@media(max-width:720px){
+  body{background:#fff}
+  .mob-bar{display:flex;padding:12px 18px;padding-top:max(12px,env(safe-area-inset-top))}
+  .main{padding:24px 18px 60px}
+  .s-title{font-size:22px;line-height:1.18;margin-bottom:8px}
+  .s-desc{font-size:13.5px;line-height:1.6;margin-bottom:24px}
+  .eyebrow{margin-bottom:6px}
+  .field{margin-bottom:18px}
+  .flabel{font-size:13px;margin-bottom:8px}
+  /* iOS auto-zoom prevention: inputs >= 16px */
+  input[type=text],input[type=email],input[type=tel],textarea{font-size:16px;padding:13px 14px;border-radius:11px}
+  textarea{min-height:90px}
+  .cb{padding:14px;gap:11px;border-radius:11px}
+  .cb-main{font-size:14.5px;line-height:1.3}
+  .cb-hint{font-size:12px;margin-top:4px}
+  .cb-box{width:20px;height:20px}
+  .ibox{font-size:13px;padding:13px 14px}
+  .sv-row{gap:11px}
+  hr.dv{margin:18px 0}
+  /* Buttons full-width feel */
+  .nav{margin-top:28px;gap:10px}
+  .btn{padding:14px 18px;font-size:15px;border-radius:11px;flex:1}
+  .btn-prev{flex:0 0 auto;padding:14px 16px}
+  .btn-prev.hidden{display:none}
+  .btn-next,.btn-ok{flex:1}
+  /* Recap stacks key/value vertically */
+  .rr{flex-direction:column;align-items:flex-start;gap:4px;padding:10px 0;font-size:14px}
+  .rv{text-align:left}
+  .rk{font-size:12px;text-transform:uppercase;letter-spacing:.04em}
+  /* Success page */
+  .suc{padding:48px 18px}
+  .suc-title{font-size:22px}
+  .suc-desc{font-size:13.5px}
+  .btn-dl{width:100%;justify-content:center;padding:14px 24px;font-size:15px}
+}
+@media(max-width:380px){
+  .main{padding:20px 14px 50px}
+  .c3{grid-template-columns:1fr}
+  .s-title{font-size:20px}
+}
 </style>
 </head>
 <body>
 
-<div class="mob-bar">
-  <div class="mob-logo"><span class="wordmark" style="font-size:18px">cardynal</span></div>
-  <span class="mob-badge">Alu Center</span>
+<div class="mob-head">
+  <div class="mob-bar">
+    <div class="mob-logo"><span class="wordmark" style="font-size:18px">cardynal</span></div>
+    <span class="mob-badge" id="mob-step">Étape 1 / 6</span>
+  </div>
+  <div class="prog-wrap"><div class="prog-fill" id="prog" style="width:16.6%"></div></div>
 </div>
-<div class="prog-wrap"><div class="prog-fill" id="prog" style="width:16.6%"></div></div>
 
 <div class="shell">
   <aside class="sidebar">
@@ -399,6 +443,8 @@ function updateSB() {
     dot.textContent = n < cur ? '✓' : String(n);
   });
   document.getElementById('prog').style.width = (cur / TOTAL * 100) + '%';
+  var ms = document.getElementById('mob-step');
+  if (ms) ms.textContent = 'Étape ' + cur + ' / ' + TOTAL;
 }
 
 function showStep(n) {
@@ -424,6 +470,8 @@ function submit() {
     el.className = 'sb-item done';
     el.querySelector('.sb-dot').textContent = '✓';
   });
+  var ms = document.getElementById('mob-step');
+  if (ms) ms.textContent = 'Terminé';
 }
 
 function dlPDF() {
